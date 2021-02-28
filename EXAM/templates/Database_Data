@@ -1,0 +1,379 @@
+
+
+#tester
+
+
+{    "user_name" : "bashar ",
+
+    "email" : "bashar@example.com",
+    "password" : "$2b$12$XYvFAXMnSMhAsgRGcI.zCehVfYCR/Fis6CnJNqFvSwmNnN9sA4Cby",
+    "organization_id" : "171-2020-34",
+    "user_category" : "teacher"
+}
+
+
+{     "user_name" : "bravebashar ",
+
+    "email" : "bravebashar9@gmail.com",
+    "password" : "$2b$12$V7ziVldtLgs.gkT0skRKCe3n1.6mQ0mujFBIevXX4oMG8o/P4CeVq",
+    "organization_id" : "43er3452e",
+    "user_category" : "student"
+}
+
+
+{
+     "user_name" : "Ayshakhatun ",
+    "email" : "ayshakhatun@example.com",
+    "password" : "$2b$12$.mUOiU.mntVvUzss1BC/d.7yeHzDX1zRwpb6/QJofIbi6aXtBoa7y",
+    "organization_id" : "10A-VNSC-2020",
+    "user_category" : "student"
+}
+
+
+{
+    "user_name" : "Admin ",
+    "email" : "admin@example.com",
+    "password" : "$2b$12$S38gIFXx2h0CxQcPfGFybOM84nOBN4XixEH4BqKTMnmef3EbqemeW",
+    "organization_id" : "90-812367",
+    "user_category" : "admin"
+}
+
+
+
+
+
+
+#user_type
+
+
+{
+    "user_name" : "swert ",
+    "email" : "swert@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+{
+    "user_name" : "asxder ",
+    "email" : "asxder@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+{
+    "user_name" : "ertyft ",
+    "email" : "ertyft@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+{
+    "user_name" : "vftyjs ",
+    "email" : "vftyjs@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+{
+    "user_name" : "moshTech ",
+    "email" : "moshTech@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+{
+    "user_name" : "asadTech ",
+    "email" : "asadTech@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+ {
+    "user_name" : "rakibTech ",
+    "email" : "rakibTech@example.com",
+    "organization_id" : "171-2020-23"
+}
+{
+    "user_name" : "BashTech ",
+    "email" : "BashTech@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+ 
+
+
+
+
+#couse_model
+{
+   
+    "course_title" : "intro",
+    "course_code" : "SWE431",
+    "course_co" : "10",
+    "course_lessons" : "lesson-5",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "testing the form"
+}
+
+
+{
+   
+    "course_title" : "intro to communication",
+    "course_code" : "SWE431",
+    "course_co" : "5",
+    "course_lessons" : "lesson-2",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "testing the form"
+}
+
+
+{
+   
+    "course_title" : "intro",
+    "course_code" : "SWE231",
+    "course_co" : "5",
+    "course_lessons" : "lesson-2",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "testing the form"
+}
+
+
+{
+   
+    "course_title" : "intro to data",
+    "course_code" : "SWE331",
+    "course_co" : "3",
+    "course_lessons" : "lesson-6",
+    "course_duration" : "2021-06-23",
+    "course_caption" : ""
+}
+
+
+{
+    
+    "course_code" : "swe133",
+    "course_title" : "solution  of language ",
+    "course_co" : "21",
+    "course_lessons" : "2",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "yugtfrd etgjuhyg"
+}
+
+{
+    
+    "course_title" : "data",
+    "course_code" : "SWE231",
+    "course_co" : "6",
+    "course_lessons" : "lesson-6",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "testing "
+}
+
+{
+   
+    "course_title" : "something data",
+    "course_code" : "SWE431",
+    "course_co" : "3",
+    "course_lessons" : "lesson-6",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "omething data"
+}
+
+
+{
+    
+    "course_title" : "something aerdawdf data",
+    "course_code" : "SWE331",
+    "course_co" : "3",
+    "course_lessons" : "lesson-5",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "omething data dara sd"
+}
+
+
+{
+    
+    "course_title" : " rarfsfgsdf something data",
+    "course_code" : "SWE431",
+    "course_co" : "43",
+    "course_lessons" : "lesson-6",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "omething data edaewr ds"
+}
+
+
+{
+   
+    "course_title" : "some a asdada a thing data",
+    "course_code" : "SWE131",
+    "course_co" : "63",
+    "course_lessons" : "lesson-6",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "omething  adae aewrs data"
+}
+
+
+
+#course data teacher
+
+{
+   
+    "course_title" : "solution  of language",
+    "course_code" : "swe434",
+    "course_co" : "80",
+    "course_lessons" : "lesson-5",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "testing",
+    "user_type" : "teacher",
+     "teacher_registered_id" : "bashar@example.com"
+}
+
+
+{
+    
+    "course_title" : "solution  of language",
+    "course_code" : "swe434",
+    "course_co" : "80",
+    "course_lessons" : "lesson-5",
+   "course_duration" : "2021-06-23",
+    "course_caption" : "testing",
+    "user_type" : "teacher",
+     "teacher_registered_id" : "bashar@example.com"
+}
+
+
+{
+   
+    "course_title" : "solution  of language",
+    "course_code" : "swe434",
+    "course_co" : "80",
+    "course_lessons" : "lesson-5",
+  "course_duration" : "2021-06-23",
+    "course_caption" : "testing",
+    "user_type" : "student",
+     "teacher_registered_id" : "bashar@example.com"
+}
+
+#course data student
+
+
+{
+   
+    "course_title" : "intro to data",
+    "course_code" : "swe133",
+    "course_co" : "80",
+    "course_lessons" : "lesson-2",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "tteere9oulj jbljk",
+    "user_type" : "student",
+    "student_registered_id" : "ayshakhatun@example.com"
+}
+
+
+{
+   
+    "course_title" : "intro",
+    "course_code" : "swe133",
+    "course_co" : "80",
+    "course_lessons" : "lesson-6",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "zdvgsdf fe sd fedfs dsf",
+    "user_type" : "student",
+    "student_registered_id" : "ayshakhatun@example.com"
+
+}
+{
+   
+    "course_title" : "solution  of language",
+    "course_code" : "swe431",
+    "course_co" : "80",
+    "course_lessons" : "lesson-2",
+    "course_duration" : "2021-06-23",
+    "course_caption" : "assfas afafa afa af",
+    "user_type" : "student",
+    "student_registered_id" : "ayshakhatun@example.com"
+}
+
+
+#machine learning model
+
+{
+   
+    "course_title" : "Data_Algorithm",
+    "course_code"="SWE431",
+    "topic" : "lesson-2",
+    "course_outcome" : "knowledge",
+    "complexity_label" : "2",
+    "mcq" : {
+        "A complete graph can have" : [ 
+            "n2 spanning trees", 
+            "nn - 2 spanning trees", 
+            "nn + 1 spanning trees", 
+            "nn spanning trees"
+        ],
+        "A circular linked list can be used for" : [ 
+            "Stack", 
+            "Queue", 
+            "Both Stack & Queue", 
+            "Neither Stack or Queue"
+        ]
+    }
+}
+
+
+{
+   
+    "course_title" : "Data_Algorithom",
+    "course_code"="SWE431",
+    "topic" : "lesson-2",
+    "course_outcome" : "knowledge",
+    "complexity_label" : "2",
+    "mcq" : {
+        "what is data " : [ 
+            "qwe ", 
+            "da", 
+            "ads", 
+            "ad"
+        ],
+        " In the …………, one transaction inserts a row in the table while the other transaction is half way through its browsing of table." : [ 
+            "", 
+            "", 
+            "", 
+            ""
+        ],
+        " Transaction processing is associated with everything below except." : [ 
+            "", 
+            "", 
+            "", 
+            ""
+        ],
+        " ………. helps solve concurrency problem." : [ 
+            "", 
+            "", 
+            "", 
+            ""
+        ],
+        " If a transaction acquires a shared lock, then it can perform ………. operation." : [ 
+            "", 
+            "", 
+            "", 
+            ""
+        ]
+    }
+}
+
+
+{
+    "course_code"="SWE331",
+    "course_title" : "ict",
+    "topic" : "html",
+    "course_outcome" : "15",
+    "complexity_label" : "2"
+    "mcq" : {
+        "what is data " : [ 
+            "qwe ", 
+            "da", 
+            "ads", 
+            "ad"
+        ],
+        " In the …………, one transaction inserts a row in the table while the other transaction is half way through its browsing of table." : [ 
+            "", 
+            "", 
+            "", 
+            ""
+        ]
+}
