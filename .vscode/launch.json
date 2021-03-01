@@ -6,16 +6,6 @@
   "configurations": [
 
     {
-     "name": "Python: run.py",
-     "type": "python",
-     "request": "launch",
-     "program": "${workspaceFolder}/run.py",
-     "args" : ["--port", "1593"],
-     "console": "externalTerminal"
- },
-
-
-    {
       "name": "Python: Flask",
       "type": "python",
       "request": "launch",
@@ -25,8 +15,23 @@
         "FLASK_ENV": "development",
         "FLASK_DEBUG": "1"
       },
-      "args": ["run", "--debugger"],
+      "args": [
+        "run",
+        "--debugger"
+      ],
       "jinja": true
+    },
+
+    {
+      "name": "Python: run.py",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": [
+        "--port",
+        "1593"
+      ],
+      "console": "externalTerminal"
     }
   ]
 }

@@ -1,10 +1,13 @@
 {
-  "python.pythonPath": "venv/bin/python3",
+  "python.pythonPath": "exan-venv/bin/python",
   "editor.defaultFormatter": "autopep8",
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

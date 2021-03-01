@@ -6,6 +6,6 @@
 	],
 	"settings": {
 		"git.ignoreLimitWarning": true,
-		"python.pythonPath": "venv/bin/python"
+		"python.pythonPath": "virtual_env_ClO/bin/python3"
 	}
 }
