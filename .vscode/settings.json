@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "exan-venv/bin/python",
+  "python.pythonPath": "virtual_env_ClO/bin/python",
   "editor.defaultFormatter": "autopep8",
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
