@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+    <section class="container shadow-lg btn-group-horizontal ">
+        <form class="form-group" method="POST" action="" class="form-container" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="container">
+                <br/>
+                {{ form.email.label(class="form-control-label") }}
+                <br/>
+                {{ form.email(class="form-control form-control-md",type="email",placeholder="Your email address...") }}
+                <br/>
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {{ form.password.label(class="form-control-label") }}
+                <br/>
+                {{ form.password(placeholder="Your password...",type="password",class="form-control") }}
+                <br/>
+                <div class="container">
+                {{ form.remember(class="form-check form-check-input") }}
+                {{ form.remember.label(class="form-check form-check-label") }}
+                </div>
+                <br/>
+            </fieldset>
+            {{ form.submit(class=" form-group btn btn-outline-info") }}
+            <small class="text-muted ml-2">
+                <a href='{{ url_for('users.reset_password') }}'> Forgot Password? </a>
+            </small>
+        </form>
+    </section>
+    <!-- partial -->
+{% endblock body %}

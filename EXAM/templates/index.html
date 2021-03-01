@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--Amar CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='starter-template.css') }}"/>
+
+
+    <title>Exam, world!</title>
+</head>
+
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+            <li><a class="active" href="{{ url_for('main.main_page') }}">Home</a></li>
+            </li>
+            <li class="nav-item">
+            <li><a href="{{ url_for('Test_paper.examiner') }}">examiner</a></li>
+            </li>
+            <li class="nav-item">
+            <li><a href="{{ url_for('main.student_dashboard') }}">Student</a></li>
+            </li>
+            <li class="nav-item">
+            <li><a href="{{ url_for('main.guideline') }}">Guideline</a></li>
+            </li>
+            <li class="nav-item">
+            <li><a href="{{ url_for('Test_paper.examiner') }}">NAIII</a></li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+<body>
+<div class="container-fluid">
+
+    <h1>Hello, world!</h1>
+
+
+    <!--Flask method -->
+    <form class="form-inline" method="POST" action=" ">
+        <div class="input-group">
+            <span class="input-group-addon">Please select</span>
+            <label>
+                <select name="comp_select" class="selectpicker form-control">
+                    {% for o in data %}
+                        <option value="{{ o.name }}">{{ o.name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <button type="submit" class="btn btn-default">Go</button>
+        </div>
+    </form>
+
+    <!--Eda field er jonno -->
+    <form class="form-inline" method="POST" action=" ">
+
+        <span class="input-group-addon">Please select</span>
+        <label>
+            <select name="comp_select" class="selectpicker form-control">
+
+                <label for="email">Question:</label>
+                <input type="email" id="question" placeholder="Enter Question-1" name="question">
+                <label name="options">Options:</label>
+                <input placeholder="Enter Option1" name="Op1">
+                <input placeholder="Enter Option1" name="Op2">
+                <input placeholder="Enter Option1" name="Op3">
+                <input placeholder="Enter Option1" name="Op4">
+
+            </select>
+        </label>
+        <button type="submit" class="btn btn-default">Sure</button>
+
+    </form>
+
+
+    <option type="submit" id="5" name="5" value="15">Fifteen</option>
+    <option type="submit" id="5" name="5" value="20">Twenty</option>
+    <option type="submit" id="5" name="5" value="25">Twenty-Five</option>
+    <option type="submit" id="5" name="5" value="30">Thirty</option>
+    <option type="submit" id="5" name="5" value="40">Forty</option>
+    <option type="submit" id="5" name="5" value="50">Fifty</option>
+    <option type="submit" id="5" name="5" value="60">Sixty</option>
+    <option type="submit" id="5" name="5" value="80">Eighty</option>
+    <option type="submit" id="5" name="5" value="100">Hundred</option>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

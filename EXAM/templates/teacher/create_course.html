@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+    <section class=" container shadow-lg btn-light btn-group-horizontal  ">
+        <form method="POST" action="" class="form-container" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+
+                <legend> Create New Course</legend>
+                <p>Set your Info</p>
+                <div class="form-group">
+                    {{ form.course_code.label(class = "form-control-label") }}
+                    {{ form.course_code(class ="form-control form-control-lg",placeholder="like : SWE431 ") }}
+                    <br/>
+
+                    {{ form.course_title.label(class = "form-control-label") }}
+                    {{ form.course_title(class="form-control-sm") }}
+                    <br/>
+
+                    {{ form.course_co.label(class = "form-control-label") }}
+                    {{ form.course_co(class ="form-control form-control-sm",placeholder="like : 4%") }}
+                    <br/>
+
+                    {{ form.course_lessons.label(class = "form-control-label") }}
+                    {{ form.course_lessons(class ="form-control form-control-md",placeholder="Like: 1,2,5 or 6 (How many lessons do you have for this Course)") }}
+
+                    <br/>
+
+                    {{ form.course_duration.label(class = "form-control-label") }}
+                    {{ form.course_duration(type="date",class ="form-control-md ",placeholder=" like: year/month/date (Please submit When Course will be finished)") }}
+                    <br/>
+
+                    <div class="form-group">
+                        <label for="Textarea">Course Caption textarea</label>
+                        <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
+                    </div>
+                </div>
+
+
+            </fieldset>
+            {{ form.submit(class=" form-group btn btn-outline-primary") }}
+
+        </form>
+    </section>
+    <!-- partial -->
+{% endblock body %}

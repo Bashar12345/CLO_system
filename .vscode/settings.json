@@ -1,0 +1,10 @@
+{
+  "python.pythonPath": "venv/bin/python3",
+  "editor.defaultFormatter": "autopep8",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  }
+}

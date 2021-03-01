@@ -1,0 +1,70 @@
+{% extends "layout.html" %} {% block body %}
+    <h3>Set your Questions</h3>
+    <div class="col-md-9">
+        <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }} {% if op %}
+            <article class="content">
+                Questions for Course: {{ course }}
+                <br/>
+                Lesson: {{ topic }}
+                <br/>
+                Lesson Outcome: {{ Course_outcome }}
+                <br/>
+                Complex level: {{ Complexity_label }}
+                <br/>
+                Total {{ op }} Questions Streaming
+            </article>
+            {% set length = op | int %} {# string to integer convert #} {#% %#} {% set count = [1] %} {% for i in
+    range(length) %}
+                <fieldset>
+                    <div class="form-group">
+                        <label for="question{{ i }}">MCQ Question {{ i + 1 }} :</label>
+                        <input
+                                class="col"
+                                type="text"
+                                id="question{{ i }}"
+                                name="question{{ i }}"
+                                placeholder="Enter Question-{{ i + 1 }}"
+                        />
+                        <br/>
+                    </div>
+                    {#{ count }#} {% for j in range(4) %}
+                    <div class="form-group">
+                        {# {{ form.option1(class="form-control-sm",placeholder="Enter Option-1") }} #}
+                        <label for="options">Option-{{ j+1}}:</label>
+                        <input class="form-control-sm" id="options" name="op{{ count }}"
+                               placeholder="Enter Option-{{ j+1}}"/>
+                        {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
+                        <br/>
+                    </div>
+                {% endfor %}
+                    <div class="form-group">
+                        <label for="answer{{ i }}">MCQ Answer {{ i + 1 }} :</label>
+                        <input
+                                class="col"
+                                type="text"
+                                id="answer{{ i }}"
+                                name="answer{{ i }}"
+                                placeholder="Enter Answer-{{ i + 1 }}"
+                        />
+                        <br/>
+                    </div>
+                </fieldset>
+            {% endfor %}
+            <br/>
+        {% endif %}
+            <div class="form-group">{{ form.submit(class="btn btn-primary btn-lg btn-block") }}</div>
+
+            <div>
+                <a
+                        class="btn btn-primary btn-lg btn-block"
+                        type="submit"
+                        href="{{ url_for('Test_paper.mcq_upload') }}"
+                        role="button"
+                >Add more questions</a
+                >
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

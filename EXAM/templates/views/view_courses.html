@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style>
+        .democlass {
+            color: red;
+        }
+    </style>
+    <div class="container">
+
+    {#{ form.hidden_tag() }#}
+    <legend id="legend" class="shadow-lg btn-group-horizontal ">Enable Courses</legend>
+    <p id="user_type" value="{{ user_type }}" hidden></p>
+
+    <div id="scroller" class="row">
+
+        <template id="post_template">
+
+            <div class="card bg-light ">
+                <img class="card-img-top" src="{{ url_for('static',filename='demo_course-images-3.jpg') }}"
+                     alt="Card image cap"/>
+                <div class="card-body">
+                    <a id="link" class="card-block stretched-link text-decoration-none"
+                       href='http://the'>
+
+                        <h5 class="card-title" id="course_title">Couse title :</h5>
+
+                        <p class="card-text">
+                        <h6 id="course_code" name="couse_code" value="as"> Course Code : </h6>
+                        </p>
+                        <p id="code_location" value="asd"></p>
+                        <p class="card-text"><small class="text-muted" id="course_caption">Course details: </small></p>
+
+                        <p class="card-text"><small class="text-muted" id="course_duration">Course will End in </small>
+                        </p>
+                        <!-- <input type="time" class="form-control-lg" id="start_time" name="start_time"hidden> -->
+                    </a>
+                </div>
+            </div>
+
+        </template>
+    </div>
+
+    <div class="d-flex justify-content-center mb-3" id="sentinel">
+        <div class="spinner-border" role="status"></div>
+    </div>
+
+
+    <script>
+        function myFunction() {
+            document.getElementsByTagName("LEGEND")[0].setAttribute("class", "democlass");
+        }
+    </script>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename="course_scrolling.js") }}"
+            crossorigin="anonymous"></script>
+
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+<!-- <div class="card p-2">
+        <a class="card-block stretched-link text-decoration-none" href>
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">
+            This is a longer card with supporting text below as a natural lead-in to additional content. This
+            content is a little bit longer.
+          </p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </a>
+      </div>
+ -->
+

@@ -1,0 +1,15 @@
+# Query: EXAM.static
+
+4 results - 4 files
+
+EXAM/templates/count_Down.html:
+  193: <script type="text/javascript" src="{{ url_for('EXAM.static', filename="countdown.js") }}" crossorigin="anonymous">
+
+EXAM/templates/layout.html:
+  117: <!--script type="text/javascript" src="{{ url_for('EXAM.static',filename='bootstrap_bundle.js') }}"></script>-->
+
+EXAM/templates/mcqan.html:
+  41:     <script type="text/javascript" src="{{ url_for('EXAM.static', filename="countdown.js") }}"
+
+EXAM/templates/student.html:
+  36:     <script type="text/javascript" src="{{ url_for('EXAM.static', filename="pageScrolling.js") }}"

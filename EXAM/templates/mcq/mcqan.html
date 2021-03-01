@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div>
+        {#{ mcq_questions }#}
+        {# ekhane pura question ase  #}
+        <form class="form-control-horizontal" id="submit_answer" enctype="multipart/form-data" action="" method="POST">
+            {{ form.hidden_tag() }}
+            <p class="h4" id="show_realtime"></p>
+            <fieldset class="fieldBox">
+                <div class="form-group">
+                    {{ form.fullname.label(class= "form-control-label") }}
+                    {{ form.fullname(class= "form-control", placeholder="like: Dewan Mohammod Toufik Ali Hassan") }}</div>
+                <div class="form-group">{{ form.organization_id.label(class= "form-control-label") }}
+                    {{ form.organization_id(class= "form-control" ,placeholder="school or college or workplace id ") }}</div>
+                {% set  mcq = mcq_questions.mcq_question.question_dictionary %}
+                {% set count = [1] %}
+                {% for i in mcq %}
+                    <div class="form-group changelist-form-container " style="color:#1b1e21">
+                        <div class="col-form-label" style="-moz-transform:initial">
+                            <article class="h5" value="{{ i }}" name="q{{ count }}={{ i }}"><b>{{ i }} </b></article>
+                        </div>
+                        {% for j in mcq[i] %}
+                            <div class="form-check-inline ">
+                                <input class="radio-inline form-check-inline " type="radio" name="answer{{ count }}"
+                                       value="{{ j }}">
+                                <label class="form-check-inline "> {{ j }}</label>
+                            </div>
+                        {% endfor %}
+                        {% if count.append(count.pop() + 1) %}{% endif %}
+                    </div>
+                {% endfor %}
+                {{ form.submit(class="btn btn-outline-info") }}
+            </fieldset>
+        </form>
+        {#{ mcq_questions.exam_date}#}
+        {% set dat = "Jan 26, 2021 17:40:25" %}
+        <p class="hide" id="date" value="{{ mcq_questions.exam_date }}"></p>
+        <p id="time" value="{{ mcq_questions.exam_end_time }}"></p>
+
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename="countdown.js") }}"
+            crossorigin="anonymous"></script>
+
+{% endblock body %}
+{#%  %#}
+

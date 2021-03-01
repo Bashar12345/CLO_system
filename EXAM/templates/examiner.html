@@ -1,0 +1,20 @@
+{%extends "layout.html"%} 
+{%block body%} This is examiner page
+
+
+<section class="shadow-lg btn-group-horizental">
+    <div class="container-fluid">
+    <article>
+        <br/>
+      <h3> You can setup a written question or Mcq </h3>
+          <br/>
+      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.wrqu')}}">Written</a>
+      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.mcqqu_sub')}}">MCQ</a>
+        <br/>
+    </article>
+  </div>
+
+</section>
+
+
+{%endblock body%}

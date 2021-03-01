@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <section class="shadow-lg btn-group-horizontal">
+        {#{ form.hidden_tag() }#}
+        <header>
+            <div class="row justify-content-end">
+                <div class="col-2">
+                    <a href="{{ url_for('Test_paper.mcq_upload') }}" class="btn btn-primary btn-block" role="button"
+                       aria-pressed="true">Upload new Question</a>
+                </div>
+                <div class="col-3">
+                    <a href="{{ url_for('Test_paper.mcq_question_paper') }}" class="btn btn-primary" role="button"
+                       aria-pressed="true">Generate Question </a>
+                    <a href="{{ url_for('users.student_list' )}}" class="btn btn-secondary " role="button"
+                       aria-pressed="true">Students</a>
+                </div>
+            </div>
+        </header>
+        <legend>MCQ Questions Bank</legend>
+        <small>{{ course_code }}</small>
+    </section>
+
+
+
+
+    {% set j=[1] %}
+    {% for i in questions %}
+        <div class="table-bordered table-responsive">
+            <p>Q{{ j }} :-{{ i }} ?<br/></p>
+        </div>
+        {% if j.append(j.pop() + 1) %}{% endif %}
+    {% endfor %}
+
+
+
+{% endblock body %}

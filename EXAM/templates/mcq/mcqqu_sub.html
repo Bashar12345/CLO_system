@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <article>
+        <form class="form-horizontal" , method="POST" , action=" " ,
+              enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <legend> Mcq Question paper (without machine genarated)</legend>
+            <p>Set your Exam</p>
+            <div class="form-group">
+            {{ form.exam_title.label(class = "form-control-label") }}
+            {{ form.exam_title(class="form-control-radio") }}
+                
+                {{ form.exam_code.label(class = "form-control-label-lg") }}
+                {{ form.exam_code(class ="form-control form-control-sm mb-4",placeholder="like : mid332432 or made up something") }}
+
+                
+
+                {{ form.exam_course.label(class = "form-control-label") }}
+                {{ form.exam_course(class ="form-control form-control-lg",placeholder="like : SWE431") }}
+
+                {{ form.exam_topic.label(class = "form-control-label") }}
+                {{ form.exam_topic(class ="form-control form-control-lg",placeholder="Like: physical layer")}}
+
+                <br/>
+                {{ form.exam_start_time.label(for="appt",class = "form-control-label") }}
+                <!-- for= appt is a class -->
+                {# {{ form.exam_start_time(for="appt",type="time",class="form-control-lg",id="start_time") }}  #}
+                <input type="time" class="form-control-lg" id="start_time" name="start_time">
+
+                {{ form.exam_end_time.label(for="appt",class = "form-control-label") }}
+                <input type="time" class="form-control-lg" id="end_time" name="end_time">
+
+
+                {{ form.exam_date.label(class = "form-control-label") }}
+                {{ form.exam_date(type="date",class ="form-control-sm ",placeholder=" like: year/month/date") }}
+
+                <div class="form-group">
+                    <label for="Textarea">Example Question paper Caption textarea</label>
+                    <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
+                </div>
+            </div>
+            <br/>
+            <br class="col" , type="form"/>
+            <h3>How many Question do you ? </h3>
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect04" name="numbers_of_questioned"
+                        aria-label="Example select with button addon">
+                    <option disabled="disabled">Choose...</option>
+                    <option value="2"> Test</option>
+                    <option value="5">Five</option>
+                    <option value="15">Fifteen</option>
+                    <option value="20">Twenty</option>
+                    <option value="25">Twenty-Five</option>
+                    <option value="30">Thirty</option>
+                    <option value="40">Forty</option>
+                    <option value="50">Fifty</option>
+                    <option value="60">Sixty</option>
+                    <option value="80">Eighty</option>
+                    <option value="100">Hundred</option>
+                </select>
+                <div class="input-group-append">
+                    {#{ form.submit(class="btn btn-outline-secondary",type="button") }#}
+                    <button class="btn btn-outline-secondary" type="submit">Button</button>
+                </div>
+            </div>
+        </form>
+    </article>
+
+
+{% endblock body %}

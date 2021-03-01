@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block body %}
+    {# {% for i in range(length) %} #}
+    {#% for get_dataDic in written_question %#}
+    <div class="align-content-lg-center" style="width:100%; height: 100%;border: none;">
+
+
+        <section>
+            {#  <legend> Exam title: {{ written_question.exam_title }}</legend>#}
+            <legend> Exam title: {{ written_question['exam_title'] }}</legend>
+            <h5> Subject / course : {{ written_question['exam_course'] }} </h5>
+            <h5> Date : {{ written_question['exam_date'] }}</h5>
+            <h5> Start time: {{ written_question['exam_start_time'] }}</h5>
+            <h5> End time: {{ written_question['exam_end_time'] }}</h5>
+            {#% set pdf = str(get_dataDic.binary_file) %#}
+            <div class="container">
+                <object data="{ url_for('Test_paper.file',filename=written_question.rename_file) }}" type="application/pdf"
+                        width="100%" height="100%">
+                    <p>Exam Question paper - included link <a
+                            href="{{ url_for('Test_paper.file',filename=written_question.rename_file) }}">to the PDF!</a></p>
+                </object>
+            </div>
+        </section>
+        <section class="align-content-around">
+            <form class="form-horizontal" action="" method="POST" accept-charset="UTF-32" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <!-- <article><label class="h3">First Confirm your ID:</label>-->
+                    {{ form.student_id.label(class="form-control-label") }}
+                    {{ form.student_id(class="form-control form-control-lg",placeholder="Example:  13209-32349-343") }}
+
+                    {{ form.answer.label(class=" form-control-label") }}
+                    {{ form.answer(class="form-control", wrap="soft", cols="92", rows="15", tabindex="101") }}
+                    <!--<label for="lname">Your answer: </label><br>
+                    <textarea id="wmd-input" name="post-text" class="wmd-input s-input bar0 js-post-body-field processed"
+                              data-post-type-id="2" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>-->
+                    <br/>
+                    <div> Please check again! and Then...
+                        {{ form.submit(class="btn btn-outline-info",onclick="msg()") }}
+                        <!--<input class=" btn-block btn-outline-primary" type="submit" value="Confirm Answer" onclick="msg()">-->
+                    </div>
+                </fieldset>
+            </form>
+
+        </section>
+
+        <script>
+            function msg() {
+                alert("Answer Submitted");
+            }
+        </script>
+        {#% endfor %#}
+        <h1> Notepad </h1>
+        <!-- Ekhane ekta boro textfield lagbe -->
+        <p> Question paper </p>
+        <!--  <object data="test.pdf" type="application/pdf" width="100%" height="100%">
+        <p>Alternative text - include a link <a href="static/files/test.pdf">to the PDF!</a></p>
+         <iframe src="{#  #}{ url_for('file',filename=written_question.rename_file) }}" style="position:
+    absolute;width:100%; height: 100%;border: none;"></iframe>
+    </object>
+    <embed src="QuestionPaper.pdf" width="500" height="375">-->
+        <!-- <form action="" method="post">
+           <textarea name="text"></textarea>
+           <textarea type="text type ="></textarea>
+        <input type="submit">
+        </form> -->
+        <!-- <div id="example1">
+         <script src="/js/pdfobject.js"></script>
+     <script>PDFObject.embed("/pdf/sample-3pp.pdf", "#example1");</script>
+    -->
+    </div>
+
+{% endblock body %}

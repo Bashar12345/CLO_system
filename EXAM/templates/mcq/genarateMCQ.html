@@ -1,0 +1,124 @@
+{% extends "layout.html" %} {% block body %}
+    <div class="container">
+        <form class="form-horizontal" method="POST" action=" " enctype="multipart/form-data">
+            <div class="form-group">
+                <fieldset>
+                    {{ form.exam_title.label(class = "custom-control-label") }} {{ form.exam_title(class="form-check ",type="radio") }}
+
+                    <div class="form-group">
+                        <legend class="custom-control-label">Questions for Particular Course</legend>
+                        <select
+                                class="custom-select custom-select-md mb-3 btn-outline-info"
+                                aria-label=".custom-select-lg example"
+                                name="course"
+                                required
+                        >
+                            <option selected disabled="disabled">Select Course</option>
+                            <option value="Data_Algorithom">Data Algorithm</option>
+                            <option value="Data_communication">Data communication</option>
+                            <option value="Database_Management_System">Database Management</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.exam_topic.label(class="custom-control-label") }} {{ form.exam_topic(class="custom-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.exam_CLO.label(class="custom-control-label") }} {{ form.exam_CLO(class="custom-radio") }}
+                    </div>
+
+                    <!-- <div class="form-group">
+                  <legend class="custom-control-label">For CO</legend>
+                  <select class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="CO" required>
+                    <option selected disabled="disabled">Define Lesson Outcome(Evaluate)</option>
+                    <option value="knowledge">knowledge level</option>
+                    <option value="Comprehension">Comprehension level ( Logical level)</option>
+                    <option value="Application">Application Level (Real-life situation level or practice level)</option>
+                    <option value="Analysis">Analysis level ( Inquiry level)</option>
+                    <option value="Synthesis">Synthesis level ( creative level)</option>
+                    <option value="Evaluation">Evaluation level ( Judgement level)</option>
+                  </select>
+                </div>-->
+
+                    <div class="form-group">
+                        <legend class="custom-control-label">Question Complexity Level</legend>
+                        <div class="input-group">
+                            <select
+                                    class="custom-select btn-outline-info"
+                                    id="inputGroupSelect04"
+                                    name="complex_level"
+                                    aria-label="Example select with button addon"
+                                    required
+                            >
+                                <option selected disabled="disabled">Select Complex level...</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                                <option value="5">Very High</option>
+                                <option value="10">Insane</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.exam_marks.label(class="custom-control-label") }} {{ form.exam_marks(class="custom-radio") }}
+                    </div>
+
+                    <!--  <div class="form-group">
+          {{form.exam_total_questions.label(class="custom-control-label")}} {{
+          form.exam_total_questions(class="custom-radio") }}
+        </div>-->
+
+                    <div class="btn btn-block btn-outline-light">
+                        <div class="input-group">
+                            <legend>Total how many Questions</legend>
+                            <select
+                                    class="custom-select btn-outline-info"
+                                    id="inputGroupSelect04"
+                                    name="numbers_of_questioned"
+                                    required
+                            >
+                                <!--aria-label="Example select with button addon"-->
+                                <option selected disabled="disabled">Choose...</option>
+                                <option value="5">Five</option>
+                                <option value="15">Fifteen</option>
+                                <option value="20">Twenty</option>
+                                <option value="25">Twenty-Five</option>
+                                <option value="30">Thirty</option>
+                                <option value="40">Forty</option>
+                                <option value="50">Fifty</option>
+                                <option value="60">Sixty</option>
+                                <option value="80">Eighty</option>
+                                <option value="100">Hundred</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {{ form.exam_start_time.label(for="appt",class = "form-control-label") }}
+                    <!-- for= appt is a class -->
+                    {# {{ form.exam_start_time(for="appt",type="time",class="form-control-lg",id="start_time") }} #}
+                    <input type="time" class="form-control-lg" id="start_time" name="start_time"/>
+
+                    {{ form.exam_end_time.label(for="appt",class = "form-control-label") }}
+                    <input type="time" class="form-control-lg" id="end_time" name="end_time"/>
+
+                    {{ form.exam_date.label(class = "form-control-label") }} {{ form.exam_date(type="date",class
+        ="form-control-sm ",placeholder=" like: year/month/date") }}
+
+                    <div class="form-group">
+                        <label for="Textarea">Example Question paper Caption textarea</label>
+                        <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.exam_code.label(class="custom-control-label") }} {{ form.exam_code(class="custom-radio") }}
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <br/>
+                {{ form.submit(class="btn btn-block btn-outline-success") }}
+            </div>
+        </form>
+    </div>
+{% endblock body %}

@@ -1,0 +1,469 @@
+  '''for i in
+    question = "q=" + str(i)
+    # print(question)
+    mcq_Question = request.form.get(template_name_of_question)
+    # mcq_Question = form.question.data
+    for j in range(4):
+        # print('j = ', j)
+        template_name_of_questions_options = "op" + str(count)
+        # print(option)
+        mcq_options = request.form.get(template_name_of_questions_options)
+        count.append(count.pop() + 1)
+        mcq_question_options_tuple.append(mcq_options)
+    print(mcq_question_options_tuple)
+    mcq_question_dictionary.update({mcq_Question: mcq_question_options_tuple})'''
+
+    '''def login_function(get_form):  # eta login route er method
+    form = get_form
+    # print(email,password)
+    # if user and bcrypt.check_password_hash(Password,pas) and bcrypt.check_password_hash(Credit,credit):
+    # login_user(user, remember=form.remember.data)  #login_user , ekta remember value ney eta browser cookie
+    # data = loginCollection.find_one({"email": e})
+    # print(data)
+      user_email_id = []
+       user_email_id = data['email']
+       print(user_email_id)
+       Password = data['password']
+       Name = data["name"]
+       Credit = data['credit']
+    # connection.close()
+    # Eta SQL
+    # user= User.query.filter_by(email=e).first()
+if user_email_id == e and bcrypt.check_password_hash(Password, pas) and bcrypt.check_password_hash(Credit,credit):
+    login_user(user_email_id,
+               remember=form.remember.data)  # login_user , ekta remember value ney eta browser cookie
+    flash(f'Purchase has done {Name}!', 'success')
+    show = "show"
+    return render_template('wrqu.html', show=show)
+    # return redirect(url_for("base")) '''
+
+def register_method(get_form):
+    # if current_user.is_authenticated:
+    # return redirect(url_for("base"))
+    form = get_form
+    name = form.user_name.data
+    # print("form er data ayse {name}")
+    organization_id = form.organization_id.data
+    user_category = form.user_category.data
+    email = form.email.data
+    # password = form.password.data # here is the password, by-chance if it needed
+    hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')  # hashing
+    # phone_number = form.phone_number.data
+    # credit = form.credit.data
+    # hashed_credit = bcrypt.generate_password_hash(form.credit.data).decode('utf-8')
+    # if form.photo.data:        # photo encryption
+    # upload_profile_pic = form.profile_pic.data
+    # upload_profile_pic, ext = binary_read(form.profile_pic.data)
+    doc_file_name, file_path, f_ext, random_file_name = saveFormFile_in_Filesystem(form.profile_pic.data)
+    # dictionary type kore Pymongo te insert korte hoy  # monogoalchemy is different sdata = {"_id": piece1,
+    # "name": name, "email": email, "password": hashed_password, "phone_number": phone_number, "credit": "0",
+    # "photo": photo}
+    # sdata['photo'] = photo
+    # sdata['credit'] = hashed_credit
+    # print(sdata)
+    # sql server insertion er class model
+    # users = user(user_name=name, email=email, password=hashed_password, organization_id=organization_id,
+    # user_category=user_category)  # for only printing purpose
+    # print(user.user_name)
+    '''db.create_all()
+    db.session.add(user) # eta sql server insertion
+    db.session.commit()'''
+    # loginCollection.insert_one(sdata)   #  NOSQL Mongodb insertion
+    mongo_user = user()
+    mongo_user.user_name = name
+    mongo_user.organization_id = organization_id
+    mongo_user.email = email
+    mongo_user.password = hashed_password
+    mongo_user.user_category = user_category
+    with open("/home/b/Desktop/test/EXAM/static/files/abc.jpg", 'rb')as fd:
+        mongo_user.profile_pic.replace(fd, filename=doc_file_name)
+    mongo_user.save()
+    flash(f'Account has been created for {form.user_name.data} !', 'success')
+    print("Hoice")
+    return 'done'
+
+
+
+
+
+    {# {% for i in range(length) %} #}
+    {% for get_dataDic in get_exam_info %}
+        <body class="content">
+        <div class="align-content-lg-center" style="background-color:#E8E8E8;">
+            <section class=" btn btn-group-horizental-lg btn-block">
+
+                <button class="btn btn-group-horizental-lg btn-lg btn-block" onclick="window.location.href='{{ url_for('secret_code')}}'" style="background-color:#b1dfbb;">
+                    <legend id= "exam_title"> Exam title: {{ get_dataDic['exam_title'] }}</legend>
+                    <article>
+                        <p id="exam_course" class="h5"> Subject / course : {{ get_dataDic['exam_course'] }} </p>
+                        <p id="exam_date" class="h5"> Date : {{ get_dataDic['exam_date'] }}</p>
+                        <p id="exam_start_time" class="h5"> Start time: {{ get_dataDic['exam_start_time'] }}</p>
+                        <p id="exam_end_time" class="h5"> End time: {{ get_dataDic['exam_end_time'] }}</p>
+                        Attend The exam
+                    </article>
+
+                </button>
+
+            </section>
+        </div>
+        </body>
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+    @app.route('/student')
+def student():
+    length = 0
+    page = request.args.get("c")
+    # l = set_exam_question_slot()
+    # print(l['_id'])
+    for get_exam_infos in set_exam_question_slot.objects(exam_title='mid-term'):
+        # print(get_exam_infos.exam_course)
+        # datalist = {length : get_exam_info}
+        length = length + 1
+        # print(get_exam_infos['exam_topic'])
+    # print(length)
+    datalist = []
+    datalist = set_exam_question_slot.objects()
+    # print(datalist)
+    return render_template('student.html', title='student_Page', get_exam_info=datalist, length=length,
+                           user_type=User_type.user_type)
+    # exam_title, exam_course = get_exam_from_database()
+    # get_exam_from_database()
+    # user = User.objects.get(id=user_id)
+    # print(exam_title, " eta  variable ")
+
+
+
+
+
+
+
+# def view_todo(todo_id):
+    # todo = Todo.objects.get_or_404(_id=todo_id)
+
+# Paginate through todo
+
+
+
+'''def get_mcq_question_from_database_for_submit():
+    length = 0
+    get_mcq_exam_question = exam_mcq_question_paper()
+    for get_exam_info in set_exam_question_slot.objects(exam_code='exam_code'):
+        # user = User.objects.get(id=user_id)
+        # exam_title = single_variable
+        # exam_course = ob.exam_course
+        # print(exam_title, " eta  variable ")
+        print(get_exam_info.exam_course)
+    #
+    # return exam_title, exam_course'''
+
+'''#  mcq_option_1 = form.option1.data
+mcq_option_2 = request.form.get('op2')
+#  mcq_option_2 = form.option2.data
+mcq_option_3 = request.form.get('op3')
+#  mcq_option_3 = form.option3.data
+mcq_option_4 = request.form.get('op4')
+# mcq_option_4 = form.option4.data'''
+
+'''mcq_question_instance = McqQuestion()
+mcq_question_instance.exam_code = code
+mcq_question_instance.question_dictionary = mcq_question_dictionary
+mcq_question_instance.list_of_mcq_option = mcq_question_options_tuple
+# mcq_question_instance.exam_code = code'''
+
+''' exam_title = get_exam_info.exam_title
+     exam_course = get_exam_info.exam_course
+     exam_topic = get_exam_info.exam_topic
+     exam_start_time = get_exam_info.exam_start_time
+     exam_end_time = get_exam_info.exam_end_time
+     exam_date = get_exam_info.exam_date'''
+
+'''def login_function(get_form):  # eta login route er method
+    form = get_form
+    # print(email,password)
+    # if user and bcrypt.check_password_hash(Password,pas) and bcrypt.check_password_hash(Credit,credit):
+    # login_user(user, remember=form.remember.data)  #login_user , ekta remember value ney eta browser cookie
+    # data = loginCollection.find_one({"email": e})
+    # print(data)
+      user_email_id = []
+       user_email_id = data['email']
+       print(user_email_id)
+       Password = data['password']
+       Name = data["name"]
+       Credit = data['credit']
+    # connection.close()
+    # Eta SQL
+    # user= User.query.filter_by(email=e).first()
+if user_email_id == e and bcrypt.check_password_hash(Password, pas) and bcrypt.check_password_hash(Credit,credit):
+    login_user(user_email_id,
+               remember=form.remember.data)  # login_user , ekta remember value ney eta browser cookie
+    flash(f'Purchase has done {Name}!', 'success')
+    show = "show"
+    return render_template('wrqu.html', show=show)
+    # return redirect(url_for("base")) '''
+
+
+
+
+
+    '''for i in op:
+        if request.method == "POST":
+            mcq_Question = form.question.data
+            # mcq_option_1 = request.form.get('op1')
+            mcq_option_1 = form.option1.data
+            # mcq_option_2 = request.form.get('op2')
+            mcq_option_2 = form.option2.data
+            # mcq_option_3 = request.form.get('op3')
+            mcq_option_3 = form.option3.data
+            # mcq_option_4 = request.form.get('op4')
+            mcq_option_4 = form.option4.data
+'''
+   '''mongodb_data_class_ins.question = mcq_Question
+                mongodb_data_class_ins.mcqOption_1 = mcq_option_1
+                mongodb_data_class_ins.mcqOption_2 = mcq_option_2
+                mongodb_data_class_ins.mcqOption_3 = mcq_option_3
+                mongodb_data_class_ins.mcqOption_4 = mcq_option_4'''
+
+
+
+
+
+# loginCollection.close()
+''' Email = loginCollection.find_one({}, {"email": e})
+em = Email['email']
+if e != em:
+email = form.email.data
+piece1, piece2 = email.split('@')
+print("data nai")
+else:
+print('Already registered , ')
+flash(f'Already registered {name}!', 'success')
+return redirect(url_for("base"))'''
+
+
+
+
+      <div>
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="course">
+          <option selected>Select Course</option>
+          <option value="1">Data Algorithom</option>
+          <option value="2">Data communication</option>
+          <option value="3">Database System</option>
+        </select>
+      </div>
+ 
+  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="CO">
+        <option selected>Define Course Outcome(Evaluate)</option>
+        <option value="knowledge">knowledge level</option>
+        <option value="Comprehension">Comprehension level(Logical level)</option>
+        <option value="Application">Application Level (Reallife situation level or practice level)</option>
+        <option value="Analysis">Analysis level(Inquiry level)</option>
+        <option value="Synthesis">Synthesis level(creative level)</option>
+        <option value="Evaluation">Evaluation level(Judgement level)</option>
+       </select>
+
+      <div class="btn btn-block btn-outline-light">
+        <div class="input-group">
+          <!-- <legend>Total how many Questions</legend>-->
+          <select
+            class="custom-select btn-outline-info"
+            id="inputGroupSelect04"
+            name="numbers_of_questioned"
+            aria-label="Example select with button addon"
+          >
+            <option disabled="disabled">Choose...</option>
+            <option value="2">Test</option>
+            <option value="5">Five</option>
+            <option value="15">Fifteen</option>
+            <option value="20">Twenty</option>
+            <option value="25">Twenty-Five</option>
+            <option value="30">Thirty</option>
+            <option value="40">Forty</option>
+            <option value="50">Fifty</option>
+            <option value="60">Sixty</option>
+            <option value="80">Eighty</option>
+            <option value="100">Hundred</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn btn-block btn-outline-light">
+        <div class="input-group">
+          <select
+            class="custom-select btn-outline-info"
+            id="inputGroupSelect04"
+            name="complex_level"
+            aria-label="Example select with button addon"
+          >
+            <option disabled="disabled">Select Complex level...</option>
+            <option value="1">Test</option>
+            <option value="2">Five</option>
+            <option value="3">Fifteen</option>
+            <option value="5">Twenty</option>
+            <option value="10">Twenty-Five</option>
+          </select>
+        </div>
+        {{form.submit(class="btn btn-outline-success")}}
+      </div>
+
+
+
+
+
+
+def mcq_question_Upload_part2(number_of_questions, code):
+ if request.method == "POST":
+        mcq_question_options_tuple = list()
+        mcq_question_dictionary = dict()
+        length = 0
+        op = number_of_questions  # question publishing count
+        if op:
+            for i in range(int(op)):
+                length = length + 1
+        # print(length)
+        count = [1]
+        for i in range(length):
+            # print(i)
+            template_name_of_question = "question" + str(i)
+            # print(question)
+            mcq_Question = request.form.get(template_name_of_question)
+            # mcq_Question = form.question.data
+            for j in range(4):
+                # print('j = ', j)
+                template_name_of_questions_options = "op" + str(count)
+                # print(option)
+                mcq_options = request.form.get(
+                    template_name_of_questions_options)
+                count.append(count.pop() + 1)
+                mcq_question_options_tuple.append(mcq_options)
+            print(mcq_question_options_tuple)
+            mcq_question_dictionary.update(
+                {mcq_Question: mcq_question_options_tuple})
+            # print(mcq_question_dictionary)
+            mcq_question_options_tuple = []
+            # print(mcq_question_options_tuple)
+        else:
+            print('checking mcqqu html Finished ')
+        print('eta function er exam code', code)
+        MCQ = McqQuestion(exam_code=code, question_dictionary=mcq_question_dictionary,
+                          list_of_mcq_option=mcq_question_options_tuple)
+        exam_mcq_question_paper.objects(
+            exam_code=code).update(mcq_question=MCQ)
+
+
+
+
+
+
+{% extends "layout.html" %} 
+{% block body %}
+<style>
+.democlass {
+  color: red;
+}
+</style>
+<section>
+<div class="container-fluid" >
+
+  {#{ form.hidden_tag() }#}
+<legend  class="shadow-lg btn-group-horizontal "> Your created Courses</legend>
+
+</div>
+
+
+
+<div class="card-deck">
+
+
+    {% for pagi in paginated_course.items %}
+       <div class="card bg-light " >
+      <img class="card-img-top" src="{{url_for('static',filename='demo_course-images-3.jpg')}}" alt="Card image cap" />
+      <div class="card-body">
+       <a onclick="myFunction()" class="card-block stretched-link text-decoration-none" 
+         >
+
+          <h5 class="card-title" id="course_title">Couse title : {{pagi.course_title}}</h5>
+
+          <p class="card-text" >
+          <h6 id="course_code" name="couse_code" value="as" > Course Code : {{pagi.course_code}} </h6> 
+          </p>
+          <p id="code_location" value="asd" ></p>
+          <p class="card-text"><small class="text-muted" id="course_caption">Course details: {{pagi.course_caption}} </small>
+          <small class="text-muted" id="course_lessons">Course details: {{pagi.course_lessons}} </small>
+          </p>
+           
+          <p class="card-text"><small class="text-muted" id="course_duration">Course will End in : {{pagi.course_duration}}  </small></p>
+               <!-- <input type="time" class="form-control-lg" id="start_time" name="start_time"hidden> -->
+         </a> 
+      </div>
+    </div>
+    {% endfor %}
+
+    </div>
+{# Macro for creating navigation links #}
+{#% macro render_navigation(pagination, endpoint) %#}
+<div class="pagination">
+  {% for page_num in paginated_course.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+    {% if page_num %}  
+       {% if paginated_course.page==page_num %}
+            <a class="btn btn-info mb-4" href="{{url_for('Test_paper.view_courses',page=page_num)}}">{{page_num}}</a>
+        {% else %}
+                <a class="btn btn-outline-light mb-4" href="{{url_for('Test_paper.view_courses',page=page_num)}}">{{page_num}}</a>
+         {% endif %}
+
+    {% else %}
+       
+    {% endif %}
+
+  {% endfor %}
+
+</div>
+
+  </section>
+{#% endmacro %#}
+
+{#{ render_navigation(paginated_course, 'view_courses') }#}
+
+
+
+
+
+
+
+
+
+
+
+   <!--<script type="text/javascript" src="{{ url_for('static', filename="course_scrolling.js") }}"
+            crossorigin="anonymous"></script>
+-->
+{% endblock body %}
+
+
+
+
+
+
+
+        teacher_course_model_ins = teacher_created_courses_model()
+        for i in len(courses):
+            teacher_course_model_ins.user_type = i.user_type
+            teacher_course_model_ins.user_teacher = i.email
+            teacher_course_model_ins.course_title = i.course_title
+            teacher_course_model_ins.course_code = i.course_code
+            teacher_course_model_ins.course_co = i.course_co
+            teacher_course_model_ins.course_lessons = i.course_lessons
+            teacher_course_model_ins.course_duration = i.course_duration
+            teacher_course_model_ins.course_caption = i.course_caption
+        teacher_course_model_ins.save()
+
+
