@@ -467,3 +467,101 @@ def mcq_question_Upload_part2(number_of_questions, code):
         teacher_course_model_ins.save()
 
 
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="form-group">
+                                                                  <legend class="custom-control-label">For CO</legend>
+                                                                  <select class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="CO" required>
+                                                                    <option selected disabled="disabled">Define Lesson Outcome(Evaluate)</option>
+                                                                    <option value="knowledge">knowledge level</option>
+                                                                    <option value="Comprehension">Comprehension level ( Logical level)</option>
+                                                                    <option value="Application">Application Level (Real-life situation level or practice level)</option>
+                                                                    <option value="Analysis">Analysis level ( Inquiry level)</option>
+                                                                    <option value="Synthesis">Synthesis level ( creative level)</option>
+                                                                    <option value="Evaluation">Evaluation level ( Judgement level)</option>
+                                                                  </select>
+                                                                </div>-->
+
+
+                        <!--  <div class="form-group">
+          {{form.exam_total_questions.label(class="custom-control-label")}} {{
+          form.exam_total_questions(class="custom-radio") }}
+        </div>-->
+
+                        <div class="btn btn-block btn-outline-light">
+                            <div class="input-group">
+                                <legend class="input-group-append" for="inputGroupSelect04">Total how many Questions
+                                    you want to create for this question paper?
+                                </legend>
+                                <select
+                                        class="custom-select btn-outline-info"
+                                        id="inputGroupSelect04"
+                                        name="numbers_of_questioned"
+                                        required
+                                >
+                                    <!--aria-label="Example select with button addon"-->
+                                    <option selected disabled="disabled">Choose...</option>
+                                    <option value="5">Five</option>
+                                    <option value="15">Fifteen</option>
+                                    <option value="20">Twenty</option>
+                                    <option value="25">Twenty-Five</option>
+                                    <option value="30">Thirty</option>
+                                    <option value="40">Forty</option>
+                                    <option value="50">Fifty</option>
+                                    <option value="60">Sixty</option>
+                                    <option value="80">Eighty</option>
+                                    <option value="100">Hundred</option>
+                                </select>
+                            </div>
+                        </div>
+                        </br>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

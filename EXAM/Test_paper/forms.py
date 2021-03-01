@@ -11,7 +11,7 @@ from EXAM.users.forms import user_form
 # from flask_bootstrap import Bootstrap
 
 
-# from DreamCoproject.models import loginCollection #,User
+
 class FileUploadFrom(FlaskForm):
     rename = StringField('Rename the file', validators=[DataRequired()])
     file = FileField('PDF', validators=[FileRequired(), FileAllowed({'pdf'})])
@@ -26,8 +26,8 @@ class secret_Form(FlaskForm):
 
 class writen_question_paper_Form(FlaskForm):
     exam_code = StringField('Exam Secret Code')
-    # ekhane email_code validation error er kazz korte baki ase
-    exam_title = RadioField('Exam title', choices=[(
+    # ethane email_code validation error er kazz korte baki ase
+    exam_title = RadioField('Exam title :', choices=[(
         'mid-term', 'Mid-Term'), ('final', 'Final'), ('quiz', 'Quiz')])
     exam_course = StringField('Course', validators=[DataRequired()])
     exam_topic = StringField('Syllabus/Topic', validators=[DataRequired()])
@@ -73,9 +73,10 @@ class McqQuestion_Paper_Form_part1(FlaskForm):
 
 
 class Mcq_Question_generate_form(FlaskForm):
+    title = ''
     # ekhane email_code validation error er kazz korte baki ase
     exam_title = RadioField('Exam title  ', choices=[(
-        'mid-term', '  Mid-Term  '), ('final', '   Final  '),
+        'mid-term', ' Mid-Term  '), ('final', '   Final  '),
         ('quiz1', '  Quiz-1  '), ('quiz2', '  Qui-2  '),
         ('quiz3', '  Quiz-3 '), ('  quiz4  ', '  Quiz-4  '), ('quiz5', '  Quiz-5  ')])
     exam_course = StringField('Course', validators=[DataRequired()])
