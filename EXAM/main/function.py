@@ -47,12 +47,14 @@ def student_view_courses(user):
         temporary_model_ins.save()
 
 
-def created_course_form_db_insertion(get_form, user_type, lessons):
+def created_course_form_db_insertion(get_form, user_type):
     form = get_form
     course_code = form.course_code.data
     course_title = form.course_title.data
     course_co = form.course_co.data
-    course_lessons = form.course_lessons.data
+    # course_lessons = form.course_lessons.data
+    course_lessons = request.form.getlist('total_lesson[]')
+    print(course_lessons)
     t = form.course_duration.data
     course_duration = t.strftime('%Y-%m-%d')
     course_caption = request.form.get('Note:captions')
@@ -61,8 +63,8 @@ def created_course_form_db_insertion(get_form, user_type, lessons):
     course_register.teacher_registered_id = user_obj.e
     course_register.course_code = course_code
     course_register.course_title = course_title
+    course_register.course_lessons = course_lessons
     course_register.course_co = course_co
-    course_register.course_lessons = lessons
     course_register.course_duration = course_duration
     course_register.course_caption = course_caption
     course_register.save()

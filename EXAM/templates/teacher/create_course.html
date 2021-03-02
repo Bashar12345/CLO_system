@@ -1,68 +1,30 @@
 {% extends "layout.html" %}
 {% block body %}
-    <script>
-        function GetEntered() {
-            //Create an Array.
-            const entered_value = new Array();
-            const data = ['🦊', '🐮'];
-
-            //Reference all the lesson_name in form.
-            const chks = document.getElementsByTagName("INPUT");
-
-            // Loop and push the checked CheckBox value in Array.
-            for (var i = 0; i < chks.length; i++) {
-                if (chks[i].checked) {
-                    entered_value.push(chks[i].value);
-                    data.splice(
-                        data.length,
-                        0, chks[i].value);
-                }
-            }
-            //Display the entered_value CheckBox values.
-            if (entered_value.length > 0) {
-                alert("A Done ");//+ entered_value.join(",")
-                console.log(data); // ['🦊', '🐮', '🐧', '🐦', '🐤']
-                console.log(entered_value);
-            }
-            //document.querySelector('arrayEntered_value').value=entered_value.toString()
-            const URL = '/student_list'
-            const xhr = new XMLHttpRequest();
-            sender = JSON.stringify(entered_value)
-            xhr.open('POST', URL);
-            xhr.send(sender)
-
-        };
-
-        function getValueTotalLesson() {
-            //  const formData = new FormData();
-            // const total_lessons = formData.get('total_lesson')
-            const lessons = document.getElementById("total_lessons").value;
-            //alert(total_lessons)
-            console.log(lessons)
-            const total_lessons = parseInt(lessons)
-            const lesson_name = document.getElementById('lesson_name');
-            // Create a form synamically
-            const form = document.createElement("form");
-            form.setAttribute("method", "post");
-            const br = document.createElement("br");
-
-            // Create an input element for  Lesson_Name
-            for (let i = 0; i <= total_lessons; i++) {
-                const lessonName = document.createElement("input");
-                lessonName.setAttribute("type", "input");
-                lessonName.setAttribute("oninput", "GetEntered()")//change kore look back
-                lessonName.setAttribute("name", "lesson_name" + {i});
-                lessonName.setAttribute("id", "lesson_name" + {i});
-                lessonName.setAttribute("placeholder", "Lesson_name" + {i});
-                form.appendChild(br.cloneNode())
-            }
-
-            document.getElementsByTagName("input")[0]
-                .appendChild(form);
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style>
+        .input-wrapper div {
+            margin-bottom: 10px;
         }
-    </script>
+
+        .remove-input {
+            margin-top: 10px;
+            margin-left: 15px;
+            horiz-align: center;
+        }
+
+        .add-input {
+            margin-top: 10px;
+            margin-left: 10px;
+            vertical-align: text-bottom;
+        }
+
+        img {
+            box-shadow: #7f7f7f;
+            max-height: 30px;
+            max-width: 30px;
+        "
+        }
+    </style>
     <section class=" container shadow-lg btn-light btn-group-horizontal  ">
         <form method="POST" action="" class="form-container" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
@@ -71,43 +33,38 @@
                 <legend> Create New Course</legend>
                 <p>Set your Info</p>
                 <div class="form-group">
-                    {{ form.course_code.label(class = "form-control-label") }}
-                    {{ form.course_code(class ="form-control form-control-lg",placeholder="like : SWE431 ") }}
-                    <br/>
-
-                    {{ form.course_title.label(class = "form-control-label") }}
-                    {{ form.course_title(class="form-control-sm") }}
-                    <br/>
-
-                    {{ form.course_co.label(class = "form-control-label") }}
-                    {{ form.course_co(class ="form-control form-control-sm",placeholder="like : 4%") }}
-                    <br/>
-
-                    {#{  form.course_lessons.label(class = "form-control-label") }#}
-                    {#{ form.course_lessons(oninput='getValueTotalLesson()', class ="form-control form-control-md"
-                    ,placeholder="Like: 1,2,5 or 6 (How many lessons do you have for this Course)") }#}
-
-                    <div class="input-group">
-                        <label for="total_lessons"> Total Lessons</label>
-                        <input  class="input-group-append" name="total_lesson"
-                               id="total_lessons" type="number" pattern="/d*" title="Numbers only, please.">
-                        <button type="button" onclick="getValueTotalLesson()" class="input-group-append"></button>
-                        <!--<label for="lesson_name"> Lessons Names</label>
-                        <input id="lesson_name" name="lesson_name" class="input-group-append">-->
-                        <p id="lessonData" hidden></p>
-                    </div>
-
-
-                    <br/>
-
                     {{ form.course_duration.label(class = "form-control-label") }}
                     {{ form.course_duration(type="date",class ="form-control-md ",placeholder=" like: year/month/date (Please submit When Course will be finished)") }}
                     <br/>
+                </div>
+                <div class="form-group">
+                    <label for="Textarea">Course Caption textarea</label>
+                    <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label for="Textarea">Course Caption textarea</label>
-                        <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
-                    </div>
+                {{ form.course_code.label(class = "form-control-label") }}
+                {{ form.course_code(class ="form-control form-control-md",placeholder="like : SWE431 ") }}
+                <br/>
+
+                {{ form.course_title.label(class = "form-control-label") }}
+                {{ form.course_title(class="form-control-lg") }}
+                <br/>
+
+                {{ form.course_co.label(class = "form-control-label") }}
+                {{ form.course_co(class ="form-control form-control-md",placeholder="like : 4%") }}
+                <br/>
+
+                {#{  form.course_lessons.label(class = "form-control-label") }#}
+                {#{ form.course_lessons(oninput='getValueTotalLesson()', class ="form-control form-control-md"
+                    ,placeholder="Like: 1,2,5 or 6 (How many lessons do you have for this Course)") }#}
+
+                <div class="input-wrapper">
+                    <label for="total_lessons" class="custom-control-label"> Total Lessons :</label><br/>
+                    <input name="total_lesson[]" id="total_lessons" type="text" value="" title="Name of the Lesson, please."/>
+                    <a href="javascript:void(0);" class="add-input" title="Add a another lesson">
+                        <img type="button" class="btn-outline-light"
+                             src="{{ url_for('static',filename='img/plus.png') }}"/></a>
+
                 </div>
 
 
@@ -117,5 +74,8 @@
         </form>
     </section>
     <!-- partial -->
+    <script type="text/javascript" src="{{ url_for('static',filename='add_remove.js') }}">
+
+    </script>
 
 {% endblock body %}

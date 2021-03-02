@@ -73,11 +73,15 @@ def sending_email_to_user(model_er_user):
 
 
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key):
-    students_enrol_ins = enrol_students_model()
-    for i in email_list:
-        students_enrol_ins.enrol_key = Enrol_key
-        students_enrol_ins.enrolled_students_id = i
-        students_enrol_ins.save()
+    try:
+        students_enrol_ins = enrol_students_model()
+        for i in email_list:
+            students_enrol_ins.enrol_key = Enrol_key
+            students_enrol_ins.enrolled_students_id = i
+            students_enrol_ins.save()
+    except Exception as e:
+        print(str(e))
+
     ''' for i in email_list:
          msg = Message('"Enroll key" for the course_entry',
                        sender='bravebashar112@gmail.com', recipients=i)

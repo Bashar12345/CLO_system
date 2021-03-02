@@ -35,7 +35,7 @@ def register():
 
 @users.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:  
+    if current_user.is_authenticated:
         return redirect(url_for('main.main_page'))
     form = LoginForm()
     # email = form.email.data
@@ -126,7 +126,6 @@ def student_list():
         organization_id = form.organization_id.data
         result_students = user_student.objects(
             organization_id=organization_id).first()
-
         # selected_data = json.loads(request.args.get("email_list"))
         selected_data = request.data
         print(type(selected_data))
@@ -135,8 +134,10 @@ def student_list():
         data = data.strip("][").split(",")
         # print(type(data))
         enroll = request.form.get("enroll")
-        sending_mail_to_user_for_course_enroll_key(data, enroll)
-
+        check = sending_mail_to_user_for_course_enroll_key(data, enroll)
+        if check:
+            flash(f'A mail with a enroll Has been send to the Students', 'success')
+            return redirect(url_for('main.main_page'))
     return render_template('student/student_list.html', form=form, title="Students", user_type=User_type.user_type,
                            result_students=result_students, students=students)
 
@@ -145,9 +146,9 @@ def student_list():
 # @login_required
 def enrol():
     form = enrolForm()
-    usered =user_obj.e
+    usered = user_obj.e
     if request.method == "POST":
         if enrol_students_model.objects(enrolled_students_id=usered).first():
             flash(f'Enrol successful !!!', 'success')
 
-    return render_template('student/enrol.html',form=form, title="Students", user_type=User_type.user_type)
+    return render_template('student/enrol.html', form=form, title="Students", user_type=User_type.user_type)
