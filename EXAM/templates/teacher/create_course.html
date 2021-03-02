@@ -42,7 +42,7 @@
             const total_lessons = parseInt(lessons)
             const lesson_name = document.getElementById('lesson_name');
             // Create a form synamically
-            const form = document.createElement("input");
+            const form = document.createElement("form");
             form.setAttribute("method", "post");
             const br = document.createElement("br");
 
@@ -51,7 +51,8 @@
                 const lessonName = document.createElement("input");
                 lessonName.setAttribute("type", "input");
                 lessonName.setAttribute("oninput", "GetEntered()")//change kore look back
-                lessonName.setAttribute("name", "Lesson_name" + {i});
+                lessonName.setAttribute("name", "lesson_name" + {i});
+                lessonName.setAttribute("id", "lesson_name" + {i});
                 lessonName.setAttribute("placeholder", "Lesson_name" + {i});
                 form.appendChild(br.cloneNode())
             }
@@ -88,10 +89,11 @@
 
                     <div class="input-group">
                         <label for="total_lessons"> Total Lessons</label>
-                        <input oninput="getValueTotalLesson()" class="input-group-append" name="total_lesson"
+                        <input  class="input-group-append" name="total_lesson"
                                id="total_lessons" type="number" pattern="/d*" title="Numbers only, please.">
-                        <label for="lesson_name"> Lessons Names</label>
-                        <input id="lesson_name" name="lesson_name" class="input-group-append">
+                        <button type="button" onclick="getValueTotalLesson()" class="input-group-append"></button>
+                        <!--<label for="lesson_name"> Lessons Names</label>
+                        <input id="lesson_name" name="lesson_name" class="input-group-append">-->
                         <p id="lessonData" hidden></p>
                     </div>
 
