@@ -47,7 +47,7 @@ def student_view_courses(user):
         temporary_model_ins.save()
 
 
-def created_course_form_db_insertion(get_form, user_type):
+def created_course_form_db_insertion(get_form, user_type, lessons):
     form = get_form
     course_code = form.course_code.data
     course_title = form.course_title.data
@@ -62,7 +62,7 @@ def created_course_form_db_insertion(get_form, user_type):
     course_register.course_code = course_code
     course_register.course_title = course_title
     course_register.course_co = course_co
-    course_register.course_lessons = course_lessons
+    course_register.course_lessons = lessons
     course_register.course_duration = course_duration
     course_register.course_caption = course_caption
     course_register.save()

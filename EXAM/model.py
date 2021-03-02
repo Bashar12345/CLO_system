@@ -126,7 +126,7 @@ class course_model(nosql.Document):
     course_title = nosql.StringField()
     course_code = nosql.StringField()
     course_co = nosql.StringField()
-    course_lessons = nosql.StringField()
+    course_lessons = nosql.ListField()
     course_duration = nosql.StringField()
     course_caption = nosql.StringField()
 

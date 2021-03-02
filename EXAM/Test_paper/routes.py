@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 from EXAM.Test_paper.forms import Mcq_Question_generate_form, mcq_upload_form_part_1, \
     writen_question_paper_Form, McqQuestion_Paper_Form_part1, McqQuestion_Paper_Form_part2, secret_Form, \
     Written_question_answer_Form, Mcq_answer_form
-from EXAM.Test_paper.function import genarate_question, mcq_uploading_database_model, \
+from EXAM.Test_paper.function import generate_question, mcq_uploading_database_model, \
     written_question_Upload, mcq_question_Upload_part1, \
     mcq_question_Upload_part2, \
     written_question_answer_submit, mcq_question_answer_submit
@@ -106,13 +106,13 @@ def mcqqu():
                                user_type=User_type.user_type)
 
 
-@Test_paper.route('/genarateMCQ', methods=['GET', 'POST'])
+@Test_paper.route('/generateMCQ', methods=['GET', 'POST'])
 # @login_required
 def mcq_question_paper():
     form = Mcq_Question_generate_form()
     if request.method == 'POST':
-        genarate_question(form)
-    return render_template('mcq/genarateMCQ.html', title="MCQgenarate", form=form, user_type=User_type.user_type)
+        generate_question(form)
+    return render_template('mcq/generateMCQ.html', title="MCQgenerate", form=form, user_type=User_type.user_type)
 
 
 course = ''

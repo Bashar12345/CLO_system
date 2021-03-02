@@ -1,5 +1,67 @@
 {% extends "layout.html" %}
 {% block body %}
+    <script>
+        function GetEntered() {
+            //Create an Array.
+            const entered_value = new Array();
+            const data = ['🦊', '🐮'];
+
+            //Reference all the lesson_name in form.
+            const chks = document.getElementsByTagName("INPUT");
+
+            // Loop and push the checked CheckBox value in Array.
+            for (var i = 0; i < chks.length; i++) {
+                if (chks[i].checked) {
+                    entered_value.push(chks[i].value);
+                    data.splice(
+                        data.length,
+                        0, chks[i].value);
+                }
+            }
+            //Display the entered_value CheckBox values.
+            if (entered_value.length > 0) {
+                alert("A Done ");//+ entered_value.join(",")
+                console.log(data); // ['🦊', '🐮', '🐧', '🐦', '🐤']
+                console.log(entered_value);
+            }
+            //document.querySelector('arrayEntered_value').value=entered_value.toString()
+            const URL = '/student_list'
+            const xhr = new XMLHttpRequest();
+            sender = JSON.stringify(entered_value)
+            xhr.open('POST', URL);
+            xhr.send(sender)
+
+        };
+
+        function getValueTotalLesson() {
+            //  const formData = new FormData();
+            // const total_lessons = formData.get('total_lesson')
+            const lessons = document.getElementById("total_lessons").value;
+            //alert(total_lessons)
+            console.log(lessons)
+            const total_lessons = parseInt(lessons)
+            const lesson_name = document.getElementById('lesson_name');
+            // Create a form synamically
+            const form = document.createElement("input");
+            form.setAttribute("method", "post");
+            const br = document.createElement("br");
+
+            // Create an input element for  Lesson_Name
+            for (let i = 0; i <= total_lessons; i++) {
+                const lessonName = document.createElement("input");
+                lessonName.setAttribute("type", "input");
+                lessonName.setAttribute("oninput", "GetEntered()")//change kore look back
+                lessonName.setAttribute("name", "Lesson_name" + {i});
+                lessonName.setAttribute("placeholder", "Lesson_name" + {i});
+                form.appendChild(br.cloneNode())
+            }
+
+            document.getElementsByTagName("input")[0]
+                .appendChild(form);
+
+
+        }
+    </script>
     <section class=" container shadow-lg btn-light btn-group-horizontal  ">
         <form method="POST" action="" class="form-container" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
@@ -20,8 +82,19 @@
                     {{ form.course_co(class ="form-control form-control-sm",placeholder="like : 4%") }}
                     <br/>
 
-                    {{ form.course_lessons.label(class = "form-control-label") }}
-                    {{ form.course_lessons(class ="form-control form-control-md",placeholder="Like: 1,2,5 or 6 (How many lessons do you have for this Course)") }}
+                    {#{  form.course_lessons.label(class = "form-control-label") }#}
+                    {#{ form.course_lessons(oninput='getValueTotalLesson()', class ="form-control form-control-md"
+                    ,placeholder="Like: 1,2,5 or 6 (How many lessons do you have for this Course)") }#}
+
+                    <div class="input-group">
+                        <label for="total_lessons"> Total Lessons</label>
+                        <input oninput="getValueTotalLesson()" class="input-group-append" name="total_lesson"
+                               id="total_lessons" type="number" pattern="/d*" title="Numbers only, please.">
+                        <label for="lesson_name"> Lessons Names</label>
+                        <input id="lesson_name" name="lesson_name" class="input-group-append">
+                        <p id="lessonData" hidden></p>
+                    </div>
+
 
                     <br/>
 
@@ -42,4 +115,5 @@
         </form>
     </section>
     <!-- partial -->
+
 {% endblock body %}

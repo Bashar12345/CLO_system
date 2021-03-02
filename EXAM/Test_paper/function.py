@@ -170,7 +170,7 @@ def mcq_uploading_database_model(course, topic, Course_outcome, Complexity_label
 # under construction
 
 
-def genarate_question(get_form):
+def generate_question(get_form):
     form = get_form
     exam_title = form.exam_title.data
     exam_course = request.form.get("course")

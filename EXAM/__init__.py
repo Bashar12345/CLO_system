@@ -3,8 +3,13 @@ from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 # from decouple import config
 from flask_login import LoginManager, current_user
+# from flask_assets import Environment, Bundle  # bundle custom design
+# from webassets import Bundle
+# from flask_scss import Scss
+
 from EXAM.configaration import Config
 from flask_mongoengine import MongoEngine
+
 # from mongoengine import *
 
 # connect(db='exam', host='localhost', port='27017', username='', password='', authentication_source='admin')
@@ -41,12 +46,13 @@ login_manager.login_message_category = 'info'
 
 
 def create_app(config_class=Config):
-    app = Flask(__name__)
-    app.config.from_object(Config)
+    app = Flask(__name__)  # run all package as initial flask app
+    app.config.from_object(config_class)
     mail.init_app(app)
     nosql.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)
+    # Scss(app, static_dir='static', asset_dir='assets')
     from EXAM.main.routes import main
     from EXAM.users.routes import users
     from EXAM.Test_paper.routes import Test_paper
@@ -56,4 +62,5 @@ def create_app(config_class=Config):
     app.register_blueprint(main)
     app.register_blueprint(Test_paper)
     app.register_blueprint(errors)
+
     return app

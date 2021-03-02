@@ -1,15 +1,32 @@
+import os
 import time
 
-from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint
+from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app
 from flask_login import login_required
+from werkzeug.datastructures import CombinedMultiDict
+from werkzeug.utils import secure_filename
 
-from EXAM.Test_paper.forms import create_course_form
+from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, student_view_courses, teacher_view_courses
 from EXAM.model import Machine_learning_mcq_model, course_model, set_exam_question_slot, temporary_model
 from EXAM.users.utils import remove_junk
 
 main = Blueprint('main', __name__)
+
+
+@main.route('/upload', methods=['GET', 'POST'])
+def upload():
+    form = PhotoForm(CombinedMultiDict((request.files, request.form)))
+    if form.validate_on_submit():
+        f = form.photo.data
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(
+            app.instance_path, 'photos', filename
+        ))
+        return redirect(url_for('index'))
+
+    return render_template('upload.html', form=form)
 
 
 @main.route('/')
@@ -34,12 +51,16 @@ def guildLineForTeacher():
 
 
 @main.route('/create_course', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def create_course():
     form = create_course_form()
     user_type = User_type.user_type
     if request.method == 'POST':
-        confirm = created_course_form_db_insertion(form, user_type)
+        javascript_lesson_request = request.data
+        print(type(javascript_lesson_request))
+        lessons = javascript_lesson_request.decode('utf-8')
+        lessons = lessons.strip("][").split(",")
+        confirm = created_course_form_db_insertion(form, user_type, lessons)
         if confirm:
             flash(f' {confirm}! Course successfully created', 'success')
             return redirect(url_for('main.view_courses'))
@@ -131,8 +152,6 @@ def question_view(course_code):
     # print(questions)
     return render_template('question_view/view_questions.html', questions=questions, title='question_view',
                            user_type=User_type.user_type, course_code=course_code)
-
-
 
 
 @main.route('/dashboard')

@@ -1,9 +1,10 @@
-
 import os
 from decouple import config
 
 
 # ekhaner sob data r value environ e rakhte hobe
+
+
 class Config:
     SECRET = os.urandom(32)
     SECRET_KEY = SECRET

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms import TimeField, DateField, StringField, IntegerField, SubmitField, RadioField, \
-    TextAreaField
+    TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, ValidationError
 
 from EXAM.model import course_model
@@ -9,7 +9,6 @@ from EXAM.users.forms import user_form
 
 
 # from flask_bootstrap import Bootstrap
-
 
 
 class FileUploadFrom(FlaskForm):
@@ -31,8 +30,8 @@ class writen_question_paper_Form(FlaskForm):
         'mid-term', 'Mid-Term'), ('final', 'Final'), ('quiz', 'Quiz')])
     exam_course = StringField('Course', validators=[DataRequired()])
     exam_topic = StringField('Syllabus/Topic', validators=[DataRequired()])
-    exam_start_time = TimeField('Start At', validators=[DataRequired()])
-    exam_end_time = TimeField('End At', validators=[DataRequired()])
+    exam_start_time = TimeField('Start At:', validators=[DataRequired()])
+    exam_end_time = TimeField('End At:', validators=[DataRequired()])
     exam_date = DateField('Date:', validators=[DataRequired()])
     f = FileUploadFrom
     rename_file = f.rename
@@ -80,16 +79,18 @@ class Mcq_Question_generate_form(FlaskForm):
         ('quiz1', '  Quiz-1  '), ('quiz2', '  Qui-2  '),
         ('quiz3', '  Quiz-3 '), ('  quiz4  ', '  Quiz-4  '), ('quiz5', '  Quiz-5  ')])
     exam_course = StringField('Course', validators=[DataRequired()])
-    exam_topic = RadioField('Syllabus/Topic/lesson', choices=[(
-        'lesson-1', 'Lesson One'), ('lesson-2', 'Lesson Two'), ('lesson-3', 'Lesson Three')], validate_choice=True)
+    # exam_topic = ('Syllabus/Topic/lesson', coerce=str, validate_choice=True)
+    exam_topic = RadioField('Syllabus/Topic/lesson', validate_choice=True, choices=[('lesson-1', 'Lesson One'), \
+                                                                                    ('lesson-2', 'Lesson Two'),
+                                                                                    ('lesson-3', 'Lesson Three')])
     exam_CLO = StringField('Course Outcome', validators=[
         DataRequired(), Length(min=1, max=10)])
     complex_level = StringField('Complex Level')
     exam_marks = StringField('Total marks :')
     exam_total_questions = IntegerField(
         'Number of Questions', validators=[DataRequired()])
-    exam_start_time = TimeField('Start At', validators=[DataRequired()])
-    exam_end_time = TimeField('End At', validators=[DataRequired()])
+    exam_start_time = TimeField('Start At:', validators=[DataRequired()])
+    exam_end_time = TimeField('End At:', validators=[DataRequired()])
     exam_date = DateField('Date:', validators=[DataRequired()])
     caption = StringField('Special Note')
     exam_code = StringField('Exam Secret Code')
@@ -110,22 +111,3 @@ class Mcq_answer_form(FlaskForm):
     organization_id = user_form.organization_id
     # answer = RadioField()
     submit = SubmitField()
-
-
-class create_course_form(FlaskForm):
-    course_code = StringField('Course Code')
-    course_title = StringField('Enter Course Title')
-    course_co = StringField('Course Outcome')
-    course_lessons = StringField('Total Lessons of this course')
-    course_duration = DateField(
-        'Date: (Please, Enter When Course will be finished)', validators=[DataRequired()])
-    course_caption = StringField('Course Caption/Details')
-    submit = SubmitField(' Create Course ')
-
-    @staticmethod
-    def validation_course(course_code):
-        searchTheCourse = course_model.objects.filter(
-            course_code=course_code.data).first()
-        if searchTheCourse:
-            raise ValidationError(
-                'That course_code is already taken,Please choose another one')
