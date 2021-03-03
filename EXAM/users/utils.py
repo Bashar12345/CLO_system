@@ -3,20 +3,27 @@ import os
 import secrets
 
 from flask import render_template, url_for, flash
+
 # import json
 # import fileinput
 # from PIL import Image
 from flask_mail import Message
 
 from EXAM import bcrypt, mail
-from EXAM.model import set_exam_question_slot, user, user_student, user_teacher, enrol_students_model
+from EXAM.model import (
+    set_exam_question_slot,
+    user,
+    user_student,
+    user_teacher,
+    enrol_students_model,
+)
 
-exam_code = ''
+exam_code = ""
 
 
 def go(op):
     op = op
-    return render_template('mcqqu.html', op=op)
+    return render_template("mcqqu.html", op=op)
 
 
 def mcq_bypass(get_form):
@@ -29,13 +36,13 @@ def remove_junk():
     date = t.strftime("%Y-%m-%d")
     print(date)
     for i in set_exam_question_slot.objects():
-        print(i['exam_date'])
-        if i['exam_date'] < date:
-            expire_date = i['exam_date']
+        print(i["exam_date"])
+        if i["exam_date"] < date:
+            expire_date = i["exam_date"]
             set_exam_question_slot.objects(exam_date=expire_date).delete()
             print("old")
     for i in set_exam_question_slot.objects():
-        print(i['exam_date'])
+        print(i["exam_date"])
 
 
 def saveFormFile_in_Filesystem(form_file):
@@ -63,37 +70,44 @@ def saveFormFile_in_Filesystem(form_file):
 
 def sending_email_to_user(model_er_user):
     token = model_er_user.get_reset_token()
-    msg = Message('Password Reset Verification',
-                  sender='bravebashar112@gmail.com', recipients=[model_er_user.email])
-    msg.body = f'''For password reset visit the following link: 
+    msg = Message(
+        "Password Reset Verification",
+        sender="bravebashar112@gmail.com",
+        recipients=[model_er_user.email],
+    )
+    msg.body = f"""For password reset visit the following link: 
 {url_for('users.reset_token', token=token, _external=True)}
     thank you
-    '''
+    """
     mail.send(msg)
 
 
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
     students_enrol_ins = enrol_students_model()
-    for i in email_list:
-         students_enrol_ins.enrol_key = Enrol_key
-         students_enrol_ins.course_code = course_code
-         students_enrol_ins.enrolled_students_id = i
-         print(students_enrol_ins.enrolled_students_id)
-         students_enrol_ins.save()
-    
+    print(type(email_list))
+    if email_list:
+        fw = open("file.txt", "w+")
+        for index in email_list:
+            fw.write(index)
+            students_enrol_ins.enrol_key = Enrol_key
+            students_enrol_ins.course_code = course_code
+            students_enrol_ins.enrolled_students_id = index
+            print(students_enrol_ins.enrolled_students_id)
+            students_enrol_ins.save()
+        fw.close()
+
     #''' for i in email_list:
-   #  msg = Message('"Enroll key" for the course_entry',
-   #                sender='bravebashar112@gmail.com', recipients=i)
- #msg.body = fFor Joining the course, Enter the key below : 
-#{Enroll_key}
+
+
+#  msg = Message('"Enroll key" for the course_entry',
+#                sender='bravebashar112@gmail.com', recipients=i)
+# msg.body = fFor Joining the course, Enter the key below :
+# {Enroll_key}
 # thank you
- #This is an developing app for Testing purpose we send this email
- #So, please calm down and be patient
- 
- #mail.send(msg)'''
+# This is an developing app for Testing purpose we send this email
+# So, please calm down and be patient
 
-
-
+# mail.send(msg)'''
 
 
 def register_method(get_form):
@@ -106,21 +120,22 @@ def register_method(get_form):
     user_category = form.user_category.data
     email = form.email.data
     # password = form.password.data # here is the password, by-chance if it needed
-    hashed_password = bcrypt.generate_password_hash(
-        form.password.data).decode('utf-8')  # hashing
+    hashed_password = bcrypt.generate_password_hash(form.password.data).decode(
+        "utf-8"
+    )  # hashing
     # upload_profile_pic = form.profile_pic.data
     # upload_profile_pic, ext = binary_read(form.profile_pic.data)
     # doc_file_name, file_path, f_ext, random_file_name = saveFormFile_in_Filesystem(form.profile_pic.data)
-    if user_category == 'student':
+    if user_category == "student":
         mongo_user = user_student()
         mongo_user.user_name = name
         mongo_user.organization_id = organization_id
         mongo_user.email = email
         # mongo_user.password = hashed_password
         mongo_user.user_category = user_category
-        '''with open(file_path, 'rb')as fd:
+        """with open(file_path, 'rb')as fd:
             print(fd.read())
-            mongo_user.profile_pic.put(fd, filename=doc_file_name)'''
+            mongo_user.profile_pic.put(fd, filename=doc_file_name)"""
         mongo_user.save()
         mongo_user_info = user()  # this is for 'not override email complication'
         mongo_user_info.user_name = name
@@ -136,9 +151,9 @@ def register_method(get_form):
         mongo_user.email = email
         # mongo_user.password = hashed_password
         mongo_user.user_category = user_category
-        '''with open(file_path, 'rb')as fd:
+        """with open(file_path, 'rb')as fd:
             print(fd.read())
-            mongo_user.profile_pic.put(fd, filename=doc_file_name)'''
+            mongo_user.profile_pic.put(fd, filename=doc_file_name)"""
         mongo_user.save()
         mongo_user_info = user()  # this is for 'not override email complication'
         mongo_user_info.user_name = name
@@ -148,9 +163,9 @@ def register_method(get_form):
         mongo_user_info.user_category = user_category
         mongo_user_info.save()
 
-    flash(f'Account has been created for {form.user_name.data} !', 'success')
+    flash(f"Account has been created for {form.user_name.data} !", "success")
     print("Hoice")
-    return 'done'
+    return "done"
 
 
 def binary_read(form_pic_file):
@@ -165,7 +180,7 @@ def binary_read(form_pic_file):
     # binary mode e file khuila data mongodb te disi
     form_pic_file.save(pic_path)
 
-    img_or_file_binary = open(pic_path, 'rb')
+    img_or_file_binary = open(pic_path, "rb")
 
     img = img_or_file_binary.read()
 

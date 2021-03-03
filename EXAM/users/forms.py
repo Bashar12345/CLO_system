@@ -34,6 +34,7 @@ class searchForm(FlaskForm):
             organization_id=organization_id.data).first()
         if searchTheOrganization_id:
             raise ValidationError('Not Found')
+        return searchTheOrganization_id
 
 
 class enrolForm(FlaskForm):

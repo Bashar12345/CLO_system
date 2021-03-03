@@ -137,6 +137,10 @@ def view_course_load_data():
 @login_required
 def question_view(course_code):
     # print(course_code)
+    if request.method=="POST":
+        corse_code=course_code
+        enroll_key=request.form.get('enroll_key')
+        return redirect(url_for('users.student_list',course_code = corse_code))
     questions = []
     # if request.args:
     # course_code = request.args.get("course_code")

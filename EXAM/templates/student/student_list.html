@@ -2,38 +2,36 @@
 {% block body %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<p id="course_code" value="{{course_code}}" hidden></p>
-
 <section>
-    <form name="enrolForm" class="form-inline my-2 my-lg-0" method="POST" action="" enctype="multipartform-data">
-        <div class="input-group mb-3">
-            {{ form.organization_id(class="form-control form-control-lg ",placeholder="Search Organization Student_ID") }}
-            <div class="input-group-append">
-                <button class="btn btn-outline-success " type="submit">Search</button>
-                <p class="content">Step Two =>></p>
-            </div>
-        </div>
-    </form>
 
 
-    <section>
-        <form method="POST" action="" enctype="multipartform-data">
-            <div class="row justify-content-end">
-                <p class="content">Step One =>></p>
-                <label for="enroll"> Enter Enroll Key</label>
-                <input id="enroll" class="col-4  form-inline " name="enroll" placeholder="Enter the Enroll key" required />
-            </div>
-
-        </form>
-
-    </section>
-
-    <!--search kora student-->
-    {% if result_students %}
     <section class="shadow-lg btn-group-horizontal">
         <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            {{ result_students }}
+            {{ form.hidden_tag()}}
+            <p id="course_coode" value="{{course_code}}">{{course_code}}</p>
+            <p id="enroll_key" value="{{enroll}}" hidden></p>
+
+
+            <div class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('users.student_list',course_code=course_code ) }}">
+                <div class="input-group mb-3">
+                    {{ form.organization_id(class="form-control form-control-lg ",placeholder="Search Organization
+                    Student_ID")
+                    }}
+                    <div class="input-group-append">
+                        {{ form.submit(class="btn btn-outline-success" )}}
+            <!--button class="btn btn-outline-success" type="submit">Search</button-->
+              
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!--search kora student-->
+            {% if result_students %}
             <br />
             <table id="tblStudents[0]">
                 <tr>
@@ -49,91 +47,87 @@
                     <td class='col-4'>{{ result_students.email }}</td>
                 </tr>
             </table>
-            <input class='btn-outline-primary' type="button" value="Add to this Course" onclick="GetSelected()" />
-            <div class="row justify-content-center">
-                <input id="arraySelected" type="hidden" name="selected_students" value="" hidden />
-            </div>
+            {% endif %}
+
+
+            <!--Database load kora student-->
+            {% if students %}
+            <section class="shadow-lg btn-group-horizontal">
+                <table id="tblStudents[1]">
+                    {% for i in students %}
+                    <tr class="row justify-content-start">
+                        <td class='col-5'>
+                            <input id="chk{{ i.user_name }}" type="checkbox"
+                                aria-label="Checkbox for following text input" value="{{ i.email }}" />
+                            <label for="chk{{ i.user_name }}">{{ i.user_name }}</label>
+                        </td>
+
+                        <td class='col-3'>{{ i.organization_id }}</td>
+                        <td class='col-4'>{{ i.email }}</td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </section>
+            {% endif %}
+
+
+
+
+            <section>
+                <br />
+                <div class="row justify-content-center">
+                    <input class=' col-4 btn btn-outline-primary' type="button" value="Add to this Course"
+                        onclick="GetSelected()" />
+                </div>
+                <!--<input id="arraySelected" type="hidden" name="selected_students" value="" hidden></p>-->
+            </section>
+
         </form>
-    </section>
-
-    {% endif %}
-
-
-    <!--Database load kora student-->
-    {% if students %}
-
-    <section class="shadow-lg btn-group-horizontal">
-        <table id="tblStudents[1]">
-            {% for i in students %}
-            <tr class="row justify-content-start">
-
-
-                <td class='col-5'>
-                    <input id="chk{{ i.user_name }}" type="checkbox" aria-label="Checkbox for following text input"  value="{{ i.email }}" />
-                    <label for="chk{{ i.user_name }}">{{ i.user_name }}</label>
-                </td>
-
-                <td class='col-3'>{{ i.organization_id }}</td>
-                <td class='col-4'>{{ i.email }}</td>
-
-
-            </tr>
-            {% endfor %}
-        </table>
 
     </section>
-    <section>
-        <br />
-        <div class="row justify-content-center">
-            <input class=' col-4 btn btn-outline-primary' type="button" value="Add to this Course"
-                onclick="GetSelected()" />
-        </div>
-        <!--<input id="arraySelected" type="hidden" name="selected_students" value="" hidden></p>-->
-    </section>
-    {% endif %}
+</section>
+<script>
+    function GetSelected() {
+        //Create an Array.
+        var selected = [];
+        const data = ['🦊', '🐮'];
+        //var enrollForm = document.forms["enrolForm"]; 
+        //var enroll_key =  
 
+        //Reference the Table.
+        var tblStudents = document.getElementById("tblStudents[1]");
 
-    <script>
-        function GetSelected(message) {
-            //Create an Array.
-            var selected = [];
-            const data = ['🦊', '🐮'];
-            //var enrollForm = document.forms["enrolForm"]; 
-            //var enroll_key =  
+        //Reference all the CheckBoxes in Table.
+        var chbks = tblStudents.getElementsByTagName("INPUT");
 
-            //Reference the Table.
-            var tblStudents = document.getElementById("tblStudents[1]");
-
-            //Reference all the CheckBoxes in Table.
-            var chbks = tblStudents.getElementsByTagName("INPUT");
-
-            // Loop and push the checked CheckBox value in Array.
-            for (var i = 0; i < chbks.length; i++) {
-                if (chbks[i].checked) {
-                    selected.push(chbks[i].value);
-                    data.splice(
-                        data.length,
-                        0, chbks[i].value);
-                }
+        // Loop and push the checked CheckBox value in Array.
+        for (var i = 0; i < chbks.length; i++) {
+            if (chbks[i].checked) {
+                selected.push(chbks[i].value);
+                data.splice(
+                    data.length,
+                    0, chbks[i].value);
             }
-
-            //Display the selected CheckBox values.
-            if (selected.length > 0) {
-                alert("A Joining Key has been sending to the student, by the system ");//+ selected.join(",")
-                console.log(data); // ['🦊', '🐮', '🐧', '🐦', '🐤']
-                console.log(selected);
-                var URL = '/students_load'
-                var xhr = new XMLHttpRequest();
-                var sender = JSON.stringify(selected)
-                xhr.open('POST', URL);
-                xhr.send(sender)
-                //xhr.abort()
-            }
-            //document.querySelector('arraySelected').value=selected.toString()
-            
-
         }
 
-    </script>
+        //Display the selected CheckBox values.
+        if (selected.length > 0) {
+            alert("A Joining Key has been sending to the student, by the system ");//+ selected.join(",")
+            console.log(data); // ['🦊', '🐮', '🐧', '🐦', '🐤']
+            console.log(selected);
+            var URL = '{{url_for('users.student_list',course_code=course_code)}}'
+            var xhr = new XMLHttpRequest();
+            var sender = JSON.stringify(selected)
+            xhr.open('POST', URL);
+            xhr.send(sender)
+            //xhr.abort()
+        }
+        //document.querySelector('arraySelected').value=selected.toString()
 
-    {% endblock body %}
+
+    }
+
+</script>
+
+{% endblock body %}

@@ -1,13 +1,15 @@
 {
   "python.pythonPath": "virtual_env_ClO/bin/python",
-  "editor.defaultFormatter": "autopep8",
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
+  "editor.defaultFormatter": "ms-python.python",
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
   },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+ 
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  },
+  "python.formatting.provider": "black"
 }
