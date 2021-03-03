@@ -20,6 +20,7 @@ class Config:
 
 sum_of_something = ''
 
+corse_code=''
 
 class secret_exam_key:
     exam_code = ''
@@ -35,3 +36,4 @@ class User_type:
 
 class user_obj:
     e = ''
+

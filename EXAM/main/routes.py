@@ -61,8 +61,7 @@ def create_course():
         if confirm:
             flash(f'{confirm}! Course successfully created', 'success')
             return redirect(url_for('main.view_courses'))
-    return render_template('teacher/create_course.html',
-                           title='Create_course', form=form, user_type=user_type)
+    return render_template('teacher/create_course.html',title='Create_course', form=form, user_type=user_type)
 
 
 # javascript kora

@@ -72,26 +72,28 @@ def sending_email_to_user(model_er_user):
     mail.send(msg)
 
 
-def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key):
-    try:
-        students_enrol_ins = enrol_students_model()
-        for i in email_list:
-            students_enrol_ins.enrol_key = Enrol_key
-            students_enrol_ins.enrolled_students_id = i
-            students_enrol_ins.save()
-    except Exception as e:
-        print(str(e))
+def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
+    students_enrol_ins = enrol_students_model()
+    for i in email_list:
+         students_enrol_ins.enrol_key = Enrol_key
+         students_enrol_ins.course_code = course_code
+         students_enrol_ins.enrolled_students_id = i
+         print(students_enrol_ins.enrolled_students_id)
+         students_enrol_ins.save()
+    
+    #''' for i in email_list:
+   #  msg = Message('"Enroll key" for the course_entry',
+   #                sender='bravebashar112@gmail.com', recipients=i)
+ #msg.body = fFor Joining the course, Enter the key below : 
+#{Enroll_key}
+# thank you
+ #This is an developing app for Testing purpose we send this email
+ #So, please calm down and be patient
+ 
+ #mail.send(msg)'''
 
-    ''' for i in email_list:
-         msg = Message('"Enroll key" for the course_entry',
-                       sender='bravebashar112@gmail.com', recipients=i)
-     msg.body = fFor Joining the course, Enter the key below : 
- {Enroll_key}
-     thank you
-     This is an developing app for Testing purpose we send this email
-     So, please calm down and be patient
-     
-     mail.send(msg)'''
+
+
 
 
 def register_method(get_form):

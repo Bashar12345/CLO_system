@@ -20,11 +20,31 @@
     });
 
 
+/*$grid-columns:      12;
+$grid-gutter-width: 30px;
 
 
+$container-max-widths: (
+  sm: 540px;
+  md: 720px;
+  lg: 960px;
+  xl: 1140px;
+);
 
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px
+);
 
+$container-max-widths: (
+  sm: 420px,
+  md: 720px,
+  lg: 960px
+);
 
+*/
 
 
 

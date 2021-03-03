@@ -164,6 +164,7 @@ class temporary_model(nosql.Document):
 
 class enrol_students_model(nosql.Document):
     enrol_key = nosql.StringField()
+    course_code = course_model.course_code
     enrolled_students_id = user.email
 
 

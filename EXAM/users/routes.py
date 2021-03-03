@@ -3,13 +3,13 @@ from flask import render_template, request, redirect, url_for, flash, Blueprint
 from flask_login import current_user, logout_user, login_required, login_user
 
 from EXAM import bcrypt
-from EXAM.configaration import User_type, user_obj
+from EXAM.configaration import User_type, user_obj,corse_code
 from EXAM.model import enrol_students_model, temporary_model, user, user_student
 from EXAM.users.forms import enrolForm, registration_form, LoginForm, forgetPasswordForm, resetPasswordForm, searchForm
 from EXAM.users.utils import register_method, sending_email_to_user, sending_mail_to_user_for_course_enroll_key
+import time
 
 users = Blueprint('users', __name__)
-
 
 @users.route('/registration', methods=['GET', 'POST'])
 def register():
@@ -24,7 +24,7 @@ def register():
             print("not connected    Hoy naiiiiiiiiiiii  ")
             print(str(e))
         if check == 'done':
-            return redirect(url_for('main.main_page'))
+            return redirect(url_for('users.login'))
     else:
         return render_template('registration.html', title='Registration', form=form)
 
@@ -91,7 +91,7 @@ def reset_password():
         User = user.objects(email=form.email.data).first()
         # print(jsonify(User))
         sending_email_to_user(User)
-        flash('An Email has been sent with instruction to reset your password ')
+        flash('An Email has been sent with instruction to reset your password ', 'info')
     return render_template("reset_password.html", title='change_password', form=form)
 
 
@@ -114,32 +114,57 @@ def reset_token(token):
     return render_template('reset_token.html', title='Verify_password_for_user', form=form)
 
 
-@users.route('/student_list', methods=['GET', 'POST'])
-# @login_required
-def student_list():
+
+@users.route('/student_list/<course_code>', methods=['GET', 'POST'])
+@login_required
+def student_list(course_code):
     form = searchForm()
     selected_data = ''
     result_students = ''
+    corse_code = course_code
+    print(course_code)
+    check=''
     # students=''
-    students = user_student.objects()
     if request.method == 'POST':
         organization_id = form.organization_id.data
-        result_students = user_student.objects(
-            organization_id=organization_id).first()
-        # selected_data = json.loads(request.args.get("email_list"))
+        result_students = user_student.objects(organization_id=organization_id).first()
+    if result_students:
+       enroll = request.form.get("enroll")
+       sending_mail_to_user_for_course_enroll_key(result_students, enroll, corse_code)
+       return render_template('student/student_list.html', form=form, title="Students", user_type=User_type.user_type,result_students=result_students)
+    else:
+        students = user_student.objects()
+        return render_template('student/student_list.html', form=form, title="Students", user_type=User_type.user_type, students=students)
+
+
+@users.route('/students_load', methods=['POST'])
+@login_required
+def students_load():
+    time.sleep(0.2)
+    response_to_browser = ""
+    if request.method == 'POST':
+        enroll = request.form.get("enroll")
         selected_data = request.data
         print(type(selected_data))
         data = selected_data.decode("utf-8")
         # print(type(data))
-        data = data.strip("][").split(",")
+        email_list = data.strip("][").split(",")
         # print(type(data))
-        enroll = request.form.get("enroll")
-        check = sending_mail_to_user_for_course_enroll_key(data, enroll)
-        if check:
+        check = sending_mail_to_user_for_course_enroll_key(email_list, enroll, corse_code)
+        if check == 'ok':
             flash(f'A mail with a enroll Has been send to the Students', 'success')
-            return redirect(url_for('main.main_page'))
-    return render_template('student/student_list.html', form=form, title="Students", user_type=User_type.user_type,
-                           result_students=result_students, students=students)
+        return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
+    '''if request.args:
+        c = request.args.get('c')
+            # selected_data = json.loads(request.args.get("email_list"))   
+            flash(f'A mail with a enroll Has been send to the Students', 'success')
+            return redirect(url_for('main.main_page'))'''
+
+
+
+
+
+
 
 
 @users.route('/enrol', methods=['GET', 'POST'])
