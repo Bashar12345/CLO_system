@@ -17,6 +17,7 @@ from EXAM.model import (
     user_teacher,
     enrol_students_model,
 )
+import time
 
 exam_code = ""
 
@@ -84,16 +85,19 @@ def sending_email_to_user(model_er_user):
 
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
     students_enrol_ins = enrol_students_model()
+    print(email_list)
     print(type(email_list))
     if email_list:
         fw = open("file.txt", "w+")
         for index in email_list:
-            fw.write(index)
+            time.sleep(0.8)
+            fw.write(index+"\n")
             students_enrol_ins.enrol_key = Enrol_key
             students_enrol_ins.course_code = course_code
             students_enrol_ins.enrolled_students_id = index
             print(students_enrol_ins.enrolled_students_id)
             students_enrol_ins.save()
+            
         fw.close()
 
     #''' for i in email_list:

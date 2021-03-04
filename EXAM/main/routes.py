@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, student_view_courses, teacher_view_courses
-from EXAM.model import Machine_learning_mcq_model, course_model, set_exam_question_slot, temporary_model
+from EXAM.model import Machine_learning_mcq_model, course_model, enrol_students_model, set_exam_question_slot, student_courses_model, temporary_model
 from EXAM.users.utils import remove_junk
 
 main = Blueprint('main', __name__)
@@ -137,10 +137,6 @@ def view_course_load_data():
 @login_required
 def question_view(course_code):
     # print(course_code)
-    if request.method=="POST":
-        corse_code=course_code
-        enroll_key=request.form.get('enroll_key')
-        return redirect(url_for('users.student_list',course_code = corse_code))
     questions = []
     # if request.args:
     # course_code = request.args.get("course_code")
@@ -151,8 +147,7 @@ def question_view(course_code):
             course_code=course_code):
         questions = i.mcq
     # print(questions)
-    return render_template('question_view/view_questions.html', questions=questions, title='question_view',
-                           user_type=User_type.user_type, course_code=course_code)
+    return render_template('question_view/view_questions.html', questions=questions, title='question_view',user_type=User_type.user_type, course_code=course_code)
 
 
 @main.route('/dashboard')
@@ -198,7 +193,15 @@ def exam_slot_load():
 @main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
 # @login_required
 def course_assigned_students():
-    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type)
+    total=list()
+    enrollen= enrol_students_model.objects().all()
+    students=student_courses_model.objects().all()
+    for enrolled in enrollen:
+      if enrolled.enrolled_students_id==students.student_registered_id and \
+        enrolled.course_code== students.course_code:
+        total.append(enrolled)
+    print(total)
+    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type,total=total)
 
 
 @main.route('/loading_students')

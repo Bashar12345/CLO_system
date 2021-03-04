@@ -9,27 +9,18 @@
                 <a href="{{ url_for('Test_paper.mcq_upload') }}" class="btn btn-primary btn-block" role="button"
                     aria-pressed="true">Upload new Question</a>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <a href="{{ url_for('Test_paper.mcq_question_paper') }}" class="btn btn-primary" role="button"
                     aria-pressed="true">Generate Question </a>
             </div>
             <!--  <a href="{#{ url_for('main.Lessons')}#}" class="btn btn-secondary " role="button"aria-pressed="true">Add lessons</a>-->
-
-            <form class="form-inline my-2 my-lg-0" method="POST" 
-            action="{{ url_for('users.student_list',course_code=course_code ) }}">
-                <input name="enroll_key" class="form-control mr-sm-2" type="text"
-                    placeholder="Enter a Students Enroll key for this course" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Enroll Key</button>
-            </form>
-            <!--a  class="btn btn-secondary "
-               >Students</a-->
-
-
-
-
-
-
+            <div class="col-2">
+                <a href="{{ url_for('users.student_list',course_code=course_code ) }}" class="btn btn-primary" role="button"
+                    aria-pressed="true">Students</a>
+            </div>
         </div>
+
+
     </header>
     <legend>MCQ Questions Bank</legend>
     <small>{{ course_code }}</small>

@@ -136,22 +136,20 @@ def reset_token(token):
         "reset_token.html", title="Verify_password_for_user", form=form
     )
 
-enroll=''
+
 @users.route("/student_list/<course_code>", methods=["GET", "POST"])
 # @login_required
 def student_list(course_code):
     form = searchForm()
     selected_data = ""
-    email_list=""
     result_students = ""
     print(course_code)
     corse_code = course_code
     check = ""
     # students=''
-    if request.method=="GET":
-        global enroll
-        enroll = request.form["enroll_key"]
+    enroll = form.enroll_key.data
     if request.method == "POST":    
+        print(enroll)
         organization_id = form.organization_id.data
         result_students = user_student.objects(organization_id=organization_id).first()
         if result_students:
@@ -162,13 +160,9 @@ def student_list(course_code):
                 user_type=User_type.user_type,
                 result_students=result_students,
             )
-        else:
-            selected_data = request.data
-            print(type(selected_data))
-            data = selected_data.decode("utf-8")
-            # print(type(data))
-            email_list = data.strip("][").split(",")
-    sending_mail_to_user_for_course_enroll_key(email_list, enroll, corse_code)
+        email_list = request.form.getlist('students_list_checkbox')
+        
+        sending_mail_to_user_for_course_enroll_key(email_list, enroll, corse_code)
     students = user_student.objects()
     return render_template(
         "student/student_list.html",
@@ -177,29 +171,9 @@ def student_list(course_code):
         user_type=User_type.user_type,
         students=students,
         course_code=course_code,
-        enroll=enroll
     )
 
 
-@users.route("/students_load", methods=["POST"])
-# @login_required
-def students_load():
-    form = searchForm()
-    if request.method == "POST":
-        response_to_browser = ""
-        corse_code = request.form["course_coode"]
-        enrl = request.form["enroll_key"]
-        """ print(enrl)
-        # print(type(data))
-        # global corse_code
-        print(corse_code)
-        print(enroll)
-        try:
-            sending_mail_to_user_for_course_enroll_key(email_list, enroll, corse_code)
-        except Exception as e:
-            print(str(e))"""
-       # flash(f"A mail with a enroll Has been send to the Students", "success")
-    return Response("ok")
 
 
 # '''if request.args:

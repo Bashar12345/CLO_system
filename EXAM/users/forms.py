@@ -24,8 +24,8 @@ class user_form(FlaskForm):
 
 
 class searchForm(FlaskForm):
-    organization_id = user_form.organization_id
-    enroll=StringField('Enter the enroll key',validators=[DataRequired()])
+    organization_id = StringField('Search for your students....')
+    enroll_key=StringField('Enter the enroll key',validators=[DataRequired()])
     submit = SubmitField('search')
 
     @staticmethod
