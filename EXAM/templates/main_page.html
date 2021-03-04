@@ -1,5 +1,22 @@
 <!-- Here the header part end  -->
 {% extends "layout.html" %}
+
+
+{% block navenrol %}
+
+<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Enroll Key" name="enroll_key" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="text">Enroll</button>
+            <!--<a type="button" class=" nav-item nav-link " href="{#{ url_for('users.enrol') }#}">Enroll</a>-->
+        </form>
+    </ul>
+</div>
+
+{% endblock navenrol %}
+
+
 {% block body %}
 
     <div id="contenTbody">

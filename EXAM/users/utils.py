@@ -20,8 +20,7 @@ from EXAM.model import (
 import time
 
 exam_code = ""
-
-
+instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 def go(op):
     op = op
     return render_template("mcqqu.html", op=op)
@@ -53,7 +52,7 @@ def saveFormFile_in_Filesystem(form_file):
     file_original_name = f_name + f_ext
     # file_fn = random_hex + f_ext
     # file_fn2 = "DefaultPaper"+f_ext
-    instance_path = "/home/b/Desktop/project/test/EXAM"
+    # instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
     file_path = os.path.join(instance_path, "static/files", file_original_name)
     form_file.save(file_path)
     #   mongodb_data_class_ins.file.new_file()
@@ -177,7 +176,7 @@ def binary_read(form_pic_file):
 
     pic_fn = f_name + f_ext
 
-    instance_path = "/home/b/Desktop/test/EXAM"
+    #instance_path = "/home/b/Desktop/test/EXAM"
 
     pic_path = os.path.join(instance_path, "static/temp", pic_fn)
 

@@ -5,7 +5,7 @@ from flask_login import current_user, logout_user, login_required, login_user
 
 from EXAM import bcrypt
 from EXAM.configaration import User_type, user_obj
-from EXAM.model import enrol_students_model, temporary_model, user, user_student
+from EXAM.model import course_model, enrol_students_model, student_courses_model, temporary_model, user, user_student
 from EXAM.users.forms import (
     enrolForm,
     registration_form,
@@ -38,8 +38,7 @@ def register():
             print(str(e))
         if check == "done":
             return redirect(url_for("users.login"))
-    else:
-        return render_template("registration.html", title="Registration", form=form)
+    return render_template("registration.html", title="Registration", form=form)
 
 
 # klasd@gmail.com
@@ -183,15 +182,14 @@ def student_list(course_code):
 #       return redirect(url_for('main.main_page'))'''
 
 
-@users.route("/enrol", methods=["GET", "POST"])
+"""@users.route("/enrol", methods=["GET", "POST"])
 # @login_required
 def enrol():
-    form = enrolForm()
-    usered = user_obj.e
-    if request.method == "POST":
-        if enrol_students_model.objects(enrolled_students_id=usered).first():
-            flash(f"Enrol successful !!!", "success")
+   eroll_key=request.form['enroll_key']
+   enroll_students(eroll_key,User_type.user_type)
+   return redirect(url_for("main.main_page"))
+   
+   #render_template("student/enrol.html", title=" Students", user_type=User_type.user_type)
+"""
 
-    return render_template(
-        "student/enrol.html", form=form, title="Students", user_type=User_type.user_type
-    )
+

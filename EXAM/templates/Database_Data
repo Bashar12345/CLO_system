@@ -263,7 +263,6 @@
     "student_registered_id" : "ayshakhatun@example.com"
 }
 
-
 {
    
     "course_title" : "intro",
@@ -287,7 +286,60 @@
     "user_type" : "student",
     "student_registered_id" : "ayshakhatun@example.com"
 }
+#enrolled students
 
+
+{ 
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
+
+
+{   
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
+
+{ 
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
+
+
+{   
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
+
+{ 
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
+
+
+{   
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
+
+{ 
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
+
+
+{   
+    "course_code" : "swe342",
+    "enrol_key" : "21354eww",
+    "enrolled_students_id" : "ayshakhatun@example.com"
+}
 
 #machine learning model
 

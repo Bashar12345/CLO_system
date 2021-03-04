@@ -8,12 +8,12 @@ from werkzeug.utils import secure_filename
 
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
-from EXAM.main.function import created_course_form_db_insertion, student_view_courses, teacher_view_courses
+from EXAM.main.function import created_course_form_db_insertion, enroll_students, student_view_courses, teacher_view_courses
 from EXAM.model import Machine_learning_mcq_model, course_model, enrol_students_model, set_exam_question_slot, student_courses_model, temporary_model
 from EXAM.users.utils import remove_junk
 
 main = Blueprint('main', __name__)
-
+instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 
 @main.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -22,7 +22,7 @@ def upload():
         f = form.photo.data
         filename = secure_filename(f.filename)
         f.save(os.path.join(
-            app.instance_path, 'photos', filename
+            instance_path, 'photos', filename
         ))
         return redirect(url_for('index'))
 
@@ -36,6 +36,8 @@ def index():
 
 @main.route('/main_page')
 def main_page():
+    eroll_key=request.form.get('enroll_key')
+    enroll_students(eroll_key,User_type.user_type)
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
