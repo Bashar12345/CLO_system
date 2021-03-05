@@ -1,31 +1,42 @@
 {% extends "layout.html" %} {% block body %}
-    <div class="container">
-        <form class="form-horizontal" method="POST" action=" " enctype="multipart/form-data">
-            <div class="form-container">
-                <fieldset>
-                    <div class="form-group">
-                        <legend class="custom-control-label">Questions for Particular Course</legend>
-                        <select class="custom-select custom-select-md mb-3 btn-outline-info"
-                                aria-label=".custom-select-lg example" name="course" required>
-                            <option selected disabled="disabled">Select Course</option>
-                            <option value="Data_Algorithom">Data Algorithm</option>
-                            <option value="Data_communication">Data communication</option>
-                            <option value="Database_Management_System">Database Management</option>
-                        </select>
+<div class="container">
+    <form class="form-horizontal container" method="POST" action="" enctype="multipart/form-data">
+        <fieldset>
+            <div class="d-flex flex-wrap ">
 
-                    </div>
-                    <div class="form-group">
-                        {{ form.lesson.label(class="custom-control-label") }}
-                        {{ form.lesson(class="form-radio") }}
-                    </div>
+                <legend class="custom-control-label">Questions for Particular Course</legend>
+                <input list="course_name" type="text" class="custom-select custom-select-md mb-3 btn-outline-info"
+                    aria-label=".custom-select-lg example" name="course" required>
+                <datalist id="course_name">
+                    <option selected disabled="disabled">Select Course</option>
+                    <option value="Data_Algorithom">Data Algorithm</option>
+                    <option value="Data_communication">Data communication</option>
+                    <option value="Database_Management_System">Database Management</option>
+                </datalist>
+            </div>
 
-                    <div class="form-group">
-                        {{ form.clo.label(class="custom-control-label") }}
-                        {{ form.clo(class="form-radio") }}
-                    </div>
+            {{ form.lesson.label(class="custom-control-label") }}
+            {{ form.lesson(class="form-radio") }}
 
+            <div class="d-flex flex-wrap ">
+                <legend class="custom-control-label">Question Complexity Level</legend>
 
-                    <!--<div class="form-group">
+                <select class="custom-select btn-outline-info" id="inputGroupSelect04" name="complex_level"
+                    aria-label="Example select with button addon" required>
+                    <option selected disabled="disabled">Select Complex level...</option>
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                    <option value="5">Very High</option>
+                    <option value="10">Insane</option>
+                </select>
+            </div>
+            <br />
+            {{ form.clo.label(class="custom-control-label") }}
+            {{ form.clo(class="form-radio") }}
+            <br />
+
+            <!--<div class="form-group">
                       <legend class="custom-control-label">For CLO</legend>
                       <select class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="CO" required>
                         <option selected disabled="disabled">Define Lesson Outcome(Evaluate)</option>
@@ -36,53 +47,35 @@
                         <option value="Synthesis">Synthesis level ( creative level)</option>
                         <option value="Evaluation">Evaluation level ( Judgement level)</option>
                       </select>
-                    </div>-->
-                    <legend class="custom-control-label">Question Complexity Level</legend>
-                    <div class="form-group">
+                   
+                    -->
 
-                        <div class="input-group">
-                            <select
-                                    class="custom-select btn-outline-info"
-                                    id="inputGroupSelect04"
-                                    name="complex_level"
-                                    aria-label="Example select with button addon" required
-                            >
-                                <option selected disabled="disabled">Select Complex level...</option>
-                                <option value="1">Low</option>
-                                <option value="2">Medium</option>
-                                <option value="3">High</option>
-                                <option value="5">Very High</option>
-                                <option value="10">Insane</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="btn btn-block btn-outline-light">
-                        <div class="input-group">
-                            <legend>Total how many Questions</legend>
-                            <select
-                                    class="custom-select btn-outline-info"
-                                    id="inputGroupSelect04"
-                                    name="numbers_of_questioned"
-                                    aria-label="Example select with button addon"
-                                    required
-                            >
-                                <option selected disabled="disabled">Choose...</option>
-                                <option value="2">Test</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                                <option value="5">Five</option>
-                                <option value="10">Fifteen</option>
-                                <option value="15">Twenty</option>
-                                <option value="20">Twenty-Five</option>
-                            </select>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="form-group"><br/>
-                <button class="btn btn-block btn-outline-success" type="submit">Next</button>
-            </div>
-        </form>
-    </div>
+
+            <div class="d-flex flex-wrap ">
+
+                <legend class="custom-control-label">Total how many Questions</legend>
+                <input list="questions_total" type="text" class="custom-select custom-select-md mb-3 btn-outline-info"
+                    aria-label=".custom-select-lg example" name="course" required>
+                <datalist id="questions_total">
+                    <option selected disabled="disabled">Choose...</option>
+                    <option value="2">Test</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="5">Five</option>
+                    <option value="10">Fifteen</option>
+                    <option value="15">Twenty</option>
+                    <option value="20">Twenty-Five</option>
+                </datalist>
+
+
+
+        </fieldset>
+
+        <br />
+        <button class="btn btn-block btn-outline-success" type="submit">Next</button>
+
+
+    </form>
+</div>
 {% endblock body %}

@@ -10,7 +10,8 @@
 	},
 	"extensions": {
 		"recommendations": [
-			"johnstoncode.svn-scm"
+			"johnstoncode.svn-scm",
+			"aaron-bond.better-comments"
 		]
 	}
 }

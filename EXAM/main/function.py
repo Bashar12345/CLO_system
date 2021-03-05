@@ -30,8 +30,6 @@ def enroll_students(eroll_ki,user_type):
                 assigning_students.course_caption  = course_model_include.course_caption
                 assigning_students.save()
                 flash(f'A new course Enrolled ',"success")
-    else:
-        flash(f"Enrol successful !!!", "success")
 
 
 
