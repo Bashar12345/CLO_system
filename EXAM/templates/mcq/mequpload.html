@@ -14,8 +14,8 @@
                 <br/>
                 Total {{ op }} Questions Streaming
             </article>
-            {% set length = op | int %} {# string to integer convert #} {#% %#} {% set count = [1] %} {% for i in
-    range(length) %}
+            {% set length = op | int %} {# string to integer convert #} {#% %#} {% set count = [1] %}
+             {% for i in range(length) %}
                 <fieldset>
                     <div class="form-group">
                         <label for="question{{ i }}">MCQ Question {{ i + 1 }} :</label>

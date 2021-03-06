@@ -742,3 +742,51 @@ def mcq_question_Upload_part2(number_of_questions, code):
 
 
 
+
+                <fieldset>
+                    
+                    <label for="question">MCQ Question  :</label>
+                    <input
+                            class="col"
+                            type="text"
+                            id="question"
+                            name="question"
+                            placeholder="Enter Question-"
+                    />
+                    <br/>
+                </div>
+           
+                
+                    {# {{ form.option1(class="form-control-sm",placeholder="Enter Option-1") }} #}
+                    <label for="options">Option-</label>
+                    <input class="form-control-sm" id="options" name="op"
+                        placeholder="Enter Option-"/>
+                   
+                    <br/>
+                </div>
+            {% endfor %}
+                
+                    <label for="answer">MCQ Answer  :</label>
+                    <input
+                            class="col"
+                            type="text"
+                            id="answer"
+                            name="answer"
+                            placeholder="Enter Answer-"
+                    />
+                    <br/>
+                </div>
+            </fieldset>
+ 
+
+
+
+
+
+
+
+
+
+
+
+                </div>

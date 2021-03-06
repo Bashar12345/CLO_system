@@ -8,9 +8,13 @@
       <br />
       <h3> You can setup a written question or Mcq </h3>
       <br />
-      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.wrqu')}}">Written</a>
+      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.wrqu')}}">Written</a> 
+      <br/>
       <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.mcqqu_sub')}}">MCQ</a>
-      <br />
+      <br/>
+      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.mcq_upload')}}">MCQ Question Upload </a>
+      <br/>
+      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.generateMCQ')}}">MCQ (Machine Generate)</a>
     </article>
   </div>
 

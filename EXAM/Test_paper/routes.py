@@ -25,8 +25,7 @@ Test_paper = Blueprint('Test_paper', __name__)
 @Test_paper.route('/examiner')
 @login_required
 def examiner():
-    if current_user.is_authenticated:
-        return render_template('examiner.html', title='Examiner_Page', user_type=User_type.user_type)
+    return render_template('examiner.html', title='Examiner_Page', user_type=User_type.user_type)
 
 
 # paginate kora
@@ -86,10 +85,8 @@ def mcqqu_sub():
 
             # return redirect(url_for('Test_paper.examiner'))
             # return render_template('mcqqu.html', title='MCQ_question_Page', form=fom, op=op)
-    else:
         # print('database e jay niki')
-        return render_template('mcq/mcqqu_sub.html', title='MCQ_question_Page', form=form,
-                               user_type=User_type.user_type)
+    return render_template('mcq/mcqqu_sub.html', title='MCQ_question_Page', form=form,user_type=User_type.user_type)
 
 
 @Test_paper.route('/mcqqu', methods=['GET', 'POST'])
@@ -102,13 +99,29 @@ def mcqqu():
     if switch == "ok":
         return redirect(url_for('Test_paper.examiner'))
     else:
-        return render_template('mcq/mcqqu.html', title='MCQ_question_Page', form=form, op=sum_of_something,
-                               user_type=User_type.user_type)
+        return render_template('mcq/mcqqu.html', title='MCQ_question_Page', form=form, op=sum_of_something,user_type=User_type.user_type)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @Test_paper.route('/generateMCQ', methods=['GET', 'POST'])
 # @login_required
-def mcq_question_paper():
+def generateMCQ():
     form = Mcq_Question_generate_form()
     if request.method == 'POST':
         generate_question(form)
@@ -120,6 +133,10 @@ topic = ''
 Complexity_label = ''
 Course_outcome = ''
 number_of_question = ''
+
+
+
+
 
 
 @Test_paper.route('/mcqUpload', methods=['GET', 'POST'])
@@ -228,8 +245,7 @@ def mcqan():
             check = mcq_question_answer_submit(form)
             if check == 'done':
                 return redirect(url_for('users.student'))
-        return render_template('mcq/mcqan.html', mcq_questions=mcq_questions, title='MCQ_answer_Page', form=form,
-                               user_type=User_type.user_type)
+        return render_template('mcq/mcqan.html', mcq_questions=mcq_questions, title='MCQ_answer_Page', form=form,user_type=User_type.user_type)
     return render_template('count_Down.html', starting_time_of_exam=starting_time_of_exam, title='countdown')
 
 
@@ -283,8 +299,7 @@ def secret_code():
 def file(filename):
     written = exam_written_question_paper.objects.filter(
         rename_file=filename).first()
-    return send_file(written.binary_file, as_attachment=True, mimetype="Test_paperlication/pdf",
-                     attachment_filename=filename)
+    return send_file(written.binary_file, as_attachment=True, mimetype="Test_paperlication/pdf",attachment_filename=filename)
 
 
 '''@Test_paper.route('/countdown', methods=['GET', 'POST'])

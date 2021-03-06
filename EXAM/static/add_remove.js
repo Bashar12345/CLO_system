@@ -15,7 +15,7 @@
         $(input_wrapper).on('click','.remove-input',function (e){
             e.preventDefault();
             $(this).parent('div').remove();
-             add_count--;
+            add_count--;
         });
     });
 
