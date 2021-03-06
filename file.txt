@@ -2,3 +2,4 @@ swert@example.com
 ertyft@example.com
 bravebashar9@gmail.com
 ayshakhatun@example.com
+pip install -r requirements.txt
