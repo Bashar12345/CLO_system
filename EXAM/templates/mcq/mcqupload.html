@@ -1,109 +1,108 @@
 {% extends "layout.html" %} {% block body %}
 
-<script type="text/javascript" src="{{ url_for('static',filename='mcq_upload.js') }}">
-</script>
+    <script type="text/javascript" src="{{ url_for('static',filename='mcq_upload.js') }}">
+    </script>
 
-<div class="container">
-    <form class="form-horizontal container" method="POST" action="" enctype="multipart/form-data">
-        {{ form.hidden_tag() }} 
-        <fieldset>
-            <div class="d-flex flex-wrap ">
+    <div class="container">
+        <form class="form-horizontal container" method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <!--     <legend class="custom-control-label">For CLO</legend>
+                          <select class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="CO" required>
+                            <option selected disabled="disabled">Define Lesson Outcome(Evaluate)</option>
+                            <option value="knowledge">knowledge level</option>
+                            <option value="Comprehension">Comprehension level ( Logical level)</option>
+                            <option value="Application">Application Level (Real-life situation level or practice level)</option>
+                            <option value="Analysis">Analysis level ( Inquiry level)</option>
+                            <option value="Synthesis">Synthesis level ( creative level)</option>
+                            <option value="Evaluation">Evaluation level ( Judgement level)</option>
+                          </select>
+                        -->
+                <div class="d-flex justify-content-start">
+                    <div class="d-flex flex-wrap ">
 
-                <legend class="custom-control-label">Questions for Particular Course</legend>
-                <input list="course_name" type="text" class="custom-select custom-select-md mb-3 btn-outline-info"
-                    aria-label=".custom-select-lg example" name="course" required>
-                <datalist id="course_name">
-                    <option selected disabled="disabled">Select Course</option>
-                    <option value="Data_Algorithom">Data Algorithm</option>
-                    <option value="Data_communication">Data communication</option>
-                    <option value="Database_Management_System">Database Management</option>
-                </datalist>
-            </div>
-
-            {{ form.lesson.label(class="custom-control-label") }}
-            {{ form.lesson(class="form-radio") }}
-
-            <div class="d-flex flex-wrap ">
-                <legend class="custom-control-label">Question Complexity Level</legend>
-
-                <select class="custom-select btn-outline-info" id="inputGroupSelect04" name="complex_level"
-                    aria-label="Example select with button addon" required>
-                    <option selected disabled="disabled">Select Complex level...</option>
-                    <option value="1">Low</option>
-                    <option value="2">Medium</option>
-                    <option value="3">High</option>
-                    <option value="5">Very High</option>
-                    <option value="10">Insane</option>
-                </select>
-            </div>
-            <br />
-            {{ form.clo.label(class="custom-control-label") }}
-            {{ form.clo(class="form-radio") }}
-            <br />
-
-            <!--
-                      <legend class="custom-control-label">For CLO</legend>
-                      <select class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="CO" required>
-                        <option selected disabled="disabled">Define Lesson Outcome(Evaluate)</option>
-                        <option value="knowledge">knowledge level</option>
-                        <option value="Comprehension">Comprehension level ( Logical level)</option>
-                        <option value="Application">Application Level (Real-life situation level or practice level)</option>
-                        <option value="Analysis">Analysis level ( Inquiry level)</option>
-                        <option value="Synthesis">Synthesis level ( creative level)</option>
-                        <option value="Evaluation">Evaluation level ( Judgement level)</option>
-                      </select>
-                    -->
+                        <legend class="custom-control-label">Questions for Particular Course</legend>
+                        <input list="course_name" type="text"
+                               class="custom-select custom-select-md mb-3 btn-outline-info"
+                               aria-label=".custom-select-lg example" name="course" required>
+                        <datalist id="course_name">
+                            <option selected disabled="disabled">Select Course</option>
+                            <option value="Data_Algorithom">Data Algorithm</option>
+                            <option value="Data_communication">Data communication</option>
+                            <option value="Database_Management_System">Database Management</option>
+                        </datalist>
+                    </div>
+                </div>
 
 
-        <div class="d-flex flex-wrap ">
+                <div class="d-flex justify-content-end">
+                    {{ form.lesson.label(class="custom-control-label") }}
+                    {{ form.lesson(class="form-radio") }}</div>
+                <div class="d-flex justify-content-start">
+                    <div class="d-flex flex-wrap ">
+                        <legend class="custom-control-label">Question Complexity Level</legend>
+                        <select class="custom-select btn-outline-info" id="inputGroupSelect04" name="complex_level"
+                                aria-label="Example select with button addon" required>
+                            <option selected disabled="disabled">Select Complex level...</option>
+                            <option value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+                            <option value="5">Very High</option>
+                            <option value="10">Insane</option>
+                        </select>
+                    </div>
+                </div>
 
-        <legend class="custom-control-label">Total how many Questions</legend>
-       <input id="total" type="number" min="0" class="custom-select" name="total" required>
-       <button id ="totalbtn" class="btn btn-block btn-outline-primary" type="button">Next</button>
-        
-    <select id="option_total"  class="custom-select btn-outline-info" name="options"
-    aria-label="Example select with button addon" required>
-        <option value="2">Two</option>
-        <option value="4">Three</option>
-        <option value="5">Five</option>
-        <option value="6">Fifteen</option>
-    </select>
-    
+                <div class="justify-content-lg-end">
+                    {{ form.clo.label(class="custom-control-label") }}
+                    {{ form.clo(class="custom-control") }}
+
+                </div>
+
+                <div class="d-flex justify-content-around">
+                    <div class="col-4">
+                        <legend class="custom-control-label">Total how many Questions</legend>
+                        <input id="total" type="number" min="0" class="custom-select" name="total" required>
+                    </div>
+                    <div class="col-4">
+                        <legend class="custom-control-label">And options per question</legend>
+                        <input id="options" list="option_total" class="custom-select-sm" required>
+                        <datalist id="option_total" required>
+                            <option value="2">Two</option>
+                            <option selected value="4">Four</option>
+                            <option value="5">Five</option>
+                            <option value="6">Six</option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button id="total_btn" class="btn btn-block btn-outline-primary" type="button">Next</button>
+                </div>
+
+                <div id="addQuestion" >
+                    ...
+                </div>
+
+            </fieldset>
+
+            <br/>
+
+
+        </form>
+
+
     </div>
-
-
-
-
-
-
-
-
-
-
-
-        </fieldset>
-
-        <br />
-       
-
-
-    </form>
-
-
-
-
-</div>
 {% endblock body %}
 
 
- <!--datalist id="questions_total"> list="questions_total"
-                    <option selected disabled="disabled">Choose...</option>
-                    <option value="2">Test</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="4">Three</option>
-                    <option value="5">Five</option>
-                    <option value="6">Fifteen</option>
-                    <!--option value="15">Twenty</option>
-                    <option value="20">Twenty-Five</option>
-                </datalist-->
+<!--datalist id="questions_total"> list="questions_total"
+                   <option selected disabled="disabled">Choose...</option>
+                   <option value="2">Test</option>
+                   <option value="1">One</option>
+                   <option value="2">Two</option>
+                   <option value="4">Three</option>
+                   <option value="5">Five</option>
+                   <option value="6">Fifteen</option>
+                   option value="15">Twenty</option>
+                   <option value="20">Twenty-Five</option>
+               </datalist-->

@@ -86,7 +86,7 @@ def mcqqu_sub():
             # return redirect(url_for('Test_paper.examiner'))
             # return render_template('mcqqu.html', title='MCQ_question_Page', form=fom, op=op)
         # print('database e jay niki')
-    return render_template('mcq/mcqqu_sub.html', title='MCQ_question_Page', form=form,user_type=User_type.user_type)
+    return render_template('mcq/mcqqu_sub.html', title='MCQ_question_Page', form=form, user_type=User_type.user_type)
 
 
 @Test_paper.route('/mcqqu', methods=['GET', 'POST'])
@@ -99,24 +99,8 @@ def mcqqu():
     if switch == "ok":
         return redirect(url_for('Test_paper.examiner'))
     else:
-        return render_template('mcq/mcqqu.html', title='MCQ_question_Page', form=form, op=sum_of_something,user_type=User_type.user_type)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return render_template('mcq/mcqqu.html', title='MCQ_question_Page', form=form, op=sum_of_something,
+                               user_type=User_type.user_type)
 
 
 @Test_paper.route('/generateMCQ', methods=['GET', 'POST'])
@@ -156,7 +140,7 @@ def mcq_upload():
         print(number_of_question)
         global Course_outcome
         Course_outcome = request.form.get("CO")
-        return redirect(url_for('Test_paper.meq_upload'))
+        # return redirect(url_for('Test_paper.meq_upload'))
     return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type)
 
 
@@ -245,7 +229,8 @@ def mcqan():
             check = mcq_question_answer_submit(form)
             if check == 'done':
                 return redirect(url_for('users.student'))
-        return render_template('mcq/mcqan.html', mcq_questions=mcq_questions, title='MCQ_answer_Page', form=form,user_type=User_type.user_type)
+        return render_template('mcq/mcqan.html', mcq_questions=mcq_questions, title='MCQ_answer_Page', form=form,
+                               user_type=User_type.user_type)
     return render_template('count_Down.html', starting_time_of_exam=starting_time_of_exam, title='countdown')
 
 
@@ -299,7 +284,8 @@ def secret_code():
 def file(filename):
     written = exam_written_question_paper.objects.filter(
         rename_file=filename).first()
-    return send_file(written.binary_file, as_attachment=True, mimetype="Test_paperlication/pdf",attachment_filename=filename)
+    return send_file(written.binary_file, as_attachment=True, mimetype="Test_paperlication/pdf",
+                     attachment_filename=filename)
 
 
 '''@Test_paper.route('/countdown', methods=['GET', 'POST'])
