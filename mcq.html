@@ -1,0 +1,14 @@
+       inputTable = '<div class="input-group">' ;
+
+            for (let i = 0; i < total_questions; i++) {
+ inputTable += ' <label class="form-group" for="question'+ i +'">MCQ Question ' + (i + 1) +':</label>'+
+ '<input class="custom-control-input-lg" type="text" id="question-'+ i +'"name="question'+ i +'" placeholder="Enter Question-'+(i+1)+'"/>  ';
+
+                for (let j = 0; j < options; j++) {
+      inputTable += ` <br/><label for="options">Option-${j+1}:</label><br/> <input id="options" name="op[${j+count}]" placeholder="Enter Option-${j+1}"/></br>  `;
+                }
+                count++;
+    inputTable += ` <label for="answer">MCQ Answer${i + 1}:</label><br/><input type="text" id="answer" name="answer${i}" placeholder="Enter Answer-${i + 1} "/> <br/> `;
+
+}
+           inputTable += '</div>';
