@@ -171,7 +171,7 @@ class enrol_students_model(nosql.Document):
 class Machine_learning_mcq_model(nosql.Document):
     course_title = course_model.course_title
     course_code = course_model.course_code
-    topic = nosql.StringField()
+    lesson = nosql.StringField()
     course_outcome = nosql.StringField()
     complexity_label = nosql.StringField()
     mcq = nosql.DictField(default=dict)

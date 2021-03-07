@@ -167,8 +167,8 @@ def mcq_uploading_processsing(get_form):
         else:
             print("checking mcqqu html Finished ")
             mcq_model = Machine_learning_mcq_model()   
-            mcq_model.course = course
-            mcq_model.topic = topic
+            mcq_model.course_title = course # because One course can be divided into different course code
+            mcq_model.lesson = topic
             mcq_model.course_outcome = Course_outcome
             mcq_model.complexity_label = Complexity_label
             mcq_model.mcq = mcq_question_dictionary
