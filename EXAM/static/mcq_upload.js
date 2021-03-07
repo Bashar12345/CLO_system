@@ -26,7 +26,7 @@ function load() {
             data=formData.getAll('question'); // Returns ["Chris", "Bob"]
             console.log(data);
         });
-*?
+*/
 
     });
 }
