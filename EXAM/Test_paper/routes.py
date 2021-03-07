@@ -119,10 +119,6 @@ Course_outcome = ''
 number_of_question = ''
 
 
-
-
-
-
 @Test_paper.route('/mcqUpload', methods=['GET', 'POST'])
 # @login_required
 def mcq_upload():
@@ -140,6 +136,10 @@ def mcq_upload():
         print(number_of_question)
         global Course_outcome
         Course_outcome = request.form.get("CO")
+        questions = request.form.getlist("addQuestion")
+        print(questions)
+        cookies = request.cookies
+        print(cookies)
         # return redirect(url_for('Test_paper.meq_upload'))
     return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type)
 
