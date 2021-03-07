@@ -16,7 +16,7 @@ function load() {
             createTable(total_questions,options);
         }
 
-    $('#add').click(function(){
+    /*$('#add').click(function(){
      var formData = new FormData();
            // for (let i = 0; i < total_questions; i++) {
             //    formData.append('question');
@@ -26,7 +26,7 @@ function load() {
             data=formData.getAll('question'); // Returns ["Chris", "Bob"]
             console.log(data);
         });
-
+*?
 
     });
 }
