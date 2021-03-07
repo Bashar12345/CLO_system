@@ -10,7 +10,7 @@ from EXAM.Test_paper.function import generate_question,mcq_question_Upload_part1
     mcq_question_answer_submit, mcq_uploading_processsing, written_question_Upload, \
     written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type
-from EXAM.model import exam_mcq_question_paper, \
+from EXAM.model import course_model, exam_mcq_question_paper, \
     exam_written_question_paper
 
 '''@Test_paper.route('/')
@@ -122,6 +122,9 @@ number_of_question = ''
 # @login_required
 def mcq_upload():
     form = mcq_upload_form_part_1()
+    # seach course code and fetch the lessons
+    # under construction
+    lesson = course_model.objects.only('lesson')
     if request.method == 'POST':
         mcq_uploading_processsing(form)
         """questions = request.form.getlist("question1")

@@ -16,7 +16,7 @@ function load() {
             createTable(total_questions,options);
         }
 
-    $('#add').click(function(){
+    /*$('#add').click(function(){
      var formData = new FormData();
            // for (let i = 0; i < total_questions; i++) {
             //    formData.append('question');
@@ -26,7 +26,7 @@ function load() {
             data=formData.getAll('question'); // Returns ["Chris", "Bob"]
             console.log(data);
         });
-
+*/
 
     });
 }
@@ -35,20 +35,38 @@ function load() {
             var inputTable="";
             var count =1;
 
-            inputTable = '<div class="input-group">' ;
+            inputTable =`<div class="container">`;
 
-            for (let i = 0; i < total_questions; i++) {
- inputTable += ' <label class="form-group" for="question'+ i +'">MCQ Question ' + (i + 1) +':</label>'+
- '<input class="custom-control-input-lg" type="text" id="question-'+ i +'"name="question'+ i +'" placeholder="Enter Question-'+(i+1)+'"/>  ';
 
-                for (let j = 0; j < options; j++) {
-      inputTable += ` <br/><label for="options">Option-${j+1}:</label><br/> <input id="options" name="op[${j+count}]" placeholder="Enter Option-${j+1}"/></br>  `;
-                }
-                count++;
-    inputTable += ` <label for="answer">MCQ Answer${i + 1}:</label><br/><input type="text" id="answer" name="answer${i}" placeholder="Enter Answer-${i + 1} "/> <br/> `;
+for (let i = 0; i < total_questions; i++) {
+    inputTable += `  <div>
+    <label class="form-control-label" for="question-${i + 1}">
+    <h4>Question ${i + 1}:</h4>
+    </label>
+</div>
+<div>
+ <input class="form-control" id="question-'+ i +'" name="question" type="text"
+     placeholder="EnterQuestion-${i + 1}" /><br/>
+</div>`;
+inputTable += `<label class="form-control-label" >MCQ-${i + 1} Answer:</label><br/>`;
+  
+    inputTable += `<input class="form-control-lg" type="text" id="answer" name="answer${i}" 
+        placeholder="Enter Answer-${i + 1}"><br/>`;
 
-}
-           inputTable += '</div>';
+        inputTable +=  `<div class="row">`;
+for (let j = 0; j < options; j++) {
+    
+    inputTable +=`<label>Option-${j+1}:</label><br>`;
+
+    inputTable +=`<input type="text" id="options" name="op[${j+count}]" placeholder="Enter Option-${j+1}"><br/>`;
+    if(j==1){
+        inputTable += `<div class="w-100"></div>`;
+    } 
+        count++;
+    
+} 
+        inputTable += `</div>`;
+
 $('#addQuestion').append(inputTable);
 
         }
