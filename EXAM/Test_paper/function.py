@@ -122,7 +122,7 @@ def mcq_question_Upload_part2(number_of_questions, code):
         return " "
 
 
-def mcq_uploading_database_model(course, topic, Course_outcome, Complexity_label, number_of_question):
+def mcq_uploading_processsing(course, topic, Course_outcome, Complexity_label, number_of_question):
     mcq_question_options_tuple = list()
     mcq_question_dictionary = dict()
     op = number_of_question  # question publishing
@@ -253,11 +253,7 @@ def written_question_Upload(get_form):
             # mongodb_data_class_ins.binary_file.put(binary_data, filename=doc_file_name,
             #    metadata={"a": "b"})  # new_name dewa jabee
             fd = open(file_path, "rb")
-            mongodb_data_class_ins.binary_file.put(
-                fd, filename=rename_file + f_ext, content_type='pdf')
-            mongodb_data_class_ins.save()
-            mongodb_data_class_slot_ins = set_exam_question_slot()
-            mongodb_data_class_slot_ins.exam_title = exam_title
+            mongodb_data_class_ins.binary_file.put(debug 
             mongodb_data_class_slot_ins.exam_topic = exam_topic
             mongodb_data_class_slot_ins.exam_course = exam_course
             mongodb_data_class_slot_ins.exam_start_time = exam_start_time

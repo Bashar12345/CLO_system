@@ -6,10 +6,9 @@ from flask_login import current_user, login_required
 from EXAM.Test_paper.forms import Mcq_Question_generate_form, mcq_upload_form_part_1, \
     writen_question_paper_Form, McqQuestion_Paper_Form_part1, McqQuestion_Paper_Form_part2, secret_Form, \
     Written_question_answer_Form, Mcq_answer_form
-from EXAM.Test_paper.function import generate_question, mcq_uploading_database_model, \
-    written_question_Upload, mcq_question_Upload_part1, \
-    mcq_question_Upload_part2, \
-    written_question_answer_submit, mcq_question_answer_submit
+from EXAM.Test_paper.function import generate_question, mcq_question_Upload_part1, mcq_question_Upload_part2, \
+    mcq_question_answer_submit, mcq_uploading_processsing, written_question_Upload, \
+    written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type
 from EXAM.model import exam_mcq_question_paper, \
     exam_written_question_paper
@@ -124,6 +123,7 @@ number_of_question = ''
 def mcq_upload():
     form = mcq_upload_form_part_1()
     if request.method == 'POST':
+        mcq_uploading_processsing(form)
         global course
         course = request.form.get("course")
         # Which is in under construction
@@ -136,7 +136,7 @@ def mcq_upload():
         print(number_of_question)
         global Course_outcome
         Course_outcome = request.form.get("CO")
-        questions = request.form.getlist("addQuestion")
+        questions = request.form.getlist("question1")
         print(questions)
         cookies = request.cookies
         print(cookies)
@@ -144,7 +144,7 @@ def mcq_upload():
     return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type)
 
 
-@Test_paper.route('/meqUpload', methods=['GET', 'POST'])
+"""@Test_paper.route('/meqUpload', methods=['GET', 'POST'])
 # @login_required
 def meq_upload():
     # print(Course_outcome, " ----", number_of_question, "---", topic, "---", Complexity_label)
@@ -155,7 +155,7 @@ def meq_upload():
         return redirect(url_for('Test_paper.mcq_upload'))
     return render_template('mcq/mequpload.html', title='mcqUpload', form=form, course=course,
                            Course_outcome=Course_outcome, topic=topic, Complexity_label=Complexity_label,
-                           op=number_of_question, user_type=User_type.user_type)
+                           op=number_of_question, user_type=User_type.user_type)"""
 
 
 @Test_paper.route('/mcqAnswerPaper', methods=['GET', 'POST'])
