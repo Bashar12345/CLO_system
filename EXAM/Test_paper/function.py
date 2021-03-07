@@ -4,15 +4,23 @@
 from EXAM.configaration import user_obj
 from flask import render_template, request, redirect, url_for, flash
 
-from EXAM.model import Machine_learning_mcq_model, course_model, exam_written_question_paper, exam_mcq_question_paper, \
-    set_exam_question_slot, McqQuestion, teacher_created_courses_model, user, \
-    mcq_answer_paper
+from EXAM.model import (
+    Machine_learning_mcq_model,
+    course_model,
+    exam_written_question_paper,
+    exam_mcq_question_paper,
+    set_exam_question_slot,
+    McqQuestion,
+    teacher_created_courses_model,
+    user,
+    mcq_answer_paper,
+)
 from EXAM.users.utils import saveFormFile_in_Filesystem
 
 # from mongoengine import *
 
 # test purpose
-exam_code = ''
+exam_code = ""
 
 
 # binary style e data database e dhukanor jonno If needed in some scenario
@@ -29,14 +37,14 @@ def mcq_question_Upload_part1(get_form, option):
         exam_title = form.exam_title.data
         exam_course = form.exam_course.data
         exam_topic = form.exam_topic.data
-        exam_start_time = request.form.get('start_time')
+        exam_start_time = request.form.get("start_time")
         # exam_start_time = form.exam_start_time.data
         # print(" form time ", exam_start_time)
         exam_end_time = request.form.get("end_time")
         t = form.exam_date.data
-        exam_date = t.strftime('%Y-%m-%d')
+        exam_date = t.strftime("%Y-%m-%d")
         # print(t," change kora time ",exam_date)
-        caption = request.form.get('Note:captions')
+        caption = request.form.get("Note:captions")
         # caption = form.caption.data
         try:
             if exam_code:
@@ -61,7 +69,7 @@ def mcq_question_Upload_part1(get_form, option):
                 mongodb_data_class_slot_ins.save()
                 print("question_info_Data_Entered in nosql successfully")
         except Exception as e:
-            print('Data dhuke  NAiiiiii')
+            print("Data dhuke  NAiiiiii")
             print(str(e))
     return exam_code
 
@@ -87,25 +95,25 @@ def mcq_question_Upload_part2(number_of_questions, code):
                 # print('j = ', j)
                 template_name_of_questions_options = "op" + str(count)
                 # print(option)
-                mcq_options = request.form.get(
-                    template_name_of_questions_options)
+                mcq_options = request.form.get(template_name_of_questions_options)
                 count.append(count.pop() + 1)
                 mcq_question_options_tuple.append(mcq_options)
             print(mcq_question_options_tuple)
-            mcq_question_dictionary.update(
-                {mcq_Question: mcq_question_options_tuple})
+            mcq_question_dictionary.update({mcq_Question: mcq_question_options_tuple})
             # print(mcq_question_dictionary)
             mcq_question_options_tuple = []
             # print(mcq_question_options_tuple)
         else:
-            print('checking mcqqu html Finished ')
-        print('eta function er exam code', code)
-        MCQ = McqQuestion(exam_code=code, question_dictionary=mcq_question_dictionary,
-                          list_of_mcq_option=mcq_question_options_tuple)
-        exam_mcq_question_paper.objects(
-            exam_code=code).update(mcq_question=MCQ)
+            print("checking mcqqu html Finished ")
+        print("eta function er exam code", code)
+        MCQ = McqQuestion(
+            exam_code=code,
+            question_dictionary=mcq_question_dictionary,
+            list_of_mcq_option=mcq_question_options_tuple,
+        )
+        exam_mcq_question_paper.objects(exam_code=code).update(mcq_question=MCQ)
 
-        '''q = McqQuestion.objects(exam_code='swe421')
+        """q = McqQuestion.objects(exam_code='swe421')
         for i in q:
             c = i["exam_code"]
             d = i['dic_ques']
@@ -113,57 +121,69 @@ def mcq_question_Upload_part2(number_of_questions, code):
         print(c, d, l)
         lis = d['question']
         op = d['question'].strip("][").split(",")  # covert str to list
-        print(op, type(op))'''
+        print(op, type(op))"""
         # print(question_dictionary)
-        flash(f'Question Uploaded Successfully.', 'success')
+        flash(f"Question Uploaded Successfully.", "success")
         return "ok"
     else:
-        flash(f'Set up a Question please!', 'danger')
+        flash(f"Set up a Question please!", "danger")
         return " "
 
 
-def mcq_uploading_processsing(course, topic, Course_outcome, Complexity_label, number_of_question):
+def mcq_uploading_processsing(get_form):
+    form = get_form
     mcq_question_options_tuple = list()
     mcq_question_dictionary = dict()
-    op = number_of_question  # question publishing
+    course = request.form.get("course")  # Which is in under construction
+    topic = form.lesson.data
+    Complexity_label = request.form.get("complex_level")
+    Course_outcome = request.form.get("CO")  # CLO
+    number_of_question = request.form.get("total_questions")
+    op = request.form.get("options")  # number of option
+    #print(type(op))  #options per question
     length = 0
-    if op:
-        for i in range(int(op)):
-            length = length + 1
-        # print(length)
-    count = [1]
-    for i in range(length):
-        # print(i)
-        template_name_of_question = "question" + str(i)
-        # print(question)
-        mcq_Question = request.form.get(template_name_of_question)
-        # mcq_Question = form.question.data
-        template_name_of_answer = "answer" + str(i)
-        mcq_answer = request.form.get(template_name_of_answer)
-        for j in range(4):
-            # print('j = ', j)
-            template_name_of_questions_options = "op" + str(count)
-            # print(option)
-            mcq_options = request.form.get(
-                template_name_of_questions_options)
-            count.append(count.pop() + 1)
-            mcq_question_options_tuple.append(mcq_options)
-        mcq_question_options_tuple.append(mcq_answer)
-        print(mcq_question_options_tuple)
-        mcq_question_dictionary.update(
-            {mcq_Question: mcq_question_options_tuple})
-        # print(mcq_question_dictionary)
-        mcq_question_options_tuple = []
-    else:
-        print('checking mcqqu html Finished ')
+    if number_of_question:
+        count = [1]
+        for i in range(int(number_of_question)):
+            # print(i)
+            template_name_of_question = "question"+str(i)
+            # print(question)
+            mcq_Question = request.form.get(template_name_of_question)
+            # mcq_Question = form.question.data
+            template_name_of_answer = "answer" + str(i)
+            mcq_answer = request.form.get(template_name_of_answer)
+            for j in range(int(op)):
+                # print('j = ', j)
+                template_name_of_questions_options = "op" + str(count)
+                # print(option)
+                mcq_options = request.form.get(template_name_of_questions_options)
+                count.append(count.pop() + 1)
+                mcq_question_options_tuple.append(mcq_options)
+            mcq_question_options_tuple.append(mcq_answer)
+            print(mcq_question_options_tuple)
+            mcq_question_dictionary.update({mcq_Question: mcq_question_options_tuple})
+            print(mcq_question_dictionary)
+            mcq_question_options_tuple = []
+        else:
+            print("checking mcqqu html Finished ")
+            mcq_model = Machine_learning_mcq_model()   
+            mcq_model.course = course
+            mcq_model.topic = topic
+            mcq_model.course_outcome = Course_outcome
+            mcq_model.complexity_label = Complexity_label
+            mcq_model.mcq = mcq_question_dictionary
+            mcq_model.save()
 
-    mcq_model = Machine_learning_mcq_model()
-    mcq_model.course = course
-    mcq_model.topic = topic
-    mcq_model.course_outcome = Course_outcome
-    mcq_model.complexity_label = Complexity_label
-    mcq_model.mcq = mcq_question_dictionary
-    mcq_model.save()
+
+
+
+
+
+
+
+
+
+
 
 
 # ekhane machine learnibg er kaz baki ase
@@ -181,14 +201,14 @@ def generate_question(get_form):
     Complexity_label = request.form.get("complex_level")
     exam_marks = form.exam_marks.data
     number_of_question = request.form.get("numbers_of_questioned")
-    exam_start_time = request.form.get('start_time')
+    exam_start_time = request.form.get("start_time")
     # exam_start_time = form.exam_start_time.data
     # print(" form time ", exam_start_time)
     exam_end_time = request.form.get("end_time")
     t = form.exam_date.data
-    exam_date = t.strftime('%Y-%m-%d')
+    exam_date = t.strftime("%Y-%m-%d")
     # print(t," change kora time ",exam_date)
-    caption = request.form.get('Note:captions')
+    caption = request.form.get("Note:captions")
     exam_code = form.exam_code.data
 
 
@@ -198,17 +218,20 @@ def confirmation_of_question(get_form):
     print(exam_code)
     # mongodb_written_question = exam_written_question_paper()
     # mongodb_mcq_question = exam_MCQ_question_paper()
-    written_question = exam_written_question_paper.objects(
-        exam_code=exam_code).first()
+    written_question = exam_written_question_paper.objects(exam_code=exam_code).first()
     mcq_question = exam_mcq_question_paper.objects(exam_code=exam_code).first()
     if written_question:
         print(written_question)
-        return render_template('wran.html', written_question=written_question, title='Writen_answer_Page')
+        return render_template(
+            "wran.html", written_question=written_question, title="Writen_answer_Page"
+        )
     elif mcq_question:
         print(mcq_question)
-        return render_template('mcqan.html', mcq_question=mcq_question, title='MCQ_answer_Page')
+        return render_template(
+            "mcqan.html", mcq_question=mcq_question, title="MCQ_answer_Page"
+        )
     else:
-        flash(f'Wrong code!!', 'danger')
+        flash(f"Wrong code!!", "danger")
         # return redirect(url_for('Test_paper.secret_code'))
 
 
@@ -221,18 +244,19 @@ def written_question_Upload(get_form):
         exam_title = form.exam_title.data
         exam_course = form.exam_course.data
         exam_topic = form.exam_topic.data
-        exam_start_time = request.form.get('start_time')
+        exam_start_time = request.form.get("start_time")
         # exam_start_time = form.exam_start_time.data
         # print(" time", exam_start_time)
         exam_end_time = request.form.get("end_time")
         t = form.exam_date.data
-        exam_date = t.strftime('%Y-%m-%d')
+        exam_date = t.strftime("%Y-%m-%d")
         rename_file = form.rename_file.data
         # print(rename)
         uploadFile = form.file.data
         print(uploadFile)
         doc_file_name, file_path, f_ext, random_name_file = saveFormFile_in_Filesystem(
-            uploadFile)  # Akane filer name ase ar location
+            uploadFile
+        )  # Akane filer name ase ar location
         print(f_ext)
         # print(doc_fileSystem)
         # binary_data, f_ext = binary_read(uploadFile)
@@ -253,7 +277,7 @@ def written_question_Upload(get_form):
             # mongodb_data_class_ins.binary_file.put(binary_data, filename=doc_file_name,
             #    metadata={"a": "b"})  # new_name dewa jabee
             fd = open(file_path, "rb")
-            mongodb_data_class_ins.binary_file.put(debug 
+            mongodb_data_class_ins.binary_file.put(debug)
             mongodb_data_class_slot_ins.exam_topic = exam_topic
             mongodb_data_class_slot_ins.exam_course = exam_course
             mongodb_data_class_slot_ins.exam_start_time = exam_start_time
@@ -261,11 +285,11 @@ def written_question_Upload(get_form):
             mongodb_data_class_slot_ins.exam_date = exam_date
             mongodb_data_class_slot_ins.save()
             print("Data_Entered in nosql successfully")
-            flash(f'Question Uploaded Successfully.', 'success')
-            return redirect(url_for('Test_paper.examiner'))
+            flash(f"Question Uploaded Successfully.", "success")
+            return redirect(url_for("Test_paper.examiner"))
             # return redirect(url_for('main.main_page'))
         except Exception as e:
-            flash(f'Try again!', 'danger')
+            flash(f"Try again!", "danger")
             print(str(e))
 
 
@@ -286,7 +310,7 @@ def mcq_question_answer_submit(get_form):
     count = [1]
     fullname = form.fullname.data
     exam_organization_id = form.organization_id.data
-    get_answer = 'answer' + str(count)
+    get_answer = "answer" + str(count)
     while request.form.get(get_answer):
         answer = request.form.get(get_answer)
         if answer is not None:
@@ -295,22 +319,21 @@ def mcq_question_answer_submit(get_form):
             answer_dictionary.update(dictionary)
             ques_counter = ques_counter + 1
             count.append(count.pop() + 1)
-            get_answer = 'answer' + str(count)
+            get_answer = "answer" + str(count)
         else:
             break
     print(answer_dictionary)
-    Exam_attender = user.objects.filter(
-        organization_id=exam_organization_id).first()
+    Exam_attender = user.objects.filter(organization_id=exam_organization_id).first()
     if Exam_attender:
         mcq_answer_paper_ins = mcq_answer_paper()
         mcq_answer_paper_ins.name = fullname
-        mcq_answer_paper_ins.organization_id = Exam_attender['organization_id']
-        mcq_answer_paper_ins.user_name = Exam_attender['user_name']
-        mcq_answer_paper_ins.email = Exam_attender['email']
+        mcq_answer_paper_ins.organization_id = Exam_attender["organization_id"]
+        mcq_answer_paper_ins.user_name = Exam_attender["user_name"]
+        mcq_answer_paper_ins.email = Exam_attender["email"]
         # mcq_answer_paper_ins.photo = Exam_attender['profile_pic']
         mcq_answer_paper_ins.answer = answer_dictionary
         mcq_answer_paper_ins.save()
-    return 'done'
+    return "done"
 
 
 def paginate_page():

@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 from EXAM.Test_paper.forms import Mcq_Question_generate_form, mcq_upload_form_part_1, \
     writen_question_paper_Form, McqQuestion_Paper_Form_part1, McqQuestion_Paper_Form_part2, secret_Form, \
     Written_question_answer_Form, Mcq_answer_form
-from EXAM.Test_paper.function import generate_question, mcq_question_Upload_part1, mcq_question_Upload_part2, \
+from EXAM.Test_paper.function import generate_question,mcq_question_Upload_part1, mcq_question_Upload_part2, \
     mcq_question_answer_submit, mcq_uploading_processsing, written_question_Upload, \
     written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type
@@ -124,22 +124,10 @@ def mcq_upload():
     form = mcq_upload_form_part_1()
     if request.method == 'POST':
         mcq_uploading_processsing(form)
-        global course
-        course = request.form.get("course")
-        # Which is in under construction
-        global topic
-        topic = form.lesson.data
-        global Complexity_label
-        Complexity_label = request.form.get("complex_level")
-        global number_of_question
-        number_of_question = request.form.get("numbers_of_questioned")
-        print(number_of_question)
-        global Course_outcome
-        Course_outcome = request.form.get("CO")
-        questions = request.form.getlist("question1")
-        print(questions)
-        cookies = request.cookies
-        print(cookies)
+        """questions = request.form.getlist("question1")
+        print(questions)"""
+        """cookies = request.cookies
+        print(cookies)"""
         # return redirect(url_for('Test_paper.meq_upload'))
     return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type)
 
