@@ -1,14 +1,95 @@
-       inputTable = '<div class="input-group">' ;
+<!DOCTYPE html>
+<html lang="en">
 
-            for (let i = 0; i < total_questions; i++) {
- inputTable += ' <label class="form-group" for="question'+ i +'">MCQ Question ' + (i + 1) +':</label>'+
- '<input class="custom-control-input-lg" type="text" id="question-'+ i +'"name="question'+ i +'" placeholder="Enter Question-'+(i+1)+'"/>  ';
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
 
-                for (let j = 0; j < options; j++) {
-      inputTable += ` <br/><label for="options">Option-${j+1}:</label><br/> <input id="options" name="op[${j+count}]" placeholder="Enter Option-${j+1}"/></br>  `;
-                }
-                count++;
-    inputTable += ` <label for="answer">MCQ Answer${i + 1}:</label><br/><input type="text" id="answer" name="answer${i}" placeholder="Enter Answer-${i + 1} "/> <br/> `;
+        <!--Amar CSS-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='starterTemplate.css') }}">
+    </head>
 
-}
-           inputTable += '</div>';
+    <body>
+
+        <section class="container btn-block bg-info">
+            <h1>New Page</h1> <br />
+        </section>
+
+
+        <section class="container">
+            <form>
+                <fieldset class="btn block btn-outline-light">
+                    <div>
+                        <label class="form-control-label" for="question-'+ i +'">
+                            <h4>Question ' + (i + 1) +':</h4>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input class="form-control" id="question-'+ i +'" name="question" type="text"
+                            placeholder="EnterQuestion-'+(i+1)+'" /><br />
+                    </div>
+
+
+                    <div class="row">
+
+
+
+
+
+
+                        <div class="col"><label for="options">Option-${j+1}:</label><br />
+                            <input class="form-control" type="text" id="options" name="op[${j+count}]"
+                                placeholder="Enter Option-${j+1}" />
+                        </div>
+                        <div class="col"><label for="options">Option-${j+1}:</label><br />
+                            <input class="form-control" type="text" id="options" name="op[${j+count}]"
+                                placeholder="Enter Option-${j+1}" />
+                        </div>
+
+                        <div class="w-100"></div>
+
+                        
+
+                        <div class="col"><label for="options">Option-${j+1}:</label><br />
+                            <input class="form-control" type="text" id="options" name="op[${j+count}]"
+                                placeholder="Enter Option-${j+1}" />
+                        </div>
+                        <div class="col"><label for="options">Option-${j+1}:</label><br />
+                            <input class="form-control" type="text" id="options" name="op[${j+count}]"
+                                placeholder="Enter Option-${j+1}" />
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <label for="answer">MCQ-${i + 1} Answer:</label>
+                    </div>
+                    <div>
+                        <input class="form-control" type="text" id="answer" name="answer${i}"
+                            placeholder="Enter Answer-${i + 1}" />
+                    </div>
+
+
+                </fieldset>
+            </form>
+        </section>
+
+    </body>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"
+        defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"
+        defer></script>
+
+</html>

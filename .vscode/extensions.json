@@ -4,6 +4,8 @@
         "abusaidm.html-snippets",
         "ms-python.python",
         "visualstudioexptteam.vscodeintellicode",
-        "aaron-bond.better-comments"
+        "aaron-bond.better-comments",
+        "mohd-akram.vscode-html-format",
+        "ecmel.vscode-html-css"
     ]
 }
