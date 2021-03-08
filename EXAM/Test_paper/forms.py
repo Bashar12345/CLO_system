@@ -49,12 +49,10 @@ class Written_question_answer_Form(FlaskForm):
 
 
 class mcq_upload_form_part_1(FlaskForm):
-    couse_title =SelectField("Questions for Particular Course",coerce=str,validators=[DataRequired()])
+    lesson =SelectField("Pick a lesson",coerce=str,validate_choice=True)
     clo = StringField('CLO', validators=[
         Length(min=1, max=15), DataRequired()])
     # ekhane kaz korte hobe database theke lesson ante hobe
-    lesson = RadioField('Enter the lesson number of exam', choices=[(
-        'lesson-1', 'Lesson One'), ('lesson-2', 'Lesson Two'), ('lesson-3', 'Lesson Three')], validate_choice=True)
     submit = SubmitField('Next')
 
 

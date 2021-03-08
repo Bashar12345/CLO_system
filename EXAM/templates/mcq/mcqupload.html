@@ -20,7 +20,6 @@
                         -->
                 <div class="d-flex justify-content-start">
                     <div class="d-flex flex-wrap ">
-
                         <legend class="custom-control-label">Questions for Particular Course</legend>
                         <select id="course_name" type="text"
                                class="custom-select custom-select-md mb-3 btn-outline-info"
@@ -28,7 +27,7 @@
                             <option selected disabled="disabled">Select Course</option>
                             {%for course_name in course_title %}
                             <option value="{{course_name}}">{{course_name}}</option>
-                            {{%endfor%}}
+                            {% endfor %}
                         </select>
                     </div>
                 </div>

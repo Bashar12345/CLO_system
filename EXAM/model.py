@@ -133,7 +133,7 @@ class course_model(nosql.Document):
 
 class teacher_created_courses_model(nosql.Document):
     user_type = nosql.StringField()
-    teacher_registered_id =user.email
+    teacher_registered_id =nosql.StringField()
     course_title = course_model.course_title
     course_code = course_model.course_code
     course_co = course_model.course_co

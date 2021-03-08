@@ -56,8 +56,7 @@ def wran():
         time = datetime.datetime.now()
         print(time)
 
-    return render_template('wran.html', written_question=written_question, title='Writen_answer_Page', form=form,
-                           user_type=User_type.user_type)
+    return render_template('wran.html', written_question=written_question, title='Writen_answer_Page', form=form, user_type=User_type.user_type)
 
 
 @Test_paper.route('/mcqqu_sub', methods=['GET', 'POST'])
@@ -124,7 +123,14 @@ def mcq_upload():
     form = mcq_upload_form_part_1()
     # seach course code and fetch the lessons
     # under construction
-    course_title=course_model.objects.only('course_title')
+    course_title_list=course_model.objects.only('course_title')
+    course_title=[]
+    for title in course_title_list:
+        print(title.course_title)
+        if title.course_title not in course_title:
+            course_title.append(title.course_title)
+
+    form.lesson.choices=[(lesson.id,lesson.name) for lesson in course_model.objects()]
     if request.method == 'POST':
         mcq_uploading_processsing(form)
         """questions = request.form.getlist("question1")
