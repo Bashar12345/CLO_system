@@ -124,7 +124,7 @@ def mcq_upload():
     form = mcq_upload_form_part_1()
     # seach course code and fetch the lessons
     # under construction
-    lesson = course_model.objects.only('lesson')
+    course_title=course_model.objects.only('course_title')
     if request.method == 'POST':
         mcq_uploading_processsing(form)
         """questions = request.form.getlist("question1")
@@ -132,21 +132,28 @@ def mcq_upload():
         """cookies = request.cookies
         print(cookies)"""
         # return redirect(url_for('Test_paper.meq_upload'))
-    return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type)
+    return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type,course_title=course_title)
 
 
-"""@Test_paper.route('/meqUpload', methods=['GET', 'POST'])
+"""@Test_paper.route('/mcqUpload_lesson_load)
 # @login_required
 def meq_upload():
-    # print(Course_outcome, " ----", number_of_question, "---", topic, "---", Complexity_label)
-    form = McqQuestion_Paper_Form_part2()
-    if request.method == 'POST':
-        mcq_uploading_database_model(
-            course, topic, Course_outcome, Complexity_label, number_of_question)
-        return redirect(url_for('Test_paper.mcq_upload'))
-    return render_template('mcq/mequpload.html', title='mcqUpload', form=form, course=course,
-                           Course_outcome=Course_outcome, topic=topic, Complexity_label=Complexity_label,
-                           op=number_of_question, user_type=User_type.user_type)"""
+    response_to_browser = ""
+    per_scrolling = int(5)
+    counter = 0
+    datalist = []
+    print("Total :", len(course_model.objects()), " Courses registered")
+    lesson = course_model.objects.only('lesson')
+    if request.args:
+        c = request.args.get('c')
+        
+
+        response_to_browser = make_response(
+                    jsonify(temporary_model.objects[:per_scrolling].order_by('course_title')))
+                print(response_to_browser)
+
+
+    return response_to_browser"""
 
 
 @Test_paper.route('/mcqAnswerPaper', methods=['GET', 'POST'])

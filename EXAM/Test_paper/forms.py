@@ -46,7 +46,10 @@ class Written_question_answer_Form(FlaskForm):
     submit = SubmitField("Confirm Answer")  # , validators=[DataRequired()])
 
 
+
+
 class mcq_upload_form_part_1(FlaskForm):
+    couse_title =SelectField("Questions for Particular Course",coerce=str,validators=[DataRequired()])
     clo = StringField('CLO', validators=[
         Length(min=1, max=15), DataRequired()])
     # ekhane kaz korte hobe database theke lesson ante hobe

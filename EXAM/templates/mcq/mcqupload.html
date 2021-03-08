@@ -22,15 +22,14 @@
                     <div class="d-flex flex-wrap ">
 
                         <legend class="custom-control-label">Questions for Particular Course</legend>
-                        <input list="course_name" type="text"
+                        <select id="course_name" type="text"
                                class="custom-select custom-select-md mb-3 btn-outline-info"
-                               aria-label=".custom-select-lg example" name="course" required>
-                        <datalist id="course_name">
+                               aria-label=".custom-select-lg example" name="course" required>         
                             <option selected disabled="disabled">Select Course</option>
-                            <option value="Data_Algorithom">Data Algorithm</option>
-                            <option value="Data_communication">Data communication</option>
-                            <option value="Database_Management_System">Database Management</option>
-                        </datalist>
+                            {%for course_name in course_title %}
+                            <option value="{{course_name}}">{{course_name}}</option>
+                            {{%endfor%}}
+                        </select>
                     </div>
                 </div>
 
