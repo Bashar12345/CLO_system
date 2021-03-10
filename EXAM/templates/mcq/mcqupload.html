@@ -1,14 +1,15 @@
 {% extends "layout.html" %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    <script type="text/javascript" src="{{ url_for('static',filename='mcq_upload.js') }}">
-    </script>
+<script type="text/javascript" src="{{ url_for('static',filename='mcq_upload.js') }}">
+</script>
 
     <div class="container">
-        <form class="form-horizontal container" method="POST" action="" enctype="multipart/form-data">
+        <form class="form-horizontal form-group" method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <div>
-                <!--     <legend class="custom-control-label">For CLO</legend>
-                          <select class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="CO" required>
+                <!--legend class="custom-control-label">For CLO</legend>
+                        <select class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="CO" required>
                             <option selected disabled="disabled">Define Lesson Outcome(Evaluate)</option>
                             <option value="knowledge">knowledge level</option>
                             <option value="Comprehension">Comprehension level ( Logical level)</option>
@@ -16,28 +17,38 @@
                             <option value="Analysis">Analysis level ( Inquiry level)</option>
                             <option value="Synthesis">Synthesis level ( creative level)</option>
                             <option value="Evaluation">Evaluation level ( Judgement level)</option>
-                          </select>
-                        -->
+                </select -->
                 <div class="d-flex justify-content-start">
                     <div class="d-flex flex-wrap ">
-
                         <legend class="custom-control-label">Questions for Particular Course</legend>
-                        <input list="course_name" type="text"
-                               class="custom-select custom-select-md mb-3 btn-outline-info"
-                               aria-label=".custom-select-lg example" name="course" required>
-                        <datalist id="course_name">
-                            <option selected disabled="disabled">Select Course</option>
-                            <option value="Data_Algorithom">Data Algorithm</option>
-                            <option value="Data_communication">Data communication</option>
-                            <option value="Database_Management_System">Database Management</option>
+                        <input id="course_title" list="course_name" class="custom-select custom-select-md mb-3 btn-outline-info" aria-label=".custom-select-lg example" name="course" required>
+                        <datalist id="course_name" >         
+                            {%for course_titles in course_title %}
+                            <option value="{{course_titles}}">{{course_titles}}</option>
+                            {% endfor %}
                         </datalist>
                     </div>
                 </div>
 
+                <div class="d-flex justify-content-start">
+                    <div class="d-flex flex-wrap ">
+                    {{ form.course_title.label(class="custom-control-label") }}
+                    <br/>
+                    {{ form.course_title(class="custom-select custom-select-md mb-3 btn-outline-info",id="course_title") }}
+                    </div>
+                </div>
 
                 <div class="d-flex justify-content-end">
+                    {{ form.course_code.label(class="custom-control-label") }}
+                    <br/>
+                    {{ form.course_code(class="form-radio",id="course_code") }}</div>
+                </div>
+                <div class="d-flex justify-content-end">
                     {{ form.lesson.label(class="custom-control-label") }}
-                    {{ form.lesson(class="form-radio") }}</div>
+                    <br/>
+                    {{ form.lesson(class="form-radio",id="lesson") }}</div>
+
+                    
                 <div class="d-flex justify-content-start">
                     <div class="d-flex flex-wrap ">
                         <legend class="custom-control-label">Question Complexity Level</legend>
@@ -60,11 +71,11 @@
                 </div>
 
                 <div class="d-flex justify-content-around">
-                    <div class="col-4">
+                    <div class="col-4-sm">
                         <legend class="custom-control-label">Total how many Questions</legend>
                         <input id="total" type="number" min="0" class="custom-select-sm" name="total_questions" required>
                     </div>
-                    <div class="col-4">
+                    <div class="col-4-sm">
                         <legend class="custom-control-label">Options for each question</legend>
                         <input id="options" list="option_total" name="options" class="custom-select-sm" required>
                         <datalist id="option_total" required>
@@ -92,6 +103,10 @@
 
 
     </div>
+    
+    <!--script type="text/javascript" src="{{ url_for('static',filename='mcq_upload_part2.js') }}">
+    </script-->
+
 {% endblock body %}
 
 

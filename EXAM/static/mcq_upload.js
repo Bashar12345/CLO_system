@@ -6,7 +6,13 @@ function load() {
     //alert("Is it working");
     $("#total").focus();
     $("#options").focus();
+    $("#course_title").focus();
 
+
+    $("#course_title").change(function () {
+        var course = $("#course_title").val();
+        alert("" + course);
+    });
     $("#total_btn").click(function () {
         var total_questions = $("#total").val();
         var options = $("#options").val();

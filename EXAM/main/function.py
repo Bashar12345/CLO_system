@@ -1,6 +1,6 @@
-from EXAM.configaration import user_obj
 from flask import request,flash
 from EXAM.model import course_model, enrol_students_model, student_courses_model, teacher_created_courses_model, temporary_model, user_student, user_teacher
+from EXAM.configaration import user_obj
 
 
 def delete_temporary_model():

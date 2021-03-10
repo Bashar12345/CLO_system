@@ -1,6 +1,6 @@
 import datetime
 
-from flask import render_template, request, redirect, url_for, flash, send_file, Blueprint
+from flask import render_template, request, redirect, url_for, flash, send_file, Blueprint,jsonify,make_response
 from flask_login import current_user, login_required
 
 from EXAM.Test_paper.forms import Mcq_Question_generate_form, mcq_upload_form_part_1, \
@@ -56,8 +56,7 @@ def wran():
         time = datetime.datetime.now()
         print(time)
 
-    return render_template('wran.html', written_question=written_question, title='Writen_answer_Page', form=form,
-                           user_type=User_type.user_type)
+    return render_template('wran.html', written_question=written_question, title='Writen_answer_Page', form=form, user_type=User_type.user_type)
 
 
 @Test_paper.route('/mcqqu_sub', methods=['GET', 'POST'])
@@ -124,30 +123,47 @@ def mcq_upload():
     form = mcq_upload_form_part_1()
     # seach course code and fetch the lessons
     # under construction
-    lesson = course_model.objects.only('lesson')
+    course_title_list=course_model.objects.only('course_title')
+    course_title=[]
+    for title in course_title_list:
+        print(title.course_title)
+        if title.course_title not in course_title:
+            course_title.append(title.course_title)
+    #form.course_title.choices=[(course_name,course_name)for course_name in course_title]
+    #form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
+    #form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
     if request.method == 'POST':
-        mcq_uploading_processsing(form)
+        # mcq_uploading_processsing(form)
         """questions = request.form.getlist("question1")
         print(questions)"""
         """cookies = request.cookies
         print(cookies)"""
-        # return redirect(url_for('Test_paper.meq_upload'))
-    return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type)
+        #return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data) 
+        #return redirect(url_for('Test_paper.meq_upload'))
+    return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type,course_title=course_title)
 
 
-"""@Test_paper.route('/meqUpload', methods=['GET', 'POST'])
+@Test_paper.route('/mcqUpload/<fetched>')
 # @login_required
-def meq_upload():
-    # print(Course_outcome, " ----", number_of_question, "---", topic, "---", Complexity_label)
-    form = McqQuestion_Paper_Form_part2()
-    if request.method == 'POST':
-        mcq_uploading_database_model(
-            course, topic, Course_outcome, Complexity_label, number_of_question)
-        return redirect(url_for('Test_paper.mcq_upload'))
-    return render_template('mcq/mequpload.html', title='mcqUpload', form=form, course=course,
-                           Course_outcome=Course_outcome, topic=topic, Complexity_label=Complexity_label,
-                           op=number_of_question, user_type=User_type.user_type)"""
+def meq_upload(fetched):
+    response_to_browser = ""
+    counter = 0
+    datalist = []
+    #print("Total :", len(course_model.objects()), " Courses registered")
+    course = course_model.objects(course_title=fetched).all()
+    response_to_browser = make_response(jsonify(course))
+    return response_to_browser
+    """if request.args:
+        c = request.args.get('c')
+        
 
+        response_to_browser = make_response(
+                    jsonify(temporary_model.objects[:per_scrolling].order_by('course_title')))
+                print(response_to_browser)
+
+
+    return response_to_browser
+"""
 
 @Test_paper.route('/mcqAnswerPaper', methods=['GET', 'POST'])
 # @login_required

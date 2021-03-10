@@ -99,111 +99,150 @@
 
 
 #couse_model
+/* 1 */
 {
-   
-    "course_title" : "intro",
-    "course_code" : "SWE431",
-    "course_co" : "10",
-    "course_lessons" : "lesson-5",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "testing the form"
+    "_id" : ObjectId("603e92717b95c85b5695eb9c"),
+    "course_title" : "Data Algorithm",
+    "course_code" : "swe342",
+    "course_co" : "56",
+    "course_lessons" : [ 
+        "Lesson-1 intro", 
+        "lesson-2 Requirement", 
+        "lesson-3 distribution"
+    ],
+    "course_duration" : "2021-03-16",
+    "course_caption" : "ukjygfvhgcfcgjknmb ",
+    "user_type" : "teacher",
+    "teacher_registered_id" : "bashar@example.com"
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("60462877fe52f5ba3e583380"),
+    "course_title" : "Thesis & project",
+    "course_code" : "swe451",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-2 requirement", 
+        "l-3 application", 
+        "l-4 capture", 
+        "l-5 store"
+    ],
+    "course_duration" : "2021-03-17",
+    "course_caption" : "testing",
+    "user_type" : "teacher"
+}
+{
+  
+    "course_title" : "Thesis & project",
+    "course_code" : "swe551",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-2 requirement", 
+        "l-3 application", 
+        "l-4 capture", 
+        "l-5 store"
+    ],
+    "course_duration" : "2021-03-17",
+    "course_caption" : "testing"
 }
 
 
 {
    
-    "course_title" : "intro to communication",
-    "course_code" : "SWE431",
-    "course_co" : "5",
-    "course_lessons" : "lesson-2",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "testing the form"
+    "course_title" : "Data Algorithm",
+    "course_code" : "swe251",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-2 requirement"
+    ],
+    "course_duration" : "2021-03-10",
+    "course_caption" : "testing"
 }
 
 
 {
    
-    "course_title" : "intro",
-    "course_code" : "SWE231",
-    "course_co" : "5",
-    "course_lessons" : "lesson-2",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "testing the form"
+    "course_title" : "Data Algorithm",
+    "course_code" : "swe151",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-2 requirement"
+    ],
+    "course_duration" : "2021-03-11",
+    "course_caption" : "testingh"
 }
 
 
 {
    
-    "course_title" : "intro to data",
-    "course_code" : "SWE331",
-    "course_co" : "3",
-    "course_lessons" : "lesson-6",
-    "course_duration" : "2021-06-23",
-    "course_caption" : ""
-}
-
-
-{
-    
-    "course_code" : "swe133",
-    "course_title" : "solution  of language ",
-    "course_co" : "21",
-    "course_lessons" : "2",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "yugtfrd etgjuhyg"
-}
-
-{
-    
-    "course_title" : "data",
-    "course_code" : "SWE231",
-    "course_co" : "6",
-    "course_lessons" : "lesson-6",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "testing "
-}
-
-{
-   
-    "course_title" : "something data",
-    "course_code" : "SWE431",
-    "course_co" : "3",
-    "course_lessons" : "lesson-6",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "omething data"
-}
-
-
-{
-    
-    "course_title" : "something aerdawdf data",
-    "course_code" : "SWE331",
-    "course_co" : "3",
-    "course_lessons" : "lesson-5",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "omething data dara sd"
-}
-
-
-{
-    
-    "course_title" : " rarfsfgsdf something data",
-    "course_code" : "SWE431",
-    "course_co" : "43",
-    "course_lessons" : "lesson-6",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "omething data edaewr ds"
+    "course_title" : "Thesis & project",
+    "course_code" : "swe951",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-2 requirement"
+    ],
+    "course_duration" : "2021-03-11",
+    "course_caption" : "testing"
 }
 
 
 {
    
-    "course_title" : "some a asdada a thing data",
-    "course_code" : "SWE131",
-    "course_co" : "63",
-    "course_lessons" : "lesson-6",
-    "course_duration" : "2021-06-23",
-    "course_caption" : "omething  adae aewrs data"
+    "course_title" : "Thesis & project",
+    "course_code" : "swe451",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        ""
+    ],
+    "course_duration" : "2021-03-10",
+    "course_caption" : "req w"
+}
+
+
+{
+   
+    "course_title" : "Data comunication",
+    "course_code" : "swe351",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro"
+    ],
+    "course_duration" : "2021-03-10",
+    "course_caption" : "req w"
+}
+
+
+{
+   
+    "course_title" : "Introduction to Software",
+    "course_code" : "swe231",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-1 intro"
+    ],
+    "course_duration" : "2021-03-05",
+    "course_caption" : "dsf"
+}
+
+
+{
+   
+    "course_title" : "Thesis & project",
+    "course_code" : "swe451",
+    "course_co" : "32",
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "er tezxf"
+    ],
+    "course_duration" : "2021-03-18",
+    "course_caption" : "sfssd "
 }
 
 
