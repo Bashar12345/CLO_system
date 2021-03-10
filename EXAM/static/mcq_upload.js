@@ -78,5 +78,5 @@ $('#addQuestion').append(inputTable);
         }
 
 
-        
+    }       
 
