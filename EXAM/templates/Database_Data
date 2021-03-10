@@ -136,7 +136,7 @@
 {
   
     "course_title" : "Thesis & project",
-    "course_code" : "swe451",
+    "course_code" : "swe551",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 
@@ -153,7 +153,7 @@
 {
    
     "course_title" : "Data Algorithm",
-    "course_code" : "swe451",
+    "course_code" : "swe251",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 
@@ -167,7 +167,7 @@
 {
    
     "course_title" : "Data Algorithm",
-    "course_code" : "swe451",
+    "course_code" : "swe151",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 
@@ -181,7 +181,7 @@
 {
    
     "course_title" : "Thesis & project",
-    "course_code" : "swe451",
+    "course_code" : "swe951",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 
@@ -208,7 +208,7 @@
 {
    
     "course_title" : "Data comunication",
-    "course_code" : "swe451",
+    "course_code" : "swe351",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro"
@@ -221,7 +221,7 @@
 {
    
     "course_title" : "Introduction to Software",
-    "course_code" : "swe451",
+    "course_code" : "swe231",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 

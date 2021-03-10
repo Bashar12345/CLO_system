@@ -129,27 +129,27 @@ def mcq_upload():
         print(title.course_title)
         if title.course_title not in course_title:
             course_title.append(title.course_title)
-
-    form.lesson.choices=[(lesson.id,lesson.name) for lesson in course_model.objects()]
+    form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
+    form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
     if request.method == 'POST':
-        mcq_uploading_processsing(form)
+        # mcq_uploading_processsing(form)
         """questions = request.form.getlist("question1")
         print(questions)"""
         """cookies = request.cookies
         print(cookies)"""
-        # return redirect(url_for('Test_paper.meq_upload'))
+        return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data) 
+        #return redirect(url_for('Test_paper.meq_upload'))
     return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type,course_title=course_title)
 
 
-"""@Test_paper.route('/mcqUpload_lesson_load)
+"""@Test_paper.route('/mcqUpload/<fetched>')
 # @login_required
-def meq_upload():
+def meq_upload(fetched):
     response_to_browser = ""
-    per_scrolling = int(5)
     counter = 0
     datalist = []
-    print("Total :", len(course_model.objects()), " Courses registered")
-    lesson = course_model.objects.only('lesson')
+    #print("Total :", len(course_model.objects()), " Courses registered")
+    lessons = course_model.objects.only('fetched')
     if request.args:
         c = request.args.get('c')
         

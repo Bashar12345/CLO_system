@@ -49,7 +49,8 @@ class Written_question_answer_Form(FlaskForm):
 
 
 class mcq_upload_form_part_1(FlaskForm):
-    lesson =SelectField("Pick a lesson",coerce=str,validate_choice=True)
+    lesson =SelectField("Pick a lesson",choices=[])#coerce=str,validate_choice=True)
+    course_code =SelectField("Pick a Course Code",choices=[])#coerce=str,validate_choice=True)
     clo = StringField('CLO', validators=[
         Length(min=1, max=15), DataRequired()])
     # ekhane kaz korte hobe database theke lesson ante hobe
@@ -60,7 +61,7 @@ class McqQuestion_Paper_Form_part1(FlaskForm):
     exam_code = StringField('Exam Secret Code')
     # ekhane email_code validation error er kazz korte baki ase
     exam_title = RadioField('Exam title', choices=[(
-        'mid-term', 'Mid-Term   '), ('final', 'Final  '), ('quiz', 'Quiz   ')])
+        'mid-term', 'Mid-Term'), ('final', 'Final'), ('quiz', 'Quiz   ')])
     exam_course = StringField('Course', validators=[DataRequired()])
     exam_topic = StringField('Syllabus/Topic', validators=[DataRequired()])
     exam_start_time = TimeField('Start At', validators=[DataRequired()])

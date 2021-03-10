@@ -6,7 +6,8 @@
 	],
 	"settings": {
 		"git.ignoreLimitWarning": true,
-		"python.pythonPath": "virtual_env_ClO/bin/python3"
+		"python.pythonPath": "virtual_env_ClO/bin/python3",
+		"explorer.sortOrder": "type"
 	},
 	"extensions": {
 		"recommendations": [
