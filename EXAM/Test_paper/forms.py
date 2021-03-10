@@ -49,6 +49,7 @@ class Written_question_answer_Form(FlaskForm):
 
 
 class mcq_upload_form_part_1(FlaskForm):
+    course_title= SelectField("Questions for particular Course",coerce=str)
     lesson =SelectField("Pick a lesson",choices=[])#coerce=str,validate_choice=True)
     course_code =SelectField("Pick a Course Code",choices=[])#coerce=str,validate_choice=True)
     clo = StringField('CLO', validators=[
