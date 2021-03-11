@@ -119,7 +119,7 @@
 /* 2 */
 {
     "_id" : ObjectId("60462877fe52f5ba3e583380"),
-    "course_title" : "Thesis & project",
+    "course_title" : "Thesis and project",
     "course_code" : "swe451",
     "course_co" : "32",
     "course_lessons" : [ 
@@ -135,7 +135,7 @@
 }
 {
   
-    "course_title" : "Thesis & project",
+    "course_title" : "Thesis and project",
     "course_code" : "swe551",
     "course_co" : "32",
     "course_lessons" : [ 
@@ -180,7 +180,7 @@
 
 {
    
-    "course_title" : "Thesis & project",
+    "course_title" : "Thesis and project",
     "course_code" : "swe951",
     "course_co" : "32",
     "course_lessons" : [ 
@@ -194,11 +194,15 @@
 
 {
    
-    "course_title" : "Thesis & project",
+    "course_title" : "Thesis and project",
     "course_code" : "swe451",
     "course_co" : "32",
     "course_lessons" : [ 
-        ""
+         "l-1 intro", 
+        "l-2 love", 
+        "l-3 emotion", 
+        "l-4 why", 
+        "l-5 future"
     ],
     "course_duration" : "2021-03-10",
     "course_caption" : "req w"
@@ -234,7 +238,7 @@
 
 {
    
-    "course_title" : "Thesis & project",
+    "course_title" : "Thesis and project",
     "course_code" : "swe451",
     "course_co" : "32",
     "course_lessons" : [ 

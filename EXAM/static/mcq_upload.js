@@ -7,13 +7,35 @@ function load() {
     $("#total").focus();
     $("#options").focus();
     $("#course_title").focus();
+    $("#course_code").focus();
 
 
-    $("#course_title").change(function () {
+    $("#course_title").change(function(){
         var course = $("#course_title").val();
-        alert("" + course);
+        var code =$("#course_code");
+        //alert("" + course);
+            fetch(`/mcqUpload_select_load?c=${course.replace(/\s+/g, ';')}`).then(function(response){
+                response.json().then(function(route_data){
+                    var optionHTML='';
+                    for (var i = 0; i < route_data.length; i++) {
+                        optionHTML+=`<option value="${route_data[i].course_code}">${route_data[i].course_code}</option>`;
+                        //console.log(optionHTML)
+        
+                    }
+                    code.append(optionHTML);
+                });
+
     });
-    $("#total_btn").click(function () {
+});
+
+$("#course_code").change(function(){
+    var code =$("#course_code");
+    var lessons =$('#lesson');
+    
+
+});
+
+    $("#total_btn").click(function(){
         var total_questions = $("#total").val();
         var options = $("#options").val();
         //alert("" + total_questions);
@@ -23,7 +45,7 @@ function load() {
         }
 
     /*$('#add').click(function(){
-     var formData = new FormData();
+    var formData = new FormData();
            // for (let i = 0; i < total_questions; i++) {
             //    formData.append('question');
             //}
@@ -37,12 +59,18 @@ function load() {
     });
 }
 
+
+
+
+
+
+
+
+
         function createTable(total_questions,options) {
             var inputTable="";
             var count =1;
-
             inputTable =`<div class="container">`;
-
 
 for (let i = 0; i < total_questions; i++) {
     inputTable += `  <div>
@@ -51,11 +79,10 @@ for (let i = 0; i < total_questions; i++) {
     </label>
 </div>
 <div>
- <input class="form-control" id="question-'+ i +'" name="question" type="text"
-     placeholder="EnterQuestion-${i + 1}" /><br/>
+<input class="form-control" id="question-'+ i +'" name="question" type="text"
+    placeholder="EnterQuestion-${i + 1}" /><br/>
 </div>`;
 inputTable += `<label class="form-control-label" >MCQ-${i + 1} Answer:</label><br/>`;
-  
     inputTable += `<input class="form-control-lg" type="text" id="answer" name="answer${i}" 
         placeholder="Enter Answer-${i + 1}"><br/>`;
 
@@ -76,7 +103,5 @@ for (let j = 0; j < options; j++) {
 $('#addQuestion').append(inputTable);
 
         }
-
-
-    }       
+    }  
 

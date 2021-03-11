@@ -126,7 +126,7 @@ def mcq_upload():
     course_title_list=course_model.objects.only('course_title')
     course_title=[]
     for title in course_title_list:
-        print(title.course_title)
+        #print(title.course_title)
         if title.course_title not in course_title:
             course_title.append(title.course_title)
     #form.course_title.choices=[(course_name,course_name)for course_name in course_title]
@@ -143,27 +143,26 @@ def mcq_upload():
     return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type,course_title=course_title)
 
 
-@Test_paper.route('/mcqUpload/<fetched>')
+@Test_paper.route('/mcqUpload_select_load')
 # @login_required
-def meq_upload(fetched):
+def mcqUpload_select_load():
     response_to_browser = ""
     counter = 0
     datalist = []
     #print("Total :", len(course_model.objects()), " Courses registered")
-    course = course_model.objects(course_title=fetched).all()
-    response_to_browser = make_response(jsonify(course))
-    return response_to_browser
-    """if request.args:
-        c = request.args.get('c')
-        
-
+    #course = course_model.objects(course_title=fetched).all()
+    if request.args:
+        #sentence = '  Thesis & project    '
+        #str1= sentence.replace(" ", "")
+        #print(str1)
+        crse = request.args.get('c')
+        corse=crse.replace(";", " ")
+        print(corse)
         response_to_browser = make_response(
-                    jsonify(temporary_model.objects[:per_scrolling].order_by('course_title')))
-                print(response_to_browser)
-
-
+                    jsonify(course_model.objects(course_title= corse).all()))
+        print(response_to_browser)
     return response_to_browser
-"""
+
 
 @Test_paper.route('/mcqAnswerPaper', methods=['GET', 'POST'])
 # @login_required
@@ -292,7 +291,7 @@ def file(filename):
     written = exam_written_question_paper.objects.filter(
         rename_file=filename).first()
     return send_file(written.binary_file, as_attachment=True, mimetype="Test_paperlication/pdf",
-                     attachment_filename=filename)
+                    attachment_filename=filename)
 
 
 '''@Test_paper.route('/countdown', methods=['GET', 'POST'])
