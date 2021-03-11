@@ -143,12 +143,10 @@ def mcq_upload():
     return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type,course_title=course_title)
 
 
-@Test_paper.route('/mcqUpload_select_load')
+@Test_paper.route('/mcqUpload_course_code_selection_load')
 # @login_required
-def mcqUpload_select_load():
+def mcqUpload_course_code_selection_load():
     response_to_browser = ""
-    counter = 0
-    datalist = []
     #print("Total :", len(course_model.objects()), " Courses registered")
     #course = course_model.objects(course_title=fetched).all()
     if request.args:
@@ -161,7 +159,30 @@ def mcqUpload_select_load():
         response_to_browser = make_response(
                     jsonify(course_model.objects(course_title= corse).all()))
         print(response_to_browser)
+        flash("Select a particular Course code ","success")
     return response_to_browser
+
+@Test_paper.route('/mcqUpload_lesson_selection_load')
+# @login_required
+def mcqUpload_lesson_selection_load():
+    response_to_browser = ""
+    if request.args:
+        code = request.args.get('c')
+        # print(code)
+        lesn= course_model.objects(course_code=code).first()
+        # print(type(lesn.course_lessons))
+        lessons_list=[]
+        for lesson in lesn.course_lessons:
+            # print(lesson)
+            lessons_list.append(lesson)
+        response_to_browser = make_response(jsonify(lessons_list))
+        print(response_to_browser)
+    return response_to_browser
+
+
+
+
+
 
 
 @Test_paper.route('/mcqAnswerPaper', methods=['GET', 'POST'])

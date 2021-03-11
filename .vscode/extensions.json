@@ -6,6 +6,8 @@
         "visualstudioexptteam.vscodeintellicode",
         "aaron-bond.better-comments",
         "mohd-akram.vscode-html-format",
-        "ecmel.vscode-html-css"
+        "ecmel.vscode-html-css",
+        "tyriar.sort-lines",
+        "necinc.elmmet"
     ]
 }

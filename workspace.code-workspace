@@ -12,7 +12,9 @@
 	"extensions": {
 		"recommendations": [
 			"johnstoncode.svn-scm",
-			"aaron-bond.better-comments"
+			"aaron-bond.better-comments",
+			"tyriar.sort-lines",
+			"necinc.elmmet"
 		]
 	}
 }
