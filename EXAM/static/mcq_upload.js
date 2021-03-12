@@ -71,10 +71,7 @@ for (var i = 0; i < len; i++) {
 
     });
 
-    
 }
-
-
 
         function createTable(total_questions,options) {
             var inputTable="";
