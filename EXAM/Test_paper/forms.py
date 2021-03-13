@@ -48,15 +48,6 @@ class Written_question_answer_Form(FlaskForm):
 
 
 
-class mcq_upload_form_part_1(FlaskForm):
-    course_title= SelectField("Questions for particular Course",coerce=str)
-    lesson =SelectField("Pick a lesson",coerce=str,validate_choice=True)
-    course_code =SelectField("Pick a Course Code",coerce=str,validate_choice=True)
-    clo = StringField('CLO', validators=[
-        Length(min=1, max=15), DataRequired()])
-    # ekhane kaz korte hobe database theke lesson ante hobe
-    submit = SubmitField('Next')
-
 
 class McqQuestion_Paper_Form_part1(FlaskForm):
     exam_code = StringField('Exam Secret Code')
@@ -72,6 +63,15 @@ class McqQuestion_Paper_Form_part1(FlaskForm):
 
 
 # under construction
+class mcq_upload_form_part_1(FlaskForm):
+    course_title= SelectField("Questions for particular Course",coerce=str)
+    lesson =SelectField("Pick a lesson",coerce=str,validate_choice=True)
+    course_code =SelectField("Pick a Course Code",coerce=str,validate_choice=True)
+    clo = StringField('CLO', validators=[
+        Length(min=1, max=15), DataRequired()])
+    # ekhane kaz korte hobe database theke lesson ante hobe
+    submit = SubmitField('Next')
+
 
 
 class Mcq_Question_generate_form(FlaskForm):
@@ -82,10 +82,9 @@ class Mcq_Question_generate_form(FlaskForm):
         ('quiz1', '  Quiz-1  '), ('quiz2', '  Qui-2  '),
         ('quiz3', '  Quiz-3 '), ('  quiz4  ', '  Quiz-4  '), ('quiz5', '  Quiz-5  ')])
     exam_course = StringField('Course', validators=[DataRequired()])
+    exam_course_code=StringField('Course_code',validators=[DataRequired()])
     # exam_topic = ('Syllabus/Topic/lesson', coerce=str, validate_choice=True)
-    exam_topic = RadioField('Syllabus/Topic/lesson', validate_choice=True, choices=[('lesson-1', 'Lesson One'), \
-                                                                                    ('lesson-2', 'Lesson Two'),
-                                                                                    ('lesson-3', 'Lesson Three')])
+    exam_topic = SelectField('Syllabus/Topic/lesson', coerce=str,validate_choice=True)
     exam_CLO = StringField('Course Outcome', validators=[
         DataRequired(), Length(min=1, max=10)])
     complex_level = StringField('Complex Level')

@@ -37,9 +37,7 @@ function load() {
     });
 });
 
-for (var i = 0; i < len; i++) {
 
-}
     $("#course_code").change(function(){
         $('#lesson').empty();
         var code =$("#course_code").val();

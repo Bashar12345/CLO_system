@@ -1,6 +1,7 @@
 import datetime
 
 from flask import render_template, request, redirect, url_for, flash, send_file, Blueprint,jsonify,make_response
+from flask.wrappers import Response
 from flask_login import current_user, login_required
 
 from EXAM.Test_paper.forms import Mcq_Question_generate_form, mcq_upload_form_part_1, \
@@ -97,93 +98,7 @@ def mcqqu():
     if switch == "ok":
         return redirect(url_for('Test_paper.examiner'))
     else:
-        return render_template('mcq/mcqqu.html', title='MCQ_question_Page', form=form, op=sum_of_something,
-                               user_type=User_type.user_type)
-
-
-@Test_paper.route('/generateMCQ', methods=['GET', 'POST'])
-# @login_required
-def generateMCQ():
-    form = Mcq_Question_generate_form()
-    if request.method == 'POST':
-        generate_question(form)
-    return render_template('mcq/generateMCQ.html', title="MCQgenerate", form=form, user_type=User_type.user_type)
-
-
-course = ''
-topic = ''
-Complexity_label = ''
-Course_outcome = ''
-number_of_question = ''
-
-
-@Test_paper.route('/mcqUpload', methods=['GET', 'POST'])
-# @login_required
-def mcq_upload():
-    form = mcq_upload_form_part_1()
-    # seach course code and fetch the lessons
-    # under construction
-    course_title_list=course_model.objects.only('course_title')
-    course_title=[]
-    for title in course_title_list:
-        #print(title.course_title)
-        if title.course_title not in course_title:
-            course_title.append(title.course_title)
-    #form.course_title.choices=[(course_name,course_name)for course_name in course_title]
-    #form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
-    #form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
-    if request.method == 'POST':
-        # mcq_uploading_processsing(form)
-        """questions = request.form.getlist("question1")
-        print(questions)"""
-        """cookies = request.cookies
-        print(cookies)"""
-        #return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data) 
-        #return redirect(url_for('Test_paper.meq_upload'))
-    return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type,course_title=course_title)
-
-
-@Test_paper.route('/mcqUpload_course_code_selection_load')
-# @login_required
-def mcqUpload_course_code_selection_load():
-    response_to_browser = ""
-    #print("Total :", len(course_model.objects()), " Courses registered")
-    #course = course_model.objects(course_title=fetched).all()
-    if request.args:
-        #sentence = '  Thesis & project    '
-        #str1= sentence.replace(" ", "")
-        #print(str1)
-        crse = request.args.get('c')
-        corse=crse.replace(";", " ")
-        print(corse)
-        response_to_browser = make_response(
-                    jsonify(course_model.objects(course_title= corse).all()))
-        print(response_to_browser)
-        flash("Select a particular Course code ","success")
-    return response_to_browser
-
-@Test_paper.route('/mcqUpload_lesson_selection_load')
-# @login_required
-def mcqUpload_lesson_selection_load():
-    response_to_browser = ""
-    if request.args:
-        code = request.args.get('c')
-        # print(code)
-        lesn= course_model.objects(course_code=code).first()
-        # print(type(lesn.course_lessons))
-        lessons_list=[]
-        for lesson in lesn.course_lessons:
-            # print(lesson)
-            lessons_list.append(lesson)
-        response_to_browser = make_response(jsonify(lessons_list))
-        print(response_to_browser)
-    return response_to_browser
-
-
-
-
-
-
+        return render_template('mcq/mcqqu.html', title='MCQ_question_Page', form=form, op=sum_of_something, user_type=User_type.user_type)
 
 @Test_paper.route('/mcqAnswerPaper', methods=['GET', 'POST'])
 # @login_required
@@ -315,6 +230,83 @@ def file(filename):
                     attachment_filename=filename)
 
 
+
+course = ''
+topic = ''
+Complexity_label = ''
+Course_outcome = ''
+number_of_question = ''
+
+
+@Test_paper.route('/mcqUpload', methods=['GET', 'POST'])
+# @login_required
+def mcq_upload():
+    form = mcq_upload_form_part_1()
+    # seach course code and fetch the lessons
+    # under construction
+    course_title_list=course_model.objects.only('course_title')
+    course_title=[]
+    for title in course_title_list:
+        #print(title.course_title)
+        if title.course_title not in course_title:
+            course_title.append(title.course_title)
+    #form.course_title.choices=[(course_name,course_name)for course_name in course_title]
+    #form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
+    #form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
+    if request.method == 'POST':
+        # mcq_uploading_processsing(form)
+        """questions = request.form.getlist("question1")
+        print(questions)"""
+        """cookies = request.cookies
+        print(cookies)"""
+        #return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data) 
+        #return redirect(url_for('Test_paper.meq_upload'))
+    return render_template('mcq/mcqupload.html', title='mcqUpload', form=form, user_type=User_type.user_type,course_title=course_title)
+
+
+@Test_paper.route('/mcqUpload_course_code_selection_load')
+# @login_required
+def mcqUpload_course_code_selection_load():
+    response_to_browser = ""
+    #print("Total :", len(course_model.objects()), " Courses registered")
+    #course = course_model.objects(course_title=fetched).all()
+    if request.args:
+        #sentence = '  Thesis & project    '
+        #str1= sentence.replace(" ", "")
+        #print(str1)
+        crse = request.args.get('c')
+        corse=crse.replace(";", " ")
+        print(corse)
+        response_to_browser = make_response(
+                    jsonify(course_model.objects(course_title= corse).all()))
+        print(response_to_browser)
+        flash("Select a particular Course code ","success")
+    return response_to_browser
+
+@Test_paper.route('/mcqUpload_lesson_selection_load')
+# @login_required
+def mcqUpload_lesson_selection_load():
+    response_to_browser = ""
+    if request.args:
+        code = request.args.get('c')
+        # print(code)
+        lesn= course_model.objects(course_code=code).first()
+        # print(type(lesn.course_lessons))
+        lessons_list=[]
+        for lesson in lesn.course_lessons:
+            # print(lesson)
+            lessons_list.append(lesson)
+        response_to_browser = make_response(jsonify(lessons_list))
+        print(response_to_browser)
+    return response_to_browser
+
+
+
+
+
+
+
+
 '''@Test_paper.route('/countdown', methods=['GET', 'POST'])
 def countdown():
     return render_template('count_Down.html', title='countdown')'''
@@ -329,3 +321,29 @@ def mcqqu():
         print(i + "\n")
         for j in mcq[i]:
             print(j)'''
+
+@Test_paper.route('/generateMCQ', methods=['GET', 'POST'])
+# @login_required
+def generateMCQ():
+    form = Mcq_Question_generate_form()
+    course_code=course_model.objects.only('course_code')
+    if request.method == 'POST':
+        generate_question(form)
+    return render_template('mcq/generateMCQ.html', title="MCQgenerate", form=form, user_type=User_type.user_type,course_code=course_code)
+
+@Test_paper.route('/generateMCQ_lesson_load')
+# @login_required
+def generateMCQ_lesson_load():
+    response_to_browser = ""
+    if request.args:
+        code = request.args.get('c')
+        # print(code)
+        lesn= course_model.objects(course_code=code).first()
+        # print(type(lesn.course_lessons))
+        lessons_list=[]
+        for lesson in lesn.course_lessons:
+            # print(lesson)
+            lessons_list.append(lesson)
+        response_to_browser = make_response(jsonify(lessons_list))
+        print(response_to_browser)
+    return response_to_browser
