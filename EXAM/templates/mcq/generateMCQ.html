@@ -65,21 +65,17 @@
 
 
 
-
-
-
-
-
-
-
-
             <section>
             <div class="row justify-content-start">
+                <div class="col">
                     <label for="Textarea" class="custom-control-label">Example Question paper Caption textarea</label>
                     <textarea name="Note:captions" class="form-control" id="Textarea" rows="2"></textarea>
+                    </div>
             </div>
             </section>
-            <div class="row justify-content-start">
+            <section>
+                <br/>
+            <div class="row justify-content-end">
                 
                 <div class="col-4">
                     {{ form.exam_CLO.label(class="custom-control-label") }}<br/>
@@ -113,7 +109,8 @@
                 </div>
                 
             </div>
-            <section class="row justify-content-center">
+        </section>
+            <section >
             <button type="submit" class="btn btn-primary">Generate</button></section>
         </form>
         </section>
