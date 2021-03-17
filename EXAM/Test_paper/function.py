@@ -140,13 +140,13 @@ def mcq_uploading_processsing(get_form):
     Course_outcome = request.form.get("CO")  # CLO
     number_of_question = request.form.get("total_questions")
     op = request.form.get("options")  # number of option
-    #print(type(op))  #options per question
+    # print(type(op))  #options per question
     length = 0
     if number_of_question:
         count = [1]
         for i in range(int(number_of_question)):
             # print(i)
-            template_name_of_question = "question"+str(i)
+            template_name_of_question = "question" + str(i)
             # print(question)
             mcq_Question = request.form.get(template_name_of_question)
             # mcq_Question = form.question.data
@@ -166,24 +166,15 @@ def mcq_uploading_processsing(get_form):
             mcq_question_options_tuple = []
         else:
             print("checking mcqqu html Finished ")
-            mcq_model = Machine_learning_mcq_model()   
-            mcq_model.course_title = course # because One course can be divided into different course code
+            mcq_model = Machine_learning_mcq_model()
+            mcq_model.course_title = (
+                course  # because One course can be divided into different course code
+            )
             mcq_model.lesson = topic
             mcq_model.course_outcome = Course_outcome
             mcq_model.complexity_label = Complexity_label
             mcq_model.mcq = mcq_question_dictionary
             mcq_model.save()
-
-
-
-
-
-
-
-
-
-
-
 
 
 # ekhane machine learnibg er kaz baki ase
@@ -195,12 +186,6 @@ def generate_question(get_form):
     exam_title = form.exam_title.data
     exam_course = request.form.get("course")
     # exam_course = form.exam_course.data
-    exam_topic = form.exam_topic.data
-    # topic = form.exam_topic.data
-    exam_CLO = form.exam_CLO.data
-    Complexity_label = request.form.get("complex_level")
-    exam_marks = form.exam_marks.data
-    number_of_question = request.form.get("numbers_of_questioned")
     exam_start_time = request.form.get("start_time")
     # exam_start_time = form.exam_start_time.data
     # print(" form time ", exam_start_time)
@@ -208,8 +193,50 @@ def generate_question(get_form):
     t = form.exam_date.data
     exam_date = t.strftime("%Y-%m-%d")
     # print(t," change kora time ",exam_date)
-    caption = request.form.get("Note:captions")
     exam_code = form.exam_code.data
+    exam_marks = form.exam_marks.data
+    caption = request.form.get("Note:captions")
+    # form.exam_topic.data
+    print(
+        exam_title,
+        exam_course,
+        exam_start_time,
+        exam_end_time,
+        exam_date,
+        exam_code,
+        exam_marks,
+        caption,
+    )
+    exam_topic = request.form.getlist("exam_topic")
+    exam_CLO = request.form.getlist("exam_CLO")  # form.exam_CLO.data
+    Complexity_label = request.form.getlist("complex_level")
+    number_of_question = request.form.getlist("exam_total_questions")
+    print(exam_topic," --",exam_CLO," --",Complexity_label," --",
+        number_of_question," --")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def confirmation_of_question(get_form):
@@ -276,9 +303,9 @@ def written_question_Upload(get_form):
             # binary_data = open(file_path, "rb")    # file binary te khule database e disi
             # mongodb_data_class_ins.binary_file.put(binary_data, filename=doc_file_name,
             #    metadata={"a": "b"})  # new_name dewa jabee
-            #fd = open(file_path, "rb")
-            #mongodb_data_class_ins.binary_file.put(debug)
-            mongodb_data_class_slot_ins=set_exam_question_slot()
+            # fd = open(file_path, "rb")
+            # mongodb_data_class_ins.binary_file.put(debug)
+            mongodb_data_class_slot_ins = set_exam_question_slot()
             mongodb_data_class_slot_ins.exam_topic = exam_topic
             mongodb_data_class_slot_ins.exam_course = exam_course
             mongodb_data_class_slot_ins.exam_start_time = exam_start_time

@@ -3,116 +3,124 @@
 
 <script type="text/javascript" src="{{ url_for('static',filename='generateMCQ.js') }}">
 </script>
-    <div class="container-fluid "
+<div class="container-fluid"
         style="font-family: 'Consoles', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', 'Courier New', monospace ;background-color: #ccfff5";>
+    <form class="form-horizontal" method="POST" action="{{url_for('Test_paper.generateMCQ')}}" enctype="multipart/form-data">
+    
         <section>
-        <form class="form-horizontal" method="POST" action=" " enctype="multipart/form-data">
-            <div class="row align-items-start">
+        
                 <div class="form-group">
-            {{ form.exam_title.label(class = "custom-control-label") }}<br/>
+                    {{ form.exam_title.label(class = "custom-control-label") }}<br/>
                     {{ form.exam_title(class="form-check form-check-inline ",type="radio") }}<br/>
                     <div class="row align-items-start">
                         <legend class = "custom-control-label"> Create a Exam Slot for the Students:- </legend>
                         <br/>
                         <div class="col-sm-1">
-                            {{ form.exam_start_time.label(for="start_time",class = "input-group-append") }}</div>
-                        <div class="col-3-sm">
+                        {{ form.exam_start_time.label(for="start_time",class = "input-group-append")}}
+                        </div>
+                        <div class="col-3-lg"  style="width: 10rem;">
                             <!-- for= appt is a class -->
                             {# {{ form.exam_start_time(for="appt",type="time",class="form-control-lg",id="start_time") }} #}
                             <input type="time" class="input-group" id="start_time" name="start_time"/></div>
                         <div class="col-sm-1">
                             {{ form.exam_end_time.label(for="end_time",class = " input-group-append") }}</div>
-                        <div class="col-3-sm">
+                        <div class="col-3-lg"  style="width: 10rem;">
                             <input type="time" class="input-group" id="end_time" name="end_time"/></div>
                         <div class="col-sm-1">
                             {{ form.exam_date.label(class ="input-group-append")}}</div>
-                        <div class="col-3-sm">
+                        <div class="col-3-lg"  style="width: 10rem;">
                             {{ form.exam_date(type="date",class="input-group ",placeholder=" like: year/month/date") }}
                         </div>
-        
                     </div>
-                   
                 </div>
-                <div class="d-flex justify-content-start">
-                    <div class="d-flex flex-wrap ">
-                            <legend class=" custom-control-label">Questions for Exam Course</legend>
-                        <div class="input-group mb-3">
-                            <input id="course_code" list="course_code_list" class="custom-select custom-select-md mb-3 btn-outline-info "
-                                aria-label=".custom-select-lg example" name="course" placeholder ="Enter Course Code" required>
-                            <datalist id="course_code_list">
-                                {%for codes in course_code %}
-                                <option value="{{codes.course_code}}">{{codes.course_code}}</option>
-                                {% endfor %}
-                            </datalist>
-                            <div class="input-group-append mb-3">
-                                <button  onclick="GetSelected()" id="btn_course_code" class="btn btn-outline-secondary" type="button">Find lessons</button>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-            </div>
-            <div class="col-4">
-                {{ form.exam_topic.label(class="custom-control-label") }}<br/>
-                {{ form.exam_topic(class="form-radio",id="exam_topic") }}
-            </div>
-
-
-
-
-            <section>
-            <div class="row justify-content-start">
-                <div class="col">
+                <div class=" d-flex row justify-content-start"  style="width: 55vw;">
                     <label for="Textarea" class="custom-control-label">Example Question paper Caption textarea</label>
-                    <textarea name="Note:captions" class="form-control" id="Textarea" rows="2"></textarea>
-                    </div>
+                <textarea name="Note:captions" class="form-control" id="Textarea" rows="2"></textarea><br/>
             </div>
-            </section>
-            <section>
-                <br/>
-            <div class="row justify-content-end">
-                
-                <div class="col-4">
-                    {{ form.exam_CLO.label(class="custom-control-label") }}<br/>
-                    {{ form.exam_CLO(class="custom-radio") }}     </div>
-                <div class="col-4">
-                    {{ form.exam_marks.label(class="custom-control-label") }}<br/>
-                    {{ form.exam_marks(class="custom-radio") }} </div>
-                <div class="col-9">
-                    <br/>
-                    <label class="custom-control-label">Question Complexity Level</label>
-                    <select
+        <div class="row justify-content-around">
+                <div class="form-group">
+            {{ form.exam_code.label(class="custom-control-label") }}
+            <br/>
+            {{ form.exam_code(class="custom-radio") }}</div>
+            <div class="form-group">
+            {{ form.exam_marks.label(class="custom-control-label") }}<br/>
+            {{ form.exam_marks(class="custom-radio") }}</div>
+        </div>
+    <div class="form-group" style="width: 33rem;">
+            <legend class=" custom-control-label">Questions for Exam Course</legend>
+        <div class="input-group mb-3 ">
+            <input id="course_code" list="course_code_list" class="custom-select custom-select-md mb-3 btn-outline-info "
+                aria-label=".custom-select-lg example" name="course" placeholder ="Enter Course Code" required>
+            <datalist id="course_code_list">
+                {%for codes in course_code %}
+                <option value="{{codes.course_code}}">{{codes.course_code}}</option>
+                {% endfor %}
+            </datalist>
+            <div class="input-group-append mb-3">
+                <button  onclick="GetSelected()" id="btn_course_code" class="btn btn-outline-secondary" type="button">Find lessons</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="lessons_table" class="row"></div>
+
+    </section>
+
+<br/>
+<div id="addcard" class="d-flex card-deck ">
+            <div class="card" style="width: 25rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                    {#{ form.exam_CLO.label(class="custom-control-label") }#}
+                    {#{ form.exam_CLO(class="custom-radio") }#}
+                    <label class="custom-control-label">Course Outcome </label><br/>
+                    <input name="exam_CLO" id="exam_CLO" type="text" class="custom-radio"></li>
+                    <li class="list-group-item">
+                        {#{ form.exam_topic.label(class="custom-control-label") }#}
+                        {#{ form.exam_topic(class="form-radio",id="exam_topic") }#}
+                        <label class="custom-control-label">Syllabus/Topic/lesson :</label><br/>
+                        <input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Enter the exact name of lesson"
+                        aria-label=".custom-select-lg example">
+                        <datalist id="lesson_name">
+                            <option selected disabled>Enter the exact name of lesson</option>
+                        </datalist></li>
+                    <li class="list-group-item">
+                        <label class="custom-control-label">Question Complexity Level</label>
+                        <select
                             class="custom-select-sm btn-outline-info"
                             id="inputGroupSelect04"
                             name="complex_level"
                             aria-label="Example select with button addon"
-                            required
-                    >
-                        <option selected disabled="disabled">Select Complex level...</option>
+                            required>
+                        <option selected disabled="disabled">Select Complex level</option>
                         <option value="1">Low</option>
                         <option value="2">Medium</option>
                         <option value="3">High</option>
                         <option value="5">Very High</option>
                         <option value="10">Insane</option>
-                    </select>
-                </div>
-                <div class="col-4">
-                    {{ form.exam_total_questions.label(class="custom-control-label") }}<br/>
-                    {{ form.exam_total_questions(class="custom-radio") }}<br/>
-                    {{ form.exam_code.label(class="custom-control-label") }}<br/>
-                {{ form.exam_code(class="custom-radio") }}
-                </div>
-                
+                        </select></li>
+                    <li class="list-group-item">
+                    {#{ form.exam_total_questions.label(class="custom-control-label") }#}
+                    {#{ form.exam_total_questions(class="custom-radio") }#}
+                    <label class="custom-control-label">Number of Questions :</label><br/>
+                    <input id="exam_total_questions" name="exam_total_questions" type="text" class="custom-radio"></li>
+                </ul>
+            </div>
+</div>
+
+            <section>
+                <a href="javascript:void(0);" id="btnAdd" class="btn btn-light" title="Add clo">
+                    <img type="button" class="btn-outline-light"
+                        src="{{ url_for('static',filename='img/plus.png') }}" style="max-width: 4vh"/></a>
+                <br/>
+            <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-primary">Generate</button>
             </div>
         </section>
-            <section >
-            <button type="submit" class="btn btn-primary">Generate</button></section>
-        </form>
-        </section>
+
+
+        </form>   
+    
+
     </div>
 {% endblock body %}

@@ -176,6 +176,14 @@ class Machine_learning_mcq_model(nosql.Document):
     complexity_label = nosql.StringField()
     mcq = nosql.DictField(default=dict)
 
+# kaz baki ase 
+class required_for_generate(nosql.Document):
+    course_title = course_model.course_title
+    course_code = course_model.course_code
+    lesson = nosql.StringField()
+    course_outcome = nosql.StringField()
+    complexity_label = nosql.StringField()
+    mcq = nosql.DictField(default=dict)
 
 # McqQuestion(exam_code='qwsa123', dic_ques='{"question":"[op1,op2,op3,op4]"}', list_ques='[op1,op2,op3,op4]')
 # print(McqQuestion)
