@@ -174,7 +174,7 @@ def mcq_uploading_processsing(get_form):
 def generate_question(get_form,course_obj):
     form = get_form
     exam_title = form.exam_title.data
-    # exam_course = form.exam_course.data
+    # exam_course = form.exam_course.data  
     exam_start_time = request.form.get("start_time")
     # exam_start_time = form.exam_start_time.data
     # print(" form time ", exam_start_time)
