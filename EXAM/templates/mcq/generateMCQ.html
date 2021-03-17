@@ -50,7 +50,7 @@
             <legend class=" custom-control-label">Questions for Exam Course</legend>
         <div class="input-group mb-3 ">
             <input id="course_code" list="course_code_list" class="custom-select custom-select-md mb-3 btn-outline-info "
-                aria-label=".custom-select-lg example" name="course" placeholder ="Enter Course Code" required>
+                aria-label=".custom-select-lg example" name="course_code" placeholder ="Enter Course Code" required>
             <datalist id="course_code_list">
                 {%for codes in course_code %}
                 <option value="{{codes.course_code}}">{{codes.course_code}}</option>

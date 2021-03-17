@@ -32,14 +32,14 @@ class user(nosql.Document, UserMixin):
 
     def get_reset_token(self, expire_sec=1500):
         print(str(self.id))
-        s = serializer(current_app.config['SECRET_KEY'], expire_sec)
+        s = serializer(current_app.config["SECRET_KEY"], expire_sec)
         return s.dumps({"user_id": str(self.id)}).decode("utf-8")
 
     @staticmethod
     def verify_reset_token(token):
-        s = serializer(current_app.config['SECRET_KEY'])
+        s = serializer(current_app.config["SECRET_KEY"])
         try:
-            user_id = s.loads(token)['user_id']
+            user_id = s.loads(token)["user_id"]
         except Exception as e:
             print(e)
             return None
@@ -97,10 +97,11 @@ class exam_written_question_paper(nosql.Document):
 
 
 class McqQuestion(nosql.EmbeddedDocument):
-    exam_code = nosql.StringField(default='')
+    exam_code = nosql.StringField(default="")
     question_dictionary = nosql.DictField(default=dict)
     list_of_mcq_option = nosql.ListField(
-        nosql.StringField(), default=list)  # For Update purpose
+        nosql.StringField(), default=list
+    )  # For Update purpose
 
     def __repr__(self):
         return f"{self.question_dictionary}"
@@ -133,7 +134,7 @@ class course_model(nosql.Document):
 
 class teacher_created_courses_model(nosql.Document):
     user_type = nosql.StringField()
-    teacher_registered_id =nosql.StringField()
+    teacher_registered_id = nosql.StringField()
     course_title = course_model.course_title
     course_code = course_model.course_code
     course_co = course_model.course_co
@@ -165,7 +166,7 @@ class temporary_model(nosql.Document):
 class enrol_students_model(nosql.Document):
     enrol_key = nosql.StringField()
     course_code = course_model.course_code
-    enrolled_students_id =user.email  # nosql.StringField()
+    enrolled_students_id = user.email  # nosql.StringField()
 
 
 class Machine_learning_mcq_model(nosql.Document):
@@ -176,28 +177,38 @@ class Machine_learning_mcq_model(nosql.Document):
     complexity_label = nosql.StringField()
     mcq = nosql.DictField(default=dict)
 
-# kaz baki ase 
+
+# kaz baki ase
 class required_for_generate(nosql.Document):
-    course_title = course_model.course_title
+    exam_title=set_exam_question_slot.exam_title
+    exam_course=set_exam_question_slot.exam_course
+    exam_start_time=set_exam_question_slot.exam_start_time
+    exam_end_time=set_exam_question_slot.exam_end_time
+    exam_date=set_exam_question_slot.exam_date
+    exam_secret_code=nosql.StringField()
+    exam_marks=nosql.IntField()
+    caption=nosql.StringField()
     course_code = course_model.course_code
     lesson = nosql.StringField()
-    course_outcome = nosql.StringField()
-    complexity_label = nosql.StringField()
-    mcq = nosql.DictField(default=dict)
+    exam_CLO = nosql.ListField()
+    complex_level = nosql.ListField()
+    number_of_question=nosql.ListField()
+
 
 # McqQuestion(exam_code='qwsa123', dic_ques='{"question":"[op1,op2,op3,op4]"}', list_ques='[op1,op2,op3,op4]')
 # print(McqQuestion)
 
+
 class mcq_answer_paper(nosql.Document):
-    name = nosql.StringField(default='')
+    name = nosql.StringField(default="")
     user_name = user.user_name
     organization_id = user.organization_id
     email = user.email
     # photo = user.profile_pic
-    answer = nosql.DictField(default={'none': 'none'})
+    answer = nosql.DictField(default={"none": "none"})
 
 
-'''class McqQuestion(nosql.Document):
+"""class McqQuestion(nosql.Document):
     exam_code = nosql.StringField()
 
     # ekhane kaz korte hobe
@@ -207,7 +218,7 @@ class mcq_answer_paper(nosql.Document):
     mcqOption_2 = nosql.StringField()
     mcqOption_3 = nosql.StringField()
     mcqOption_4 = nosql.StringField()
-    # Mcq_Option_Dictionary = nosql.DictField(questionMcq)'''
+    # Mcq_Option_Dictionary = nosql.DictField(questionMcq)"""
 
 
 # class option():
@@ -223,7 +234,7 @@ class get_questions(nosql.Document):
 
 
 # print("database_model")
-if nosql.connect('exam'):
+if nosql.connect("exam"):
     print("database_connected")
 else:
     print("not connected")

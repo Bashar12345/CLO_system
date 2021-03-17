@@ -408,7 +408,7 @@ def generateMCQ():
     form = Mcq_Question_generate_form()
     course_code = course_model.objects.only("course_code")
     if request.method == "POST":
-        generate_question(form)
+        generate_question(form,course_code)
     return render_template(
         "mcq/generateMCQ.html",
         title="MCQgenerate",

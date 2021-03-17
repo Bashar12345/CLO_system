@@ -4,17 +4,7 @@
 from EXAM.configaration import user_obj
 from flask import render_template, request, redirect, url_for, flash
 
-from EXAM.model import (
-    Machine_learning_mcq_model,
-    course_model,
-    exam_written_question_paper,
-    exam_mcq_question_paper,
-    set_exam_question_slot,
-    McqQuestion,
-    teacher_created_courses_model,
-    user,
-    mcq_answer_paper,
-)
+from EXAM.model import Machine_learning_mcq_model, McqQuestion, course_model, exam_mcq_question_paper, exam_written_question_paper, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
 from EXAM.users.utils import saveFormFile_in_Filesystem
 
 # from mongoengine import *
@@ -181,10 +171,9 @@ def mcq_uploading_processsing(get_form):
 # under construction
 
 
-def generate_question(get_form):
+def generate_question(get_form,course_obj):
     form = get_form
     exam_title = form.exam_title.data
-    exam_course = request.form.get("course")
     # exam_course = form.exam_course.data
     exam_start_time = request.form.get("start_time")
     # exam_start_time = form.exam_start_time.data
@@ -193,11 +182,12 @@ def generate_question(get_form):
     t = form.exam_date.data
     exam_date = t.strftime("%Y-%m-%d")
     # print(t," change kora time ",exam_date)
-    exam_code = form.exam_code.data
-    exam_marks = form.exam_marks.data
     caption = request.form.get("Note:captions")
+    exam_secret_code = form.exam_code.data
+    exam_marks = form.exam_marks.data
+    course_code=request.form.get('course_code')
     # form.exam_topic.data
-    print(
+    """print(
         exam_title,
         exam_course,
         exam_start_time,
@@ -206,37 +196,36 @@ def generate_question(get_form):
         exam_code,
         exam_marks,
         caption,
-    )
+    )"""
     exam_topic = request.form.getlist("exam_topic")
     exam_CLO = request.form.getlist("exam_CLO")  # form.exam_CLO.data
-    Complexity_label = request.form.getlist("complex_level")
+    complex_level = request.form.getlist("complex_level")
     number_of_question = request.form.getlist("exam_total_questions")
-    print(exam_topic," --",exam_CLO," --",Complexity_label," --",
+    print(exam_topic," --",exam_CLO," --",complex_level," --",
         number_of_question," --")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    stash_required_exam_property=required_for_generate()
+    stash_required_exam_property.exam_title=exam_title
+    stash_required_exam_property.exam_course=course_obj.course_title
+    stash_required_exam_property.exam_start_time=exam_start_time
+    stash_required_exam_property.exam_end_time=exam_end_time
+    stash_required_exam_property.exam_date=exam_date
+    stash_required_exam_property.exam_secret_code=exam_secret_code
+    stash_required_exam_property.exam_marks=exam_marks
+    stash_required_exam_property.caption=caption
+    stash_required_exam_property.course_code=course_code
+    stash_required_exam_property.lesson=exam_topic
+    stash_required_exam_property.exam_CLO=exam_CLO
+    stash_required_exam_property.complex_level=complex_level
+    stash_required_exam_property.number_of_question=number_of_question
+    stash_required_exam_property.save()
+    exam_slot=set_exam_question_slot()
+    exam_slot.exam_course=course_obj.course_title
+    exam_slot.exam_title =  exam_title
+    exam_slot.exam_topic =  exam_topic
+    exam_slot.exam_start_time =  exam_start_time
+    exam_slot.exam_end_time =  exam_end_time
+    exam_slot.exam_date =  exam_date
+    exam_slot.save()
 
 
 def confirmation_of_question(get_form):
