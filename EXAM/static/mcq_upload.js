@@ -21,6 +21,7 @@ function load() {
                 response.json().then(function(route_data){
                     var option_code_HTML='';
                     //var option_lesson_HTML='';
+                    option_code_HTML+=`<option value="null">Choose one</option>`;
                     
                     for (var i = 0; i < route_data.length; i++) {
                         option_code_HTML+=`<option value="${route_data[i].course_code}">${route_data[i].course_code}</option>`;
@@ -83,7 +84,7 @@ for (let i = 0; i <total_questions; i++) {
     </label>
 </div>
 <div>
-<input class="form-control" id="question-'+ i +'" name="question" type="text"
+<input class="form-control" id="question-'+ i +'" name="question${i}" type="text"
     placeholder="EnterQuestion-${i + 1}" /><br/>
 </div>`;
 inputTable += `<label class="form-control-label" ><h5>MCQ-${i + 1} Answer:</h5></label><br/>`;

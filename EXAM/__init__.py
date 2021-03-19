@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
@@ -8,6 +9,7 @@ from flask_login import LoginManager, current_user
 # from flask_scss import Scss
 
 from EXAM.configaration import Config
+#from EXAM.machine import machine_process
 from flask_mongoengine import MongoEngine
 
 # from mongoengine import *
@@ -33,6 +35,7 @@ app.config['MAIL_USE_TLS'] = True
 # app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USERNAME'] = config('MAIL')
 app.config['MAIL_PASSWORD'] = config('MAIL_PASS')'''
+
 mail = Mail()
 # mail.init_app()
 nosql = MongoEngine()
@@ -45,6 +48,7 @@ login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
 
+
 def create_app(config_class=Config):
     app = Flask(__name__)  # run all package as initial flask app
     app.config.from_object(config_class)
@@ -52,6 +56,7 @@ def create_app(config_class=Config):
     nosql.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)
+    # machine=machine_process()
     # Scss(app, static_dir='static', asset_dir='assets')
     from EXAM.main.routes import main
     from EXAM.users.routes import users

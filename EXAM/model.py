@@ -173,7 +173,7 @@ class Machine_learning_mcq_model(nosql.Document):
     course_title = course_model.course_title
     course_code = course_model.course_code
     lesson = nosql.StringField()
-    course_outcome = nosql.StringField()
+    quesCLO = nosql.StringField()
     complexity_label = nosql.StringField()
     mcq = nosql.DictField(default=dict)
 
@@ -228,8 +228,8 @@ class mcq_answer_paper(nosql.Document):
 # Question_code = exam_MCQ_question_paper.exam_code
 
 
-class get_questions(nosql.Document):
-    print("under construction")
+#class get_questions(nosql.Document):
+    # print("under construction")
     # exam_code =  #  questions = # embedded mcq and written
 
 

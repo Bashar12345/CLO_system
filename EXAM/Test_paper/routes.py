@@ -280,17 +280,8 @@ def mcq_upload():
         # print(title.course_title)
         if title.course_title not in course_title:
             course_title.append(title.course_title)
-    # form.course_title.choices=[(course_name,course_name)for course_name in course_title]
-    # form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
-    # form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
     if request.method == "POST":
-        # mcq_uploading_processsing(form)
-        """questions = request.form.getlist("question1")
-        print(questions)"""
-        """cookies = request.cookies
-        print(cookies)"""
-        # return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data)
-        # return redirect(url_for('Test_paper.meq_upload'))
+        mcq_uploading_processsing(form)
     return render_template(
         "mcq/mcqupload.html",
         title="mcqUpload",
@@ -440,6 +431,45 @@ def mcq_answer_paper():
 
 
 def machine_process():
-    required_data=required_for_generate()
-    mcq_model=Machine_learning_mcq_model()
+
+    courses= course_model.objects()
+    required_data=required_for_generate.objects()
+    mcq_model=Machine_learning_mcq_model.objects()
+    csv_data_dic =  dict()
+    csv_data_dic=[{}]
     pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ # form.course_title.choices=[(course_name,course_name)for course_name in course_title]
+    # form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
+    # form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
+
+     # return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data)
+        # return redirect(url_for('Test_paper.meq_upload'))

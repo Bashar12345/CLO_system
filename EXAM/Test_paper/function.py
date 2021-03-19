@@ -128,11 +128,11 @@ def mcq_uploading_processsing(get_form):
     course = request.form.get("course")  # Which is in under construction
     topic = form.lesson.data
     Complexity_label = request.form.get("complex_level")
-    Course_outcome = request.form.get("CO")  # CLO
+    quesCLO = form.clo.data#request.form.get("CO")  # CLO
     number_of_question = request.form.get("total_questions")
     op = request.form.get("options")  # number of option
     # print(type(op))  #options per question
-    length = 0
+    # length = 0
     if number_of_question:
         count = [1]
         for i in range(int(number_of_question)):
@@ -162,11 +162,14 @@ def mcq_uploading_processsing(get_form):
                 course  # because One course can be divided into different course code
             )
             mcq_model.lesson = topic
-            mcq_model.course_outcome = Course_outcome
+            mcq_model.quesCLO = quesCLO
             mcq_model.complexity_label = Complexity_label
             mcq_model.mcq = mcq_question_dictionary
             mcq_model.save()
-
+            """questions = request.form.getlist("question1")
+        print(questions)"""
+        """cookies = request.cookies
+        print(cookies)"""
 
 # ekhane machine learnibg er kaz baki ase
 # under construction
