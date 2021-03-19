@@ -28,7 +28,7 @@ function load() {
                 '</datalist></li>'+
             '<li class="list-group-item">'+
                 '<label class="custom-control-label">Question Complexity Level</label>'+
-                '<select class="custom-select-sm btn-outline-info" id="inputGroupSelect04" name="complex_level aria-label="Example select with button addon" required>'+
+                '<select class="custom-select-sm btn-outline-info" id="inputGroupSelect04" name="complex_level" aria-label="Example select with button addon" required>'+
                 '<option selected disabled="disabled">Select Complex level</option>'+
                 '<option value="1">Low</option>'+
                 '<option value="2">Medium</option>'+

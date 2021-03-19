@@ -33,11 +33,11 @@ from EXAM.Test_paper.function import (
     written_question_Upload,
     written_question_answer_submit,
 )
-from EXAM.configaration import secret_exam_key, object_of_something, User_type
+from EXAM.configaration import secret_exam_key, object_of_something, User_type,sum_of_something
 from EXAM.model import (
-    course_model,
+    Machine_learning_mcq_model, course_model,
     exam_mcq_question_paper,
-    exam_written_question_paper,
+    exam_written_question_paper, required_for_generate,
 )
 
 """@Test_paper.route('/')
@@ -46,6 +46,7 @@ def hello_world():
 """
 
 Test_paper = Blueprint("Test_paper", __name__)
+
 
 
 @Test_paper.route("/examiner")
@@ -147,54 +148,6 @@ def mcqqu():
             user_type=User_type.user_type,
         )
 
-
-@Test_paper.route("/mcqAnswerPaper", methods=["GET", "POST"])
-# @login_required
-def mcq_answer_paper():
-    form = Mcq_answer_form()
-    # mcq_question_answer_submit(form)
-    mcq_questions = exam_mcq_question_paper.objects(exam_code="quiz-feb").first()
-    exam_start_time = "14:17"
-    exam_end_time = "20:17"
-    exam_date = "2021-02-21"
-    # print(exam_start_time, exam_end_time, exam_date)
-    year, month, day = exam_date.split("-")
-    hour, minute = exam_start_time.split(":")
-    end_hour, end_minute = exam_end_time.split(":")
-    # print(time)      # print(hour, " minute ase ", minute)
-    current_time = datetime.datetime.now()
-    # current_time2 = current_time
-    starting_time_of_exam = datetime.datetime(
-        int(year), int(month), int(day), int(hour), int(minute)
-    )
-    ending_time_of_exam = datetime.datetime(
-        int(year), int(month), int(day), int(end_hour), int(end_minute)
-    )
-    print(f"ending time {ending_time_of_exam}")
-    print(f"starting time {starting_time_of_exam}")
-    # print(mcq_question['mcq_question'])
-
-    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    if starting_time_of_exam <= current_time <= ending_time_of_exam:
-        print(current_time)
-        if request.method == "POST":
-            check = mcq_question_answer_submit(form)
-            if check == "done":
-                return redirect(url_for("users.student"))
-        return render_template(
-            "mcq/mcq_answer_paper.html",
-            exam_date=exam_date,
-            exam_end_time=exam_end_time,
-            mcq_questions=mcq_questions,
-            title="MCQ_answer_Page",
-            form=form,
-            user_type=User_type.user_type,
-        )
-    return render_template(
-        "count_Down.html",
-        starting_time_of_exam=starting_time_of_exam,
-        title="countdown",
-    )
 
 
 @Test_paper.route("/mcqan", methods=["GET", "POST"])
@@ -408,7 +361,7 @@ def generateMCQ():
     form = Mcq_Question_generate_form()
     course_code = course_model.objects.only("course_code")
     if request.method == "POST":
-        generate_question(form,course_code)
+        generate_question(form)
     return render_template(
         "mcq/generateMCQ.html",
         title="MCQgenerate",
@@ -434,3 +387,59 @@ def generateMCQ_lesson_load():
         response_to_browser = make_response(jsonify(lessons_list))
         print(response_to_browser)
     return response_to_browser
+
+
+@Test_paper.route("/mcqAnswerPaper", methods=["GET", "POST"])
+# @login_required
+def mcq_answer_paper():
+    form = Mcq_answer_form()
+    # mcq_question_answer_submit(form)
+    mcq_questions = exam_mcq_question_paper.objects(exam_code="quiz-feb").first()
+    exam_start_time = "14:17"
+    exam_end_time = "20:17"
+    exam_date = "2021-02-21"
+    # print(exam_start_time, exam_end_time, exam_date)
+    year, month, day = exam_date.split("-")
+    hour, minute = exam_start_time.split(":")
+    end_hour, end_minute = exam_end_time.split(":")
+    # print(time)      # print(hour, " minute ase ", minute)
+    current_time = datetime.datetime.now()
+    # current_time2 = current_time
+    starting_time_of_exam = datetime.datetime(
+        int(year), int(month), int(day), int(hour), int(minute)
+    )
+    ending_time_of_exam = datetime.datetime(
+        int(year), int(month), int(day), int(end_hour), int(end_minute)
+    )
+    print(f"ending time {ending_time_of_exam}")
+    print(f"starting time {starting_time_of_exam}")
+    # print(mcq_question['mcq_question'])
+
+    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    if starting_time_of_exam <= current_time <= ending_time_of_exam:
+        print(current_time)
+        if request.method == "POST":
+            check = mcq_question_answer_submit(form)
+            if check == "done":
+                return redirect(url_for("users.student"))
+        return render_template(
+            "mcq/mcq_answer_paper.html",
+            exam_date=exam_date,
+            exam_end_time=exam_end_time,
+            mcq_questions=mcq_questions,
+            title="MCQ_answer_Page",
+            form=form,
+            user_type=User_type.user_type,
+        )
+    return render_template(
+        "count_Down.html",
+        starting_time_of_exam=starting_time_of_exam,
+        title="countdown",
+    )
+
+
+
+def machine_process():
+    required_data=required_for_generate()
+    mcq_model=Machine_learning_mcq_model()
+    pass

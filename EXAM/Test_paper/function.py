@@ -13,6 +13,7 @@ from EXAM.users.utils import saveFormFile_in_Filesystem
 exam_code = ""
 
 
+
 # binary style e data database e dhukanor jonno If needed in some scenario
 
 
@@ -171,7 +172,7 @@ def mcq_uploading_processsing(get_form):
 # under construction
 
 
-def generate_question(get_form,course_obj):
+def generate_question(get_form):
     form = get_form
     exam_title = form.exam_title.data
     # exam_course = form.exam_course.data  
@@ -198,14 +199,16 @@ def generate_question(get_form,course_obj):
         caption,
     )"""
     exam_topic = request.form.getlist("exam_topic")
-    exam_CLO = request.form.getlist("exam_CLO")  # form.exam_CLO.data
+    exam_CLO = request.form.getlist("exam_CLO")  
+    # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
     number_of_question = request.form.getlist("exam_total_questions")
     print(exam_topic," --",exam_CLO," --",complex_level," --",
         number_of_question," --")
+    courses=course_model.objects(course_code=course_code).first()
     stash_required_exam_property=required_for_generate()
     stash_required_exam_property.exam_title=exam_title
-    stash_required_exam_property.exam_course=course_obj.course_title
+    stash_required_exam_property.exam_course=courses.course_title
     stash_required_exam_property.exam_start_time=exam_start_time
     stash_required_exam_property.exam_end_time=exam_end_time
     stash_required_exam_property.exam_date=exam_date
@@ -213,13 +216,14 @@ def generate_question(get_form,course_obj):
     stash_required_exam_property.exam_marks=exam_marks
     stash_required_exam_property.caption=caption
     stash_required_exam_property.course_code=course_code
+
     stash_required_exam_property.lesson=exam_topic
     stash_required_exam_property.exam_CLO=exam_CLO
     stash_required_exam_property.complex_level=complex_level
     stash_required_exam_property.number_of_question=number_of_question
     stash_required_exam_property.save()
     exam_slot=set_exam_question_slot()
-    exam_slot.exam_course=course_obj.course_title
+    exam_slot.exam_course=courses.course_title
     exam_slot.exam_title =  exam_title
     exam_slot.exam_topic =  exam_topic
     exam_slot.exam_start_time =  exam_start_time

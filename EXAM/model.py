@@ -70,7 +70,7 @@ class user_student(nosql.Document):
 class set_exam_question_slot(nosql.Document):
     exam_title = nosql.StringField()
     exam_course = nosql.StringField()
-    exam_topic = nosql.StringField()
+    exam_topic = nosql.ListField()
     exam_start_time = nosql.StringField()
     exam_end_time = nosql.StringField()
     # exam_start_time = nosql.DateTimeField()
@@ -189,7 +189,7 @@ class required_for_generate(nosql.Document):
     exam_marks=nosql.IntField()
     caption=nosql.StringField()
     course_code = course_model.course_code
-    lesson = nosql.StringField()
+    lesson = nosql.ListField()
     exam_CLO = nosql.ListField()
     complex_level = nosql.ListField()
     number_of_question=nosql.ListField()
