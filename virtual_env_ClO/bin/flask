@@ -1,4 +1,4 @@
-#!/home/b/Desktop/project/CLO_System/virtual_env_ClO/bin/python3
+#!/home/b/Desktop/project/CLO_system/virtual_env_ClO/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
