@@ -1,4 +1,7 @@
 import os
+import pymongo
+import csv
+import pandas as pd
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
@@ -10,7 +13,10 @@ from flask_login import LoginManager, current_user
 
 from EXAM.configaration import Config
 #from EXAM.machine import machine_process
+
+from pymongo import MongoClient
 from flask_mongoengine import MongoEngine
+
 
 # from mongoengine import *
 
@@ -47,6 +53,29 @@ login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
+def machine_process_data_wrangling():
+    #courses= course_model.objects()
+    #required_data=required_for_generate.objects()
+    #mcq_model=machine_learning_mcq_model.objects()
+    connection =MongoClient('localhost',27017)
+    mongosql=connection.exam
+    mcq_data=mongosql.machine_learning_mcq_model
+    mcq=mcq_data.find()
+    print(type(mcq))
+    """  course_title
+    course_code
+    course_lessons
+    lessons
+    quesCLO
+    complexity_label
+    mcq"""
+    #for mcqs in mcq:
+        #print(mcqs['mcq'])
+    #for corse in courses:
+       # print(corse['course_title']) # find fuction get the datas in dictionary 
+    #csv_data_dic =  dict()
+    #csv_data_dic=[{}]
+    print("ami machine")
 
 
 def create_app(config_class=Config):
@@ -56,6 +85,7 @@ def create_app(config_class=Config):
     nosql.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)
+    machine_process_data_wrangling()
     # machine=machine_process()
     # Scss(app, static_dir='static', asset_dir='assets')
     from EXAM.main.routes import main

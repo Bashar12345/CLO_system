@@ -4,7 +4,7 @@
 from EXAM.configaration import user_obj
 from flask import render_template, request, redirect, url_for, flash
 
-from EXAM.model import Machine_learning_mcq_model, McqQuestion, course_model, exam_mcq_question_paper, exam_written_question_paper, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
+from EXAM.model import machine_learning_mcq_model, McqQuestion, course_model, exam_mcq_question_paper, exam_written_question_paper, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
 from EXAM.users.utils import saveFormFile_in_Filesystem
 
 # from mongoengine import *
@@ -157,7 +157,7 @@ def mcq_uploading_processsing(get_form):
             mcq_question_options_tuple = []
         else:
             print("checking mcqqu html Finished ")
-            mcq_model = Machine_learning_mcq_model()
+            mcq_model = machine_learning_mcq_model()
             mcq_model.course_title = (
                 course  # because One course can be divided into different course code
             )

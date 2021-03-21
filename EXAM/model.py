@@ -169,7 +169,7 @@ class enrol_students_model(nosql.Document):
     enrolled_students_id = user.email  # nosql.StringField()
 
 
-class Machine_learning_mcq_model(nosql.Document):
+class machine_learning_mcq_model(nosql.Document):
     course_title = course_model.course_title
     course_code = course_model.course_code
     lesson = nosql.StringField()

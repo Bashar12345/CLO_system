@@ -35,7 +35,7 @@ from EXAM.Test_paper.function import (
 )
 from EXAM.configaration import secret_exam_key, object_of_something, User_type,sum_of_something
 from EXAM.model import (
-    Machine_learning_mcq_model, course_model,
+    machine_learning_mcq_model, course_model,
     exam_mcq_question_paper,
     exam_written_question_paper, required_for_generate,
 )
@@ -430,14 +430,6 @@ def mcq_answer_paper():
 
 
 
-def machine_process():
-
-    courses= course_model.objects()
-    required_data=required_for_generate.objects()
-    mcq_model=Machine_learning_mcq_model.objects()
-    csv_data_dic =  dict()
-    csv_data_dic=[{}]
-    pass
 
 
 
