@@ -188,8 +188,10 @@ def generate_question(get_form):
     # print(t," change kora time ",exam_date)
     caption = request.form.get("Note:captions")
     exam_secret_code = form.exam_code.data
-    exam_marks = form.exam_marks.data
+    #exam_marks = form.exam_marks.data
+    number_of_question = request.form.get("exam_total_questions")
     course_code=request.form.get('course_code')
+    question_difficulty=request.form.get("question_difficulty")
     # form.exam_topic.data
     """print(
         exam_title,
@@ -205,7 +207,6 @@ def generate_question(get_form):
     exam_CLO = request.form.getlist("exam_CLO")  
     # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
-    number_of_question = request.form.getlist("exam_total_questions")
     print(exam_topic," --",exam_CLO," --",complex_level," --",
         number_of_question," --")
     courses=course_model.objects(course_code=course_code).first()
@@ -216,10 +217,10 @@ def generate_question(get_form):
     stash_required_exam_property.exam_end_time=exam_end_time
     stash_required_exam_property.exam_date=exam_date
     stash_required_exam_property.exam_secret_code=exam_secret_code
-    stash_required_exam_property.exam_marks=exam_marks
+    #stash_required_exam_property.exam_marks=exam_marks
+    stash_required_exam_property.question_difficulty=question_difficulty
     stash_required_exam_property.caption=caption
     stash_required_exam_property.course_code=course_code
-
     stash_required_exam_property.lesson=exam_topic
     stash_required_exam_property.exam_CLO=exam_CLO
     stash_required_exam_property.complex_level=complex_level

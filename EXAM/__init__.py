@@ -1,3 +1,4 @@
+
 import os
 import pymongo
 import csv
@@ -59,10 +60,23 @@ def machine_process_data_wrangling():
     #mcq_model=machine_learning_mcq_model.objects()
     connection =MongoClient('localhost',27017)
     mongosql=connection.exam
+    required=mongosql.required_for_generate
     mcq_data=mongosql.machine_learning_mcq_model
-    mcq=mcq_data.find()
-    print(type(mcq))
-    """  course_title
+    required_for_generate=required.find()
+    needed_course_code=[]
+    data=[]
+    for i in required_for_generate:
+        needed_course_code.append(i['course_code'])
+    for j in needed_course_code:
+        mcq=mcq_data.find({"course_code":j})
+        data.append(list(mcq))
+        print(type(mcq))
+    header=["course_title","course_code","lesson","quesCLO","complexity_label","mcq"]
+    with open('data.csv', 'w', encoding='UTF8', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(data)
+    """course_title
     course_code
     course_lessons
     lessons
@@ -72,7 +86,7 @@ def machine_process_data_wrangling():
     #for mcqs in mcq:
         #print(mcqs['mcq'])
     #for corse in courses:
-       # print(corse['course_title']) # find fuction get the datas in dictionary 
+    # print(corse['course_title']) # find fuction get the datas in dictionary 
     #csv_data_dic =  dict()
     #csv_data_dic=[{}]
     print("ami machine")

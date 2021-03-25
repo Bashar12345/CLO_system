@@ -189,10 +189,11 @@ class required_for_generate(nosql.Document):
     exam_marks=nosql.IntField()
     caption=nosql.StringField()
     course_code = course_model.course_code
+    question_difficulty=nosql.IntField()
     lesson = nosql.ListField()
     exam_CLO = nosql.ListField()
     complex_level = nosql.ListField()
-    number_of_question=nosql.ListField()
+    number_of_question=nosql.IntField()
 
 
 # McqQuestion(exam_code='qwsa123', dic_ques='{"question":"[op1,op2,op3,op4]"}', list_ques='[op1,op2,op3,op4]')

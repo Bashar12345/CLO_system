@@ -387,88 +387,117 @@
 #machine learning model
 
 {
-   
-    "course_title" : "Data_Algorithm",
-    "course_code"="SWE431",
-    "topic" : "lesson-2",
-    "course_outcome" : "knowledge",
-    "complexity_label" : "2",
+    "course_code":"SWE111",
+    "course_title" : "Ict",
+    "lesson" : "l-3 application",
+    "quesCLO" : "10",
+    "complexity_label" : "1",
     "mcq" : {
-        "A complete graph can have" : [ 
-            "n2 spanning trees", 
-            "nn - 2 spanning trees", 
-            "nn + 1 spanning trees", 
-            "nn spanning trees"
+        "বাইনারি ডিজিটকে সংক্ষেপে বলে-" : [ 
+            "বিট", 
+            " বিট", 
+            " কিলোবাইট", 
+            "বাডিজিট", 
+            "বাইট"
         ],
-        "A circular linked list can be used for" : [ 
-            "Stack", 
-            "Queue", 
-            "Both Stack & Queue", 
-            "Neither Stack or Queue"
-        ]
+        "বর্তমান গণিতের জন্ম হয়েছে-" : [ 
+            "গণনা থেকে", 
+            "অংক থেকে", 
+            "গণিত থেকে", 
+            "সংখ্যা থেকে", 
+            "গণনা থেকে"
+        ],
+        " প্রাচীন ব্যাবিলনের মানুষের বড় সংখ্যা প্রকাশের জন্য কত ভিত্তিক সংখ্যা ব্যবহার করতেন?":[
+        "৬০ ভিত্তিক",
+"০২ ভিত্তিক",
+"০৪ ভিত্তিক",
+"৩০ ভিত্তিক",
+"৬০ ভিত্তিক"
+],
+"শুণ্য এর ব্যবহার ছিল না কোন সংখ্যা পদ্ধতিতে?":[
+ "রোমান ও ইউরোপিয়ান সংখ্যা পদ্ধতিতে",
+ "রোমান ও ইউরোপিয়ান সংখ্যা পদ্ধতিতে",
+ "ভারতীয় ও আরবীয়দের সংখ্যা পদ্ধতিতে",
+ "ভারতীয় ও উপমহাদেশে",
+ "আরবীয়দের সংখ্যা পদ্ধতিতে"
+],
+ "সর্বপ্রথম ইনফিনিটি বা অসীম (∞ ) এর আবিস্কার কে প্রচলন করেন?":[
+"এরিস্টটল",
+ "পিথাগোরাস",
+ "নিউটন",
+ "এরিস্টটল",
+ "গ্যালিলিও"
+]
+
     }
 }
 
 
 {
-   
-    "course_title" : "Data_Algorithom",
-    "course_code"="SWE431",
-    "topic" : "lesson-2",
-    "course_outcome" : "knowledge",
-    "complexity_label" : "2",
+    "course_code":"SWE111",
+    "course_title" : "Ict",
+    "lesson" : "l-3 application",
+    "quesCLO" : "10",
+    "complexity_label" : "1",
     "mcq" : {
-        "what is data " : [ 
-            "qwe ", 
-            "da", 
-            "ads", 
-            "ad"
+        "বাইনারি ডিজিটকে সংক্ষেপে বলে-" : [ 
+            "বিট", 
+            " বিট", 
+            " কিলোবাইট", 
+            "বাডিজিট", 
+            "বাইট"
         ],
-        " In the …………, one transaction inserts a row in the table while the other transaction is half way through its browsing of table." : [ 
-            "", 
-            "", 
-            "", 
-            ""
+        "১২. কোন ফিল্ডটি প্রাইমারি কী হতে পারে?":[
+        "Mobile No",
+"ক. Name",
+"খ. Address",
+"গ. Fee",
+"ঘ. Mobile No"
         ],
-        " Transaction processing is associated with everything below except." : [ 
-            "", 
-            "", 
-            "", 
-            ""
-        ],
-        " ………. helps solve concurrency problem." : [ 
-            "", 
-            "", 
-            "", 
-            ""
-        ],
-        " If a transaction acquires a shared lock, then it can perform ………. operation." : [ 
-            "", 
-            "", 
-            "", 
-            ""
-        ]
+
+"১৩. ডেটাবেজের কুয়েরিকৃত ডেটাকে সামারি আকারে উপস্থাপন করা হয় কোন কুয়েরির মাধ্যমে?":[
+"Select",
+"ক. Select",
+"খ. Parameter",
+"গ. Crosstab",
+"ঘ. Action"
+],
+"১৪. ডেটাবেজ থেকে কোনো তথ্য খোঁজার জন্য কোনটি ব্যবহার করা হয়?":[
+"SQL",
+"ক. DBMS",
+"খ. CAESAR",
+"গ. SQL",
+"ঘ. RDBM"
+],
+"১৬. ‘Name’ কোন ধরনের ডেটা?":[
+"Text",
+"ক. Logical",
+"খ. Number",
+"গ. Text",
+"ঘ. Currency"
+]
     }
 }
 
-
 {
-    "course_code"="SWE331",
+    "course_code"="SWE111",
     "course_title" : "ict",
     "topic" : "html",
     "course_outcome" : "15",
     "complexity_label" : "2"
     "mcq" : {
         "what is data " : [ 
+        "weq",
             "qwe ", 
             "da", 
             "ads", 
             "ad"
         ],
         " In the …………, one transaction inserts a row in the table while the other transaction is half way through its browsing of table." : [ 
-            "", 
-            "", 
-            "", 
-            ""
+            "wqdfsa", 
+            "eqwrasdf", 
+            "asfsa", 
+            "wqdfsa", 
+            "wrcsas"
         ]
 }

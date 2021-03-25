@@ -413,8 +413,7 @@ def mcq_answer_paper():
             check = mcq_question_answer_submit(form)
             if check == "done":
                 return redirect(url_for("users.student"))
-        return render_template(
-            "mcq/mcq_answer_paper.html",
+        return render_template("mcqan.html",
             exam_date=exam_date,
             exam_end_time=exam_end_time,
             mcq_questions=mcq_questions,
@@ -426,6 +425,13 @@ def mcq_answer_paper():
         "count_Down.html",
         starting_time_of_exam=starting_time_of_exam,
         title="countdown",
+    )
+
+@Test_paper.route("/sample", methods=["GET", "POST"])
+# @login_required
+def sample():
+    return render_template(
+        "sample.html",
     )
 
 
@@ -451,17 +457,9 @@ def mcq_answer_paper():
 
 
 
-
-
-
-
-
-
-
-
- # form.course_title.choices=[(course_name,course_name)for course_name in course_title]
+# form.course_title.choices=[(course_name,course_name)for course_name in course_title]
     # form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
     # form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
 
-     # return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data)
+    # return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data)
         # return redirect(url_for('Test_paper.meq_upload'))

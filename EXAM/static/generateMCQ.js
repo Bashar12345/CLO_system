@@ -36,10 +36,6 @@ function load() {
                '<option value="5">Very High</option>'+
                 '<option value="10">Insane</option>'+
                 '</select></li>'+
-            '<li class="list-group-item">'+
-           
-            '<label class="custom-control-label">Number of Questions :</label><br/>'+
-            '<input id="exam_total_questions" name="exam_total_questions" type="text" class="custom-radio"></li>'+
         '</ul>'+
     '</div>';
     addDiv.append(template);
