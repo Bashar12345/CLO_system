@@ -24,15 +24,7 @@ from EXAM.Test_paper.forms import (
     Written_question_answer_Form,
     Mcq_answer_form,
 )
-from EXAM.Test_paper.function import (
-    generate_question,
-    mcq_question_Upload_part1,
-    mcq_question_Upload_part2,
-    mcq_question_answer_submit,
-    mcq_uploading_processsing,
-    written_question_Upload,
-    written_question_answer_submit,
-)
+from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processsing, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type,sum_of_something
 from EXAM.model import (
     machine_learning_mcq_model, course_model,
@@ -197,59 +189,6 @@ def mcqan():
     )
 
 
-@Test_paper.route("/secret_code", methods=["GET", "POST"])
-@login_required
-def secret_code():
-    content_type = ""
-    form = secret_Form()
-    # confirmation_of_question()
-    if request.method == "POST":
-        exam_code = form.exam_code.data
-        # print(exam_code)
-        # mongodb_written_question = exam_written_question_paper()
-        # mongodb_mcq_question = exam_MCQ_question_paper()
-        # written_question = exam_written_question_paper.objects(exam_code=exam_code)
-        mcq_question = exam_mcq_question_paper.objects.filter(
-            exam_code=exam_code
-        ).first()
-        written_question = exam_written_question_paper.objects.filter(
-            exam_code=exam_code
-        ).first()
-        if written_question:
-            for i in written_question:
-                # print(written.binary_file)
-                print(written_question.binary_file.tell())
-                content_type = written_question.binary_file.content_type
-                print(content_type)
-                # fw = open("file.pdf", 'wb')  # eta thik korte hobe
-                # fw.close()
-                # print(i['exam_topic'])
-                #  print(i['binary_file'])
-                #  print(i['file_extension'])
-                # file = i['binary_file']
-                print(file)
-                # binary_read(i['binary_file'])'''
-            object_of_something.a_object = written_question
-            return redirect(url_for("Test_paper.wran"))
-            # return render_template('wran.html', written_question=written_question, content_type=content_type,
-            # title='Written_answer_page')
-        elif mcq_question:
-            object_of_something.a_object = mcq_question
-            # print(mcq_question)
-            return redirect(url_for("Test_paper.mcqan"))
-        else:
-            flash(f"Re-Enter Exam code!!", "danger")
-            return redirect(url_for("users.student"))
-    else:
-        return render_template(
-            "secret_code.html",
-            form=form,
-            title="Identify",
-            user_type=User_type.user_type,
-        )
-        # return redirect(url_for('Test_paper.secret_code'))
-
-
 @Test_paper.route("/file/<filename>")
 def file(filename):
     written = exam_written_question_paper.objects.filter(rename_file=filename).first()
@@ -380,15 +319,71 @@ def generateMCQ_lesson_load():
     return response_to_browser
 
 
-@Test_paper.route("/mcqAnswerPaper", methods=["GET", "POST"])
+
+@Test_paper.route("/secret_code", methods=["GET", "POST"])
+@login_required
+def secret_code():
+    content_type = ""
+    form = secret_Form()
+    # confirmation_of_question()
+    if request.method == "POST":
+        exam_code = form.exam_code.data
+        # print(exam_code)
+        # mongodb_written_question = exam_written_question_paper()
+        # mongodb_mcq_question = exam_MCQ_question_paper()
+        # written_question = exam_written_question_paper.objects(exam_code=exam_code)
+        mcq_question = exam_mcq_question_paper.objects.filter(exam_code=exam_code).first()
+        written_question = exam_written_question_paper.objects.filter(exam_code=exam_code).first()
+        generated_question=required_for_generate.objects.filter(exam_secret_code=exam_code).first()
+        if written_question:
+            for i in written_question:
+                # print(written.binary_file)
+                print(written_question.binary_file.tell())
+                content_type = written_question.binary_file.content_type
+                print(content_type)
+                # fw = open("file.pdf", 'wb')  # eta thik korte hobe
+                # fw.close()
+                # print(i['exam_topic'])
+                #  print(i['binary_file'])
+                #  print(i['file_extension'])
+                # file = i['binary_file']
+                print(file)
+                # binary_read(i['binary_file'])'''
+            object_of_something.a_object = written_question
+            return redirect(url_for("Test_paper.wran"))
+            # return render_template('wran.html', written_question=written_question, content_type=content_type,
+            # title='Written_answer_page')
+        elif mcq_question:
+            object_of_something.a_object = mcq_question
+            # print(mcq_question)
+            return redirect(url_for("Test_paper.mcqan"))
+        elif generated_question:
+            secret_exam_key.exam_code=exam_code
+            return redirect(url_for("Test_paper.mcq_answer_paper_auto_generated"))
+        else:
+            flash(f"Re-Enter Exam code!!", "danger")
+            return redirect(url_for("users.student"))
+    else:
+        return render_template(
+            "secret_code.html",
+            form=form,
+            title="Identify",
+            user_type=User_type.user_type,
+        )
+        # return redirect(url_for('Test_paper.secret_code'))
+
+
+
+@Test_paper.route("/mcq_answer_paper", methods=["GET", "POST"])
 # @login_required
-def mcq_answer_paper():
+def mcq_answer_paper_auto_generated():
     form = Mcq_answer_form()
     # mcq_question_answer_submit(form)
-    mcq_questions = exam_mcq_question_paper.objects(exam_code="quiz-feb").first()
-    exam_start_time = "14:17"
-    exam_end_time = "20:17"
-    exam_date = "2021-02-21"
+    exam_code=secret_exam_key.exam_code
+    requirement_for_mcq_questions = required_for_generate.objects(exam_secret_code=exam_code).first()
+    exam_start_time = required_for_generate.exam_start_time
+    exam_end_time = required_for_generate.exam_end_time
+    exam_date = required_for_generate.exam_date
     # print(exam_start_time, exam_end_time, exam_date)
     year, month, day = exam_date.split("-")
     hour, minute = exam_start_time.split(":")
@@ -409,13 +404,17 @@ def mcq_answer_paper():
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     if starting_time_of_exam <= current_time <= ending_time_of_exam:
         print(current_time)
+        # ekahne mcq question object produce krte hobe -------------------------------------------
+        machine_process_data(requirement_for_mcq_questions)
         if request.method == "POST":
+            #ekane kaz baki ase ------------------------------------------------------------------
             check = mcq_question_answer_submit(form)
             if check == "done":
                 return redirect(url_for("users.student"))
         return render_template("mcqan.html",
             exam_date=exam_date,
             exam_end_time=exam_end_time,
+            # custom object for answer from the machine learning method 
             mcq_questions=mcq_questions,
             title="MCQ_answer_Page",
             form=form,
@@ -426,6 +425,13 @@ def mcq_answer_paper():
         starting_time_of_exam=starting_time_of_exam,
         title="countdown",
     )
+
+
+
+
+
+
+
 
 @Test_paper.route("/sample", methods=["GET", "POST"])
 # @login_required

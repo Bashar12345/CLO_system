@@ -77,7 +77,7 @@ function load() {
             var count =1;
             inputTable =`<div class="container">`;
 
-for (let i = 0; i <total_questions; i++) {
+for (var i = 0; i <total_questions; i++) {
     inputTable += `  <div>
     <label class="form-control-label" for="question-${i + 1}"><br/>
     <h4>Question ${i + 1}:</h4>
@@ -92,19 +92,15 @@ inputTable += `<label class="form-control-label" ><h5>MCQ-${i + 1} Answer:</h5><
         placeholder="Enter Answer-${i + 1}">`;
 
         inputTable +=  `<div class="row"><br/>`;
-for (let j = 0; j < options; j++) {
+for (var j = 0; j < options; j++) {
     
-    inputTable +=`<div class="input-group mb-3"><label>Option-${j+1}:</label><br>`;
-
-    inputTable +=`<div class="input-group-append mb-3"><input type="text" id="options" name="op[${j+count}]" placeholder="Enter Option-${j+1}"></div><br/>`;
-    if(j==1){
-        inputTable += `<div class="w-100"></div>`;
-    } 
+    inputTable +=`<div class="input-group mb-3"><label>Option-${j+1}:</label><br>
+    <div class="input-group-append mb-3"><input type="text" name="op[${j+count}]" placeholder="Enter Option-${j+1}"></div><br/>`;
+    
     inputTable += `</div>`;
-        count++;
-    
 } 
         inputTable += `</div>`;
+        count=count+parseInt(options);
         }
 
         $('#addQuestion').append(inputTable);

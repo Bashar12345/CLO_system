@@ -14,7 +14,7 @@
                     <legend class=" custom-control-label">Questions for Particular Course</legend>
                 <div class="input-group mb-3">
                     <input id="course_title" list="course_name" class="custom-select custom-select-md mb-3 btn-outline-info "
-                        aria-label=".custom-select-lg example" name="course" required>
+                        aria-label=".custom-select-lg example" name="course_title" required>
                     <datalist id="course_name">
                         {%for course_titles in course_title %}
                         <option value="{{course_titles}}">{{course_titles}}</option>

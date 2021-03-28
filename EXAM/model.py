@@ -66,6 +66,17 @@ class user_student(nosql.Document):
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
 
+class McqQuestion(nosql.Document):
+    exam_code = nosql.StringField(default="")
+    question=nosql.StringField()
+    question_dictionary = nosql.DictField()
+    list_of_mcq_option = nosql.ListField(
+        nosql.StringField(), default=list
+    )  # For Update purpose
+
+    def __repr__(self):
+        return f"{self.question_dictionary}"
+
 
 class set_exam_question_slot(nosql.Document):
     exam_title = nosql.StringField()
@@ -96,16 +107,6 @@ class exam_written_question_paper(nosql.Document):
     # file_extension = Only_file.file_extension
 
 
-class McqQuestion(nosql.EmbeddedDocument):
-    exam_code = nosql.StringField(default="")
-    question_dictionary = nosql.DictField(default=dict)
-    list_of_mcq_option = nosql.ListField(
-        nosql.StringField(), default=list
-    )  # For Update purpose
-
-    def __repr__(self):
-        return f"{self.question_dictionary}"
-
 
 class exam_mcq_question_paper(nosql.Document):
     exam_code = nosql.StringField()
@@ -118,7 +119,7 @@ class exam_mcq_question_paper(nosql.Document):
     # exam_end_time = nosql.DateTimeField()
     exam_date = set_exam_question_slot.exam_date
     caption = nosql.StringField()
-    mcq_question = nosql.EmbeddedDocumentField(McqQuestion)
+    mcq_question = McqQuestion.question_dictionary
     # mcq_question = nosql.ListField(nosql.EmbeddedDocumentField(McqQuestion))
     # embed_ques =nosql.ListField(EmbeddedDocumentField())
 
@@ -175,8 +176,7 @@ class machine_learning_mcq_model(nosql.Document):
     lesson = nosql.StringField()
     quesCLO = nosql.StringField()
     complexity_label = nosql.StringField()
-    mcq = nosql.DictField(default=dict)
-
+    mcq = McqQuestion.question_dictionary# ekhane kazz baki aseee
 
 # kaz baki ase
 class required_for_generate(nosql.Document):

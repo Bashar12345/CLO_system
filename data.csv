@@ -1,2 +1,6 @@
-course_title,course_code,lesson,quesCLO,complexity_label,mcq
-
+course_code,lesson,quesCLO,complexity_label,mcq
+SWE111,l-3 application,10,1,"['বিট', ' বিট', ' কিলোবাইট', 'বাডিজিট', 'বাইট']"
+SWE111,l-3 application,10,1,"['Mobile No', 'ক. Name', 'খ. Address', 'গ. Fee', 'ঘ. Mobile No']"
+SWE111,l-3 application,10,1,"['Select', 'ক. Select', 'খ. Parameter', 'গ. Crosstab', 'ঘ. Action']"
+SWE111,l-3 application,10,1,"['SQL', 'ক. DBMS', 'খ. CAESAR', 'গ. SQL', 'ঘ. RDBM']"
+SWE111,l-3 application,10,1,"['Text', 'ক. Logical', 'খ. Number', 'গ. Text', 'ঘ. Currency']"
