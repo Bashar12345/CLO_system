@@ -5,7 +5,7 @@ import random
 from EXAM.configaration import user_obj
 from flask import render_template, request, redirect, url_for, flash
 
-from EXAM.model import machine_learning_mcq_model, McqQuestion, course_model, exam_mcq_question_paper, exam_written_question_paper, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
+from EXAM.model import mcqQuestion, course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
 from EXAM.users.utils import saveFormFile_in_Filesystem
 
 # from mongoengine import *
@@ -91,15 +91,14 @@ def mcq_question_Upload_part2(number_of_questions, code):
                 count.append(count.pop() + 1)
                 mcq_question_options_tuple.append(mcq_options)
             print(mcq_question_options_tuple)
-            mcq_question_dictionary.update(
-                {mcq_Question: mcq_question_options_tuple})
+            mcq_question_dictionary.update({mcq_Question: mcq_question_options_tuple})
             # print(mcq_question_dictionary)
             mcq_question_options_tuple = []
             # print(mcq_question_options_tuple)
         else:
             print("checking mcqqu html Finished ")
         print("eta function er exam code", code)
-        MCQ = McqQuestion(
+        MCQ = mcqQuestion(
             exam_code=code,
             question_dictionary=mcq_question_dictionary,
             list_of_mcq_option=mcq_question_options_tuple,
@@ -139,7 +138,7 @@ def mcq_uploading_processsing(get_form):
     # print(type(op))  #options per question
     # length = 0
     # print(op)
-
+    question_model = mcqQuestion()
     if number_of_question:
         count = [1]
         for i in range(int(number_of_question)):
@@ -166,27 +165,32 @@ def mcq_uploading_processsing(get_form):
             mcq_question_dictionary.update(
                 {mcq_Question: mcq_question_options_tuple})
             print(mcq_question_dictionary)
-            question_model = McqQuestion()
-            question_model.question = mcq_Question
-            question_model.list_of_mcq_option = mcq_question_options_tuple
-            question_model.question_dictionary = mcq_question_dictionary
-            question_model.save()
-            mcq_question_options_tuple = []
-        else:
-            print("checking mcqUpload html Finished ")
+            try:
+                question_model.question = mcq_Question
+                question_model.list_of_mcq_option = mcq_question_options_tuple
+                question_model.question_dictionary = mcq_question_dictionary
+                question_model.save()
+            except Exception as e:
+                print(str(e))
 
+            mcq_question_options_tuple = []
+
+        try:
             mcq_model = machine_learning_mcq_model()
             mcq_model.course_title = course_title
             mcq_model.course_code = course_code
             mcq_model.lesson = topic
             mcq_model.quesCLO = quesCLO
             mcq_model.complexity_label = Complexity_label
-            mcq_model.mcq = mcq_question_dictionary
+            mcq_model.question_dictionary = mcq_question_dictionary
             mcq_model.save()
-            """questions = request.form.getlist("question1")
+            print("checking mcqUpload html Finished ")
+        except Exception as e:
+            print(str(e))
+        """questions = request.form.getlist("question1")
         print(questions)"""
         """cookies = request.cookies
-        print(cookies)"""
+            print(cookies)"""
 
 # ekhane machine learnibg er kaz baki ase
 # under construction
@@ -205,7 +209,7 @@ def generate_question(get_form):
     # print(t," change kora time ",exam_date)
     caption = request.form.get("Note:captions")
     exam_secret_code = form.exam_code.data
-    #exam_marks = form.exam_marks.data
+    # exam_marks = form.exam_marks.data
     number_of_question = request.form.get("exam_total_questions")
     course_code = request.form.get('course_code')
     question_difficulty = request.form.get("question_difficulty")
@@ -224,8 +228,7 @@ def generate_question(get_form):
     exam_CLO = request.form.getlist("exam_CLO")
     # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
-    print(exam_topic, " --", exam_CLO, " --", complex_level, " --",
-          number_of_question, " --")
+    print(exam_topic, " --", exam_CLO, " --", complex_level, " --",number_of_question, " --")
     courses = course_model.objects(course_code=course_code).first()
     stash_required_exam_property = required_for_generate()
     stash_required_exam_property.exam_title = exam_title
@@ -381,11 +384,16 @@ def mcq_question_answer_submit(get_form):
 
 
 def machine_process_data(mcq_questions):
-    machine_process_data_wrangling(mcq_questions)
+    # data cleaning for shuffle  
+    question_part=machine_process_data_wrangling(mcq_questions)
+    # prepared shffled question list for machine prediction 
+    shuffled_list=catch_the_shuffled_question_list(question_part)
+    # algorithm magic 
+    machine_predict_result(shuffled_list)
 
 
 def machine_process_data_wrangling(requirement_for_mcq_questions):
-    #courses= course_model.objects()
+    # courses= course_model.objects()
     # required_data=required_for_generate.objects()
     # mcq_model=machine_learning_mcq_model.objects()
     # connection = MongoClient('localhost', 27017)
@@ -396,8 +404,7 @@ def machine_process_data_wrangling(requirement_for_mcq_questions):
     # required=required_for_generate.objects()
     needed_course_code = []
     MCQ_questions = []
-    question_part=[]
-    shuffled_question_list=[]
+    question_part = []
     crse_code = requirement_for_mcq_questions.course_code
     for i in machine_learning_mcq_model.objects(course_code=crse_code):
         MCQ_questions.append(i['mcq'])
@@ -405,19 +412,28 @@ def machine_process_data_wrangling(requirement_for_mcq_questions):
     for dictionary in MCQ_questions:
         # print(dictionary)
         for key, value in dictionary.items():
-            #temp = [key, value]
+            # temp = [key, value]
             question_part.append(key)
     random.shuffle(question_part)
     print(question_part)
+    return question_part
+
+def catch_the_shuffled_question_list(question_part):
+    shuffled_question_list = []
+    full_set_shuffled_question = []
     for i in question_part:
-        for j in McqQuestion.objects(question=i):
-            shuffled_question_list=i.question_dictionary
+        for j in mcqQuestion.objects(question=i):
+            shuffled_question_list = i.question_dictionary
     print(shuffled_question_list)
-    full_set_shuffled_question=dict()
     for i in shuffled_question_list:
-        question_bank=McqQuestion.objects(question=i).first()
+        question_bank = mcqQuestion.objects(question=i).first()
         print(question_bank.question_dictionary)
-    
+        full_set_shuffled_question.append(question_bank.question_dictionary)
+    print(full_set_shuffled_question)
+    return shuffled_question_list
+
+def machine_predict_result(shuffled_list):
+    # algorithom er kaz korte krter hobe------------------------------------------------------
 
 
 
@@ -460,9 +476,9 @@ def machine_process_data_wrangling(requirement_for_mcq_questions):
     # print(mcqs['mcq'])
     # for corse in courses:
     # print(corse['course_title']) # find fuction get the datas in dictionary
-    #csv_data_dic =  dict()
+    # csv_data_dic =  dict()
     # csv_data_dic=[{}]
-    #print("ami machine")
+    # print("ami machine")
 
 
 def paginate_page():
