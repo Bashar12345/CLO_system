@@ -4,7 +4,7 @@ from wtforms import TimeField, DateField, StringField, IntegerField, SubmitField
     TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, ValidationError
 
-from EXAM.model import course_model
+#from EXAM.model import course_model
 from EXAM.users.forms import user_form
 
 

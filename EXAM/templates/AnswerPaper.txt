@@ -790,3 +790,23 @@ def mcq_question_Upload_part2(number_of_questions, code):
 
 
                 </div>
+
+
+
+
+
+
+
+
+
+
+                class mcqQuestion(nosql.Document):
+    exam_code = nosql.StringField(default="")
+    course_title=nosql.StringField()
+    course_code=nosql.StringField()
+    complex_level=nosql.StringField(default="1")
+    quesCLO=nosql.StringField()
+    lesson=nosql.Stringfield()
+    question=nosql.StringField(check_keys=False)
+    question_dictionary = nosql.DictField(check_keys=False)
+    list_of_mcq_option = nosql.ListField(nosql.StringField(check_keys=False), default=list)  # For Update purpose

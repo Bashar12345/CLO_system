@@ -164,6 +164,7 @@ def mcq_uploading_processsing(get_form):
             mcq_question_dictionary.update(
                 {mcq_Question: mcq_question_options_tuple})
             print(mcq_question_dictionary)
+            
             question_model=mcqQuestion()
             question_model.course_title = course_title
             question_model.course_code = course_code

@@ -518,3 +518,3765 @@
     "quesCLO" : "1",
     "complexity_label" : "2"
 }
+
+ "course_title" : "Data Algorithm",
+    "course_code" : "swe151",
+    "lesson" : "l-2 requirement",
+    "quesCLO" : "1",
+    "complexity_label" : "1"
+
+#mcqQuestion
+
+/* 1 */
+{
+    "_id" : ObjectId("606085ed864f144699a934c0"),
+    "exam_code" : "",
+    "question" : "test question",
+    "question_dictionary" : {
+        "test question" : [ 
+            "a", 
+            "a", 
+            "b", 
+            "c", 
+            "d"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "a", 
+        "a", 
+        "b", 
+        "c", 
+        "d"
+    ]
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("6062ec461c896ec01b762e91"),
+    "exam_code" : "",
+    "question" : " A graph containing only isolated vertices is called ___",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "null graph", 
+        "solated graph", 
+        "null graph", 
+        "directed graph", 
+        "multigraph"
+    ]
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("6062ec871c896ec01b762e93"),
+    "exam_code" : "",
+    "question" : " A graph containing only isolated vertices is called ___",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "null graph", 
+        "solated graph", 
+        "null graph", 
+        "directed graph", 
+        "multigraph"
+    ]
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("6062ec871c896ec01b762e94"),
+    "exam_code" : "",
+    "question" : "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " 1,-1,0", 
+        " 1,-1,0", 
+        "-1,1,0", 
+        "0,1,-1", 
+        "0,-1,1"
+    ]
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e96"),
+    "exam_code" : "",
+    "question" : " A graph containing only isolated vertices is called ___",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "null graph", 
+        "solated graph", 
+        "null graph", 
+        "directed graph", 
+        "multigraph"
+    ]
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e97"),
+    "exam_code" : "",
+    "question" : "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " 1,-1,0", 
+        " 1,-1,0", 
+        "-1,1,0", 
+        "0,1,-1", 
+        "0,-1,1"
+    ]
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e98"),
+    "exam_code" : "",
+    "question" : " Breadth-first search algorithm uses a ___ data structure to perform the search",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Queue", 
+        "Tree", 
+        "Linked-list", 
+        "Queue", 
+        "Hashes"
+    ]
+}
+
+/* 8 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e99"),
+    "exam_code" : "",
+    "question" : "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "linear", 
+        "linear", 
+        "alphabetical", 
+        "random", 
+        "unique"
+    ]
+}
+
+/* 9 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e9a"),
+    "exam_code" : "",
+    "question" : " Dijkstra’s algorithm can be applied for unweighted directed graph",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "False", 
+        "False", 
+        "truth", 
+        "not adopted", 
+        "not included"
+    ]
+}
+
+/* 10 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e9b"),
+    "exam_code" : "",
+    "question" : "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "less, equal", 
+        " less, greater", 
+        "less, equal", 
+        "greater, equal", 
+        "greater, always greater."
+    ]
+}
+
+/* 11 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e9c"),
+    "exam_code" : "",
+    "question" : "Prim’s minimum spanning tree algorithm is known as ___ style algorithm",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "greedy", 
+        "greedy", 
+        " unique", 
+        "linear", 
+        "sparse"
+    ]
+}
+
+/* 12 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e9d"),
+    "exam_code" : "",
+    "question" : "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " NP", 
+        " decision", 
+        "non-deterministic", 
+        " NP", 
+        "optimization"
+    ]
+}
+
+/* 13 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e9e"),
+    "exam_code" : "",
+    "question" : " Which concept simplifies the task of writing the large programs?",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Divide and conquer", 
+        "Divide and conquer", 
+        "Modularity", 
+        " Time Complexity", 
+        " Partitioning"
+    ]
+}
+
+/* 14 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762e9f"),
+    "exam_code" : "",
+    "question" : "What is present at the level 1 of hierarchical structure?",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " Brief general description of the problem", 
+        "Result", 
+        " Issues at sub-modules", 
+        " Brief general description of the problem", 
+        "Detailed description of the problem"
+    ]
+}
+
+/* 15 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea0"),
+    "exam_code" : "",
+    "question" : "Stack is also known as ___",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "LIFO", 
+        "LIFO", 
+        "FIFO", 
+        "LILO", 
+        "FILO"
+    ]
+}
+
+/* 16 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea1"),
+    "exam_code" : "",
+    "question" : "Name the searching technique where each record is searched one at a time",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " Linear search", 
+        "Binary search", 
+        " Linear search", 
+        "Non-linear search", 
+        "Quadratic search"
+    ]
+}
+
+/* 17 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea2"),
+    "exam_code" : "",
+    "question" : "Which technique periodically collects all the deleted space onto the free storage list?",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Garbage collection", 
+        "Traversing", 
+        "Insertion", 
+        "Deletion", 
+        "Garbage collection"
+    ]
+}
+
+/* 18 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea3"),
+    "exam_code" : "",
+    "question" : "At the time of insertion of an item to the list, the ___ condition is first checked",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ],
+        "At the time of insertion of an item to the list, the ___ condition is first checked" : [ 
+            "OVER FLOW", 
+            "OVER FLOW", 
+            " UNDER FLOW", 
+            " FIRST FLOW", 
+            "LAST FLOW"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "OVER FLOW", 
+        "OVER FLOW", 
+        " UNDER FLOW", 
+        " FIRST FLOW", 
+        "LAST FLOW"
+    ]
+}
+
+/* 19 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea4"),
+    "exam_code" : "",
+    "question" : " ___ facilitates traversal in both the forward and backward direction of a linked list",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ],
+        "At the time of insertion of an item to the list, the ___ condition is first checked" : [ 
+            "OVER FLOW", 
+            "OVER FLOW", 
+            " UNDER FLOW", 
+            " FIRST FLOW", 
+            "LAST FLOW"
+        ],
+        " ___ facilitates traversal in both the forward and backward direction of a linked list" : [ 
+            "Doubly linked list", 
+            "Directed linked list", 
+            "Bi-directed linked list", 
+            "Doubly linked list", 
+            "Circular linked list"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Doubly linked list", 
+        "Directed linked list", 
+        "Bi-directed linked list", 
+        "Doubly linked list", 
+        "Circular linked list"
+    ]
+}
+
+/* 20 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea5"),
+    "exam_code" : "",
+    "question" : "Name the arrangement in which the null pointer in the last node is replaced with the address of the first node",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ],
+        "At the time of insertion of an item to the list, the ___ condition is first checked" : [ 
+            "OVER FLOW", 
+            "OVER FLOW", 
+            " UNDER FLOW", 
+            " FIRST FLOW", 
+            "LAST FLOW"
+        ],
+        " ___ facilitates traversal in both the forward and backward direction of a linked list" : [ 
+            "Doubly linked list", 
+            "Directed linked list", 
+            "Bi-directed linked list", 
+            "Doubly linked list", 
+            "Circular linked list"
+        ],
+        "Name the arrangement in which the null pointer in the last node is replaced with the address of the first node" : [ 
+            "Circular linked list", 
+            "Doubly linked list", 
+            "Circular linked list", 
+            "One-way list", 
+            "Two-way list"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Circular linked list", 
+        "Doubly linked list", 
+        "Circular linked list", 
+        "One-way list", 
+        "Two-way list"
+    ]
+}
+
+/* 21 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea6"),
+    "exam_code" : "",
+    "question" : " A major drawback with the stack is that the ___ and dynamically you cannot change the size of the stack",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ],
+        "At the time of insertion of an item to the list, the ___ condition is first checked" : [ 
+            "OVER FLOW", 
+            "OVER FLOW", 
+            " UNDER FLOW", 
+            " FIRST FLOW", 
+            "LAST FLOW"
+        ],
+        " ___ facilitates traversal in both the forward and backward direction of a linked list" : [ 
+            "Doubly linked list", 
+            "Directed linked list", 
+            "Bi-directed linked list", 
+            "Doubly linked list", 
+            "Circular linked list"
+        ],
+        "Name the arrangement in which the null pointer in the last node is replaced with the address of the first node" : [ 
+            "Circular linked list", 
+            "Doubly linked list", 
+            "Circular linked list", 
+            "One-way list", 
+            "Two-way list"
+        ],
+        " A major drawback with the stack is that the ___ and dynamically you cannot change the size of the stack" : [ 
+            "Size is fixed", 
+            "Only accepts integer", 
+            " Checks the value", 
+            "Size is variable", 
+            "Size is fixed"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Size is fixed", 
+        "Only accepts integer", 
+        " Checks the value", 
+        "Size is variable", 
+        "Size is fixed"
+    ]
+}
+
+/* 22 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea7"),
+    "exam_code" : "",
+    "question" : " AB+ and XY+Z* are examples of ___ notation",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ],
+        "At the time of insertion of an item to the list, the ___ condition is first checked" : [ 
+            "OVER FLOW", 
+            "OVER FLOW", 
+            " UNDER FLOW", 
+            " FIRST FLOW", 
+            "LAST FLOW"
+        ],
+        " ___ facilitates traversal in both the forward and backward direction of a linked list" : [ 
+            "Doubly linked list", 
+            "Directed linked list", 
+            "Bi-directed linked list", 
+            "Doubly linked list", 
+            "Circular linked list"
+        ],
+        "Name the arrangement in which the null pointer in the last node is replaced with the address of the first node" : [ 
+            "Circular linked list", 
+            "Doubly linked list", 
+            "Circular linked list", 
+            "One-way list", 
+            "Two-way list"
+        ],
+        " A major drawback with the stack is that the ___ and dynamically you cannot change the size of the stack" : [ 
+            "Size is fixed", 
+            "Only accepts integer", 
+            " Checks the value", 
+            "Size is variable", 
+            "Size is fixed"
+        ],
+        " AB+ and XY+Z* are examples of ___ notation" : [ 
+            "Postfix", 
+            "Postfix", 
+            "Prefix", 
+            "Infix", 
+            "Polish"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Postfix", 
+        "Postfix", 
+        "Prefix", 
+        "Infix", 
+        "Polish"
+    ]
+}
+
+/* 23 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea8"),
+    "exam_code" : "",
+    "question" : " In a queue, deletions can take place only at one end called ___",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ],
+        "At the time of insertion of an item to the list, the ___ condition is first checked" : [ 
+            "OVER FLOW", 
+            "OVER FLOW", 
+            " UNDER FLOW", 
+            " FIRST FLOW", 
+            "LAST FLOW"
+        ],
+        " ___ facilitates traversal in both the forward and backward direction of a linked list" : [ 
+            "Doubly linked list", 
+            "Directed linked list", 
+            "Bi-directed linked list", 
+            "Doubly linked list", 
+            "Circular linked list"
+        ],
+        "Name the arrangement in which the null pointer in the last node is replaced with the address of the first node" : [ 
+            "Circular linked list", 
+            "Doubly linked list", 
+            "Circular linked list", 
+            "One-way list", 
+            "Two-way list"
+        ],
+        " A major drawback with the stack is that the ___ and dynamically you cannot change the size of the stack" : [ 
+            "Size is fixed", 
+            "Only accepts integer", 
+            " Checks the value", 
+            "Size is variable", 
+            "Size is fixed"
+        ],
+        " AB+ and XY+Z* are examples of ___ notation" : [ 
+            "Postfix", 
+            "Postfix", 
+            "Prefix", 
+            "Infix", 
+            "Polish"
+        ],
+        " In a queue, deletions can take place only at one end called ___" : [ 
+            "Front", 
+            "Rear", 
+            "Front", 
+            "Enter", 
+            "Exit"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Front", 
+        "Rear", 
+        "Front", 
+        "Enter", 
+        "Exit"
+    ]
+}
+
+/* 24 */
+{
+    "_id" : ObjectId("6062ed061c896ec01b762ea9"),
+    "exam_code" : "",
+    "question" : "Which method adds a new item to the queue?",
+    "question_dictionary" : {
+        " A graph containing only isolated vertices is called ___" : [ 
+            "null graph", 
+            "solated graph", 
+            "null graph", 
+            "directed graph", 
+            "multigraph"
+        ],
+        "In the incidence matrix, If the kth edge is (vi, vj ) then the kth column has a value ___ in the ith row, ___ in the jth row and ___ elsewhere" : [ 
+            " 1,-1,0", 
+            " 1,-1,0", 
+            "-1,1,0", 
+            "0,1,-1", 
+            "0,-1,1"
+        ],
+        " Breadth-first search algorithm uses a ___ data structure to perform the search" : [ 
+            "Queue", 
+            "Tree", 
+            "Linked-list", 
+            "Queue", 
+            "Hashes"
+        ],
+        "Descriptor’s successor must appear after that descriptor in ___ ordering for topological sort" : [ 
+            "linear", 
+            "linear", 
+            "alphabetical", 
+            "random", 
+            "unique"
+        ],
+        " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+            "False", 
+            "False", 
+            "truth", 
+            "not adopted", 
+            "not included"
+        ],
+        "Minimum spanning tree is a graph with weight ___ than or ___ to the weight of every other spanning tree" : [ 
+            "less, equal", 
+            " less, greater", 
+            "less, equal", 
+            "greater, equal", 
+            "greater, always greater."
+        ],
+        "Prim’s minimum spanning tree algorithm is known as ___ style algorithm" : [ 
+            "greedy", 
+            "greedy", 
+            " unique", 
+            "linear", 
+            "sparse"
+        ],
+        "A problem is NP-hard if an algorithm to solve it in (deterministic) polynomial time would make it possible to solve all ___ problems in polynomial time" : [ 
+            " NP", 
+            " decision", 
+            "non-deterministic", 
+            " NP", 
+            "optimization"
+        ],
+        " Which concept simplifies the task of writing the large programs?" : [ 
+            "Divide and conquer", 
+            "Divide and conquer", 
+            "Modularity", 
+            " Time Complexity", 
+            " Partitioning"
+        ],
+        "What is present at the level 1 of hierarchical structure?" : [ 
+            " Brief general description of the problem", 
+            "Result", 
+            " Issues at sub-modules", 
+            " Brief general description of the problem", 
+            "Detailed description of the problem"
+        ],
+        "Stack is also known as ___" : [ 
+            "LIFO", 
+            "LIFO", 
+            "FIFO", 
+            "LILO", 
+            "FILO"
+        ],
+        "Name the searching technique where each record is searched one at a time" : [ 
+            " Linear search", 
+            "Binary search", 
+            " Linear search", 
+            "Non-linear search", 
+            "Quadratic search"
+        ],
+        "Which technique periodically collects all the deleted space onto the free storage list?" : [ 
+            "Garbage collection", 
+            "Traversing", 
+            "Insertion", 
+            "Deletion", 
+            "Garbage collection"
+        ],
+        "At the time of insertion of an item to the list, the ___ condition is first checked" : [ 
+            "OVER FLOW", 
+            "OVER FLOW", 
+            " UNDER FLOW", 
+            " FIRST FLOW", 
+            "LAST FLOW"
+        ],
+        " ___ facilitates traversal in both the forward and backward direction of a linked list" : [ 
+            "Doubly linked list", 
+            "Directed linked list", 
+            "Bi-directed linked list", 
+            "Doubly linked list", 
+            "Circular linked list"
+        ],
+        "Name the arrangement in which the null pointer in the last node is replaced with the address of the first node" : [ 
+            "Circular linked list", 
+            "Doubly linked list", 
+            "Circular linked list", 
+            "One-way list", 
+            "Two-way list"
+        ],
+        " A major drawback with the stack is that the ___ and dynamically you cannot change the size of the stack" : [ 
+            "Size is fixed", 
+            "Only accepts integer", 
+            " Checks the value", 
+            "Size is variable", 
+            "Size is fixed"
+        ],
+        " AB+ and XY+Z* are examples of ___ notation" : [ 
+            "Postfix", 
+            "Postfix", 
+            "Prefix", 
+            "Infix", 
+            "Polish"
+        ],
+        " In a queue, deletions can take place only at one end called ___" : [ 
+            "Front", 
+            "Rear", 
+            "Front", 
+            "Enter", 
+            "Exit"
+        ],
+        "Which method adds a new item to the queue?" : [ 
+            "Enqueue", 
+            "Addition", 
+            "Insertion", 
+            "Enqueue", 
+            "Dequeue"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Enqueue", 
+        "Addition", 
+        "Insertion", 
+        "Enqueue", 
+        "Dequeue"
+    ]
+}
+
+/* 25 */
+{
+    "_id" : ObjectId("606312791837471aef55775a"),
+    "exam_code" : "",
+    "question" : " A tree with no nodes is called ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Null", 
+        "Null", 
+        "Void", 
+        "Free", 
+        "Open"
+    ]
+}
+
+/* 26 */
+{
+    "_id" : ObjectId("606312791837471aef55775b"),
+    "exam_code" : "",
+    "question" : " The ___of a tree is defined to be the maximum level of any node in the tree",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Height", 
+        "Leaf", 
+        "Degree", 
+        "Value", 
+        "Height"
+    ]
+}
+
+/* 27 */
+{
+    "_id" : ObjectId("606312791837471aef55775c"),
+    "exam_code" : "",
+    "question" : " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Postorder", 
+        "Inorder", 
+        "Preorder", 
+        "Postorder", 
+        "Reverse"
+    ]
+}
+
+/* 28 */
+{
+    "_id" : ObjectId("606312791837471aef55775d"),
+    "exam_code" : "",
+    "question" : "Visiting every node on a level before going to a lower level is called ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " Breadth-first traversal", 
+        "Depth-first traversal", 
+        " Breadth-first traversal", 
+        "Length first traversal", 
+        "Node first traversal"
+    ]
+}
+
+/* 29 */
+{
+    "_id" : ObjectId("606312791837471aef55775e"),
+    "exam_code" : "",
+    "question" : " Directed link between two nodes is known as ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Arc", 
+        "Edge", 
+        "Path", 
+        "Line", 
+        "Arc"
+    ]
+}
+
+/* 30 */
+{
+    "_id" : ObjectId("606312791837471aef55775f"),
+    "exam_code" : "",
+    "question" : "A null graph contains only isolated ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Vertices", 
+        "Arcs", 
+        "Edges", 
+        "Paths", 
+        "Vertices"
+    ]
+}
+
+/* 31 */
+{
+    "_id" : ObjectId("606312791837471aef557760"),
+    "exam_code" : "",
+    "question" : "In an undirected graph, the ___ of a vertex v is the number of edges connected to v",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Degree", 
+        "Value", 
+        "Weight", 
+        "Depth", 
+        "Degree"
+    ]
+}
+
+/* 32 */
+{
+    "_id" : ObjectId("606312791837471aef557761"),
+    "exam_code" : "",
+    "question" : " What is the full form of MST?",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Minimum Spanning Tree", 
+        " Minimum Searching Tree", 
+        " Maximum Searching Tree", 
+        "Minimum Spanning Tree", 
+        "Maximum Spanning Tree"
+    ]
+}
+
+/* 33 */
+{
+    "_id" : ObjectId("6063129b1837471aef557763"),
+    "exam_code" : "",
+    "question" : " A tree with no nodes is called ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Null", 
+        "Null", 
+        "Void", 
+        "Free", 
+        "Open"
+    ]
+}
+
+/* 34 */
+{
+    "_id" : ObjectId("6063129b1837471aef557764"),
+    "exam_code" : "",
+    "question" : " The ___of a tree is defined to be the maximum level of any node in the tree",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Height", 
+        "Leaf", 
+        "Degree", 
+        "Value", 
+        "Height"
+    ]
+}
+
+/* 35 */
+{
+    "_id" : ObjectId("6063129b1837471aef557765"),
+    "exam_code" : "",
+    "question" : " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Postorder", 
+        "Inorder", 
+        "Preorder", 
+        "Postorder", 
+        "Reverse"
+    ]
+}
+
+/* 36 */
+{
+    "_id" : ObjectId("6063129b1837471aef557766"),
+    "exam_code" : "",
+    "question" : "Visiting every node on a level before going to a lower level is called ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " Breadth-first traversal", 
+        "Depth-first traversal", 
+        " Breadth-first traversal", 
+        "Length first traversal", 
+        "Node first traversal"
+    ]
+}
+
+/* 37 */
+{
+    "_id" : ObjectId("6063129b1837471aef557767"),
+    "exam_code" : "",
+    "question" : " Directed link between two nodes is known as ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Arc", 
+        "Edge", 
+        "Path", 
+        "Line", 
+        "Arc"
+    ]
+}
+
+/* 38 */
+{
+    "_id" : ObjectId("6063129b1837471aef557768"),
+    "exam_code" : "",
+    "question" : "A null graph contains only isolated ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Vertices", 
+        "Arcs", 
+        "Edges", 
+        "Paths", 
+        "Vertices"
+    ]
+}
+
+/* 39 */
+{
+    "_id" : ObjectId("6063129b1837471aef557769"),
+    "exam_code" : "",
+    "question" : "In an undirected graph, the ___ of a vertex v is the number of edges connected to v",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Degree", 
+        "Value", 
+        "Weight", 
+        "Depth", 
+        "Degree"
+    ]
+}
+
+/* 40 */
+{
+    "_id" : ObjectId("6063129b1837471aef55776a"),
+    "exam_code" : "",
+    "question" : " What is the full form of MST?",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Minimum Spanning Tree", 
+        " Minimum Searching Tree", 
+        " Maximum Searching Tree", 
+        "Minimum Spanning Tree", 
+        "Maximum Spanning Tree"
+    ]
+}
+
+/* 41 */
+{
+    "_id" : ObjectId("6063129b1837471aef55776b"),
+    "exam_code" : "",
+    "question" : " A directed graph is also referred to as a/an ___ graph",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Oriented", 
+        "Forward", 
+        "Oriented", 
+        "Biased", 
+        "Unbiased"
+    ]
+}
+
+/* 42 */
+{
+    "_id" : ObjectId("6063129b1837471aef55776c"),
+    "exam_code" : "",
+    "question" : "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Parallel", 
+        "Parallel", 
+        "Pendent", 
+        "Isolated", 
+        "Serial"
+    ]
+}
+
+/* 43 */
+{
+    "_id" : ObjectId("6063129b1837471aef55776d"),
+    "exam_code" : "",
+    "question" : "A walk that is not a directed walk is called as ___",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Semi-walk", 
+        "Semi-edge", 
+        "Semi-circuit", 
+        "Semi-walk", 
+        "Semi-path"
+    ]
+}
+
+/* 44 */
+{
+    "_id" : ObjectId("6063129b1837471aef55776e"),
+    "exam_code" : "",
+    "question" : "A connected digraph containing no circuit is called a ____",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ],
+        "A connected digraph containing no circuit is called a ____" : [ 
+            "Tree", 
+            "Path", 
+            "Loop", 
+            "Graph", 
+            "Tree"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Tree", 
+        "Path", 
+        "Loop", 
+        "Graph", 
+        "Tree"
+    ]
+}
+
+/* 45 */
+{
+    "_id" : ObjectId("6063129b1837471aef55776f"),
+    "exam_code" : "",
+    "question" : "Give the full form for PERT",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ],
+        "A connected digraph containing no circuit is called a ____" : [ 
+            "Tree", 
+            "Path", 
+            "Loop", 
+            "Graph", 
+            "Tree"
+        ],
+        "Give the full form for PERT" : [ 
+            "Program Evaluation and Review Technique", 
+            "Program Evaluation and Resetting Technique", 
+            "Program Evaluation and Review Technique", 
+            "Path Examination and Review Technique", 
+            "Path Evaluation and Review Technique"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Program Evaluation and Review Technique", 
+        "Program Evaluation and Resetting Technique", 
+        "Program Evaluation and Review Technique", 
+        "Path Examination and Review Technique", 
+        "Path Evaluation and Review Technique"
+    ]
+}
+
+/* 46 */
+{
+    "_id" : ObjectId("6063129b1837471aef557770"),
+    "exam_code" : "",
+    "question" : "Dijkstra’s algorithm is used to find the ___ path between the two vertice",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ],
+        "A connected digraph containing no circuit is called a ____" : [ 
+            "Tree", 
+            "Path", 
+            "Loop", 
+            "Graph", 
+            "Tree"
+        ],
+        "Give the full form for PERT" : [ 
+            "Program Evaluation and Review Technique", 
+            "Program Evaluation and Resetting Technique", 
+            "Program Evaluation and Review Technique", 
+            "Path Examination and Review Technique", 
+            "Path Evaluation and Review Technique"
+        ],
+        "Dijkstra’s algorithm is used to find the ___ path between the two vertice" : [ 
+            "Shortest", 
+            "Directed", 
+            "Weighted", 
+            "Longest", 
+            "Shortest"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Shortest", 
+        "Directed", 
+        "Weighted", 
+        "Longest", 
+        "Shortest"
+    ]
+}
+
+/* 47 */
+{
+    "_id" : ObjectId("6063129b1837471aef557771"),
+    "exam_code" : "",
+    "question" : "A/an ___ algorithm is used to solve an optimization problem",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ],
+        "A connected digraph containing no circuit is called a ____" : [ 
+            "Tree", 
+            "Path", 
+            "Loop", 
+            "Graph", 
+            "Tree"
+        ],
+        "Give the full form for PERT" : [ 
+            "Program Evaluation and Review Technique", 
+            "Program Evaluation and Resetting Technique", 
+            "Program Evaluation and Review Technique", 
+            "Path Examination and Review Technique", 
+            "Path Evaluation and Review Technique"
+        ],
+        "Dijkstra’s algorithm is used to find the ___ path between the two vertice" : [ 
+            "Shortest", 
+            "Directed", 
+            "Weighted", 
+            "Longest", 
+            "Shortest"
+        ],
+        "A/an ___ algorithm is used to solve an optimization problem" : [ 
+            "Optimization", 
+            "Complete", 
+            "Approximation", 
+            "Optimization", 
+            "Decision"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Optimization", 
+        "Complete", 
+        "Approximation", 
+        "Optimization", 
+        "Decision"
+    ]
+}
+
+/* 48 */
+{
+    "_id" : ObjectId("6063129b1837471aef557772"),
+    "exam_code" : "",
+    "question" : " ___ is the class of all decision problems that are polynomially bounded",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ],
+        "A connected digraph containing no circuit is called a ____" : [ 
+            "Tree", 
+            "Path", 
+            "Loop", 
+            "Graph", 
+            "Tree"
+        ],
+        "Give the full form for PERT" : [ 
+            "Program Evaluation and Review Technique", 
+            "Program Evaluation and Resetting Technique", 
+            "Program Evaluation and Review Technique", 
+            "Path Examination and Review Technique", 
+            "Path Evaluation and Review Technique"
+        ],
+        "Dijkstra’s algorithm is used to find the ___ path between the two vertice" : [ 
+            "Shortest", 
+            "Directed", 
+            "Weighted", 
+            "Longest", 
+            "Shortest"
+        ],
+        "A/an ___ algorithm is used to solve an optimization problem" : [ 
+            "Optimization", 
+            "Complete", 
+            "Approximation", 
+            "Optimization", 
+            "Decision"
+        ],
+        " ___ is the class of all decision problems that are polynomially bounded" : [ 
+            "P", 
+            "P", 
+            "NP", 
+            "NP-complete", 
+            "NP-hard"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "P", 
+        "P", 
+        "NP", 
+        "NP-complete", 
+        "NP-hard"
+    ]
+}
+
+/* 49 */
+{
+    "_id" : ObjectId("6063129b1837471aef557773"),
+    "exam_code" : "",
+    "question" : "___ is the process of arranging a collection of items in some specified order",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ],
+        "A connected digraph containing no circuit is called a ____" : [ 
+            "Tree", 
+            "Path", 
+            "Loop", 
+            "Graph", 
+            "Tree"
+        ],
+        "Give the full form for PERT" : [ 
+            "Program Evaluation and Review Technique", 
+            "Program Evaluation and Resetting Technique", 
+            "Program Evaluation and Review Technique", 
+            "Path Examination and Review Technique", 
+            "Path Evaluation and Review Technique"
+        ],
+        "Dijkstra’s algorithm is used to find the ___ path between the two vertice" : [ 
+            "Shortest", 
+            "Directed", 
+            "Weighted", 
+            "Longest", 
+            "Shortest"
+        ],
+        "A/an ___ algorithm is used to solve an optimization problem" : [ 
+            "Optimization", 
+            "Complete", 
+            "Approximation", 
+            "Optimization", 
+            "Decision"
+        ],
+        " ___ is the class of all decision problems that are polynomially bounded" : [ 
+            "P", 
+            "P", 
+            "NP", 
+            "NP-complete", 
+            "NP-hard"
+        ],
+        "___ is the process of arranging a collection of items in some specified order" : [ 
+            "Sorting", 
+            "Traversing", 
+            "Searching", 
+            "Directing", 
+            "Sorting"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        "Sorting", 
+        "Traversing", 
+        "Searching", 
+        "Directing", 
+        "Sorting"
+    ]
+}
+
+/* 50 */
+{
+    "_id" : ObjectId("6063129b1837471aef557774"),
+    "exam_code" : "",
+    "question" : "___ compares the first two elements and arranges them accordingly",
+    "question_dictionary" : {
+        " A tree with no nodes is called ___" : [ 
+            "Null", 
+            "Null", 
+            "Void", 
+            "Free", 
+            "Open"
+        ],
+        " The ___of a tree is defined to be the maximum level of any node in the tree" : [ 
+            "Height", 
+            "Leaf", 
+            "Degree", 
+            "Value", 
+            "Height"
+        ],
+        " In ___traversal, traversal starts with the leftmost subtree, then proceeds with the right subtree and then visits the parent node" : [ 
+            "Postorder", 
+            "Inorder", 
+            "Preorder", 
+            "Postorder", 
+            "Reverse"
+        ],
+        "Visiting every node on a level before going to a lower level is called ___" : [ 
+            " Breadth-first traversal", 
+            "Depth-first traversal", 
+            " Breadth-first traversal", 
+            "Length first traversal", 
+            "Node first traversal"
+        ],
+        " Directed link between two nodes is known as ___" : [ 
+            "Arc", 
+            "Edge", 
+            "Path", 
+            "Line", 
+            "Arc"
+        ],
+        "A null graph contains only isolated ___" : [ 
+            "Vertices", 
+            "Arcs", 
+            "Edges", 
+            "Paths", 
+            "Vertices"
+        ],
+        "In an undirected graph, the ___ of a vertex v is the number of edges connected to v" : [ 
+            "Degree", 
+            "Value", 
+            "Weight", 
+            "Depth", 
+            "Degree"
+        ],
+        " What is the full form of MST?" : [ 
+            "Minimum Spanning Tree", 
+            " Minimum Searching Tree", 
+            " Maximum Searching Tree", 
+            "Minimum Spanning Tree", 
+            "Maximum Spanning Tree"
+        ],
+        " A directed graph is also referred to as a/an ___ graph" : [ 
+            "Oriented", 
+            "Forward", 
+            "Oriented", 
+            "Biased", 
+            "Unbiased"
+        ],
+        "Two directed edges are said to be ___ edges if they are mapped onto the same ordered pair of vertices" : [ 
+            "Parallel", 
+            "Parallel", 
+            "Pendent", 
+            "Isolated", 
+            "Serial"
+        ],
+        "A walk that is not a directed walk is called as ___" : [ 
+            "Semi-walk", 
+            "Semi-edge", 
+            "Semi-circuit", 
+            "Semi-walk", 
+            "Semi-path"
+        ],
+        "A connected digraph containing no circuit is called a ____" : [ 
+            "Tree", 
+            "Path", 
+            "Loop", 
+            "Graph", 
+            "Tree"
+        ],
+        "Give the full form for PERT" : [ 
+            "Program Evaluation and Review Technique", 
+            "Program Evaluation and Resetting Technique", 
+            "Program Evaluation and Review Technique", 
+            "Path Examination and Review Technique", 
+            "Path Evaluation and Review Technique"
+        ],
+        "Dijkstra’s algorithm is used to find the ___ path between the two vertice" : [ 
+            "Shortest", 
+            "Directed", 
+            "Weighted", 
+            "Longest", 
+            "Shortest"
+        ],
+        "A/an ___ algorithm is used to solve an optimization problem" : [ 
+            "Optimization", 
+            "Complete", 
+            "Approximation", 
+            "Optimization", 
+            "Decision"
+        ],
+        " ___ is the class of all decision problems that are polynomially bounded" : [ 
+            "P", 
+            "P", 
+            "NP", 
+            "NP-complete", 
+            "NP-hard"
+        ],
+        "___ is the process of arranging a collection of items in some specified order" : [ 
+            "Sorting", 
+            "Traversing", 
+            "Searching", 
+            "Directing", 
+            "Sorting"
+        ],
+        "___ compares the first two elements and arranges them accordingly" : [ 
+            " Bubble Sort", 
+            " Merge Sort", 
+            " Bubble Sort", 
+            "Binary Sort", 
+            "Quick Sort"
+        ]
+    },
+    "list_of_mcq_option" : [ 
+        " Bubble Sort", 
+        " Merge Sort", 
+        " Bubble Sort", 
+        "Binary Sort", 
+        "Quick Sort"
+    ]
+}
