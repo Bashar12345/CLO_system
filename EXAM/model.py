@@ -1,4 +1,5 @@
 # import mongoengine as nosql
+from EXAM.Test_paper.routes import Complexity_label
 from flask import current_app
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as serializer
@@ -66,9 +67,22 @@ class user_student(nosql.Document):
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
 
+class course_model(nosql.Document):
+    course_title = nosql.StringField()
+    course_code = nosql.StringField()
+    course_co = nosql.StringField()
+    course_lessons = nosql.ListField()
+    course_duration = nosql.StringField()
+    course_caption = nosql.StringField()
+
 class mcqQuestion(nosql.Document):
     exam_code = nosql.StringField(default="")
     question=nosql.StringField(check_keys=False)
+    course_title=course_model.course_title
+    course_code=course_model.course_code
+    complex_level=nosql.StringField(default="1")
+    quesCLO=nosql.StringField()
+    lesson=nosql.Stringfield()
     question_dictionary = nosql.DictField(check_keys=False)
     list_of_mcq_option = nosql.ListField(nosql.StringField(check_keys=False), default=list)  # For Update purpose
 
@@ -122,13 +136,7 @@ class exam_mcq_question_paper(nosql.Document):
     # embed_ques =nosql.ListField(EmbeddedDocumentField())
 
 
-class course_model(nosql.Document):
-    course_title = nosql.StringField()
-    course_code = nosql.StringField()
-    course_co = nosql.StringField()
-    course_lessons = nosql.ListField()
-    course_duration = nosql.StringField()
-    course_caption = nosql.StringField()
+
 
 
 class teacher_created_courses_model(nosql.Document):
@@ -171,9 +179,9 @@ class enrol_students_model(nosql.Document):
 class machine_learning_mcq_model(nosql.Document):
     course_title = course_model.course_title
     course_code = course_model.course_code
-    lesson = nosql.StringField()
-    quesCLO = nosql.StringField()
-    complexity_label = nosql.StringField()
+    lesson = mcqQuestion.lesson
+    quesCLO = mcqQuestion.quesCLO
+    complex_level = mcqQuestion.complex_level
     question_dictionary = mcqQuestion.question_dictionary# ekhane kazz baki aseee
 
 # kaz baki ase

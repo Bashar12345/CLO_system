@@ -147,7 +147,7 @@ def question_view(course_code):
     # print(questions_objects)
     for i in machine_learning_mcq_model.objects(
             course_code=course_code):
-        questions = i.mcq
+        questions = i.question_dictionary
     # print(questions)
     return render_template('question_view/view_questions.html', questions=questions, title='question_view',user_type=User_type.user_type, course_code=course_code)
 
