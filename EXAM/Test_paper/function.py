@@ -160,12 +160,10 @@ def mcq_uploading_processsing(get_form):
                 mcq_question_options_tuple.append(mcq_options)
                 count.append(count.pop() + 1)
             print(mcq_question_options_tuple)
-
-            mcq_question_dictionary.update(
-                {mcq_Question: mcq_question_options_tuple})
+            mcq_question_dictionary={mcq_Question: mcq_question_options_tuple}
             print(mcq_question_dictionary)
-            
             question_model=mcqQuestion()
+
             question_model.course_title = course_title
             question_model.course_code = course_code
             question_model.lesson = topic
@@ -177,6 +175,7 @@ def mcq_uploading_processsing(get_form):
             question_model.save()
 
             mcq_question_options_tuple = []
+            #mcq_question_dictionary={}
         # question_model = machine_learning_mcq_model()
         # question_model.course_title = course_title
         # question_model.course_code = course_code

@@ -68,6 +68,11 @@ class user_student(nosql.Document):
 
 class mcqQuestion(nosql.Document):
     exam_code = nosql.StringField(default="")
+    course_title=nosql.StringField()
+    course_code=nosql.StringField()
+    complex_level=nosql.StringField(default="1")
+    quesCLO=nosql.StringField()
+    lesson=nosql.StringField()
     question=nosql.StringField(check_keys=False)
     question_dictionary = nosql.DictField(check_keys=False)
     list_of_mcq_option = nosql.ListField(nosql.StringField(check_keys=False), default=list)  # For Update purpose
