@@ -68,12 +68,12 @@ class user_student(nosql.Document):
 
 class mcqQuestion(nosql.Document):
     exam_code = nosql.StringField(default="")
-    question=nosql.StringField()
-    question_dictionary = nosql.DictField()
-    list_of_mcq_option = nosql.ListField(nosql.StringField(), default=list)  # For Update purpose
+    question=nosql.StringField(check_keys=False)
+    question_dictionary = nosql.DictField(check_keys=False)
+    list_of_mcq_option = nosql.ListField(nosql.StringField(check_keys=False), default=list)  # For Update purpose
 
-    def __repr__(self):
-        return f"{self.question_dictionary}"
+    # def __repr__(self):
+    #     return f"{self.question_dictionary}"
 
 
 class set_exam_question_slot(nosql.Document):

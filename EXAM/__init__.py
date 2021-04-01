@@ -1,6 +1,5 @@
 
 import os
-import pymongo
 import csv
 import pandas as pd
 from flask import Flask
@@ -15,7 +14,7 @@ from flask_login import LoginManager, current_user
 from EXAM.configaration import Config
 #from EXAM.machine import machine_process
 
-from pymongo import MongoClient
+#from pymongo import MongoClient
 from flask_mongoengine import MongoEngine
 
 

@@ -138,7 +138,6 @@ def mcq_uploading_processsing(get_form):
     # print(type(op))  #options per question
     # length = 0
     # print(op)
-    question_model = mcqQuestion()
     if number_of_question:
         count = [1]
         for i in range(int(number_of_question)):
@@ -165,28 +164,23 @@ def mcq_uploading_processsing(get_form):
             mcq_question_dictionary.update(
                 {mcq_Question: mcq_question_options_tuple})
             print(mcq_question_dictionary)
-            try:
-                question_model.question = mcq_Question
-                question_model.list_of_mcq_option = mcq_question_options_tuple
-                question_model.question_dictionary = mcq_question_dictionary
-                question_model.save()
-            except Exception as e:
-                print(str(e))
+            question_model=mcqQuestion()
+            question_model.question = mcq_Question
+            question_model.list_of_mcq_option = mcq_question_options_tuple
+            question_model.question_dictionary = mcq_question_dictionary
+            question_model.save()
 
             mcq_question_options_tuple = []
 
-        try:
-            mcq_model = machine_learning_mcq_model()
-            mcq_model.course_title = course_title
-            mcq_model.course_code = course_code
-            mcq_model.lesson = topic
-            mcq_model.quesCLO = quesCLO
-            mcq_model.complexity_label = Complexity_label
-            mcq_model.question_dictionary = mcq_question_dictionary
-            mcq_model.save()
-            print("checking mcqUpload html Finished ")
-        except Exception as e:
-            print(str(e))
+        mcq_model = machine_learning_mcq_model()
+        mcq_model.course_title = course_title
+        mcq_model.course_code = course_code
+        mcq_model.lesson = topic
+        mcq_model.quesCLO = quesCLO
+        mcq_model.complexity_label = Complexity_label
+        mcq_model.question_dictionary = mcq_question_dictionary
+        mcq_model.save()
+        print("checking mcqUpload html Finished ")
         """questions = request.form.getlist("question1")
         print(questions)"""
         """cookies = request.cookies
@@ -388,8 +382,10 @@ def machine_process_data(mcq_questions):
     question_part=machine_process_data_wrangling(mcq_questions)
     # prepared shffled question list for machine prediction 
     shuffled_list=catch_the_shuffled_question_list(question_part)
+    #make a question for deleivery 
+    a_question(shuffled_list)
     # algorithm magic 
-    machine_predict_result(shuffled_list)
+    machine_predict_result()
 
 
 def machine_process_data_wrangling(requirement_for_mcq_questions):
@@ -432,8 +428,16 @@ def catch_the_shuffled_question_list(question_part):
     print(full_set_shuffled_question)
     return shuffled_question_list
 
-def machine_predict_result(shuffled_list):
+
+def a_question(shuffled_list):
+    
+    pass
+
+
+
+def machine_predict_result():
     # algorithom er kaz korte krter hobe------------------------------------------------------
+    pass
 
 
 
