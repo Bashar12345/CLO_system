@@ -444,6 +444,9 @@ def a_question(shuffled_list,objects_of_requirement):
 
 def machine_predict_result():
     # algorithom er kaz korte krter hobe------------------------------------------------------
+    #question_data= pd.read_csv()
+
+
 
     pass
 
