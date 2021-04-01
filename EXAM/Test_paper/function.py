@@ -1,5 +1,7 @@
 # import json
 import random
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
 # import fileinput
 # from PIL import Image
 from EXAM.configaration import user_obj
@@ -381,18 +383,19 @@ def mcq_question_answer_submit(get_form):
     return "done"
 
 
-def machine_process_data(mcq_questions):
+def machine_process_data(requirement_for_mcq_questions):
     # data cleaning for shuffle  
-    question_part=machine_process_data_wrangling(mcq_questions)
+    objects_of_requirement=requirement_for_mcq_questions
+    question_part=machine_process_data_wrangling(objects_of_requirement)
     # prepared shffled question list for machine prediction 
     shuffled_list=catch_the_shuffled_question_list(question_part)
     #make a question for deleivery 
-    a_question(shuffled_list)
+    a_question(shuffled_list,objects_of_requirement)
     # algorithm magic 
     machine_predict_result()
 
 
-def machine_process_data_wrangling(requirement_for_mcq_questions):
+def machine_process_data_wrangling(objects_of_requirement):
     # courses= course_model.objects()
     # required_data=required_for_generate.objects()
     # question_model=machine_learning_mcq_model.objects()
@@ -405,7 +408,7 @@ def machine_process_data_wrangling(requirement_for_mcq_questions):
     needed_course_code = []
     MCQ_questions = []
     question_part = []
-    crse_code = requirement_for_mcq_questions.course_code
+    crse_code = objects_of_requirement.course_code
     for i in machine_learning_mcq_model.objects(course_code=crse_code):
         MCQ_questions.append(i['mcq'])
     print(MCQ_questions)
@@ -421,26 +424,27 @@ def machine_process_data_wrangling(requirement_for_mcq_questions):
 def catch_the_shuffled_question_list(question_part):
     shuffled_question_list = []
     full_set_shuffled_question = []
-    for i in question_part:
-        for j in mcqQuestion.objects(question=i):
-            shuffled_question_list = i.question_dictionary
+    for ques in question_part:
+        for j in mcqQuestion.objects(question=ques):
+            shuffled_question_list = ques.question_dictionary
     print(shuffled_question_list)
-    for i in shuffled_question_list:
-        question_bank = mcqQuestion.objects(question=i).first()
+    for ques in shuffled_question_list:
+        question_bank = mcqQuestion.objects(question=ques).first()
         print(question_bank.question_dictionary)
         full_set_shuffled_question.append(question_bank.question_dictionary)
     print(full_set_shuffled_question)
     return shuffled_question_list
 
 
-def a_question(shuffled_list):
-    
+def a_question(shuffled_list,objects_of_requirement):
+    random.sample(shuffled_list,k=objects_of_requirement.number_of_question)
     pass
 
 
 
 def machine_predict_result():
     # algorithom er kaz korte krter hobe------------------------------------------------------
+
     pass
 
 
