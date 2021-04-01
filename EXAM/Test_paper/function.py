@@ -165,21 +165,25 @@ def mcq_uploading_processsing(get_form):
                 {mcq_Question: mcq_question_options_tuple})
             print(mcq_question_dictionary)
             question_model=mcqQuestion()
+            question_model.course_title = course_title
+            question_model.course_code = course_code
+            question_model.lesson = topic
+            question_model.quesCLO = quesCLO
+            question_model.complexity_label = Complexity_label
             question_model.question = mcq_Question
             question_model.list_of_mcq_option = mcq_question_options_tuple
             question_model.question_dictionary = mcq_question_dictionary
             question_model.save()
 
             mcq_question_options_tuple = []
-
-        mcq_model = machine_learning_mcq_model()
-        mcq_model.course_title = course_title
-        mcq_model.course_code = course_code
-        mcq_model.lesson = topic
-        mcq_model.quesCLO = quesCLO
-        mcq_model.complexity_label = Complexity_label
-        mcq_model.question_dictionary = mcq_question_dictionary
-        mcq_model.save()
+        # question_model = machine_learning_mcq_model()
+        # question_model.course_title = course_title
+        # question_model.course_code = course_code
+        # question_model.lesson = topic
+        # question_model.quesCLO = quesCLO
+        # question_model.complexity_label = Complexity_label
+        # question_model.question_dictionary = mcq_question_dictionary
+        # question_model.save()
         print("checking mcqUpload html Finished ")
         """questions = request.form.getlist("question1")
         print(questions)"""
@@ -391,7 +395,7 @@ def machine_process_data(mcq_questions):
 def machine_process_data_wrangling(requirement_for_mcq_questions):
     # courses= course_model.objects()
     # required_data=required_for_generate.objects()
-    # mcq_model=machine_learning_mcq_model.objects()
+    # question_model=machine_learning_mcq_model.objects()
     # connection = MongoClient('localhost', 27017)
     # mongosql = connection.exam
     # required = mongosql.required_for_generate
