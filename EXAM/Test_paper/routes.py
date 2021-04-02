@@ -49,15 +49,7 @@ def examiner():
     )
 
 
-# paginate kora
-"""@Test_paper.route('/view_courses', methods=['GET', 'POST'])
-# @login_required
-def view_courses():
-    page = request.args.get('page',1,type=int)
-    # paginate_page
-    paginated_course = course_model.objects.order_by('course_code').paginate(
-            page=page, per_page=3)
-    return render_template('teacher/view_courses.html', paginated_course=paginated_course, title='View courses', user_type=User_type.user_type)"""
+
 
 
 @Test_paper.route("/wrqu", methods=["GET", "POST"])
@@ -269,20 +261,7 @@ def mcqUpload_lesson_selection_load():
     return response_to_browser
 
 
-"""@Test_paper.route('/countdown', methods=['GET', 'POST'])
-def countdown():
-    return render_template('count_Down.html', title='countdown')"""
 
-"""@Test_paper.route('/mcqqu', methods=['GET', 'POST'])
-def mcqqu():
-    form = McqQuestion_Paper_Form()
-    mcq_question_form(form)
-    return render_template('mcqqu.html', posts=posts, title='MCQ_question_Page', form=form)"""
-""" mcq = mcq_questions.mcq_question.question_dictionary
-    for i in mcq:
-        print(i + "\n")
-        for j in mcq[i]:
-            print(j)"""
 
 
 @Test_paper.route("/generateMCQ", methods=["GET", "POST"])
@@ -446,10 +425,33 @@ def sample():
 
 
 
+# paginate kora
+"""@Test_paper.route('/view_courses', methods=['GET', 'POST'])
+# @login_required
+def view_courses():
+    page = request.args.get('page',1,type=int)
+    # paginate_page
+    paginated_course = course_model.objects.order_by('course_code').paginate(
+            page=page, per_page=3)
+    return render_template('teacher/view_courses.html', paginated_course=paginated_course, title='View courses', user_type=User_type.user_type)"""
 
 
 
 
+"""@Test_paper.route('/countdown', methods=['GET', 'POST'])
+def countdown():
+    return render_template('count_Down.html', title='countdown')"""
+
+"""@Test_paper.route('/mcqqu', methods=['GET', 'POST'])
+def mcqqu():
+    form = McqQuestion_Paper_Form()
+    mcq_question_form(form)
+    return render_template('mcqqu.html', posts=posts, title='MCQ_question_Page', form=form)"""
+""" mcq = mcq_questions.mcq_question.question_dictionary
+    for i in mcq:
+        print(i + "\n")
+        for j in mcq[i]:
+            print(j)"""
 
 
 

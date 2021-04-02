@@ -178,7 +178,8 @@ class machine_learning_mcq_model(nosql.Document):
     course_code = course_model.course_code
     lesson = nosql.StringField()
     quesCLO = nosql.StringField()
-    complexity_label = nosql.StringField()
+    difficulty=nosql.StringField()
+    type = nosql.StringField()
     question_dictionary = mcqQuestion.question_dictionary# ekhane kazz baki aseee
 
 # kaz baki ase

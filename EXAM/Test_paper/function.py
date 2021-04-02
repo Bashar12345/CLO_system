@@ -390,9 +390,9 @@ def machine_process_data(requirement_for_mcq_questions):
     # prepared shffled question list for machine prediction 
     shuffled_list=catch_the_shuffled_question_list(question_part)
     #make a question for deleivery 
-    a_question(shuffled_list,objects_of_requirement)
+    randomly_created_question=a_question(shuffled_list,objects_of_requirement)
     # algorithm magic 
-    machine_predict_result()
+    machine_predict_result(randomly_created_question)
 
 
 def machine_process_data_wrangling(objects_of_requirement):
@@ -437,14 +437,24 @@ def catch_the_shuffled_question_list(question_part):
 
 
 def a_question(shuffled_list,objects_of_requirement):
-    random.sample(shuffled_list,k=objects_of_requirement.number_of_question)
+    new_question_list=list()
+    #new_question_dict=dict()
+    question_data=random.sample(shuffled_list,k=objects_of_requirement.number_of_question)
+    for question in question_data:
+        for full_set in mcqQuestion.objects(question=question).first():
+            new_question_list.append(full_set.question_dictionary)
+    print(new_question_list)
+    return new_question_list
     pass
 
 
 
-def machine_predict_result():
+def machine_predict_result(question_for_prediction):
     # algorithom er kaz korte krter hobe------------------------------------------------------
     #question_data= pd.read_csv()
+    ML_model=machine_learning_mcq_model.objects()
+    #df= pd.DataFrame(list(ML_model))
+    
 
 
 
