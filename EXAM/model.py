@@ -176,11 +176,12 @@ class enrol_students_model(nosql.Document):
 class machine_learning_mcq_model(nosql.Document):
     course_title = course_model.course_title
     course_code = course_model.course_code
-    lesson = nosql.StringField()
-    quesCLO = nosql.StringField()
-    difficulty=nosql.StringField()
-    type = nosql.StringField()
+    #lesson = nosql.StringField()
+    #quesCLO = nosql.StringField()
     question_dictionary = mcqQuestion.question_dictionary# ekhane kazz baki aseee
+    difficulty=nosql.StringField()
+    type = nosql.IntField() # 0 for written, # 1 for mcq 
+    question_point=nosql.FloatField()
 
 # kaz baki ase
 class required_for_generate(nosql.Document):
