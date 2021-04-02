@@ -1,4 +1,6 @@
 # import json
+import pymongo
+from pymongo import MongoClient
 import random
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
@@ -452,11 +454,13 @@ def a_question(shuffled_list,objects_of_requirement):
 def machine_predict_result(question_for_prediction):
     # algorithom er kaz korte krter hobe------------------------------------------------------
     #question_data= pd.read_csv()
-    ML_model=machine_learning_mcq_model.objects()
-    #df= pd.DataFrame(list(ML_model))
-    
-
-
+    connection = MongoClient('localhost',27017)
+    mongosql=connection.exam
+    ML_model=mongosql.mcq_question  # database e je name create hoise oi nam dite hobe 
+    mcq=ML_model.find()
+    #ML_model=machine_learning_mcq_model.objects()
+    df= pd.DataFrame(list(mcq))
+    # df=pd.concat()
 
     pass
 
