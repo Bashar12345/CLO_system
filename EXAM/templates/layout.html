@@ -53,7 +53,20 @@
     <!--script src="jquery-3.5.1.min.js"></script-->
     <div class="header" id="header">
         <!--<img  class="img-fluid" src="{{url_for('static', filename= "Logo_of_Viqarunnisa_Noon_School_and_College.jpeg")}}"/>-->
-        <h1 style="background-color: #0d0d0d" ;>Exam, world!</h1>
+        <h1 style="background-color: #0d0d0d" ;>Exam, world!</h1><br/>
+        <div class="row justify-content-end">
+        {% if current_user.is_authenticated %}
+            {% if user_type == 'teacher' %}
+                <h4>Teacher Page</h4>
+                {% endif %}
+            {% if user_type == 'student' %}
+                <h4>Student Page</h4>
+            {% endif %}
+        {% else %}
+            <h4></h4>
+        {% endif %}
+
+    </div>
     </div>
 </header>
     <!-- Navigation  NAVVVVVVVVVVVVVVV part start  -->
@@ -62,7 +75,7 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Exam</a>
+        <a class="navbar-brand" href="#"><h3>Exam</h3></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
@@ -70,32 +83,31 @@
                 </li>
                 {% if user_type == 'teacher' %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('Test_paper.examiner') }}">Examiner</a>
+                    <a class="nav-link" href="{{ url_for('main.create_course') }}"><b>Create-Course</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.create_course') }}">Create course</a>
+                    <a class="nav-link" href="{{ url_for('Test_paper.examiner') }}"><b>Examiner</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.view_courses') }}">View courses</a>
+                    <a class="nav-link" href="{{ url_for('main.view_courses') }}"><b>View-courses</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}">My_course Students</a>
+                    <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}"><b>My-course-Students</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.guildLineForTeacher') }}">Teacher-guildLine</a>
+                    <a class="nav-link" href="{{ url_for('main.guildLineForTeacher') }}"><b>Teacher-guildLine</b></a>
                 </li>
                 {% endif %}
                 {% if user_type == 'student' %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">Exam Schedule</a>
+                    <a class="nav-link" href="{{ url_for('main.student_dashboard') }}"><b>Exam-Schedule</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.view_courses') }}"><b>Enrolled-Courses</b></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.view_courses') }}">Enrolled Courses</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.guideline') }}">Guideline</a>
+                    <a class="nav-link" href="{{ url_for('main.guideline') }}"><b>Guideline</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
@@ -172,10 +184,10 @@ function enrol(){
 <footer>
     <div class="row justify-content-around bg-transparent">
         <div class="col-4">
-            <p>This is an app for online exam.</p>
+            <p>This is an app for online exam developed by bashar</p>
         </div>
         <div class="col-4">
-            <p>Ekhane web info deya ase</p>
+            <p>Ekhane web info deya Hobe Under construction</p>
         </div>
     </div>
 

@@ -6,40 +6,41 @@ function load() {
     //alert("Is it working");
     $("#total").focus();
     $("#options").focus();
-    $("#btn_course_title").focus();
-    $("#course_code").focus();
+    //$("#btn_course_title").focus();
+    $("#btn_course_code").focus();
+    $("#btn_option").focus();
 
 
-    $("#btn_course_title").click(function(){
-        $('#course_code').empty();
-        var course = $("#course_title").val();
-        var code =$("#course_code");
-        var len =0
-        //var lessons =$('#lesson');
-        //alert("" + course);
-            fetch(`/mcqUpload_course_code_selection_load?c=${course.replace(/\s+/g, ';')}`).then(function(response){
-                response.json().then(function(route_data){
-                    var option_code_HTML='';
-                    //var option_lesson_HTML='';
-                    option_code_HTML+=`<option value="null">Choose one</option>`;
+//     $("#btn_course_title").click(function(){
+//         $('#course_code').empty();
+//         var course = $("#course_title").val();
+//         var code =$("#course_code");
+//         var len =0
+//         //var lessons =$('#lesson');
+//         //alert("" + course);
+//             fetch(`/mcqUpload_course_code_selection_load?c=${course.replace(/\s+/g, ';')}`).then(function(response){
+//                 response.json().then(function(route_data){
+//                     var option_code_HTML='';
+//                     //var option_lesson_HTML='';
+//                     option_code_HTML+=`<option value="null">Choose one</option>`;
                     
-                    for (var i = 0; i < route_data.length; i++) {
-                        option_code_HTML+=`<option value="${route_data[i].course_code}">${route_data[i].course_code}</option>`;
-                        //option_lesson_HTML+=`<option value="${route_data[i].course_lessons}">${route_data[i].course_lessons}</option>`;
-                        //console.log(optionHTML)
-                        //console.log(option_lesson_HTML)
+//                     for (var i = 0; i < route_data.length; i++) {
+//                         option_code_HTML+=`<option value="${route_data[i].course_code}">${route_data[i].course_code}</option>`;
+//                         //option_lesson_HTML+=`<option value="${route_data[i].course_lessons}">${route_data[i].course_lessons}</option>`;
+//                         //console.log(optionHTML)
+//                         //console.log(option_lesson_HTML)
                         
-                    }
-                    code.append(option_code_HTML);
-                    len++
-                    //lessons.append(option_lesson_HTML);
+//                     }
+//                     code.append(option_code_HTML);
+//                     len++
+//                     //lessons.append(option_lesson_HTML);
 
-                });
-    });
-});
+//                 });
+//     });
+// });
 
 
-    $("#course_code").change(function(){
+    $("#btn_course_code").click(function(){
         $('#lesson').empty();
         var code =$("#course_code").val();
         var lessons =$('#lesson');
@@ -58,16 +59,33 @@ function load() {
 
 });
 
-    $("#total_btn").click(function(){
-        $('#addQuestion').empty();
+$("#btn_course_code").click(function(){
+    $('#clo').empty();
+    var code =$("#course_code").val();
+    var clos =$('#clo');
+
+fetch(`/mcqUpload_clo_selection_load?c=${code}`).then(function(response){
+    response.json().then(function(clo_array){
+        var optionHTML='';
+        for (var i = 0; i < clo_array.length; i++) {
+            optionHTML+=`<option value="${clo_array[i]}">${clo_array[i]}</option>`;
+            console.log(optionHTML);
+        }
+        clos.append(optionHTML);
+    });
+});
+
+});
+
+
+    $("#total_questions_btn").click(function(){
+        //$('#addQuestion').empty();
         var total_questions = $("#total").val();
         var options = $("#options").val();
         //alert("" + total_questions);
-
         if (total_questions > 0) {
             createTable(total_questions,options);
         }
-
     });
 
 }
@@ -76,6 +94,8 @@ function load() {
             var inputTable="";
             var count =1;
             inputTable =`<div class="container">`;
+
+//{#% if count.append(count.pop() + 1) %#}{#% endif %#} {# increment count by 1 #}
 
 for (var i = 0; i <total_questions; i++) {
     inputTable += `  <div>
@@ -105,6 +125,59 @@ for (var j = 0; j < options; j++) {
 
         $('#addQuestion').append(inputTable);
     }  
+
+
+
+
+
+
+//     $("#total_questions_btn").click(function(){
+//         //$('#addQuestion').empty();
+//         var total_questions = $("#total").val();
+//         var options = $("#options").val();
+//         //alert("" + total_questions);
+//         if (total_questions > 0) {
+//             createTable(total_questions,options);
+//         }
+//     });
+
+// }
+
+//         function createTable(total_questions,options) {
+//             var inputTable="";
+//             var count =1;
+//             inputTable =`<div class="container">`;
+
+// //{#% if count.append(count.pop() + 1) %#}{#% endif %#} {# increment count by 1 #}
+
+// for (var i = 0; i <total_questions; i++) {
+//     inputTable += `  <div>
+//     <label class="form-control-label" for="question-${i + 1}"><br/>
+//     <h4>Question ${i + 1}:</h4>
+//     </label>
+// </div>
+// <div>
+// <input class="form-control" id="question-'+ i +'" name="question${i}" type="text"
+//     placeholder="EnterQuestion-${i + 1}" /><br/>
+// </div>`;
+// inputTable += `<label class="form-control-label" ><h5>MCQ-${i + 1} Answer:</h5></label><br/>`;
+//     inputTable += `<input class="form-control" type="text" id="answer" name="answer${i}" 
+//         placeholder="Enter Answer-${i + 1}">`;
+
+//         inputTable +=  `<div class="row"><br/>`;
+// for (var j = 0; j < options; j++) {
+    
+//     inputTable +=`<div class="input-group mb-3"><label>Option-${j+1}:</label><br>
+//     <div class="input-group-append mb-3"><input type="text" name="op[${j+count}]" placeholder="Enter Option-${j+1}"></div><br/>`;
+    
+//     inputTable += `</div>`;
+// } 
+//         inputTable += `</div>`;
+//         count=count+parseInt(options);
+//         }
+
+//         $('#addQuestion').append(inputTable);
+//     }  
 
 
 

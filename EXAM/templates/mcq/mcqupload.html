@@ -8,8 +8,10 @@
     <form class="form-horizontal form-group" method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <div>
+            <h1>Upload MCQ Questions </h1>
+            <br/>
 
-        <div class="d-flex justify-content-start">
+        <!--div class="d-flex justify-content-start">
             <div class="d-flex flex-wrap ">
                     <legend class=" custom-control-label">Questions for Particular Course</legend>
                 <div class="input-group mb-3">
@@ -25,14 +27,31 @@
                     </div>
                 </div>
             </div>
+        </div-->
+
+        <div class="d-flex justify-content-start">
+            <div class="d-flex flex-wrap ">
+                    <legend class=" custom-control-label">Questions for Particular Course</legend>
+                <div class="input-group mb-3">
+                    <input id="course_code" list="course_name" class="custom-select custom-select-md mb-3 btn-outline-info "
+                        aria-label=".custom-select-lg example" name="course_title" required>
+                    <datalist id="course_name">
+                        {%for course_codes in course_code %}
+                        <option value="{{course_codes}}">{{course_codes}}</option>
+                        {% endfor %}
+                    </datalist>
+                    <div class="input-group-append mb-3">
+                        <button  id="btn_course_code" class="btn btn-outline-secondary" type="button">Load</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-
-            <div class="d-flex justify-content-end">
+            <!--div class="d-flex justify-content-end">
                 {{ form.course_code.label(class="custom-control-label") }}
                 <br />
                 {{ form.course_code(class="form-radio") }}
-            </div>
+            </div-->
 
             <div class="d-flex justify-content-end">
                 {{ form.lesson.label(class="custom-control-label") }}
@@ -58,7 +77,7 @@
 
             <div class="justify-content-lg-end">
                 {{ form.clo.label(class="custom-control-label") }}
-                {{ form.clo(class="custom-control") }}
+                {{ form.clo(class="form-select") }}
 
             </div>
 
@@ -78,19 +97,71 @@
                     </datalist>
                 </div>
             </div>
-            <div class="row">
-                <br/><h7 style="color: brown;">Dont use fullstop in the question </h7> </div>
             
-            <div class="d-flex justify-content-center">
-                <button id="total_btn" class="btn btn-block btn-outline-primary" type="button">Next</button>
-            </div>
 
             <div id="addQuestion" class="form-group" name="addQuestion">
+                <label for="question1">
+                    <h4>Question 1 :</h4>
+                </label>
+                <input class="col" type="text" id="question1" name="question1" placeholder="Enter Question-1 "> 
+                <br/>
+          
+                <div class="form-group">
+                    <label for="options">Option-1:</label> 
+                    <input class="form-control-sm" id="options" name="op[1]" placeholder="Enter Option-1">
+                    <label for="options">Option-2:</label> 
+                    <input class="form-control-sm" id="options" name="op[2]" placeholder="Enter Option-2">
+                    <label for="options">Option-3:</label> 
+                    <input class="form-control-sm" id="options" name="op[3]" placeholder="Enter Option-3">
+                    <label for="options">Option-4:</label> 
+                    <input class="form-control-sm" id="options" name="op[4]" placeholder="Enter Option-4">
+                    <label for="options">Option-5:</label> 
+                    <input class="form-control-sm" id="options" name="op[5]" placeholder="Enter Option-5">
+                    <label for="options">Option-6:</label> 
+                    <input class="form-control-sm" id="options" name="op[6]" placeholder="Enter Option-6">
+                    
 
+                    <br/>
+                </div>
+
+
+
+
+
+                <label class="form-control-label" for="question-${i + 1}"><br/>
+                    <h4>Question ${i + 1}:</h4>
+                    </label>
+                </div>
+                <div>
+                <input class="form-control" id="question-'+ i +'" name="question${i}" type="text"
+                    placeholder="EnterQuestion-${i + 1}" /><br/>
+                </div>`;
+
+
+                <label>Option-${j+1}:</label><br>
+    <div class="input-group-append mb-3">
+                <input type="text" name="op[${j+count}]" placeholder="Enter Option-${j+1}">
+
+  </div>
+
+
+
+
+
+
+                <div class="row">
+                    <br/><h7 style="color: brown;">Dont use fullstop in the question </h7> </div>
+                
+                <div class="d-flex justify-content-center">
+                    <button id="total_questions_btn" class="btn btn-outline-primary" type="button">Add another Question</button>
+                </div>
+
+
+
+
+            <div id="addQuestion" class="form-group" name="addQuestion">
             </div>
-
             </fieldset>
-
             <br /><button id="total_btn" class="btn btn-block btn-outline-primary" type="submit">submit</button>
         </div>
     </form>

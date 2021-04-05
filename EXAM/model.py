@@ -130,7 +130,7 @@ class exam_mcq_question_paper(nosql.Document):
 class course_model(nosql.Document):
     course_title = nosql.StringField()
     course_code = nosql.StringField()
-    course_co = nosql.StringField()
+    course_co = nosql.ListField()
     course_lessons = nosql.ListField()
     course_duration = nosql.StringField()
     course_caption = nosql.StringField()
@@ -180,9 +180,8 @@ class machine_learning_mcq_model(nosql.Document):
     #quesCLO = nosql.StringField()
     question_dictionary = mcqQuestion.question_dictionary# ekhane kazz baki aseee
     difficulty=nosql.StringField()
-    type = nosql.IntField() # 0 for written, # 1 for mcq 
+    type = nosql.StringField() # 0 for written, # 1 for mcq 
     question_point=nosql.FloatField()
-
 # kaz baki ase
 class required_for_generate(nosql.Document):
     exam_title=set_exam_question_slot.exam_title

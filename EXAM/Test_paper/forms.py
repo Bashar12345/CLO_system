@@ -64,11 +64,10 @@ class McqQuestion_Paper_Form_part1(FlaskForm):
 
 # under construction
 class mcq_upload_form_part_1(FlaskForm):
-    course_title= SelectField("Questions for particular Course",coerce=str)
+    #course_title= SelectField("Questions for particular Course",coerce=str)
     lesson =SelectField("Pick a lesson",coerce=str,validate_choice=True)
     course_code =SelectField("Pick a Course Code",coerce=str,validate_choice=True)
-    clo = StringField('CLO', validators=[
-        Length(min=1, max=15), DataRequired()])
+    clo =SelectField("Pick a Course Learnig Outcome",coerce=str,validate_choice=True)
     # ekhane kaz korte hobe database theke lesson ante hobe
     submit = SubmitField('Next')
 

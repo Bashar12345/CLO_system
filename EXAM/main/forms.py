@@ -14,7 +14,7 @@ class PhotoForm(FlaskForm):
 class create_course_form(FlaskForm):
     course_code = StringField('Course Code')
     course_title = StringField('Enter Course Title (Dont give "#,$,@,&" these caracters)')
-    course_co = StringField('Course Outcome (Only number please) ')
+    course_co = StringField()
     course_lessons = StringField('Total Lessons of this course')
     course_duration = DateField(
         'Date: (Please, Enter When Course will be finished)', validators=[DataRequired()])

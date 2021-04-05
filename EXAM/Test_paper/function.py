@@ -389,16 +389,17 @@ def mcq_question_answer_submit(get_form):
 
 
 def machine_process_data(requirement_for_mcq_questions):
+    pass
     # data cleaning for shuffle
-    objects_of_requirement = requirement_for_mcq_questions
-    question_part = machine_process_data_wrangling(objects_of_requirement)
+    #objects_of_requirement = requirement_for_mcq_questions
+    #question_part = machine_process_data_wrangling(objects_of_requirement)
     # prepared shffled question list for machine prediction
     shuffled_list = catch_the_shuffled_question_list(question_part)
     # make a question for deleivery
-    test_mcq_ML()
-    randomly_created_question = a_question(shuffled_list, objects_of_requirement)
+    #test_mcq_ML()
+    #randomly_created_question = a_question(shuffled_list, objects_of_requirement)
     # algorithm magic
-    machine_predict_result(randomly_created_question)
+    #machine_predict_result(randomly_created_question)
 
 
 def machine_process_data_wrangling(objects_of_requirement):
@@ -415,16 +416,11 @@ def machine_process_data_wrangling(objects_of_requirement):
     MCQ_questions = []
     question_part = []
     crse_code = objects_of_requirement.course_code
-    for i in machine_learning_mcq_model.objects(course_code=crse_code):
-        MCQ_questions.append(i['mcq'])
-    print(MCQ_questions)
-    for dictionary in MCQ_questions:
-        # print(dictionary)
-        for key, value in dictionary.items():
-            # temp = [key, value]
-            question_part.append(key)
-    random.shuffle(question_part)
-    print(question_part)
+    for i in mcqQuestion.objects(course_code=crse_code):
+        MCQ_questions.append(i.question)
+    #print(MCQ_questions)
+    random.shuffle(MCQ_questions)
+    #print(MCQ_questions)
     return question_part
 
 
@@ -443,17 +439,26 @@ def catch_the_shuffled_question_list(question_part):
     return shuffled_question_list
 
 
-def a_question(shuffled_list, objects_of_requirement):
-    new_question_list = list()
-    # new_question_dict=dict()
-    question_data = random.sample(
-        shuffled_list, k=objects_of_requirement.number_of_question)
-    for question in question_data:
-        for full_set in mcqQuestion.objects(question=question).first():
-            new_question_list.append(full_set.question_dictionary)
-    print(new_question_list)
-    return new_question_list
-    pass
+# def a_question(shuffled_list, objects_of_requirement):
+#     new_question_list = list()
+#     complex=0
+#     complex_counter=0
+#     question_count=0
+#     highest_question_counts_complex_level=0
+#     total_question=objects_of_requirement.number_of_question
+#     # new_question_dict=dict()
+#     question_data = random.sample(shuffled_list, k=total_question)
+#     for question in question_data:
+#         for full_set in mcqQuestion.objects(question=question).first():
+#             complex=full_set.complex_level
+#             if full_set.complex_level == 1:
+#                 question_count++;
+#                 print(complex)
+
+#             new_question_list.append(full_set.question_dictionary)
+#     print(new_question_list)
+#     return new_question_list
+#     pass
 
 
 def test_mcq_ML():
@@ -497,10 +502,6 @@ def test_mcq_ML():
             ML_model.question_point = question_value
             ML_model.save()
             print("Medium" ," = ",question_value)
-
-
-
-
 
 
 

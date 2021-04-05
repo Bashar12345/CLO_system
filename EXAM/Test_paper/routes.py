@@ -25,11 +25,11 @@ from EXAM.Test_paper.forms import (
     Mcq_answer_form,
 )
 from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processsing, written_question_Upload, written_question_answer_submit
-from EXAM.configaration import secret_exam_key, object_of_something, User_type,sum_of_something
+from EXAM.configaration import secret_exam_key, object_of_something, User_type,sum_of_something, user_obj
 from EXAM.model import (
     machine_learning_mcq_model, course_model,
     exam_mcq_question_paper,
-    exam_written_question_paper, required_for_generate,
+    exam_written_question_paper, required_for_generate, teacher_created_courses_model,
 )
 
 """@Test_paper.route('/')
@@ -205,12 +205,19 @@ def mcq_upload():
     form = mcq_upload_form_part_1()
     # seach course code and fetch the lessons
     # under construction
-    course_title_list = course_model.objects.only("course_title")
-    course_title = []
-    for title in course_title_list:
-        # print(title.course_title)
-        if title.course_title not in course_title:
-            course_title.append(title.course_title)
+    # course_title_list = course_model.objects.only("course_title")
+    # course_title = []
+    # for title in course_title_list:
+    #     # print(title.course_title)
+    #     if title.course_title not in course_title:
+    #         course_title.append(title.course_title)
+    user_email=user_obj.e
+    couse_code_list = teacher_created_courses_model.objects(teacher_registered_id=user_email)
+    course_code=[]
+    for corse_code in couse_code_list:
+        #print(title.course_title)
+        if corse_code.course_code not in course_code:
+            course_code.append(corse_code.course_code)
     if request.method == "POST":
         mcq_uploading_processsing(form)
     return render_template(
@@ -218,7 +225,8 @@ def mcq_upload():
         title="mcqUpload",
         form=form,
         user_type=User_type.user_type,
-        course_title=course_title,
+        course_code=course_code,
+        #course_title=course_title,
     )
 
 
@@ -259,6 +267,27 @@ def mcqUpload_lesson_selection_load():
         response_to_browser = make_response(jsonify(lessons_list))
         print(response_to_browser)
     return response_to_browser
+
+
+@Test_paper.route("/mcqUpload_clo_selection_load")
+# @login_required
+def mcqUpload_clo_selection_load():
+    response_to_browser = ""
+    if request.args:
+        code = request.args.get("c")
+        # print(code)
+        course_clo = course_model.objects(course_code=code).first()
+        # print(type(lesn.course_lessons))
+        clo_list = []
+        for clos in course_clo.clo:
+            # print(clos)
+            clo_list.append(clos)
+        response_to_browser = make_response(jsonify(clo_list))
+        print(response_to_browser)
+    return response_to_browser
+
+
+
 
 
 
@@ -438,20 +467,6 @@ def view_courses():
 
 
 
-"""@Test_paper.route('/countdown', methods=['GET', 'POST'])
-def countdown():
-    return render_template('count_Down.html', title='countdown')"""
-
-"""@Test_paper.route('/mcqqu', methods=['GET', 'POST'])
-def mcqqu():
-    form = McqQuestion_Paper_Form()
-    mcq_question_form(form)
-    return render_template('mcqqu.html', posts=posts, title='MCQ_question_Page', form=form)"""
-""" mcq = mcq_questions.mcq_question.question_dictionary
-    for i in mcq:
-        print(i + "\n")
-        for j in mcq[i]:
-            print(j)"""
 
 
 
