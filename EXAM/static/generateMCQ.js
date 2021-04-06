@@ -2,17 +2,47 @@ $(document).ready(function () {
     load();
 });
 
+
 function load() {
     $('#btn_course_code').focus();
     $('#lessons_table').focus();
     $('#lesson_name').focus();
     $('#btnAdd').focus();
+    $('#linked_course_code').focus();
+
+
+    var check=$('#linked_course_code').attr('value')
+    console.log(check)
+    if (check!= 'teacher'){
+        $('#lessons_table').empty();
+        var code = check;
+        var lessons_table =$('#lessons_table');
+        var lessons =$('#lesson_name');
+        
+    
+    fetch(`/mcqUpload_lesson_selection_load?c=${code}`).then(function(response){
+        response.json().then(function(lesson_array){
+            var viewHTML='';
+            var optionHTML='';
+            for (var i = 0; i < lesson_array.length; i++) {
+                viewHTML+=`<td class="col">Lesson_no :${lesson_array[i]}</td>`;
+                optionHTML+=`<option value="${lesson_array[i]}">${lesson_array[i]}</option>`;
+                console.log(optionHTML);
+            }
+            lessons_table.append(viewHTML);
+            lessons.append(optionHTML);
+            
+        });
+    });
+    }
 
     
     $('#btnAdd').click(function(){
         //$('#addcard').empty();
         var addDiv= $('#addcard');
         var template='';
+        var check=('#linked_course_code').val()
+        console.log(check)
         template+='<div class="card" style="width: 25rem;">'+
         '<ul class="list-group list-group-flush">'+
             '<li class="list-group-item">'+
@@ -22,9 +52,9 @@ function load() {
             '<li class="list-group-item">'+
                 
                 '<label class="custom-control-label">Syllabus/Topic/lesson :</label><br/>'+
-               '<input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Enterthe exact name of lesson" aria-label=".custom-select-lg example">'+
+                '<input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Enterthe exact name of lesson" aria-label=".custom-select-lg example">'+
                 '<datalist id="lesson_name">'+
-                   '<option selected disabled>Enter the exact name of lesson</option>'+
+                    '<option selected disabled>Enter the exact name of lesson</option>'+
                 '</datalist></li>'+
             '<li class="list-group-item">'+
                 '<label class="custom-control-label">Question Complexity Level</label>'+
@@ -33,7 +63,7 @@ function load() {
                 '<option value="1">Low</option>'+
                 '<option value="2">Medium</option>'+
                 '<option value="3">High</option>'+
-               '<option value="5">Very High</option>'+
+                '<option value="5">Very High</option>'+
                 '<option value="10">Insane</option>'+
                 '</select></li>'+
         '</ul>'+
@@ -41,6 +71,11 @@ function load() {
     addDiv.append(template);
 
     });
+
+
+
+
+
 
 
     $("#btn_course_code").click(function(){

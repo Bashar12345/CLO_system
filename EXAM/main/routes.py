@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, enroll_students, student_view_courses, teacher_view_courses
-from EXAM.model import machine_learning_mcq_model, course_model, enrol_students_model, set_exam_question_slot, student_courses_model, temporary_model
+from EXAM.model import machine_learning_mcq_model, course_model, enrol_students_model, mcqQuestion, set_exam_question_slot, student_courses_model, temporary_model
 from EXAM.users.utils import remove_junk
 
 main = Blueprint('main', __name__)
@@ -142,10 +142,9 @@ def question_view(course_code):
     questions = []
     # if request.args:
     # course_code = request.args.get("course_code")
-    questions_objects = machine_learning_mcq_model.objects(
-        course_code=course_code)
+    #questions_objects = machine_learning_mcq_model.objects(course_code=course_code)
     # print(questions_objects)
-    for i in machine_learning_mcq_model.objects(
+    for i in mcqQuestion.objects(
             course_code=course_code):
         questions = i.question_dictionary
     # print(questions)

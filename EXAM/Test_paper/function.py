@@ -200,7 +200,7 @@ def mcq_uploading_processsing(get_form):
 # under construction
 
 
-def generate_question(get_form):
+def generate_question(get_form,corse_code):
     form = get_form
     exam_title = form.exam_title.data
     # exam_course = form.exam_course.data
@@ -215,7 +215,10 @@ def generate_question(get_form):
     exam_secret_code = form.exam_code.data
     # exam_marks = form.exam_marks.data
     number_of_question = request.form.get("exam_total_questions")
-    course_code = request.form.get('course_code')
+    if corse_code=='teacher':
+        course_code = request.form.get('course_code')
+    else:
+        course_code=corse_code
     question_difficulty = request.form.get("question_difficulty")
     # form.exam_topic.data
     """print(
@@ -232,8 +235,7 @@ def generate_question(get_form):
     exam_CLO = request.form.getlist("exam_CLO")
     # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
-    print(exam_topic, " --", exam_CLO, " --",
-          complex_level, " --", number_of_question, " --")
+    print(exam_topic, " --", exam_CLO, " --", complex_level, " --", number_of_question, " --") 
     courses = course_model.objects(course_code=course_code).first()
     stash_required_exam_property = required_for_generate()
     stash_required_exam_property.exam_title = exam_title

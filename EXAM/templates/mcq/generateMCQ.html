@@ -5,8 +5,25 @@
 </script>
 <div class="container-fluid"
         style="font-family: 'Consoles', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', 'Courier New', monospace ;background-color: #ccfff5";>
-    <form class="form-horizontal" method="POST" action="{{url_for('Test_paper.generateMCQ')}}" enctype="multipart/form-data">
+    <form class="form-horizontal" method="POST" action="{{url_for('Test_paper.generateMCQ',course_code=course_code)}}" enctype="multipart/form-data">
     
+
+        <header id="linked_course_code"  value="{{course_code}}">
+            <h2>
+                
+                {% if corse_code != "teacher" %}
+                {{course_code}}
+                {% endif %}
+                    
+        
+            </h2>
+        </header>
+
+        <script>
+           // var check=document.getElementById('linked_course_code').getAttribute('value')
+            var check=$('#linked_course_code').attr('value')
+            console.log(check)
+        </script>
         <section>
         
                 <div class="form-group">
@@ -51,6 +68,11 @@
             {{ form.exam_marks.label(class="custom-control-label") }}<br/>
             {{ form.exam_marks(class="custom-radio") }}</div>
         </div-->
+        
+    {% if corse_code=='teacher' %}
+            
+        
+            
     <div class="form-group" style="width: 33rem;">
             <legend class=" custom-control-label">Questions for Exam Course</legend>
         <div class="input-group mb-3 ">
@@ -66,9 +88,14 @@
             </div>
         </div>
     </div>
+
+
+    {% endif %}
+
+
     <div class="row">
         <div class="form-group">
-            <label class="custom-control-label">Question Difficulty</label>
+            <label class="custom-control-label">Question Difficulty</label><br/>
             <select
                 class="custom-select-sm btn-outline-info"
                 id="inputGroupSelect04"

@@ -25,7 +25,7 @@ from EXAM.Test_paper.forms import (
     Mcq_answer_form,
 )
 from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processsing, written_question_Upload, written_question_answer_submit
-from EXAM.configaration import secret_exam_key, object_of_something, User_type,sum_of_something, user_obj
+from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
 from EXAM.model import (
     machine_learning_mcq_model, course_model,
     exam_mcq_question_paper,
@@ -38,18 +38,6 @@ def hello_world():
 """
 
 Test_paper = Blueprint("Test_paper", __name__)
-
-
-
-@Test_paper.route("/examiner")
-@login_required
-def examiner():
-    return render_template(
-        "examiner.html", title="Examiner_Page", user_type=User_type.user_type
-    )
-
-
-
 
 
 @Test_paper.route("/wrqu", methods=["GET", "POST"])
@@ -133,7 +121,6 @@ def mcqqu():
         )
 
 
-
 @Test_paper.route("/mcqan", methods=["GET", "POST"])
 @login_required
 def mcqan():
@@ -183,7 +170,8 @@ def mcqan():
 
 @Test_paper.route("/file/<filename>")
 def file(filename):
-    written = exam_written_question_paper.objects.filter(rename_file=filename).first()
+    written = exam_written_question_paper.objects.filter(
+        rename_file=filename).first()
     return send_file(
         written.binary_file,
         as_attachment=True,
@@ -199,9 +187,9 @@ Course_outcome = ""
 number_of_question = ""
 
 
-@Test_paper.route("/mcqUpload", methods=["GET", "POST"])
+@Test_paper.route("/mcqUpload/<course_code>", methods=["GET", "POST"])
 # @login_required
-def mcq_upload():
+def mcq_upload(course_code):
     form = mcq_upload_form_part_1()
     # seach course code and fetch the lessons
     # under construction
@@ -211,13 +199,16 @@ def mcq_upload():
     #     # print(title.course_title)
     #     if title.course_title not in course_title:
     #         course_title.append(title.course_title)
-    user_email=user_obj.e
-    couse_code_list = teacher_created_courses_model.objects(teacher_registered_id=user_email)
-    course_code=[]
-    for corse_code in couse_code_list:
-        #print(title.course_title)
-        if corse_code.course_code not in course_code:
-            course_code.append(corse_code.course_code)
+    user_email = user_obj.e
+    couse_code_list = teacher_created_courses_model.objects(
+        teacher_registered_id=user_email)
+    corse_code=course_code
+    if course_code == "teacher":
+        course_code = []
+        for crse_code in couse_code_list:
+            # print(title.course_title)
+            if crse_code.course_code not in course_code:
+                course_code.append(crse_code.course_code)
     if request.method == "POST":
         mcq_uploading_processsing(form)
     return render_template(
@@ -226,7 +217,8 @@ def mcq_upload():
         form=form,
         user_type=User_type.user_type,
         course_code=course_code,
-        #course_title=course_title,
+        corse_code=corse_code
+        # course_title=course_title,
     )
 
 
@@ -287,26 +279,23 @@ def mcqUpload_clo_selection_load():
     return response_to_browser
 
 
-
-
-
-
-
-
-@Test_paper.route("/generateMCQ", methods=["GET", "POST"])
+@Test_paper.route("/generateMCQ/<course_code>", methods=["GET", "POST"])
 # @login_required
-def generateMCQ():
+def generateMCQ(course_code):
     form = Mcq_Question_generate_form()
-    course_code = course_model.objects.only("course_code")
+    # if course_code:
+    corse_code = course_code
+    if course_code == "teacher":
+        course_code = course_model.objects.only("course_code")
     if request.method == "POST":
-        generate_question(form)
+        generate_question(form, corse_code)
     return render_template(
         "mcq/generateMCQ.html",
         title="MCQgenerate",
         form=form,
         user_type=User_type.user_type,
         course_code=course_code,
-    )
+        corse_code=corse_code)
 
 
 @Test_paper.route("/generateMCQ_lesson_load")
@@ -327,7 +316,6 @@ def generateMCQ_lesson_load():
     return response_to_browser
 
 
-
 @Test_paper.route("/secret_code", methods=["GET", "POST"])
 @login_required
 def secret_code():
@@ -340,9 +328,12 @@ def secret_code():
         # mongodb_written_question = exam_written_question_paper()
         # mongodb_mcq_question = exam_MCQ_question_paper()
         # written_question = exam_written_question_paper.objects(exam_code=exam_code)
-        mcq_question = exam_mcq_question_paper.objects.filter(exam_code=exam_code).first()
-        written_question = exam_written_question_paper.objects.filter(exam_code=exam_code).first()
-        generated_question=required_for_generate.objects.filter(exam_secret_code=exam_code).first()
+        mcq_question = exam_mcq_question_paper.objects.filter(
+            exam_code=exam_code).first()
+        written_question = exam_written_question_paper.objects.filter(
+            exam_code=exam_code).first()
+        generated_question = required_for_generate.objects.filter(
+            exam_secret_code=exam_code).first()
         if written_question:
             for i in written_question:
                 # print(written.binary_file)
@@ -366,7 +357,7 @@ def secret_code():
             # print(mcq_question)
             return redirect(url_for("Test_paper.mcqan"))
         elif generated_question:
-            secret_exam_key.exam_code=exam_code
+            secret_exam_key.exam_code = exam_code
             return redirect(url_for("Test_paper.mcq_answer_paper_auto_generated"))
         else:
             flash(f"Re-Enter Exam code!!", "danger")
@@ -381,14 +372,14 @@ def secret_code():
         # return redirect(url_for('Test_paper.secret_code'))
 
 
-
 @Test_paper.route("/mcq_answer_paper", methods=["GET", "POST"])
 # @login_required
 def mcq_answer_paper_auto_generated():
     form = Mcq_answer_form()
     # mcq_question_answer_submit(form)
-    exam_code=secret_exam_key.exam_code
-    requirement_for_mcq_questions = required_for_generate.objects(exam_secret_code=exam_code).first()
+    exam_code = secret_exam_key.exam_code
+    requirement_for_mcq_questions = required_for_generate.objects(
+        exam_secret_code=exam_code).first()
     exam_start_time = required_for_generate.exam_start_time
     exam_end_time = required_for_generate.exam_end_time
     exam_date = required_for_generate.exam_date
@@ -415,30 +406,24 @@ def mcq_answer_paper_auto_generated():
         # ekahne mcq question object produce krte hobe -------------------------------------------
         machine_process_data(requirement_for_mcq_questions)
         if request.method == "POST":
-            #ekane kaz baki ase ------------------------------------------------------------------
+            # ekane kaz baki ase ------------------------------------------------------------------
             check = mcq_question_answer_submit(form)
             if check == "done":
                 return redirect(url_for("users.student"))
         return render_template("mcqan.html",
-            exam_date=exam_date,
-            exam_end_time=exam_end_time,
-            # custom object for answer from the machine learning method 
-            #mcq_questions=mcq_questions,
-            title="MCQ_answer_Page",
-            form=form,
-            user_type=User_type.user_type,
-        )
+                               exam_date=exam_date,
+                               exam_end_time=exam_end_time,
+                               # custom object for answer from the machine learning method
+                               # mcq_questions=mcq_questions,
+                               title="MCQ_answer_Page",
+                               form=form,
+                               user_type=User_type.user_type,
+                               )
     return render_template(
         "count_Down.html",
         starting_time_of_exam=starting_time_of_exam,
         title="countdown",
     )
-
-
-
-
-
-
 
 
 @Test_paper.route("/sample", methods=["GET", "POST"])
@@ -447,11 +432,6 @@ def sample():
     return render_template(
         "sample.html",
     )
-
-
-
-
-
 
 
 # paginate kora
@@ -465,24 +445,9 @@ def view_courses():
     return render_template('teacher/view_courses.html', paginated_course=paginated_course, title='View courses', user_type=User_type.user_type)"""
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # form.course_title.choices=[(course_name,course_name)for course_name in course_title]
-    # form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
-    # form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
+# form.course_code.choices=[(codes.course_code,codes.course_code) for codes in course_model.objects(course_title='Thesis & project').all()]
+# form.lesson.choices=[(lessons.course_lessons,lessons.course_lessons) for lessons in course_model.objects(course_code='swe451').all()]
 
-    # return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data)
-        # return redirect(url_for('Test_paper.meq_upload'))
+# return '<h1> Course title : {}, Lesson : {}</h1>'.format(request.form.get('course'),form.lesson.data)
+# return redirect(url_for('Test_paper.meq_upload'))

@@ -136,6 +136,13 @@ def reset_token(token):
     )
 
 
+
+@users.route("/examiner")
+@login_required
+def examiner():
+    return render_template(
+        "examiner.html", title="Examiner_Page", user_type=User_type.user_type)
+
 @users.route("/student_list/<course_code>", methods=["GET", "POST"])
 # @login_required
 def student_list(course_code):

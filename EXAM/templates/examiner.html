@@ -13,10 +13,10 @@
       <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.mcqqu_sub')}}">MCQ Question Paper (Your defined)</a>
       <br/>
       <h3> Upload Mcq Questions in Question bank </h3>
-      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.mcq_upload')}}">MCQ Question Upload </a>
+      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.mcq_upload',course_code=user_type)}}">MCQ Question Upload </a>
       <br/>
       <h3>  Request a Mcq Question Paper</h3>
-      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.generateMCQ')}}">Request a MCQ (Machine Generate)</a>
+      <a type="button" class=" btn btn-outline-secondary btn-lg btn-block " href="{{url_for('Test_paper.generateMCQ',course_code=user_type)}}">Request a MCQ (Machine Generate)</a>
       <p> ........</p>
     </article>
   </div>

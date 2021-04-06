@@ -75,7 +75,7 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#"><h3>Exam</h3></a>
+        <a class="navbar-brand" href="#"><h3>App(Exam)</h3></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
@@ -86,13 +86,13 @@
                     <a class="nav-link" href="{{ url_for('main.create_course') }}"><b>Create-Course</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('Test_paper.examiner') }}"><b>Examiner</b></a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.view_courses') }}"><b>View-courses</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}"><b>My-course-Students</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.examiner') }}"><b>Examiner</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.guildLineForTeacher') }}"><b>Teacher-guildLine</b></a>
