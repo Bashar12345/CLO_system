@@ -8,8 +8,7 @@
     <form class="form-horizontal form-group" method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <div>
-            <h1>Upload MCQ Questions </h1>
-            <br/>
+            
 
         <!--div class="d-flex justify-content-start">
             <div class="d-flex flex-wrap ">
@@ -29,6 +28,19 @@
             </div>
         </div-->
 
+
+        <header id="link_course_code" value="{{course_code}}" class="d-flex justify-content-start">
+            {% if corse_code != "teacher" %}
+                {{course_code}}
+                {% endif %}
+            </header>
+            <h3>Upload MCQ Questions </h3>
+            <br/>
+
+{% if corse_code=="teacher" %}
+    
+
+    
         <div class="d-flex justify-content-start">
             <div class="d-flex flex-wrap ">
                     <legend class=" custom-control-label">Questions for Particular Course</legend>
@@ -47,6 +59,7 @@
             </div>
         </div>
 
+        {% endif %}
             <!--div class="d-flex justify-content-end">
                 {{ form.course_code.label(class="custom-control-label") }}
                 <br />
@@ -81,7 +94,7 @@
 
             </div>
             
-            
+
 
             <div id="addQuestion" class="form-group" name="addQuestion">
                 <label for="question1">

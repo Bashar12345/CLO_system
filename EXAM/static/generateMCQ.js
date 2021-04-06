@@ -20,7 +20,7 @@ function load() {
         var lessons =$('#lesson_name');
         
     
-    fetch(`/mcqUpload_lesson_selection_load?c=${code}`).then(function(response){
+    fetch(`/generateMCQ_lesson_load?c=${code}`).then(function(response){
         response.json().then(function(lesson_array){
             var viewHTML='';
             var optionHTML='';
@@ -85,7 +85,7 @@ function load() {
         var lessons =$('#lesson_name');
         
     
-    fetch(`/mcqUpload_lesson_selection_load?c=${code}`).then(function(response){
+    fetch(`/generateMCQ_lesson_load?c=${code}`).then(function(response){
         response.json().then(function(lesson_array){
             var viewHTML='';
             var optionHTML='';

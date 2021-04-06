@@ -26,5 +26,4 @@ class create_course_form(FlaskForm):
         searchTheCourse = course_model.objects.filter(
             course_code=course_code.data).first()
         if searchTheCourse:
-            raise ValidationError(
-                'That course_code is already taken,Please choose another one')
+            raise ValidationError('That course_code is already taken,Please choose another one')

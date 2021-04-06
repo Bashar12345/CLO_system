@@ -1,8 +1,5 @@
 {% extends "layout.html" %}
 {% block body %}
-    <! main.html >
-
-    <!   Registration er pop up  html  niccher blok >
     <section>
         <style>
             .democlass {
@@ -31,13 +28,33 @@
                         <br>
                         {{ form.organization_id(class = "form-control form-control-lg ", placeholder = "Like: Student_ID or Employee_ID from a verified LTD") }}
                         <br>
-                        {{ form.email.label(class = "custom-control-label") }}
-                        <div class="input-group mb-3">
-                            {{ form.email(class = "form-control form-control-lg" ,placeholder = "Email") }}
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">@example.com</span>
-                            </div>
-                        </div>
+                        {{ form.form_email.label(class = "custom-control-label") }}
+
+
+{% if form.form_email.errors %}
+{{form.form_email(class="form-control form-control-lg is-invalid")}}
+<div class="invalid-feedback">
+    
+    {% for error in form.form_email.errors %}
+    <span>{{error}}</span>
+        
+    {% endfor %}
+        
+</div>
+{% else %}
+
+<div class="input-group mb-3">
+    {{ form.form_email(class = "form-control form-control-lg" ,placeholder = "Email") }}
+    <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2">@example.com</span>
+    </div>
+</div>
+{% endif %}
+    
+
+
+
+
 
 
                         <br>

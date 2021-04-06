@@ -203,7 +203,7 @@ def mcq_upload(course_code):
     couse_code_list = teacher_created_courses_model.objects(
         teacher_registered_id=user_email)
     corse_code=course_code
-    if course_code == "teacher":
+    if corse_code == "teacher":
         course_code = []
         for crse_code in couse_code_list:
             # print(title.course_title)

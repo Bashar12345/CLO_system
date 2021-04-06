@@ -1,7 +1,6 @@
 #from EXAM.users.routes import enrol
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, RadioField, \
-    BooleanField
+from wtforms import StringField, PasswordField, SubmitField, RadioField,BooleanField
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 
 from EXAM.model import enrol_students_model, user
@@ -52,7 +51,8 @@ class enrolForm(FlaskForm):
 class registration_form(FlaskForm):
     user_name = user_form.user_name
     organization_id = user_form.organization_id
-    email = user_form.email
+    form_email = StringField('Email', validators=[
+        DataRequired(), Length(min=2, max=50)])
     password = user_form.password
     confirm_password = user_form.confirm_password
     # profile_pic = user_form.profile_pic
@@ -60,9 +60,10 @@ class registration_form(FlaskForm):
     # credit = StringField('Credit', validators=[DataRequired()])
     submit = SubmitField('SignUp')
 
-    @staticmethod
-    def validation_email(email):
-        searchTheEmail = user.objects.filter(email=email.data).first()
+    #@staticmethod
+    def validate_email(self, form_email):
+        searchTheEmail = user.objects(email=form_email.data).first()
+        print(searchTheEmail)
         if searchTheEmail:
             raise ValidationError(
                 'That email is already taken,Please choose another one')
@@ -72,14 +73,13 @@ class forgetPasswordForm(FlaskForm):
     email = user_form.email
     submit = SubmitField('Request for Password reset')
 
-    @staticmethod
-    def validation_email(email):
+    #@staticmethod
+    def validate_email(self, email):
         searchTheEmail = user.objects.filter(email=email.data).first()
         if searchTheEmail:
             print('ase email')
         else:
-            raise ValidationError(
-                'There is no account with that email,please Register ')
+            raise ValidationError('There is no account with that email,please Register ')
 
 
 class resetPasswordForm(FlaskForm):

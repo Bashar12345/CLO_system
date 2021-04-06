@@ -29,13 +29,11 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for("main.main_page"))
     form = registration_form()
+    
     if request.method == "POST":
-        check = ""
-        try:
-            check = register_method(form)
-        except Exception as e:
-            print("not connected    Hoy naiiiiiiiiiiii  ")
-            print(str(e))
+        d=user.objects(email=form.form_email.data).first()
+        print( "eta  " ,d.email,d.user_name)
+        check = register_method(form)
         if check == "done":
             return redirect(url_for("users.login"))
     return render_template("registration.html", title="Registration", form=form)

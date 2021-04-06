@@ -121,7 +121,7 @@ def register_method(get_form):
     print(f"form er data ayse {name}")
     organization_id = form.organization_id.data
     user_category = form.user_category.data
-    email = form.email.data
+    email = form.form_email.data
     # password = form.password.data # here is the password, by-chance if it needed
     hashed_password = bcrypt.generate_password_hash(form.password.data).decode(
         "utf-8"

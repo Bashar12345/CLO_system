@@ -9,9 +9,33 @@ function load() {
     //$("#btn_course_title").focus();
     $("#btn_course_code").focus();
     $("#btn_option").focus();
+    $("#link_course_code").focus();
 
 
-
+    var check=$('#link_course_code').attr('value')
+    console.log(check)
+    if (check!= 'teacher'){
+        $('#lessons_table').empty();
+        var code = check;
+        var lessons_table =$('#lessons_table');
+        var lessons =$('#lesson_name');
+        
+    
+    fetch(`/mcqUpload_lesson_selection_load?c=${code}`).then(function(response){
+        response.json().then(function(lesson_array){
+            var viewHTML='';
+            var optionHTML='';
+            for (var i = 0; i < lesson_array.length; i++) {
+                viewHTML+=`<td class="col">Lesson_no :${lesson_array[i]}</td>`;
+                optionHTML+=`<option value="${lesson_array[i]}">${lesson_array[i]}</option>`;
+                console.log(optionHTML);
+            }
+            lessons_table.append(viewHTML);
+            lessons.append(optionHTML);
+            
+        });
+    });
+    }
 
     $("#btn_course_code").click(function(){
         $('#lesson').empty();
@@ -66,8 +90,7 @@ fetch(`/mcqUpload_clo_selection_load?c=${code}`).then(function(response){
 </label>
 <input  class="form-control" type="text" id="question1" name="question${question_count}" placeholder="Enter Question-${question_count} "> 
 <br/> <div class="form-group"> <br/>`;
-inputTable += `<input class="form-control" type="text" id="answer" name="answer${question_count}" 
-    placeholder="Enter Answer-${question_count}"><br/>`;
+inputTable += `<input class="form-control" type="text" id="answer" name="answer${question_count}" placeholder="Enter Answer-${question_count}"><br/>`;
 
 for(var i=0;i<7;i++){
     inputTable += `<label for="options">Option-${i+1}:</label> 
