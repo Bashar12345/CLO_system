@@ -29,10 +29,11 @@
         <form method="POST" action="" class="form-container" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend> Create New Course</legend>
+                <header><legend> Create New Course</legend></header>
+                <br/>
                 <div class="form-group">
                     {{ form.course_duration.label(class = "custom-control-label") }}
-                    {{ form.course_duration(type="date",class="form-control-col-3 datepicker",placeholder=" like: year/month/date (Please submit When Course will be finished)") }}
+                    {{ form.course_duration(type="date",class="form-control-lg datepicker",placeholder=" like: year/month/date (Please submit When Course will be finished)") }}
                     <br/>
                 </div>
 
@@ -46,11 +47,24 @@
                 </div>
 
                 {{ form.course_code.label(class = "custom-control-label") }}
-                {{ form.course_code(class ="form-control-md",placeholder="like : SWE431 ") }}
 
 
 
+                {% if form.course_code.errors %}
+                {{form.course_code(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.course_code.errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
 
+                </div>
+                {% else %}
+
+                <div class="input-group mb-3">
+                    {{ form.course_code(class ="form-control-lg",placeholder="like : SWE431 ") }}
+
+                </div>
+                {% endif %}
 
 
 
@@ -92,7 +106,7 @@
 
                 <div class="input-wrapper">
                     <label for="total_lessons" class="custom-control-label"> Total Lessons :</label><br/>
-                    <input name="total_lesson[]" id="total_lessons" type="text" value="" title="Name of the Lesson, please."/>
+                    <input class="form-control-lg" name="total_lesson[]" id="total_lessons" type="text" value="" title="Name of the Lesson, please."/>
                     <a href="javascript:void(0);" class="add-input" title="Add a another lesson">
                         <img type="button" class="btn-outline-light"
                             src="{{ url_for('static',filename='img/plus.png') }}"/></a>

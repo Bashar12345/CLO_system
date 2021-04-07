@@ -1,92 +1,166 @@
 {% extends "layout.html" %}
 {% block body %}
-    <section>
-        <style>
+<section>
+    <style>
             .democlass {
                 color: red;
             }
         </style>
-        <section class=" container shadow-lg btn-light btn-group-horizontal  ">
-            <form class=" form-container-lg" method="POST" action="" enctype="multipart/form-data">
-                {{ form.hidden_tag() }}
-                <fieldset class="custom-group">
-                    <legend> REGISTRATION</legend>
+    <section class="container shadow-lg btn-light btn-group-horizontal">
+        <form class="form-container-lg" method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="custom-group">
+                <legend> REGISTRATION</legend>
+                <br>
+                <div class="custom-container">
+                    {{ form.user_name.label(class="custom-control-label") }}
                     <br>
-                    <div class="custom-container">
-                        {{ form.user_name.label(class="custom-control-label") }}
-                        <br>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                            </div>
-                            {{ form.user_name(class = "form-control form-control-lg", placeholder = "Full Name") }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">@</span>
                         </div>
+                        {{ form.user_name(class = "form-control form-control-lg", placeholder = "Full Name")
+                        }}
+                    </div>
 
 
-                        <br>
-                        {{ form.organization_id.label(class="custom-control-label") }}
-                        <br>
-                        {{ form.organization_id(class = "form-control form-control-lg ", placeholder = "Like: Student_ID or Employee_ID from a verified LTD") }}
-                        <br>
-                        {{ form.email.label(class = "custom-control-label") }}
+                    <br>
+                    {{ form.organization_id.label(class="custom-control-label") }}
+                    <br>
 
 
-{% if form.email.errors %}
-{{form.email(class="form-control form-control-lg is-invalid")}}
-<div class="invalid-feedback">
-    
-    {% for error in form.email.errors %}
-    <span>{{error}}</span>
-        
-    {% endfor %}
-        
-</div>
-{% else %}
+                    {% if form.organization_id.errors %}
+                    {{form.organization_id(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.organization_id.errors %}
+                        <span>{{error}}</span>
+                        {% endfor %}
 
-<div class="input-group mb-3">
-    {{ form.email(class = "form-control form-control-lg" ,placeholder = "Email") }}
-    <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2">@example.com</span>
-    </div>
-</div>
-{% endif %}
-    
+                    </div>
+                    {% else %}
 
+                    <div class="input-group mb-3">
+                        {{ form.organization_id(class = "form-control form-control-lg ", placeholder = "Like:
+                        Student_ID or Employee_ID from a verified LTD") }}
 
+                    </div>
+                    {% endif %}
 
+                    <br>
+                    {{ form.email.label(class = "custom-control-label") }}
 
+                    {% if form.email.errors %}
+                    {{form.email(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
 
+                        {% for error in form.email.errors %}
+                        <span>{{error}}</span>
 
-                        <br>
+                        {% endfor %}
 
-                        <br>
-                        {{ form.password.label(class = "custom-control-label") }}
-                        <br>
-                        {{ form.password(class = "custom-control custom-control-sm",placeholder = "Password ") }}
-                        <br>
-                        {{ form.confirm_password.label(class = "custom-control-label") }}
-                        <br>
-                        {{ form.confirm_password(class = "custom-control custom-control-sm",placeholder = "repeat the same password") }}
-                        <br>
-                        {#{ form.profile_pic.label(class = "form-control-label") }#}
-                        {#{ form.profile_pic(class="btn-outline-info") }#}
-                        <br/>
-                        <div class="">
-                            {{ form.user_category.label(class = "custom-control-label custom-control-label-lg") }}
-                            <br/>
-                            {{ form.user_category(class = "custom-radio-inline") }}
+                    </div>
+                    {% else %}
+
+                    <div class="input-group mb-3">
+                        {{ form.email(class = "form-control form-control-lg" ,placeholder = "Email") }}
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">@example.com</span>
                         </div>
                     </div>
-                </fieldset>
-                {{ form.submit(class="btn btn-outline-primary") }}
-            </form>
+                    {% endif %}
 
+
+                    <br>
+
+                    <br>
+                    {{ form.password.label(class = "custom-control-label") }}
+                    <br>
+
+
+                    {% if form.password.errors %}
+                    {{form.password(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+
+                        {% for error in form.password.errors %}
+                        <span>{{error}}</span>
+
+                        {% endfor %}
+
+                    </div>
+                    {% else %}
+
+                    <div class="input-group mb-3">
+                        {{ form.password(class = "form-control form-control-lg",placeholder = "Password ")
+                        }}
+
+                    </div>
+                    {% endif %}
+
+                    <br>
+                    {{ form.confirm_password.label(class = "custom-control-label") }}
+                    <br>
+                    {% if form.confirm_password.errors %}
+                    {{form.confirm_password(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+
+                        {% for error in form.confirm_password.errors %}
+                        <span>{{error}}</span>
+
+                        {% endfor %}
+
+                    </div>
+                    {% else %}
+
+                    <div class="input-group mb-3">
+                        {{ form.confirm_password(class = "form-control form-control-lg",placeholder =
+                        " Retype Password ") }}
+
+                    </div>
+                    {% endif %}
+                    <br>
+                    <!-- {#{ form.profile_pic.label(class = "form-control-label") }#}
+                        {#% if form.profile_pic.errors %#}
+                        {#{form.profile_pic(class="form-control form-control-lg is-invalid")}#}
+                        <div class="invalid-feedback">
+                            
+                            {#% for error in form.profile_pic.errors %#}
+                            <span>{#{error}#}</span>
+                                
+                            {#% endfor %#}
+                                
+                        </div>
+                        {#% else %#}
+                        
+                        <div class="input-group mb-3">
+                            {#{ form.profile_pic(class="btn-outline-info") }#}
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">@example.com</span>
+                            </div>
+                        </div>
+                        {#% endif %#} -->
+                    <br/>
+
+
+
+
+                        <div class="">
+                            {{ form.user_category.label(class = "custom-control-label
+                            custom-control-label-lg") }}
+                            <br/>
+                                {{ form.user_category(class = "custom-radio-inline") }}
+                            </div>
+                        </div>
+                    </fieldset>
+                    {{ form.submit(class="btn btn-outline-primary") }}
+                </form>
+                <div class="small">
+                    Already registered , <a href="{{url_for('users.login')}}" class="href">sign in</a>
+                </div>
+            </section>
         </section>
-    </section>
-    <script>
+        <script>
         function myFunction() {
             document.getElementsByTagName("LEGEND")[0].setAttribute("class", "democlass");
         }
     </script>
-
-{% endblock body %}
+        {% endblock body %}

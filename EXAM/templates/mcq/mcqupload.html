@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        {% endif %}
+        
             <!--div class="d-flex justify-content-end">
                 {{ form.course_code.label(class="custom-control-label") }}
                 <br />
@@ -69,6 +69,39 @@
                 <br />
                 {{ form.lesson(class="form-radio",id="lesson") }}
             </div>
+
+
+
+
+{% else %}
+
+<div class="d-flex justify-content-start">
+    <div class="d-flex flex-wrap ">
+        <legend class="custom-control-label">Pick a lesson</legend>
+        <select class="custom-select btn-outline-info" id="inputGroupSelect04" name="lessons_current_c_code" aria-label="Example select with button addon" required>
+            <option selected disabled="disabled">Select Lesson...</option>
+            
+            {% for lsn in lessons_of_current_course_code %}
+            <option value="{{lsn}}">{{lsn}}</option>
+            {% endfor %}
+                
+            
+
+        </select>
+    </div>
+</div>
+<br/>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
 
 
             <div class="d-flex justify-content-start">
@@ -88,7 +121,7 @@
             <br/>
             <div class="justify-content-lg-end">
                 {{ form.clo.label(class="custom-control-label ") }}
-                {{ form.clo(class="form-select") }}
+                {{ form.clo(class="form-control-lg") }}
 
             </div>
             <br/>
@@ -110,33 +143,35 @@
 
 
                     <label for="options">Option-1:</label> 
-                    <input class="form-control-sm" id="options" name="op[0]" placeholder="Enter Option-1">
+                    <input class="form-control-sm" id="options0" name="op[0]" placeholder="Enter Option-1">
                     <label for="options">Option-2:</label> 
-                    <input class="form-control-sm" id="options" name="op[1]" placeholder="Enter Option-2">
+                    <input class="form-control-sm" id="options1" name="op[1]" placeholder="Enter Option-2">
                     <label for="options">Option-3:</label> 
-                    <input class="form-control-sm" id="options" name="op[2]" placeholder="Enter Option-3">
+                    <input class="form-control-sm" id="options2" name="op[2]" placeholder="Enter Option-3">
                     <label for="options">Option-4:</label> 
-                    <input class="form-control-sm" id="options" name="op[3]" placeholder="Enter Option-4">
+                    <input class="form-control-sm" id="options3" name="op[3]" placeholder="Enter Option-4">
                     <label for="options">Option-5:</label> 
-                    <input class="form-control-sm" id="options" name="op[4]" placeholder="Enter Option-5">
+                    <input class="form-control-sm" id="options4" name="op[4]" placeholder="Enter Option-5">
                     <label for="options">Option-6:</label> 
-                    <input class="form-control-sm" id="options" name="op[5]" placeholder="Enter Option-6">
+                    <input class="form-control-sm" id="options5" name="op[5]" placeholder="Enter Option-6">
                     
-                    
-                    <input class="form-control" type="text" id="answer" name="answer1" placeholder="Enter Answer- 1"><br/>
 
-                    <label for="answer1">
-                        <h4>Answer 1 :</h4>
-                    </label>
-                    <select class="custom-select btn-outline-info" id="inputGroupSelect04" name="complex_level"
-                    aria-label="Example select with button addon" required>
-                    <option selected disabled="disabled">Select Complex level...</option>
-                    <option value="1">Easy</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Hard</option>
-                    <option value="5">Very Hard</option>
-                    <option value="10">Insane</option>
-                </select>
+
+
+<br>
+                <label for="answer1">
+                    <h4>Answer 1 :</h4>
+                </label><br>
+                <input class="custom-select-md btn-outline-info"  required list="correct" name="answer1" placeholder="Enter Answer- 1"><br/>
+                <datalist id="correct">
+                <option value="op[0]">Option-1</option>
+                <option value="op[1]">Option-2</option>
+                <option value="op[2]">Option-3</option>
+                <option value="op[3]">Option-4</option>
+                <option value="op[4]">Option-5</option>
+                <option value="op[5]">Option-6</option>
+        
+                </datalist>
 
                     <br/>
                 </div>
@@ -145,7 +180,7 @@
 
 
 
-
+<p id="q_counter" value="" name="total_questions"> </p>
 
 
                 <div class="row">

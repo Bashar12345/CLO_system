@@ -128,14 +128,21 @@ def mcq_question_Upload_part2(number_of_questions, code):
         return " "
 
 
-def mcq_uploading_processsing(get_form):
+def mcq_uploading_processsing(get_form,corse_code):
     form = get_form
     mcq_question_options_tuple = list()
     mcq_question_dictionary = dict()
     # Which is in under construction
     course_title = request.form.get("course_title")
     course_code = form.course_code.data
-    topic = form.lesson.data
+    if corse_code=='teacher':
+        course_code = request.form.get('course_code')
+        topic = form.lesson.data
+    else:
+        course_code=corse_code
+        topic = request.form.get('lessons_current_c_code')
+
+    
     Complexity_label = request.form.get("complex_level")
     quesCLO = form.clo.data  # request.form.get("CO")  # CLO
     number_of_question = request.form.get("total_questions")
@@ -154,8 +161,9 @@ def mcq_uploading_processsing(get_form):
             template_name_of_answer = "answer" + str(i)
 
             mcq_answer = request.form.get(template_name_of_answer)
+            print(mcq_answer)
             mcq_question_options_tuple.append(mcq_answer)
-            for j in range(int(op)):
+            for j in range(6):
                 # print('j = ', j)
                 template_name_of_questions_options = "op" + str(count)
                 # print(option)

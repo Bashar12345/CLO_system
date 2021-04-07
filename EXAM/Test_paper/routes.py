@@ -199,6 +199,8 @@ def mcq_upload(course_code):
     #     # print(title.course_title)
     #     if title.course_title not in course_title:
     #         course_title.append(title.course_title)
+   
+    lessons_of_current_course_code=[]
     user_email = user_obj.e
     couse_code_list = teacher_created_courses_model.objects(
         teacher_registered_id=user_email)
@@ -209,15 +211,22 @@ def mcq_upload(course_code):
             # print(title.course_title)
             if crse_code.course_code not in course_code:
                 course_code.append(crse_code.course_code)
+    else:
+        lsns=teacher_created_courses_model.objects(course_code=corse_code).first()
+        lessons_of_current_course_code=lsns.course_lessons
+        print(lessons_of_current_course_code)
     if request.method == "POST":
-        mcq_uploading_processsing(form)
+        d= request.form.get('propertytype')
+        print(d)
+        mcq_uploading_processsing(form,corse_code)
     return render_template(
         "mcq/mcqupload.html",
         title="mcqUpload",
         form=form,
         user_type=User_type.user_type,
         course_code=course_code,
-        corse_code=corse_code
+        corse_code=corse_code,
+        lessons_of_current_course_code=lessons_of_current_course_code
         # course_title=course_title,
     )
 
@@ -268,12 +277,10 @@ def mcqUpload_clo_selection_load():
     if request.args:
         code = request.args.get("c")
         # print(code)
-        course_clo = course_model.objects(course_code=code).first()
-        # print(type(lesn.course_lessons))
         clo_list = []
-        for clos in course_clo.clo:
-            # print(clos)
-            clo_list.append(clos)
+        crse_clo = course_model.objects(course_code=code).first()
+        print(type(crse_clo.course_co))
+        clo_list=crse_clo.course_co
         response_to_browser = make_response(jsonify(clo_list))
         print(response_to_browser)
     return response_to_browser

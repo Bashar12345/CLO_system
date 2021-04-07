@@ -7,7 +7,6 @@ from EXAM.model import enrol_students_model, user
 
 def validate_email(self, email):
         searchTheEmail = user.objects(email=email.data).first()
-        print(searchTheEmail)
         if searchTheEmail:
             raise ValidationError('That email is already taken,Please choose another one')
 

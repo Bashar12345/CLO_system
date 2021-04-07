@@ -99,45 +99,56 @@
 
 
 #couse_model
-/* 1 */
 {
-    "_id" : ObjectId("603e92717b95c85b5695eb9c"),
-    "course_title" : "Data Algorithm",
-    "course_code" : "swe342",
-    "course_co" : "56",
+    "course_title" : "Data Analysis",
+    "course_code" : "swe421",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data communication", 
+        "clo- 2 know the model of network model", 
+        "clo- 3 know the concept of CRC diagram", 
+        ""
+    ],
     "course_lessons" : [ 
         "Lesson-1 intro", 
-        "lesson-2 Requirement", 
-        "lesson-3 distribution"
+        "lesson-3 distribution", 
+        "l-1 field_anlysis"
     ],
-    "course_duration" : "2021-03-16",
-    "course_caption" : "ukjygfvhgcfcgjknmb ",
-    "user_type" : "teacher",
-    "teacher_registered_id" : "bashar@example.com"
+    "course_duration" : "2021-07-22",
+    "course_caption" : "testing"
 }
 
-/* 2 */
 {
-    "_id" : ObjectId("60462877fe52f5ba3e583380"),
-    "course_title" : "Thesis and project",
-    "course_code" : "swe451",
-    "course_co" : "32",
+   
+    "course_title" : "solution  of language",
+    "course_code" : "swe434",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of language", 
+        "clo- 2 know the model of language model", 
+        "clo- 3 know the concept of language diagram", 
+        ""
+    ],
     "course_lessons" : [ 
         "l-1 intro", 
-        "l-2 requirement", 
-        "l-3 application", 
-        "l-4 capture", 
-        "l-5 store"
+        "l-2 love", 
+        "l-3 emotion", 
+        "l-4 why", 
+        "l-5 future"
     ],
-    "course_duration" : "2021-03-17",
-    "course_caption" : "testing",
-    "user_type" : "teacher"
+    "course_duration" : "2021-06-23",
+    "course_caption" : "testing"
 }
+
+
 {
-  
+    
     "course_title" : "Thesis and project",
     "course_code" : "swe551",
-    "course_co" : "32",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of project", 
+        "clo- 2 know the model of app model", 
+        "clo- 3 know the concept of Delivery the requirements and time", 
+        ""
+    ],
     "course_lessons" : [ 
         "l-1 intro", 
         "l-2 requirement", 
@@ -145,7 +156,7 @@
         "l-4 capture", 
         "l-5 store"
     ],
-    "course_duration" : "2021-03-17",
+   "course_duration" : "2021-06-23",
     "course_caption" : "testing"
 }
 
@@ -153,7 +164,27 @@
 {
    
     "course_title" : "Data Algorithm",
-    "course_code" : "swe251",
+    "course_code" : "swe151",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
+    "course_lessons" : [ 
+        "Lesson-1 intro", 
+        "lesson-2 requirement"
+        
+    ],
+  "course_duration" : "2021-06-23",
+    "course_caption" : "testing"
+}
+
+
+{
+   
+    "course_title" : "Data Algorithm",
+    "course_code" : "ete251",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 
@@ -163,25 +194,10 @@
     "course_caption" : "testing"
 }
 
-
-{
-   
-    "course_title" : "Data Algorithm",
-    "course_code" : "swe151",
-    "course_co" : "32",
-    "course_lessons" : [ 
-        "l-1 intro", 
-        "l-2 requirement"
-    ],
-    "course_duration" : "2021-03-11",
-    "course_caption" : "testingh"
-}
-
-
 {
    
     "course_title" : "Thesis and project",
-    "course_code" : "swe951",
+    "course_code" : "eee951",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 
@@ -195,7 +211,7 @@
 {
    
     "course_title" : "Thesis and project",
-    "course_code" : "swe451",
+    "course_code" : "se451",
     "course_co" : "32",
     "course_lessons" : [ 
          "l-1 intro", 
@@ -239,7 +255,7 @@
 {
    
     "course_title" : "Thesis and project",
-    "course_code" : "swe451",
+    "course_code" : "cse451",
     "course_co" : "32",
     "course_lessons" : [ 
         "l-1 intro", 
@@ -254,11 +270,42 @@
 #course data teacher
 
 {
+    "course_title" : "Data Analysis",
+    "course_code" : "swe421",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data communication", 
+        "clo- 2 know the model of network model", 
+        "clo- 3 know the concept of CRC diagram", 
+        ""
+    ],
+    "course_lessons" : [ 
+        "Lesson-1 intro", 
+        "lesson-3 distribution", 
+        "l-1 field_anlysis"
+    ],
+    "course_duration" : "2021-07-22",
+    "course_caption" : "testing",
+    "user_type" : "teacher",
+    "teacher_registered_id" : "bashar@example.com"
+}
+
+{
    
     "course_title" : "solution  of language",
     "course_code" : "swe434",
-    "course_co" : "80",
-    "course_lessons" : "lesson-5",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of language", 
+        "clo- 2 know the model of language model", 
+        "clo- 3 know the concept of language diagram", 
+        ""
+    ],
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-2 love", 
+        "l-3 emotion", 
+        "l-4 why", 
+        "l-5 future"
+    ],
     "course_duration" : "2021-06-23",
     "course_caption" : "testing",
     "user_type" : "teacher",
@@ -268,10 +315,21 @@
 
 {
     
-    "course_title" : "solution  of language",
-    "course_code" : "swe434",
-    "course_co" : "80",
-    "course_lessons" : "lesson-5",
+    "course_title" : "Thesis and project",
+    "course_code" : "swe551",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of project", 
+        "clo- 2 know the model of app model", 
+        "clo- 3 know the concept of Delivery the requirements and time", 
+        ""
+    ],
+    "course_lessons" : [ 
+        "l-1 intro", 
+        "l-2 requirement", 
+        "l-3 application", 
+        "l-4 capture", 
+        "l-5 store"
+    ],
    "course_duration" : "2021-06-23",
     "course_caption" : "testing",
     "user_type" : "teacher",
@@ -281,18 +339,27 @@
 
 {
    
-    "course_title" : "solution  of language",
-    "course_code" : "swe434",
-    "course_co" : "80",
-    "course_lessons" : "lesson-5",
+    "course_title" : "Data Algorithm",
+    "course_code" : "swe151",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
+    "course_lessons" : [ 
+        "Lesson-1 intro", 
+        "lesson-2 requirement"
+        
+    ],
   "course_duration" : "2021-06-23",
     "course_caption" : "testing",
-    "user_type" : "student",
+    "user_type" : "teacher",
      "teacher_registered_id" : "bashar@example.com"
 }
 
-#course data student
 
+#course data student
 
 {
    
@@ -329,6 +396,8 @@
     "user_type" : "student",
     "student_registered_id" : "ayshakhatun@example.com"
 }
+
+
 #enrolled students
 
 
@@ -340,51 +409,25 @@
 
 
 {   
-    "course_code" : "swe342",
+    "course_code" : "swe421",
     "enrol_key" : "21354eww",
     "enrolled_students_id" : "ayshakhatun@example.com"
 }
 
 { 
-    "course_code" : "swe342",
+    "course_code" : "swe551",
     "enrol_key" : "21354eww",
     "enrolled_students_id" : "ayshakhatun@example.com"
 }
 
 
 {   
-    "course_code" : "swe342",
+    "course_code" : "swe151",
     "enrol_key" : "21354eww",
     "enrolled_students_id" : "ayshakhatun@example.com"
 }
 
-{ 
-    "course_code" : "swe342",
-    "enrol_key" : "21354eww",
-    "enrolled_students_id" : "ayshakhatun@example.com"
-}
-
-
-{   
-    "course_code" : "swe342",
-    "enrol_key" : "21354eww",
-    "enrolled_students_id" : "ayshakhatun@example.com"
-}
-
-{ 
-    "course_code" : "swe342",
-    "enrol_key" : "21354eww",
-    "enrolled_students_id" : "ayshakhatun@example.com"
-}
-
-
-{   
-    "course_code" : "swe342",
-    "enrol_key" : "21354eww",
-    "enrolled_students_id" : "ayshakhatun@example.com"
-}
-
-#machine learning model
+#mcq Question bank
 
 {
     "course_code":"SWE111",

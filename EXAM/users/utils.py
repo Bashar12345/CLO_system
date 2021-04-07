@@ -93,7 +93,10 @@ def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_cod
             fw.write(index+"\n")
             students_enrol_ins.enrol_key = Enrol_key
             students_enrol_ins.course_code = course_code
-            students_enrol_ins.enrolled_students_id = index
+            if students_enrol_ins.objects(course_code=course_code).first():
+                print(f"already ase {students_enrol_ins.enrolled_students_id}")
+            else:
+                students_enrol_ins.enrolled_students_id = index
             print(students_enrol_ins.enrolled_students_id)
             students_enrol_ins.save()
             

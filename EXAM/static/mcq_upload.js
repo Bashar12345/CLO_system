@@ -11,36 +11,13 @@ function load() {
     $("#btn_option").focus();
     $("#link_course_code").focus();
 
-
-    var check=$('#link_course_code').attr('value')
-    console.log(check)
-    if (check!= 'teacher'){
-        $('#lessons_table').empty();
-        var code = check;
-        var lessons_table =$('#lessons_table');
-        var lessons =$('#lesson_name');
-        
-    
-    fetch(`/mcqUpload_lesson_selection_load?c=${code}`).then(function(response){
-        response.json().then(function(lesson_array){
-            var viewHTML='';
-            var optionHTML='';
-            for (var i = 0; i < lesson_array.length; i++) {
-                viewHTML+=`<td class="col">Lesson_no :${lesson_array[i]}</td>`;
-                optionHTML+=`<option value="${lesson_array[i]}">${lesson_array[i]}</option>`;
-                console.log(optionHTML);
-            }
-            lessons_table.append(viewHTML);
-            lessons.append(optionHTML);
-            
-        });
-    });
-    }
-
     $("#btn_course_code").click(function(){
         $('#lesson').empty();
         var code =$("#course_code").val();
         var lessons =$('#lesson');
+        $('#clo').empty();
+        var code =$("#course_code").val();
+        var clos =$('#clo');
     
     fetch(`/mcqUpload_lesson_selection_load?c=${code}`).then(function(response){
         response.json().then(function(lesson_array){
@@ -52,26 +29,27 @@ function load() {
             lessons.append(optionHTML);
         });
     });
-
-});
-
-$("#btn_course_code").click(function(){
-    $('#clo').empty();
-    var code =$("#course_code").val();
-    var clos =$('#clo');
-
-fetch(`/mcqUpload_clo_selection_load?c=${code}`).then(function(response){
-    response.json().then(function(clo_array){
-        var optionHTML='';
-        for (var i = 0; i < clo_array.length; i++) {
-            optionHTML+=`<option value="${clo_array[i]}">${clo_array[i]}</option>`;
-            console.log(optionHTML);
-        }
-        clos.append(optionHTML);
+    fetch(`/mcqUpload_clo_selection_load?c=${code}`).then(function(response){
+        response.json().then(function(clo_array){
+            var optionHTML='';
+            for (var i = 0; i < clo_array.length; i++) {
+                optionHTML+=`<option value="${clo_array[i]}">${clo_array[i]}</option>`;
+                console.log(optionHTML);
+            }
+            clos.append(optionHTML);
+        });
     });
-});
 
 });
+
+// $("#btn_course_code").click(function(){
+//     $('#clo').empty();
+//     var code =$("#course_code").val();
+//     var clos =$('#clo');
+
+
+
+// });
 
         var count=1
         var op_count =5 
@@ -89,12 +67,23 @@ fetch(`/mcqUpload_clo_selection_load?c=${code}`).then(function(response){
 </label>
 <input  class="form-control" type="text" id="question1" name="question${question_count}" placeholder="Enter Question-${question_count} "> 
 <br/> <div class="form-group"> <br/>`;
-inputTable += `<input class="form-control" type="text" id="answer" name="answer${question_count}" placeholder="Enter Answer-${question_count}"><br/>`;
+// inputTable += `<input class="form-control" type="text" id="answer" name="answer${question_count}" placeholder="Enter Answer-${question_count}"><br/>`;
 
-for(var i=0;i<7;i++){
+for(var i=0;i<6;i++){
     inputTable += `<label for="options">Option-${i+1}:</label> 
     <input class="form-control-sm" id="options" name="op[${op_count+=1}]" placeholder="Enter Option-1">`;
     }
+    inputTable += `<br>
+    <label for="answer1">
+        <h4>Answer 1 :</h4>
+    </label><br>
+    <input class="custom-select-md btn-outline-info"  required list="correct" name="answer${question_count}" placeholder="Enter Answer- ${question_count}"><br/>
+    <datalist id="correct">`;
+    for(var i=0;i<6;i++){
+        inputTable += `<option value="op[${op_count}]">Option-${i+1}</option> `;
+    }
+
+    inputTable += `</datalist><br/>`;
 
     inputTable += `<br/></div>`;
 
