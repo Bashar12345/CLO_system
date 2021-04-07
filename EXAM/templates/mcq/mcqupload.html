@@ -8,8 +8,6 @@
     <form class="form-horizontal form-group" method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <div>
-            
-
         <!--div class="d-flex justify-content-start">
             <div class="d-flex flex-wrap ">
                     <legend class=" custom-control-label">Questions for Particular Course</legend>
@@ -31,10 +29,10 @@
 
         <header id="link_course_code" value="{{course_code}}" class="d-flex justify-content-start">
             {% if corse_code != "teacher" %}
-                {{course_code}}
+                <h1> " {{course_code}} " </h1>
                 {% endif %}
-            </header>
-            <h3>Upload MCQ Questions </h3>
+            </header><br>
+            <h4>Upload MCQ Questions </h4>
             <br/>
 
 {% if corse_code=="teacher" %}
@@ -87,13 +85,13 @@
                     </select>
                 </div>
             </div>
-
+            <br/>
             <div class="justify-content-lg-end">
-                {{ form.clo.label(class="custom-control-label") }}
+                {{ form.clo.label(class="custom-control-label ") }}
                 {{ form.clo(class="form-select") }}
 
             </div>
-            
+            <br/>
 
 
             <div id="addQuestion" class="form-group" name="addQuestion">
@@ -104,8 +102,13 @@
                 <br/>
         
                 <div class="form-group">
-                    <br/>
-                    <input class="form-control" type="text" id="answer" name="answer1" placeholder="Enter Answer- 1"><br/>
+                    
+                    
+
+
+
+
+
                     <label for="options">Option-1:</label> 
                     <input class="form-control-sm" id="options" name="op[0]" placeholder="Enter Option-1">
                     <label for="options">Option-2:</label> 
@@ -120,18 +123,25 @@
                     <input class="form-control-sm" id="options" name="op[5]" placeholder="Enter Option-6">
                     
                     
-                    
+                    <input class="form-control" type="text" id="answer" name="answer1" placeholder="Enter Answer- 1"><br/>
+
+                    <label for="answer1">
+                        <h4>Answer 1 :</h4>
+                    </label>
+                    <select class="custom-select btn-outline-info" id="inputGroupSelect04" name="complex_level"
+                    aria-label="Example select with button addon" required>
+                    <option selected disabled="disabled">Select Complex level...</option>
+                    <option value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                    <option value="5">Very Hard</option>
+                    <option value="10">Insane</option>
+                </select>
 
                     <br/>
                 </div>
 
-
-
-
-
-        
-
-  </div>
+</div>
 
 
 

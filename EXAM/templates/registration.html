@@ -28,14 +28,14 @@
                         <br>
                         {{ form.organization_id(class = "form-control form-control-lg ", placeholder = "Like: Student_ID or Employee_ID from a verified LTD") }}
                         <br>
-                        {{ form.form_email.label(class = "custom-control-label") }}
+                        {{ form.email.label(class = "custom-control-label") }}
 
 
-{% if form.form_email.errors %}
-{{form.form_email(class="form-control form-control-lg is-invalid")}}
+{% if form.email.errors %}
+{{form.email(class="form-control form-control-lg is-invalid")}}
 <div class="invalid-feedback">
     
-    {% for error in form.form_email.errors %}
+    {% for error in form.email.errors %}
     <span>{{error}}</span>
         
     {% endfor %}
@@ -44,7 +44,7 @@
 {% else %}
 
 <div class="input-group mb-3">
-    {{ form.form_email(class = "form-control form-control-lg" ,placeholder = "Email") }}
+    {{ form.email(class = "form-control form-control-lg" ,placeholder = "Email") }}
     <div class="input-group-append">
         <span class="input-group-text" id="basic-addon2">@example.com</span>
     </div>

@@ -48,7 +48,6 @@ function load() {
             for (var i = 0; i < lesson_array.length; i++) {
                 optionHTML+=`<option value="${lesson_array[i]}">${lesson_array[i]}</option>`;
                 console.log(optionHTML);
-
             }
             lessons.append(optionHTML);
         });

@@ -30,9 +30,8 @@ def register():
         return redirect(url_for("main.main_page"))
     form = registration_form()
     
-    if request.method == "POST":
-        d=user.objects(email=form.form_email.data).first()
-        print( "eta  " ,d.email,d.user_name)
+    #if request.method == "POST":
+    if form.validate_on_submit():
         check = register_method(form)
         if check == "done":
             return redirect(url_for("users.login"))
