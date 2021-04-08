@@ -216,8 +216,6 @@ def mcq_upload(course_code):
         lessons_of_current_course_code=lsns.course_lessons
         print(lessons_of_current_course_code)
     if request.method == "POST":
-        d= request.form.get('propertytype')
-        print(d)
         mcq_uploading_processsing(form,corse_code)
     return render_template(
         "mcq/mcqupload.html",

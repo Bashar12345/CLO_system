@@ -53,20 +53,24 @@ function load() {
 
         var count=1
         var op_count =5 
-        var  question_count =1
+        var op_ans_count=5
+        var  question_count =0
 
     $("#total_questions_btn").click(function(){
         var inputTable='';
+        
         //$('#addQuestion').empty();    
         //alert("" + total_questions);
         //{#% if count.append(count.pop() + 1) %#}{#% endif %#} {# increment count by 1 #}
 
-
-    inputTable += ` <label for="question1">
-    <h4>Question ${question_count+=1} :</h4>
+        
+    inputTable += ` <label for="question${question_count+=1}">
+    <h4>Question ${question_count} :</h4>
 </label>
 <input  class="form-control" type="text" id="question1" name="question${question_count}" placeholder="Enter Question-${question_count} "> 
 <br/> <div class="form-group"> <br/>`;
+    $('#q_counter').attr({"value":question_count})
+    $('#q_counter').html(question_count)
 // inputTable += `<input class="form-control" type="text" id="answer" name="answer${question_count}" placeholder="Enter Answer-${question_count}"><br/>`;
 
 for(var i=0;i<6;i++){
@@ -74,16 +78,15 @@ for(var i=0;i<6;i++){
     <input class="form-control-sm" id="options" name="op[${op_count+=1}]" placeholder="Enter Option-1">`;
     }
     inputTable += `<br>
-    <label for="answer1">
-        <h4>Answer 1 :</h4>
+    <label for="answer${question_count}">
+        <h4>Answer ${question_count} :</h4>
     </label><br>
-    <input class="custom-select-md btn-outline-info"  required list="correct" name="answer${question_count}" placeholder="Enter Answer- ${question_count}"><br/>
-    <datalist id="correct">`;
+    <select class="custom-select-md btn-outline-info"  name="answer${question_count}" type="text" placeholder="Enter Answer- ${question_count}" required><br/>`;
     for(var i=0;i<6;i++){
-        inputTable += `<option value="op[${op_count}]">Option-${i+1}</option> `;
+        inputTable += `<option type="text" value="op${op_ans_count+=1}">Option-${i+1}</option> `;
     }
 
-    inputTable += `</datalist><br/>`;
+    inputTable += `</select><br/>`;
 
     inputTable += `<br/></div>`;
 

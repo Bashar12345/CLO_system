@@ -75,7 +75,7 @@ class mcqQuestion(nosql.Document):
     lesson=nosql.StringField()
     question=nosql.StringField(check_keys=False)
     question_dictionary = nosql.DictField(check_keys=False)
-    list_of_mcq_option = nosql.ListField(nosql.StringField(check_keys=False), default=list)  # For Update purpose
+    list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
 
     # def __repr__(self):
     #     return f"{self.question_dictionary}"

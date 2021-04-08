@@ -120,7 +120,7 @@
             </div>
             <br/>
             <div class="justify-content-lg-end">
-                {{ form.clo.label(class="custom-control-label ") }}
+                {{ form.clo.label(class="custom-control-label ") }}<br/>
                 {{ form.clo(class="form-control-lg") }}
 
             </div>
@@ -129,9 +129,9 @@
 
             <div id="addQuestion" class="form-group" name="addQuestion">
                 <label for="question1">
-                    <h4>Question 1 :</h4>
+                    <h4>Question 0 :</h4>
                 </label>
-                <input class="form-control" type="text" id="question1" name="question1" placeholder="Enter Question-1 "> 
+                <input class="form-control" type="text" id="question1" name="question0" placeholder="Enter Question- 0"> 
                 <br/>
         
                 <div class="form-group">
@@ -143,35 +143,34 @@
 
 
                     <label for="options">Option-1:</label> 
-                    <input class="form-control-sm" id="options0" name="op[0]" placeholder="Enter Option-1">
+                    <input type="text" class="form-control-sm" id="options0" name="op[0]" placeholder="Enter Option-1">
                     <label for="options">Option-2:</label> 
-                    <input class="form-control-sm" id="options1" name="op[1]" placeholder="Enter Option-2">
+                    <input type="text" class="form-control-sm" id="options1" name="op[1]" placeholder="Enter Option-2">
                     <label for="options">Option-3:</label> 
-                    <input class="form-control-sm" id="options2" name="op[2]" placeholder="Enter Option-3">
+                    <input type="text" class="form-control-sm" id="options2" name="op[2]" placeholder="Enter Option-3">
                     <label for="options">Option-4:</label> 
-                    <input class="form-control-sm" id="options3" name="op[3]" placeholder="Enter Option-4">
+                    <input type="text" class="form-control-sm" id="options3" name="op[3]" placeholder="Enter Option-4">
                     <label for="options">Option-5:</label> 
-                    <input class="form-control-sm" id="options4" name="op[4]" placeholder="Enter Option-5">
+                    <input type="text" class="form-control-sm" id="options4" name="op[4]" placeholder="Enter Option-5">
                     <label for="options">Option-6:</label> 
-                    <input class="form-control-sm" id="options5" name="op[5]" placeholder="Enter Option-6">
+                    <input type="text" class="form-control-sm" id="options5" name="op[5]" placeholder="Enter Option-6">
                     
 
 
 
 <br>
                 <label for="answer1">
-                    <h4>Answer 1 :</h4>
-                </label><br>
-                <input class="custom-select-md btn-outline-info"  required list="correct" name="answer1" placeholder="Enter Answer- 1"><br/>
-                <datalist id="correct">
-                <option value="op[0]">Option-1</option>
-                <option value="op[1]">Option-2</option>
-                <option value="op[2]">Option-3</option>
-                <option value="op[3]">Option-4</option>
-                <option value="op[4]">Option-5</option>
-                <option value="op[5]">Option-6</option>
+                    <h4>Answer 0 :</h4>
+                </label>
+                <select class="custom-select-md btn-outline-info" name="answer0" type="text" placeholder="Enter Answer- 1" required>
+                <option type="text" value="op[0]">Option-1</option>
+                <option value="op[1]" type="text">Option-2</option>
+                <option value="op[2]" type="text">Option-3</option>
+                <option type="text" value="op[3]">Option-4</option>
+                <option type="text" value="op[4]">Option-5</option>
+                <option type="text" value="op[5]">Option-6</option>
         
-                </datalist>
+                </select>
 
                     <br/>
                 </div>
@@ -180,13 +179,13 @@
 
 
 
-<p id="q_counter" value="" name="total_questions"> </p>
+<input type="number" id="q_counter" value="1" name="total_questions" hidden> </input>
 
 
                 <div class="row">
                     <br/><h7 style="color: brown;">Dont use fullstop in the question </h7> </div>
                 
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-start">
                     <button id="total_questions_btn" class="btn btn-outline-primary" type="button">Add another Question</button>
                 </div>
 
@@ -196,7 +195,7 @@
             <div id="addQuestion" class="form-group" name="addQuestion">
             </div>
             </fieldset>
-            <br /><button id="total_btn" class="btn btn-block btn-outline-primary" type="submit">submit</button>
+            <br /><button id="total_btn" class="btn btn-outline-primary" type="submit">submit</button>
         </div>
     </form>
 

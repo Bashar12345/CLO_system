@@ -130,6 +130,7 @@ def mcq_question_Upload_part2(number_of_questions, code):
 
 def mcq_uploading_processsing(get_form,corse_code):
     form = get_form
+    #print("method e dhukse")
     mcq_question_options_tuple = list()
     mcq_question_dictionary = dict()
     # Which is in under construction
@@ -146,7 +147,8 @@ def mcq_uploading_processsing(get_form,corse_code):
     Complexity_label = request.form.get("complex_level")
     quesCLO = form.clo.data  # request.form.get("CO")  # CLO
     number_of_question = request.form.get("total_questions")
-    op = request.form.get("options")  # number of option
+    print(number_of_question)
+    #op = request.form.get("options")  # number of option
     # print(type(op))  #options per question
     # length = 0
     # print(op)
@@ -160,9 +162,11 @@ def mcq_uploading_processsing(get_form,corse_code):
             # mcq_Question = form.question.data
             template_name_of_answer = "answer" + str(i)
 
-            mcq_answer = request.form.get(template_name_of_answer)
+            mcq_ans_op_name = request.form.get(template_name_of_answer)
+            mcq_answer=request.form.get(mcq_ans_op_name)
             print(mcq_answer)
             mcq_question_options_tuple.append(mcq_answer)
+            print(mcq_question_options_tuple)
             for j in range(6):
                 # print('j = ', j)
                 template_name_of_questions_options = "op" + str(count)
@@ -404,7 +408,7 @@ def machine_process_data(requirement_for_mcq_questions):
     #objects_of_requirement = requirement_for_mcq_questions
     #question_part = machine_process_data_wrangling(objects_of_requirement)
     # prepared shffled question list for machine prediction
-    shuffled_list = catch_the_shuffled_question_list(question_part)
+    #shuffled_list = catch_the_shuffled_question_list(question_part)
     # make a question for deleivery
     #test_mcq_ML()
     #randomly_created_question = a_question(shuffled_list, objects_of_requirement)
@@ -428,9 +432,12 @@ def machine_process_data_wrangling(objects_of_requirement):
     crse_code = objects_of_requirement.course_code
     for i in mcqQuestion.objects(course_code=crse_code):
         MCQ_questions.append(i.question)
+    question_part=random.sample(MCQ_questions, objects_of_requirement.number_of_question)
     #print(MCQ_questions)
-    random.shuffle(MCQ_questions)
+    #print(random.sample(MCQ_questions, 2))
+    #random.shuffle(MCQ_questions)
     #print(MCQ_questions)
+    #print(question_part)
     return question_part
 
 
@@ -439,13 +446,14 @@ def catch_the_shuffled_question_list(question_part):
     full_set_shuffled_question = []
     for ques in question_part:
         for j in mcqQuestion.objects(question=ques):
-            shuffled_question_list = ques.question_dictionary
-    print(shuffled_question_list)
+            shuffled_question_list.append(j.question_dictionary)
+    #print(shuffled_question_list)
     for ques in shuffled_question_list:
-        question_bank = mcqQuestion.objects(question=ques).first()
-        print(question_bank.question_dictionary)
-        full_set_shuffled_question.append(question_bank.question_dictionary)
-    print(full_set_shuffled_question)
+        #print(ques)
+        question_bank = mcqQuestion.objects(question_dictionary=ques).first()
+        print(question_bank.complex_level)
+        #full_set_shuffled_question.append(question_bank.question_dictionary)
+    #print(full_set_shuffled_question)
     return shuffled_question_list
 
 
