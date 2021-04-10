@@ -128,7 +128,7 @@ def mcq_question_Upload_part2(number_of_questions, code):
         return " "
 
 
-def mcq_uploading_processsing(get_form,corse_code):
+def mcq_uploading_processsing(get_form, corse_code):
     form = get_form
     #print("method e dhukse")
     mcq_question_options_tuple = list()
@@ -136,19 +136,18 @@ def mcq_uploading_processsing(get_form,corse_code):
     # Which is in under construction
     course_title = request.form.get("course_title")
     course_code = form.course_code.data
-    if corse_code=='teacher':
+    if corse_code == 'teacher':
         course_code = request.form.get('course_code')
         topic = form.lesson.data
     else:
-        course_code=corse_code
+        course_code = corse_code
         topic = request.form.get('lessons_current_c_code')
 
-    
     Complexity_label = request.form.get("complex_level")
     quesCLO = form.clo.data  # request.form.get("CO")  # CLO
     number_of_question = request.form.get("total_questions")
     print(number_of_question)
-    #op = request.form.get("options")  # number of option
+    # op = request.form.get("options")  # number of option
     # print(type(op))  #options per question
     # length = 0
     # print(op)
@@ -163,7 +162,7 @@ def mcq_uploading_processsing(get_form,corse_code):
             template_name_of_answer = "answer" + str(i)
 
             mcq_ans_op_name = request.form.get(template_name_of_answer)
-            mcq_answer=request.form.get(mcq_ans_op_name)
+            mcq_answer = request.form.get(mcq_ans_op_name)
             print(mcq_answer)
             mcq_question_options_tuple.append(mcq_answer)
             print(mcq_question_options_tuple)
@@ -212,7 +211,7 @@ def mcq_uploading_processsing(get_form,corse_code):
 # under construction
 
 
-def generate_question(get_form,corse_code):
+def generate_question(get_form, corse_code):
     form = get_form
     exam_title = form.exam_title.data
     # exam_course = form.exam_course.data
@@ -227,10 +226,10 @@ def generate_question(get_form,corse_code):
     exam_secret_code = form.exam_code.data
     # exam_marks = form.exam_marks.data
     number_of_question = request.form.get("exam_total_questions")
-    if corse_code=='teacher':
+    if corse_code == 'teacher':
         course_code = request.form.get('course_code')
     else:
-        course_code=corse_code
+        course_code = corse_code
     question_difficulty = request.form.get("question_difficulty")
     # form.exam_topic.data
     """print(
@@ -247,7 +246,8 @@ def generate_question(get_form,corse_code):
     exam_CLO = request.form.getlist("exam_CLO")
     # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
-    print(exam_topic, " --", exam_CLO, " --", complex_level, " --", number_of_question, " --") 
+    print(exam_topic, " --", exam_CLO, " --",
+          complex_level, " --", number_of_question, " --")
     courses = course_model.objects(course_code=course_code).first()
     stash_required_exam_property = required_for_generate()
     stash_required_exam_property.exam_title = exam_title
@@ -403,17 +403,17 @@ def mcq_question_answer_submit(get_form):
 
 
 def machine_process_data(requirement_for_mcq_questions):
-    pass
+
     # data cleaning for shuffle
-    #objects_of_requirement = requirement_for_mcq_questions
-    #question_part = machine_process_data_wrangling(objects_of_requirement)
+    objects_of_requirement = requirement_for_mcq_questions
+    question_part = machine_process_data_wrangling(objects_of_requirement)
     # prepared shffled question list for machine prediction
-    #shuffled_list = catch_the_shuffled_question_list(question_part)
+    shuffled_list = catch_the_shuffled_question_list(question_part)
     # make a question for deleivery
-    #test_mcq_ML()
-    #randomly_created_question = a_question(shuffled_list, objects_of_requirement)
+    # test_mcq_ML()
+    question_point,lessons,course_code = a_question(shuffled_list, objects_of_requirement)
     # algorithm magic
-    #machine_predict_result(randomly_created_question)
+    machine_predict_result(question_point,lessons,course_code)
 
 
 def machine_process_data_wrangling(objects_of_requirement):
@@ -432,12 +432,13 @@ def machine_process_data_wrangling(objects_of_requirement):
     crse_code = objects_of_requirement.course_code
     for i in mcqQuestion.objects(course_code=crse_code):
         MCQ_questions.append(i.question)
-    question_part=random.sample(MCQ_questions, objects_of_requirement.number_of_question)
-    #print(MCQ_questions)
+    question_part = random.sample(
+        MCQ_questions, objects_of_requirement.number_of_question)
+    # print(MCQ_questions)
     #print(random.sample(MCQ_questions, 2))
-    #random.shuffle(MCQ_questions)
-    #print(MCQ_questions)
-    #print(question_part)
+    # random.shuffle(MCQ_questions)
+    # print(MCQ_questions)
+    # print(question_part)
     return question_part
 
 
@@ -447,97 +448,142 @@ def catch_the_shuffled_question_list(question_part):
     for ques in question_part:
         for j in mcqQuestion.objects(question=ques):
             shuffled_question_list.append(j.question_dictionary)
-    #print(shuffled_question_list)
-    for ques in shuffled_question_list:
-        #print(ques)
-        question_bank = mcqQuestion.objects(question_dictionary=ques).first()
-        print(question_bank.complex_level)
-        #full_set_shuffled_question.append(question_bank.question_dictionary)
-    #print(full_set_shuffled_question)
+    # print(shuffled_question_list)
+    # for ques in shuffled_question_list:
+    #     #print(ques)
+    #     question_bank = mcqQuestion.objects(question_dictionary=ques).first()
+    #     print(question_bank.complex_level)
+        # full_set_shuffled_question.append(question_bank.question_dictionary)
+    # print(full_set_shuffled_question)
     return shuffled_question_list
 
 
-# def a_question(shuffled_list, objects_of_requirement):
-#     new_question_list = list()
-#     complex=0
-#     complex_counter=0
-#     question_count=0
-#     highest_question_counts_complex_level=0
-#     total_question=objects_of_requirement.number_of_question
-#     # new_question_dict=dict()
-#     question_data = random.sample(shuffled_list, k=total_question)
-#     for question in question_data:
-#         for full_set in mcqQuestion.objects(question=question).first():
-#             complex=full_set.complex_level
-#             if full_set.complex_level == 1:
-#                 question_count++;
-#                 print(complex)
-
-#             new_question_list.append(full_set.question_dictionary)
-#     print(new_question_list)
-#     return new_question_list
-#     pass
+def a_question(shuffled_list, objects_of_requirement):
+    course_code=''
+    lessons=[]
+    complex=''
+    easy = 1
+    medium = 2
+    hard = 3
+    easy_count = 0
+    medium_count = 0
+    hard_count = 0
+    question_count = []
+    complexity_level_of_highest_question_count = 0
+    total_question = objects_of_requirement.number_of_question
+    for ques in shuffled_list:
+        # print(ques)
+        question_paper = mcqQuestion.objects(question_dictionary=ques).first()
+        complex = question_paper.complex_level
+        course_code=question_paper.course_code
+        lsn=question_paper.lesson
+        if lsn not in lessons:
+            lessons.append(lsn)
+        # print(complex)
+        # if complex == '1':
+        # print(complex)
+        question_count.append(complex)
+    print(lessons)
+    print(" eta total_counted", question_count)
+    for i in question_count:
+        if i == '1':
+            easy_count += 1
+        if i == '2':
+            medium_count += 1
+        if i == '3':
+            hard_count += 1
+    print(easy_count, "eta", medium_count, "eta", hard_count)
+    easy = easy*easy_count
+    medium = medium*medium_count
+    hard = hard*hard_count
+    question_point = ((easy+medium+hard)+total_question)
+    if easy > medium and easy > hard:
+        question_point = question_point/1
+    if medium > easy and medium > hard:
+        question_point = question_point/2
+    if hard > easy and hard > medium:
+        question_point = question_point/3
+    # vhul ase thik krte hobe
+    print(question_point)
+    return question_point,lessons,course_code
+    #pass
 
 
 def test_mcq_ML():
     for i in range(100):
-        ML_model=machine_learning_mcq_model()
-        #lesson = 
-        #ML_model.quesCLO =
+        ML_model = machine_learning_mcq_model()
+        # lesson =
+        # ML_model.quesCLO =
         ML_model.course_title = "Data Algorithm"
         ML_model.course_code = "swe151"
-        ML_model.question_dictionary = {"dummy question" :"dummy"}
+        ML_model.question_dictionary = {"dummy question": "dummy"}
         question_value = random.uniform(10, 40)
-        if question_value >30 :
+        if question_value > 30:
             ML_model.difficulty = "Easy"
             ML_model.type = 1
             ML_model.question_point = question_value
             ML_model.save()
-            print("Easy" ," = ",question_value)
-        elif 17<=question_value <30:
+            print("Easy", " = ", question_value)
+        elif 17 <= question_value < 30:
             ML_model.difficulty = "Medium"
             ML_model.type = 1
             ML_model.question_point = question_value
             ML_model.save()
-            print("Medium =",question_value)
+            print("Medium =", question_value)
         else:
             ML_model.difficulty = "Hard"
             ML_model.type = 1
             ML_model.question_point = question_value
             ML_model.save()
-            print("Hard =",question_value)
+            print("Hard =", question_value)
     for i in range(25):
-        ML_model=machine_learning_mcq_model()
-        #lesson = 
-        #ML_model.quesCLO =
+        ML_model = machine_learning_mcq_model()
+        # lesson =
+        # ML_model.quesCLO =
         ML_model.course_title = "Data Algorithm"
         ML_model.course_code = "swe151"
-        ML_model.question_dictionary = {"dummy question" :"dummy"}
+        ML_model.question_dictionary = {"dummy question": "dummy"}
         question_value = random.uniform(10, 40)
-        if question_value >22 :
+        if question_value > 22:
             ML_model.difficulty = "Medium"
             ML_model.type = 0
             ML_model.question_point = question_value
             ML_model.save()
-            print("Medium" ," = ",question_value)
+            print("Medium", " = ", question_value)
 
 
-
-def machine_predict_result(question_for_prediction):
+def machine_predict_result(question_point,lessons,course_code):
     # algorithom er kaz korte krter hobe------------------------------------------------------
     # question_data= pd.read_csv()
-    connection = MongoClient('localhost',27017)
-    mongosql=connection.exam
-    ML_model=mongosql.machine_learning_mcq_model  # database e je name create hoise oi nam dite hobe 
-    mcq=ML_model.find()
+    connection = MongoClient('localhost', 27017)
+    mongosql = connection.exam
+    # database e je name create hoise oi nam dite hobe
+    ML_model = mongosql.machine_learning_mcq_model
+    mcq = ML_model.find({"course_code": course_code})
     # ML_model=machine_learning_mcq_model.objects()
-    mcq_df= pd.DataFrame(list(mcq))
+    mcq_df = pd.DataFrame(list(mcq))
+    mcq_df.to_csv("demo.csv",index=False)
+    mcq_csv=pd.read_csv('temporay_ml_data.csv')
+    mcq_csv.drop("_id",axis=1,inplace=True)
+    mcq_csv.drop("question_dictionary",axis=1,inplace=True)
+    mcq_csv.drop("course_title",  axis=1,inplace=True)
+    mcq_csv.drop("course_code",  axis=1,inplace=True)
+    type=pd.get_dummies(mcq_csv['type'],drop_first=True)
+    mcq_csv.drop("type",axis=1,inplace=True)
+    mcq_cleaned_csv=pd.concat([mcq_csv,type],axis=1)
+    data_input=mcq_cleaned_csv.drop(columns=['difficulty'])# ekane output falay diya input alada kora hoise
+    data_output=mcq_cleaned_csv['difficulty']
+    ml_model=DecisionTreeClassifier()
+    ml_model.fit(data_input,data_output)
+    predicted_question_paper_difficulty=ml_model.predict([[25, 0],[15, 1]])
+    return predicted_question_paper_difficulty
+
+
+
+
+    #mcq_df = pd.DataFrame(list(mcq))
     # df=pd.concat()
-
     pass
-
-
-
 
     # ekhane machine learning algorithom use korte hobe------------------------------------------------
     # for j in needed_course_code:

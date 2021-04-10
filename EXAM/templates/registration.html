@@ -6,8 +6,8 @@
                 color: red;
             }
         </style>
-    <section class="container shadow-lg btn-light btn-group-horizontal">
-        <form class="form-container-lg" method="POST" action="" enctype="multipart/form-data">
+    <section class="container shadow-lg btn-light btn-group-horizontal"></section>
+        <form class="container form-container-lg" method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="custom-group">
                 <legend> REGISTRATION</legend>
@@ -156,8 +156,7 @@
                 <div class="small">
                     Already registered , <a href="{{url_for('users.login')}}" class="href">sign in</a>
                 </div>
-            </section>
-        </section>
+            
         <script>
         function myFunction() {
             document.getElementsByTagName("LEGEND")[0].setAttribute("class", "democlass");

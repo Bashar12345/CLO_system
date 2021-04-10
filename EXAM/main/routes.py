@@ -35,10 +35,16 @@ def index():
 
 
 @main.route('/main_page')
+@login_required
 def main_page():
     eroll_key=request.form.get('enroll_key')
     enroll_students(eroll_key,User_type.user_type)
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
+
+
+@main.route('/take_a_tour')
+def take_a_tour():
+    return render_template('views/take_a_tour.html', title='main_page', user_type=User_type.user_type)
 
 
 @main.route('/guideline')

@@ -199,7 +199,7 @@ def mcq_upload(course_code):
     #     # print(title.course_title)
     #     if title.course_title not in course_title:
     #         course_title.append(title.course_title)
-   
+
     lessons_of_current_course_code=[]
     user_email = user_obj.e
     couse_code_list = teacher_created_courses_model.objects(

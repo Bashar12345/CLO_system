@@ -75,12 +75,20 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#"><h3>App(Exam)</h3></a>
+        <a class="navbar-brand" href="{{ url_for('main.index') }}"><h3>App(Exam)</h3></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('main.main_page') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
+                
+                {% if user_type == None  %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main.take_a_tour') }}">Take a Tour <span class="sr-only">(current)</span></a>
+                </li>
+                {% endif %}
+                    
+               
                 {% if user_type == 'teacher' %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.create_course') }}"><b>Create-Course</b></a>
@@ -181,7 +189,7 @@ function enrol(){
 </body>
 
 
-<footer>
+<!-- <footer>
     <div class="row justify-content-around bg-transparent">
         <div class="col-4">
             <p>This is an app for online exam developed by bashar</p>
@@ -191,4 +199,4 @@ function enrol(){
         </div>
     </div>
 
-</footer>
+</footer> -->
