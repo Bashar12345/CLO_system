@@ -40,8 +40,8 @@ def teacher_view_courses(user):
     if teacher_registered_id:
         courses = teacher_created_courses_model.objects(
             teacher_registered_id=user)
-        temporary_model_ins = temporary_model()
         for i in courses:
+            temporary_model_ins = temporary_model()
             temporary_model_ins.user_type = i.user_type
             temporary_model_ins.teacher_registered_id = i.teacher_registered_id
             temporary_model_ins.course_title = i.course_title
@@ -50,7 +50,7 @@ def teacher_view_courses(user):
             temporary_model_ins.course_lessons = i.course_lessons
             temporary_model_ins.course_duration = i.course_duration
             temporary_model_ins.course_caption = i.course_caption
-        temporary_model_ins.save()
+            temporary_model_ins.save()
 
 
 def student_view_courses(user):
@@ -59,8 +59,8 @@ def student_view_courses(user):
     if student_registered_id:
         courses = student_courses_model.objects(
             student_registered_id=user)
-        temporary_model_ins = temporary_model()
         for i in courses:
+            temporary_model_ins = temporary_model()
             temporary_model_ins.user_type = i.user_type
             temporary_model_ins.student_registered_id = i.student_registered_id
             temporary_model_ins.course_title = i.course_title
@@ -69,7 +69,7 @@ def student_view_courses(user):
             temporary_model_ins.course_lessons = i.course_lessons
             temporary_model_ins.course_duration = i.course_duration
             temporary_model_ins.course_caption = i.course_caption
-        temporary_model_ins.save()
+            temporary_model_ins.save()
 
 
 def created_course_form_db_insertion(get_form, user_type):

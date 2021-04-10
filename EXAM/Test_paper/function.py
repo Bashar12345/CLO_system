@@ -248,7 +248,7 @@ def generate_question(get_form, corse_code):
     # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
     print(exam_topic, " --", exam_CLO, " --",
-          complex_level, " --", number_of_question, " --")
+        complex_level, " --", number_of_question, " --")
     courses = course_model.objects(course_code=course_code).first()
     stash_required_exam_property = required_for_generate()
     stash_required_exam_property.question_type=question_type
