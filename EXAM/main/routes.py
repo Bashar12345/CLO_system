@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, enroll_students, student_view_courses, teacher_view_courses
-from EXAM.model import machine_learning_mcq_model, course_model, enrol_students_model, mcqQuestion, set_exam_question_slot, student_courses_model, temporary_model
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, temporary_model, user_student
 from EXAM.users.utils import remove_junk
 
 main = Blueprint('main', __name__)
@@ -203,12 +203,14 @@ def course_assigned_students():
     total=list()
     enrollen= enrol_students_model.objects().all()
     students=student_courses_model.objects().all()
+    teachers=teacher_created_courses_model.objects().all()
     for enrolled in enrollen:
-      if enrolled.enrolled_students_id==students.student_registered_id and \
-        enrolled.course_code== students.course_code:
-        total.append(enrolled)
+        if enrolled.enrolled_students_id==students.student_registered_id and enrolled.course_code== students.course_code and students.course_code== teachers.course_code:
+            total.append(enrolled)
     print(total)
-    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type,total=total)
+    students_name=list()
+    print(students_name)
+    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type,total=total,students_name=students_name)
 
 
 @main.route('/loading_students')

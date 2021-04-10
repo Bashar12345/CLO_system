@@ -29,8 +29,8 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for("main.main_page"))
     form = registration_form()
-    
-    #if request.method == "POST":
+
+    # if request.method == "POST":
     if form.validate_on_submit():
         check = register_method(form)
         if check == "done":
@@ -70,7 +70,8 @@ def login():
                 login_user(usersd, remember=form.remember.data)
                 next_page = request.args.get("next")
                 # return check
-                flash(f"আপনার উপর শান্তি বর্ষিত হোক.... {usersd.user_name}", "success")
+                flash(
+                    f"আপনার উপর শান্তি বর্ষিত হোক.... {usersd.user_name}", "success")
                 return (
                     redirect(next_page)
                     if next_page
@@ -133,17 +134,20 @@ def reset_token(token):
     )
 
 
-
 @users.route("/examiner")
 @login_required
 def examiner():
     return render_template(
         "examiner.html", title="Examiner_Page", user_type=User_type.user_type)
 
+class temp:
+    pass
+
 @users.route("/student_list/<course_code>", methods=["GET", "POST"])
 # @login_required
 def student_list(course_code):
     form = searchForm()
+    students=temp()
     selected_data = ""
     result_students = ""
     print(course_code)
@@ -151,10 +155,11 @@ def student_list(course_code):
     check = ""
     # students=''
     enroll = form.enroll_key.data
-    if request.method == "POST":    
+    if request.method == "POST":
         print(enroll)
         organization_id = form.organization_id.data
-        result_students = user_student.objects(organization_id=organization_id).first()
+        result_students = user_student.objects(
+            organization_id=organization_id).first()
         if result_students:
             return render_template(
                 "student/student_list.html",
@@ -164,9 +169,15 @@ def student_list(course_code):
                 result_students=result_students,
             )
         email_list = request.form.getlist('students_list_checkbox')
-        
-        sending_mail_to_user_for_course_enroll_key(email_list, enroll, corse_code)
-    students = user_student.objects()
+
+        sending_mail_to_user_for_course_enroll_key(
+            email_list, enroll, corse_code)
+    for userStudents in user_student.objects():
+        for students_enrolled in enrol_students_model.objects(course_code=course_code):
+            if userStudents.email==students_enrolled.enrolled_students_id:
+                print(f"already ase {userStudents.email}")
+            else:
+                students=userStudents
     return render_template(
         "student/student_list.html",
         form=form,
@@ -177,15 +188,11 @@ def student_list(course_code):
     )
 
 
-
-
 # '''if request.args:
 #    c = request.args.get('c')
 #         # selected_data = json.loads(request.args.get("email_list"))
 #   flash(f'A mail with a enroll Has been send to the Students', 'success')
 #       return redirect(url_for('main.main_page'))'''
-
-
 """@users.route("/enrol", methods=["GET", "POST"])
 # @login_required
 def enrol():
@@ -193,7 +200,5 @@ def enrol():
    enroll_students(eroll_key,User_type.user_type)
    return redirect(url_for("main.main_page"))
    
-   #render_template("student/enrol.html", title=" Students", user_type=User_type.user_type)
+   # render_template("student/enrol.html", title=" Students", user_type=User_type.user_type)
 """
-
-

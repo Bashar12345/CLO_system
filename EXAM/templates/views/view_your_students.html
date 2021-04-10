@@ -5,11 +5,28 @@
 <section class= 'container'>
     <div class='justify-content-start'>
 
+
+
 {% for i in total %}
-    <div class="row">
-        <div class="col">
-            {{i}}
-        </div>
+<div class="row">
+
+{% for j in user_student.objects(email=i).first() %}
+
+<div class="col">
+    {{j.user_name}}
+</div>
+<div class="col">
+    {{j.email}}
+</div>
+    
+{% endfor %}
+    
+
+
+
+
+
+  
     </div>
 {% endfor %}
     
@@ -17,3 +34,9 @@
 </section>
 
 {% endblock %}
+
+
+
+<!-- for i in total:
+        for user_s in user_student.objects(email=i):
+            students_name.append(user_s) -->

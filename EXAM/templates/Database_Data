@@ -94,7 +94,76 @@
 }
 
  
+#user_student
 
+
+{
+    "user_name" : "jodu",
+    "email" : "joudu@gmail.com",
+    "organization_id" : "4356657qwe"
+}
+
+
+{
+   
+    "user_name" : "swert ",
+    "email" : "swert@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+
+{
+    
+    "user_name" : "asxder ",
+    "email" : "asxder@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+
+{
+   
+    "user_name" : "ertyft ",
+    "email" : "ertyft@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+
+{
+   
+    "user_name" : "vftyjs ",
+    "email" : "vftyjs@example.com",
+    "organization_id" : "171-2020-23"
+}
+
+{
+    
+    "user_name" : "BashStud",
+    "email" : "bravebashar9@gmail.com",
+    "organization_id" : "43er3452e"
+}
+
+
+{
+   
+    "user_name" : "Aysha",
+    "email" : "ayshakhatun@example.com",
+    "organization_id" : "10A-VNSC-2020"
+}
+
+
+{
+   
+    "user_name" : "MD. RAZIB HASSAN",
+    "email" : "razib@example.com",
+    "organization_id" : "12365"
+}
+
+{
+   
+    "user_name" : "MD. ROBI",
+    "email" : "robi@example.com",
+    "organization_id" : "123456"
+}
 
 
 

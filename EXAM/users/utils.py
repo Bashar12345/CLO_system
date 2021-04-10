@@ -83,28 +83,23 @@ def sending_email_to_user(model_er_user):
 
 
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
-    students_enrol_ins = enrol_students_model()
     print(email_list)
     print(type(email_list))
     if email_list:
         fw = open("file.txt", "w+")
         for index in email_list:
-            time.sleep(0.8)
             fw.write(index+"\n")
-            students_enrol_ins.enrol_key = Enrol_key
-            students_enrol_ins.course_code = course_code
+            students_enrol_ins = enrol_students_model()
             if students_enrol_ins.objects(course_code=course_code).first():
                 print(f"already ase {students_enrol_ins.enrolled_students_id}")
             else:
                 students_enrol_ins.enrolled_students_id = index
+                students_enrol_ins.enrol_key = Enrol_key
+                students_enrol_ins.course_code = course_code
+                students_enrol_ins.save()
             print(students_enrol_ins.enrolled_students_id)
-            students_enrol_ins.save()
-            
         fw.close()
-
     #''' for i in email_list:
-
-
 #  msg = Message('"Enroll key" for the course_entry',
 #                sender='bravebashar112@gmail.com', recipients=i)
 # msg.body = fFor Joining the course, Enter the key below :
