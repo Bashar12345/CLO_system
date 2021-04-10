@@ -2,11 +2,27 @@
 {% block body %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<section>
 
+<!-- ekhane table er css kora -->
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
 
-    <section class="shadow-lg btn-group-horizontal">
-        <form class="form-horizontal" action="{{ url_for('users.student_list',course_code=course_code ) }}" method="POST"
+        <form class="container form-horizontal" action="{{ url_for('users.student_list',course_code=course_code ) }}" method="POST"
             enctype="multipart/form-data">
 
             {{ form.hidden_tag()}}
@@ -14,18 +30,19 @@
             <p id="enroll_key" value="{{enroll}}">{{enroll}}</p>
 
 
-            <div class="form-inline my-2 my-lg-0" method="POST"
+            <div class="form-inline form-inline-lg my-2 my-lg-0" method="POST"
                 action="{{ url_for('users.student_list',course_code=course_code ) }}">
 
                 <div class="input-group mb-3">
-                    {{ form.organization_id(class="custom-control custom-control-lg ",placeholder="Search for your students....")}}
+                    {{ form.organization_id(class="form-control form-control-lg ",placeholder=" students ID....")}}
                     <div class="input-group-append">
                         {{ form.submit(class="btn btn-outline-success" )}}
 
                     </div>
                 </div>
             </div>
-            {{form.enroll_key(class="custom-control custom-control-lg", placeholder="Enter the Enroll key")}}
+            {{form.enroll_key(class="form-control form-control-lg", placeholder="Enter the Enroll key")}}
+            <br/>
 
             <!--search kora student-->
             {% if result_students %}
@@ -47,42 +64,37 @@
 
             <!--Database load kora student-->
             {% if students %}
-            <section class="shadow-lg btn-group-horizontal">
+            
                 <table id="tblStudents">
                     {% for i in students %}
                     <tr class="row justify-content-start">
-
-                        <td class='col-5'>
+                        <td class='col-lg-4'>
                             <input id="chk{{ i.user_name }}" aria-label="Checkbox for following text input" type="checkbox"
                                 value="{{ i.email }}" name="students_list_checkbox" />
-
                             <label for="chk{{ i.user_name }}">{{ i.user_name }}</label>
                         </td>
-
-                        <td class='col-3'>{{ i.organization_id }}</td>
-                        <td class='col-4'>{{ i.email }}</td>
-
+                        <td class='col-lg-3'>{{ i.organization_id }}</td>
+                        <td class='col-lg-5'>{{ i.email }}</td>
                     </tr>
                     {% endfor %}
                 </table>
-            </section>
+        
             {% endif %}
 
 
 
 
-            <section>
+            <footer>
                 <br />
                 <div class="row justify-content-center">
                     <input class=' col-4 btn btn-outline-primary' type="submit" value="Add to this Course" />
                 </div>
                 <!--<input id="arraySelected" type="hidden" name="selected_students" value="" hidden></p>-->
-            </section>
+            </footer>
 
         </form>
 
-    </section>
-</section>
+
 <script>
 
 </script>

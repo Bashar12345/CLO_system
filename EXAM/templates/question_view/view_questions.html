@@ -29,9 +29,10 @@
 
 
 {% set j=[1] %}
-{% for i in questions %}
+{% for i in mcqQuestion.objects(
+    course_code=course_code) %}
 <div class="table-bordered table-responsive">
-    <p>Q{{ j }} :-{{ i }} ?<br /></p>
+    <p>Q{{ j }} :-{{ i.question }} ?<br /></p>
 </div>
 {% if j.append(j.pop() + 1) %}{% endif %}
 {% endfor %}

@@ -145,16 +145,16 @@ def view_course_load_data():
 @login_required
 def question_view(course_code):
     # print(course_code)
-    questions = []
+    #questions = []
     # if request.args:
     # course_code = request.args.get("course_code")
     #questions_objects = machine_learning_mcq_model.objects(course_code=course_code)
     # print(questions_objects)
-    for i in mcqQuestion.objects(
-            course_code=course_code):
-        questions = i.question_dictionary
+    # for i in mcqQuestion.objects(
+    #         course_code=course_code):
+    #     questions = i.question
     # print(questions)
-    return render_template('question_view/view_questions.html', questions=questions, title='question_view',user_type=User_type.user_type, course_code=course_code)
+    return render_template('question_view/view_questions.html',title='question_view',user_type=User_type.user_type, course_code=course_code,mcqQuestion=mcqQuestion)
 
 
 @main.route('/dashboard')
