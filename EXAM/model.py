@@ -184,6 +184,7 @@ class machine_learning_mcq_model(nosql.Document):
     question_point=nosql.FloatField()
 # kaz baki ase
 class required_for_generate(nosql.Document):
+    question_type=nosql.StringField() # kaz baki
     exam_title=set_exam_question_slot.exam_title
     exam_course=set_exam_question_slot.exam_course
     exam_start_time=set_exam_question_slot.exam_start_time
