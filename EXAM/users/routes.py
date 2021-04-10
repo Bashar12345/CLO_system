@@ -5,7 +5,7 @@ from flask_login import current_user, logout_user, login_required, login_user
 
 from EXAM import bcrypt
 from EXAM.configaration import User_type, user_obj
-from EXAM.model import course_model, enrol_students_model, student_courses_model, temporary_model, user, user_student
+from EXAM.model import course_model, enrol_students_model, student_courses_model, temp_student_collection, temporary_model, user, user_student
 from EXAM.users.forms import (
     enrolForm,
     registration_form,
@@ -17,7 +17,7 @@ from EXAM.users.forms import (
 from EXAM.users.utils import (
     register_method,
     sending_email_to_user,
-    sending_mail_to_user_for_course_enroll_key,
+    sending_mail_to_user_for_course_enroll_key, delete_temporary_collection
 )
 import time
 
@@ -140,14 +140,11 @@ def examiner():
     return render_template(
         "examiner.html", title="Examiner_Page", user_type=User_type.user_type)
 
-class temp:
-    pass
 
 @users.route("/student_list/<course_code>", methods=["GET", "POST"])
 # @login_required
 def student_list(course_code):
     form = searchForm()
-    students=temp()
     selected_data = ""
     result_students = ""
     print(course_code)
@@ -172,12 +169,22 @@ def student_list(course_code):
 
         sending_mail_to_user_for_course_enroll_key(
             email_list, enroll, corse_code)
-    for userStudents in user_student.objects():
-        for students_enrolled in enrol_students_model.objects(course_code=course_code):
-            if userStudents.email==students_enrolled.enrolled_students_id:
-                print(f"already ase {userStudents.email}")
-            else:
-                students=userStudents
+    delete_temporary_collection()
+    enrolled = enrol_students_model.objects(course_code=course_code)
+    if enroll:
+        for userStudents in user_student.objects():
+            for students_enrolled in enroll:
+                if userStudents.email == students_enrolled.enrolled_students_id:
+                    print(f"already ase {userStudents.email}")
+                else:
+                    student_temp_class = temp_student_collection()
+                    student_temp_class.user_name = userStudents.user_name
+                    student_temp_class.email = userStudents.email
+                    student_temp_class.organization_id = userStudents.organization_id
+                    student_temp_class.save()
+        students = temp_student_collection.objects()
+    else:
+        students = user_student.objects()
     return render_template(
         "student/student_list.html",
         form=form,

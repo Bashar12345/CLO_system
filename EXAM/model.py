@@ -200,7 +200,10 @@ class required_for_generate(nosql.Document):
     complex_level = nosql.ListField()
     number_of_question=nosql.IntField()
 
-
+class temp_student_collection(nosql.Document):
+    user_name = user.user_name
+    email = user.email
+    organization_id = user.organization_id
 # McqQuestion(exam_code='qwsa123', dic_ques='{"question":"[op1,op2,op3,op4]"}', list_ques='[op1,op2,op3,op4]')
 # print(McqQuestion)
 
