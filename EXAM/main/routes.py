@@ -34,11 +34,13 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/main_page')
+@main.route('/main_page',methods=['GET', 'POST'])
 @login_required
 def main_page():
-    eroll_key=request.form.get('enroll_key')
-    enroll_students(eroll_key,User_type.user_type)
+    if request.method == "POST":
+        eroll_key=request.form.get('enroll_key')
+        print(eroll_key)
+        enroll_students(eroll_key,User_type.user_type)
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
