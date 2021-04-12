@@ -145,6 +145,7 @@ def examiner():
 # @login_required
 def student_list(course_code):
     form = searchForm()
+    students=''
     selected_data = ""
     result_students = ""
     print(course_code)
@@ -153,6 +154,7 @@ def student_list(course_code):
     # students=''
     enroll = form.enroll_key.data
     if request.method == "POST":
+        delete_temporary_collection()
         print(enroll)
         organization_id = form.organization_id.data
         result_students = user_student.objects(
@@ -166,14 +168,14 @@ def student_list(course_code):
                 result_students=result_students,
             )
         email_list = request.form.getlist('students_list_checkbox')
-
         sending_mail_to_user_for_course_enroll_key(
             email_list, enroll, corse_code)
     delete_temporary_collection()
     enrolled = enrol_students_model.objects(course_code=course_code)
-    if enroll:
+    if enrolled:
+        delete_temporary_collection()
         for userStudents in user_student.objects():
-            for students_enrolled in enroll:
+            for students_enrolled in enrolled:
                 if userStudents.email == students_enrolled.enrolled_students_id:
                     print(f"already ase {userStudents.email}")
                 else:
@@ -182,9 +184,7 @@ def student_list(course_code):
                     student_temp_class.email = userStudents.email
                     student_temp_class.organization_id = userStudents.organization_id
                     student_temp_class.save()
-        students = temp_student_collection.objects()
-    else:
-        students = user_student.objects()
+    students = temp_student_collection.objects()
     return render_template(
         "student/student_list.html",
         form=form,
@@ -193,7 +193,6 @@ def student_list(course_code):
         students=students,
         course_code=course_code,
     )
-
 
 # '''if request.args:
 #    c = request.args.get('c')

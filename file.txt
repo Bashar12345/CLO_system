@@ -1,5 +1,6 @@
+joudu@gmail.com
+swert@example.com
 swert@example.com
 ertyft@example.com
 bravebashar9@gmail.com
-ayshakhatun@example.com
-pip install -r requirements.txt
+bravebashar9@gmail.com

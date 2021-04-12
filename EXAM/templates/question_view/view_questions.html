@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
 
+{% if user_type=='teacher' %}
+    
+
+
+    
 <section class="shadow-lg btn-group-horizontal">
     {#{ form.hidden_tag() }#}
     <header>
@@ -37,6 +42,6 @@
 {% if j.append(j.pop() + 1) %}{% endif %}
 {% endfor %}
 
-
+{% endif %}
 
 {% endblock body %}

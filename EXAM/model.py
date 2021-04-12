@@ -149,9 +149,10 @@ class teacher_created_courses_model(nosql.Document):
 
 class student_courses_model(nosql.Document):
     user_type = nosql.StringField()
-    student_registered_id = user.email
+    student_registered_id = nosql.StringField()
     course_title = course_model.course_title
     course_code = course_model.course_code
+    course_co = course_model.course_co
     course_lessons = course_model.course_lessons
     course_duration = course_model.course_duration
     course_caption = course_model.course_caption
@@ -170,7 +171,7 @@ class temporary_model(nosql.Document):
 class enrol_students_model(nosql.Document):
     enrol_key = nosql.StringField()
     course_code = course_model.course_code
-    enrolled_students_id = user.email  # nosql.StringField()
+    enrolled_students_id = nosql.StringField()  # nosql.StringField()
 
 
 class machine_learning_mcq_model(nosql.Document):

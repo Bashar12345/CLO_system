@@ -810,3 +810,26 @@ def mcq_question_Upload_part2(number_of_questions, code):
     question=nosql.StringField(check_keys=False)
     question_dictionary = nosql.DictField(check_keys=False)
     list_of_mcq_option = nosql.ListField(nosql.StringField(check_keys=False), default=list)  # For Update purpose
+
+
+
+
+
+
+
+
+
+<!-- for i in total:
+        for user_s in user_student.objects(email=i):
+            students_name.append(user_s) 
+        
+        {% for j in user_student.objects(email=i).first() %}
+
+<div class="col">
+    {{j.user_name}}
+</div>
+<div class="col">
+    {{j.email}}
+</div>
+    
+{% endfor %}-->

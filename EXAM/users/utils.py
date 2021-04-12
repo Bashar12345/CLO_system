@@ -26,7 +26,7 @@ def mcq_bypass(get_form):
 def delete_temporary_collection():
     collection = temp_student_collection.objects().all()
     collection.delete()
-    #print("deleted")
+    print("temp cleaned")
 
 def remove_junk():
     # all = set_exam_question_slot._objects()
@@ -83,15 +83,19 @@ def sending_email_to_user(model_er_user):
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
     #print(email_list)
     #print(type(email_list))
+    delete_temporary_collection()
     if email_list:
         fw = open("file.txt", "w+")
         for index in email_list:
-            fw.write(index+"\n")
             students_enrol_ins = enrol_students_model()
+            fw.write(index+"\n")
+            
             students_enrol_ins.enrolled_students_id = index
-            students_enrol_ins.enrol_key = Enrol_key
-            students_enrol_ins.course_code = course_code
-            students_enrol_ins.save()
+            if students_enrol_ins.enrolled_students_id:
+                students_enrol_ins.enrol_key = Enrol_key
+                students_enrol_ins.course_code = course_code
+                students_enrol_ins.save()
+            time.sleep(1.0)
             print(students_enrol_ins.enrolled_students_id)
         fw.close()
     #''' for i in email_list:

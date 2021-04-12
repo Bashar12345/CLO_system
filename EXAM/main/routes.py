@@ -1,5 +1,6 @@
 import os
 import time
+import itertools
 
 from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app
 from flask_login import login_required
@@ -10,10 +11,11 @@ from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, enroll_students, student_view_courses, teacher_view_courses
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, temporary_model, user_student
-from EXAM.users.utils import remove_junk
+from EXAM.users.utils import delete_temporary_collection, remove_junk
 
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
+
 
 @main.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -34,13 +36,14 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/main_page',methods=['GET', 'POST'])
+@main.route('/main_page', methods=['GET', 'POST'])
 @login_required
 def main_page():
     if request.method == "POST":
-        eroll_key=request.form.get('enroll_key')
+        eroll_key = request.form.get('enroll_key')
+        delete_temporary_collection()
         print(eroll_key)
-        enroll_students(eroll_key,User_type.user_type)
+        enroll_students(eroll_key, User_type.user_type)
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
@@ -55,7 +58,7 @@ def guideline():
 
 
 @main.route('/guildLineForTeacher')
-# @login_required
+@login_required
 def guildLineForTeacher():
     return render_template('teacher/guildLineForTeacher.html', title='Teacher_guildline', user_type=User_type.user_type)
 
@@ -69,9 +72,10 @@ def create_course():
     if request.method == "POST":
         confirm = created_course_form_db_insertion(form, user_type)
         if confirm:
-            flash(f'{confirm}! Course successfully created, and sended to Admin, for authorization', 'success')
+            flash(
+                f'{confirm}! Course successfully created, and sended to Admin, for authorization', 'success')
             return redirect(url_for('main.view_courses'))
-    return render_template('teacher/create_course.html',title='Create_course', form=form, user_type=user_type)
+    return render_template('teacher/create_course.html', title='Create_course', form=form, user_type=user_type)
 
 
 # javascript kora
@@ -156,7 +160,7 @@ def question_view(course_code):
     #         course_code=course_code):
     #     questions = i.question
     # print(questions)
-    return render_template('question_view/view_questions.html',title='question_view',user_type=User_type.user_type, course_code=course_code,mcqQuestion=mcqQuestion)
+    return render_template('question_view/view_questions.html', title='question_view', user_type=User_type.user_type, course_code=course_code, mcqQuestion=mcqQuestion)
 
 
 @main.route('/dashboard')
@@ -200,19 +204,32 @@ def exam_slot_load():
 
 
 @main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def course_assigned_students():
-    total=list()
-    enrollen= enrol_students_model.objects().all()
-    students=student_courses_model.objects().all()
-    teachers=teacher_created_courses_model.objects().all()
-    for enrolled in enrollen:
-        if enrolled.enrolled_students_id==students.student_registered_id and enrolled.course_code== students.course_code and students.course_code== teachers.course_code:
-            total.append(enrolled)
-    print(total)
-    students_name=list()
+    user_total = list()
+    students_name = list()
+    usered = user_obj.e
+    students = student_courses_model.objects()
+    for student in students:
+        print(student.student_registered_id)
+        for enrolled in enrol_students_model.objects(enrolled_students_id=student.student_registered_id):
+            # print(enrolled.course_code)
+            for teacher in teacher_created_courses_model.objects(teacher_registered_id=usered):
+                # print(teacher.course_code)
+                if teacher.course_code == enrolled.course_code and \
+                        student.course_code == enrolled.course_code:
+                    # print(student.student_registered_id)
+                    if student.student_registered_id not in user_total:
+                        user_total.append(student.student_registered_id)
+                    # print("matched")
+    print(user_total)
+    for user in user_total:
+        for user_s in user_student.objects(email=user):
+            #print(user_s.user_name)
+            if user_s.user_name not in students_name:
+                students_name.append(user_s.user_name)
     print(students_name)
-    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type,total=total,students_name=students_name)
+    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_total=user_total, students_name=students_name,iter=itertools)
 
 
 @main.route('/loading_students')

@@ -12,12 +12,13 @@ def delete_temporary_model():
 def enroll_students(eroll_ki, user_type):
     usered = user_obj.e
     enrolled = enrol_students_model.objects(enrol_key=eroll_ki).first()
+    print(enrolled.course_code)
     if enrolled:
         course_model_include = course_model.objects(course_code=enrolled.course_code).first()
         if course_model_include:
             assigning_students = student_courses_model()
             assigning_students.user_type = user_type
-            print(assigning_students.user_type)
+            #print(assigning_students.user_type)
             assigning_students.student_registered_id = usered
             assigning_students.course_title = course_model_include.course_title
             assigning_students.course_code = course_model_include.course_code

@@ -4,30 +4,15 @@
 
 <section class= 'container'>
     <div class='justify-content-start'>
-
-
-
-{% for i in total %}
+{% for (name, email) in iter.zip_longest(students_name , user_total) %}
 <div class="row">
-
-{% for j in user_student.objects(email=i).first() %}
-
-<div class="col">
-    {{j.user_name}}
-</div>
-<div class="col">
-    {{j.email}}
-</div>
-    
-{% endfor %}
-    
-
-
-
-
-
-  
+    <div class="col">
+        {{name}}
     </div>
+    <div class="col">
+        {{email}}
+    </div>
+    
 {% endfor %}
     
     </div>
@@ -36,7 +21,3 @@
 {% endblock %}
 
 
-
-<!-- for i in total:
-        for user_s in user_student.objects(email=i):
-            students_name.append(user_s) -->
