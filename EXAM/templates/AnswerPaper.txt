@@ -833,3 +833,35 @@ def mcq_question_Upload_part2(number_of_questions, code):
 </div>
     
 {% endfor %}-->
+
+
+
+
+
+
+
+$(document).ready(function () {
+    load();
+});
+
+
+function load() {
+    $('#btn_course_code').focus();
+    $('#lessons_table').focus();
+    $('#lesson_name').focus();
+    $('#btnAdd').focus();
+    $('#linked_course_code').focus();
+
+
+    
+
+    
+    
+
+
+
+
+
+
+
+}

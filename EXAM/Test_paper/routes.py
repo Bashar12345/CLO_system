@@ -320,6 +320,20 @@ def generateMCQ_lesson_load():
         print(response_to_browser)
     return response_to_browser
 
+@Test_paper.route("/generateMCQ_clo_load")
+# @login_required
+def generateMCQ_clo_load():
+    response_to_browser = ""
+    if request.args:
+        code = request.args.get("c")
+        # print(code)
+        clo_list = []
+        crse_clo = course_model.objects(course_code=code).first()
+        print(type(crse_clo.course_co))
+        clo_list=crse_clo.course_co
+        response_to_browser = make_response(jsonify(clo_list))
+        print(response_to_browser)
+    return response_to_browser
 
 @Test_paper.route("/secret_code", methods=["GET", "POST"])
 @login_required

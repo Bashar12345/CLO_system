@@ -16,7 +16,6 @@ function load() {
         var code =$("#course_code").val();
         var lessons =$('#lesson');
         $('#clo').empty();
-        var code =$("#course_code").val();
         var clos =$('#clo');
     
     fetch(`/mcqUpload_lesson_selection_load?c=${code}`).then(function(response){
