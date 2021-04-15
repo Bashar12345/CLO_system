@@ -392,7 +392,7 @@ def secret_code():
 
 
 @Test_paper.route("/mcq_answer_paper", methods=["GET", "POST"])
-# @login_required
+@login_required
 def mcq_answer_paper_auto_generated():
     form = Mcq_answer_form()
     # mcq_question_answer_submit(form)
@@ -408,7 +408,8 @@ def mcq_answer_paper_auto_generated():
     end_hour, end_minute = exam_end_time.split(":")
     # print(time)      # print(hour, " minute ase ", minute)
     current_time = datetime.datetime.now()
-    # current_time2 = current_time
+    # for demo  testing 
+    current_time2 = current_time
     starting_time_of_exam = datetime.datetime(
         int(year), int(month), int(day), int(hour), int(minute)
     )
@@ -420,24 +421,21 @@ def mcq_answer_paper_auto_generated():
     # print(mcq_question['mcq_question'])
 
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    #if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    if current_time==current_time2:
         print(current_time)
         # ekahne mcq question object produce krte hobe -------------------------------------------
-        machine_process_data(requirement_for_mcq_questions)
+        predicted_question_paper_difficulty=machine_process_data(requirement_for_mcq_questions)
+        
         if request.method == "POST":
             # ekane kaz baki ase ------------------------------------------------------------------
             check = mcq_question_answer_submit(form)
             if check == "done":
                 return redirect(url_for("users.student"))
-        return render_template("mcqan.html",
-                               exam_date=exam_date,
-                               exam_end_time=exam_end_time,
-                               # custom object for answer from the machine learning method
-                               # mcq_questions=mcq_questions,
-                               title="MCQ_answer_Page",
-                               form=form,
-                               user_type=User_type.user_type,
-                               )
+        return render_template("mcqan.html",exam_date=exam_date,exam_end_time=exam_end_time, 
+        # custom object for answer from the machine learning method
+        # # mcq_questions=mcq_questions,
+        title="MCQ_answer_Page",form=form,user_type=User_type.user_type)
     return render_template(
         "count_Down.html",
         starting_time_of_exam=starting_time_of_exam,

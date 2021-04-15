@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body class="container">
 <style>
     .content {
-        max-width: 850px;
+        max-width: 750px;
+        box-sizing: border-box;
         margin: auto;
-        background: seashell;
+        background: rgb(254, 255, 243);
         padding: 200px;
-
-    .container {
+    }
+    .content container {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -27,7 +27,7 @@
         width: 35px;
         height: 15px;
         border-radius: 8px;
-        background: #FF2CBD;
+        background: #f7eb4c;
         box-shadow: 0 0 10px 0 #FECDFF;
     }
 
@@ -157,7 +157,6 @@
         }
     }
 
-    }
 </style>
 
 <section class="container">
@@ -167,14 +166,15 @@
             <div>
                 <div class="btn btn-outline-warning">
                     <div class="content">
-                        <h4>Exam will be open in </h4>
+                        <h4> <b> Exam will be open in </b></h4>
                         <hgroup class="h1" id="show_realtime"></hgroup>
-                        <h3>Prepare yourself </h3>
-                        <div class="container">
-                            <div class="dash uno"></div>
-                            <div class="dash dos"></div>
-                            <div class="dash tres"></div>
-                            <div class="dash curator"></div>
+                        <h4>Prepare yourself </h4>
+                        <br><br><br>
+                        <div class="row container">
+                            <div class="col dash uno"></div>
+                            <div class="col dash dos"></div>
+                            <div class="col dash tres"></div>
+                            <div class="col dash curator"></div>
                         </div>
                     </div>
                 </div>
