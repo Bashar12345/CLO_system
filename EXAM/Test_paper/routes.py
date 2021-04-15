@@ -399,10 +399,10 @@ def mcq_answer_paper_auto_generated():
     exam_code = secret_exam_key.exam_code
     requirement_for_mcq_questions = required_for_generate.objects(
         exam_secret_code=exam_code).first()
-    exam_start_time = required_for_generate.exam_start_time
-    exam_end_time = required_for_generate.exam_end_time
-    exam_date = required_for_generate.exam_date
-    # print(exam_start_time, exam_end_time, exam_date)
+    exam_start_time = requirement_for_mcq_questions.exam_start_time
+    exam_end_time = requirement_for_mcq_questions.exam_end_time
+    exam_date = requirement_for_mcq_questions.exam_date
+    print(exam_start_time, exam_end_time, exam_date)
     year, month, day = exam_date.split("-")
     hour, minute = exam_start_time.split(":")
     end_hour, end_minute = exam_end_time.split(":")
