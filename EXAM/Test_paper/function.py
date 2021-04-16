@@ -617,13 +617,14 @@ def machine_predict_result(data_input, data_output, question_point, question_typ
     ml_model.fit(data_input, data_output)
     predicted_question_paper_difficulty, _ = ml_model.predict(
         [[question_point, question_type], [question_point, question_type]])
+    print(predicted_question_paper_difficulty)
     return predicted_question_paper_difficulty
 
     # mcq_df = pd.DataFrame(list(mcq))
     # df=pd.concat()
     
 
-    
+
     # ekhane machine learning algorithom use korte hobe------------------------------------------------
     # for j in needed_course_code:
     #     print(j)

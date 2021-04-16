@@ -425,7 +425,7 @@ def mcq_answer_paper_auto_generated():
     if current_time==current_time2:
         print(current_time)
         # ekahne mcq question object produce krte hobe -------------------------------------------
-        predicted_question_paper_difficulty=machine_process_data(requirement_for_mcq_questions)
+        question_mcq_for_current_session=machine_process_data(requirement_for_mcq_questions)
         
         if request.method == "POST":
             # ekane kaz baki ase ------------------------------------------------------------------
