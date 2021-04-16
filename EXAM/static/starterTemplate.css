@@ -86,3 +86,66 @@ div#sidebar {
     border: 5px solid #7f7f7f;
     background: #c3c3c3;
 }
+
+#main{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url(img/pexels-pixabay-207691.jpg);
+    background-size: cover;
+    /* background: ; */
+}
+.navbar2{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+}
+.logo{
+    flex-basis: 30%;
+}
+.logo img {
+    width: 160px;
+    cursor: pointer;
+}
+.circle-box{
+    position: absolute;
+    height: 450px;
+    width: 450px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+svg{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+svg#svgCircle{
+    stroke-dasharray: 1256;
+    stroke-dashoffset: 418;
+    transition: 1s;
+}
+div.span{
+    position:absolute;
+    height: 10px;
+    width: 10px;
+    background: #fff;
+    border-radius: 50%;
+    display: block;
+    cursor: pointer;
+}
+div#step1{
+    right: 655px;
+    bottom: 430px;
+}
+div#step2{
+    left: 56px;
+    bottom: 106px;
+}
+div#step3{
+    left: 800px;
+    top: 368px;
+}

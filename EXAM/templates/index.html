@@ -2,7 +2,50 @@
 
 {% block body %}
 
+<div id="main">
 
+    <div class="circle-box">
+        <svg height="402" width="402">
+            <circle r="201" cx="201" cy="201" stroke-width="1px" stroke="gray" fill="none"></circle>
+        </svg>
+        <svg height="402" width="402">
+            <circle r="201" cx="201" cy="201" stroke-width="1px" stroke="white" fill="none"
+                id="svgCircle"></circle>
+        </svg>
+    </div>
+    <div>
+        <div class="span" id="step1"></div>
+        <div class="span" id="step2"></div>
+        <div class="span" id="step3"></div>
+    </div>
+</div>
+
+<script>
+    var main=document.getElementById("main");
+    var svgCircle=document.getElementById("svgCircle");
+    var step1=document.getElementById("step1");
+    var step2=document.getElementById("step2");
+    var step3=document.getElementById("step3");
+
+    main.style.backgroundImage="url(img/pexels-pixabay-207691.jpg)"
+    
+    step1.addEventListener('click',()=>{
+        step1.style.strokeDashoffset="1004"
+        main.style.backgroundImage="url(img/pexels-pixabay-301920.jpg)"
+    })
+    step2.addEventListener('click',()=>{
+        step2.style.strokeDashoffset="753"
+        main.style.backgroundImage="url(img/pexels-pixabay-301926.jpg)"
+    })
+    step3.addEventListener('click',()=>{
+        step3.style.strokeDashoffset="502"
+        main.style.backgroundImage="url(img/pexels-yaroslav-shuraev-6281049.jpg)"
+    })
+    </script>
+{% endblock body %}
+
+
+<!-- 
 <section class="container">
 
     <div class="row justify-content-center">
@@ -28,6 +71,4 @@
 
     </div>
 
-</section>
-
-{% endblock body %}
+</section> -->
