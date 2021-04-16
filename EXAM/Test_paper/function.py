@@ -27,7 +27,6 @@ exam_code = ""
 def mcq_question_Upload_part1(get_form, option):
     form = get_form
     exam_code = form.exam_code.data
-
     if request.method == "POST":
         exam_title = form.exam_title.data
         exam_course = form.exam_course.data
@@ -128,7 +127,7 @@ def mcq_question_Upload_part2(number_of_questions, code):
         return " "
 
 
-def mcq_uploading_processsing(get_form, corse_code):
+def mcq_uploading_processing(get_form, corse_code):
     form = get_form
     # print("method e dhukse")
     mcq_question_options_tuple = list()

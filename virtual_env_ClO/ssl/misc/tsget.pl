@@ -1,4 +1,4 @@
-#!/tmp/build/80754af9/openssl_1613667738253/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh/bin/perl
+#!/tmp/build/80754af9/openssl_1616683954205/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh/bin/perl
 # Copyright 2002-2018 The OpenSSL Project Authors. All Rights Reserved.
 # Copyright (c) 2002 The OpenTSA Project. All rights reserved.
 #
@@ -47,7 +47,7 @@ sub create_curl {
     $curl->setopt(CURLOPT_VERBOSE, 1) if $options{d};
     $curl->setopt(CURLOPT_FAILONERROR, 1);
     $curl->setopt(CURLOPT_USERAGENT,
-        "OpenTSA tsget.pl/openssl-1.1.1j");
+        "OpenTSA tsget.pl/openssl-1.1.1k");
 
     # Options for POST method.
     $curl->setopt(CURLOPT_UPLOAD, 1);

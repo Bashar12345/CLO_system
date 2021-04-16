@@ -24,7 +24,7 @@ from EXAM.Test_paper.forms import (
     Written_question_answer_Form,
     Mcq_answer_form,
 )
-from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processsing, written_question_Upload, written_question_answer_submit
+from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
 from EXAM.model import (
     machine_learning_mcq_model, course_model,

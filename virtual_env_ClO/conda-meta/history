@@ -20,3 +20,25 @@
 +defaults/linux-64::zlib-1.2.11-h7b6447c_3
 +defaults/noarch::wheel-0.36.2-pyhd3eb1b0_0
 # update specs: ['python=3.8']
+==> 2021-04-16 07:10:48 <==
+# cmd: /home/b/anaconda3/bin/conda install -p /home/b/Desktop/project/virtual_env_ClO scikit-learn -y
+# conda version: 4.9.2
+-defaults/linux-64::ca-certificates-2021.1.19-h06a4308_1
+-defaults/linux-64::openssl-1.1.1j-h27cfd23_0
++defaults/linux-64::blas-1.0-mkl
++defaults/linux-64::ca-certificates-2021.4.13-h06a4308_1
++defaults/linux-64::intel-openmp-2020.2-254
++defaults/linux-64::libgfortran-ng-7.3.0-hdf63c60_0
++defaults/linux-64::mkl-2020.2-256
++defaults/linux-64::mkl-service-2.3.0-py38he904b0f_0
++defaults/linux-64::mkl_fft-1.3.0-py38h54f3939_0
++defaults/linux-64::mkl_random-1.1.1-py38h0573a6f_0
++defaults/linux-64::numpy-1.19.2-py38h54aff64_0
++defaults/linux-64::numpy-base-1.19.2-py38hfa32c7d_0
++defaults/linux-64::openssl-1.1.1k-h27cfd23_0
++defaults/linux-64::scikit-learn-0.24.1-py38ha9443f7_0
++defaults/linux-64::scipy-1.6.2-py38h91f5cce_0
++defaults/linux-64::six-1.15.0-py38h06a4308_0
++defaults/noarch::joblib-1.0.1-pyhd3eb1b0_0
++defaults/noarch::threadpoolctl-2.1.0-pyh5ca1d4c_0
+# update specs: ['scikit-learn']
