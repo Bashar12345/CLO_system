@@ -1,7 +1,118 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<svg_body>
+
+
+
+<style>
+
+svg_body{
+    
+    text-align: left;
+    top: 5vh;
+    left: 5vh;
+}
+#male_head{
+    animation: m_head 2s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+
+@keyframes m_head {
+    from{
+        transform: rotateX(-10deg);
+    }
+    to{
+        transform: rotateY(20deg);
+
+    }
+}
+#male_hand {
+    animation: m_hand 1s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+@keyframes m_hand {
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateY(45deg);
+
+    }
+}
+#female_head {
+    animation: f_head 2s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+
+@keyframes f_head {
+    from {
+        transform: rotateX(-5deg);
+    }
+
+    to {
+        transform: rotateY(10deg);
+
+    }
+}
+#female_hand {
+    animation: f_hand 1s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+
+@keyframes f_hand {
+    from {
+        transform: rotateX(-5deg);
+    }
+
+    to {
+        transform: rotateY(15deg);
+
+    }
+}
+#students_giving_exam {
+    animation: std_exam 2s infinite linear;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes std_exam {
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateX(5deg);
+
+    }
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<svg_body >
     <div>
         what the hell
 
@@ -11,7 +122,7 @@
 
 
 
-        <svg width="983" height="804" viewBox="0 0 983 804" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100vw" height="80vh" viewBox="0 0 983 804" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="animation_index" clip-path="url(#clip0)">
                 <g id="Vector" filter="url(#filter0_b)">
                     <path

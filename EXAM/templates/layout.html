@@ -9,8 +9,7 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
 
     <!--Amar CSS-->
-    <link rel="stylesheet" href="static/starterTemplate.css">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='starterTemplate.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='starterTemplate.css') }}"> 
     {#% assets "scss_all" %#}
     <!--link rel=stylesheet type=text/css href="{#{ASSET_URL }#}"-->
     {#% endassets %#}
@@ -22,7 +21,9 @@
 </head>
 
 <style>
-    
+    body{
+        background-image: url('static/img/back.png');
+    }
 
     @media only screen and (max-width: 700px) {
         body {
