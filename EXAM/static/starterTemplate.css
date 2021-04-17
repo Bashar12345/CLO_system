@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background-image: url(img/back.png);
     font-family: 'Consoles', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', 'Courier New', monospace ;
 }
 
@@ -85,6 +86,96 @@ div#sidebar {
     height: 220px;
     border: 5px solid #7f7f7f;
     background: #c3c3c3;
+}
+
+
+svg_body{
+    /*background-image: url(/home/b/Desktop/svg/back.png);*/
+    text-align: left;
+    top: 5vh;
+    left: 5vh;
+}
+#male_head{
+    animation: m_head 1s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+
+@keyframes m_head {
+    from{
+        transform: rotateX(-10deg);
+    }
+    to{
+        transform: rotateY(20deg);
+
+    }
+}
+#male_hand {
+    animation: m_hand 1s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+@keyframes m_hand {
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateY(45deg);
+
+    }
+}
+#female_head {
+    animation: f_head 1s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+
+@keyframes f_head {
+    from {
+        transform: rotateX(-5deg);
+    }
+
+    to {
+        transform: rotateY(10deg);
+
+    }
+}
+#female_hand {
+    animation: f_hand 1s infinite linear;
+    transform-origin: left;
+    transform-box: fill-box;
+
+}
+
+@keyframes f_hand {
+    from {
+        transform: rotateX(-5deg);
+    }
+
+    to {
+        transform: rotateY(15deg);
+
+    }
+}
+#students_giving_exam {
+    animation: std_exam 1s infinite linear;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes std_exam {
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateX(5deg);
+
+    }
 }
 
 
