@@ -336,7 +336,7 @@ def generateMCQ_clo_load():
     return response_to_browser
 
 @Test_paper.route("/secret_code", methods=["GET", "POST"])
-@login_required
+#@login_required
 def secret_code():
     content_type = ""
     form = secret_Form()
@@ -392,7 +392,7 @@ def secret_code():
 
 
 @Test_paper.route("/mcq_answer_paper", methods=["GET", "POST"])
-@login_required
+#@login_required
 def mcq_answer_paper_auto_generated():
     form = Mcq_answer_form()
     # mcq_question_answer_submit(form)
@@ -426,6 +426,7 @@ def mcq_answer_paper_auto_generated():
         print(current_time)
         # ekahne mcq question object produce krte hobe -------------------------------------------
         question_mcq_for_current_session=machine_process_data(requirement_for_mcq_questions)
+        print(question_mcq_for_current_session)
         
         if request.method == "POST":
             # ekane kaz baki ase ------------------------------------------------------------------

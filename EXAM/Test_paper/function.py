@@ -404,7 +404,6 @@ def mcq_question_answer_submit(get_form):
 
 
 def machine_process_data(requirement_for_mcq_questions):
-
     # # data cleaning for shuffle
     objects_of_requirement = requirement_for_mcq_questions
     # question_part = machine_process_data_wrangling(objects_of_requirement)
@@ -435,6 +434,7 @@ def machine_process_data(requirement_for_mcq_questions):
 
         question_point, lessons, course_code = a_question(
             shuffled_list, objects_of_requirement)
+        print(course_code)
         
         # algorithm magic
         data_input, data_output = machine_predict_setup(lessons, course_code)
@@ -614,9 +614,16 @@ def machine_predict_setup(lessons, course_code):
 def machine_predict_result(data_input, data_output, question_point, question_type):
     ml_model = DecisionTreeClassifier()
     ml_model.fit(data_input, data_output)
-    predicted_question_paper_difficulty, _ = ml_model.predict(
+    #print("vitore dhukse")
+    predicted_question_paper_difficulty, dumb = ml_model.predict(
         [[question_point, question_type], [question_point, question_type]])
     print(predicted_question_paper_difficulty)
+    print(predicted_question_paper_difficulty)
+    print(predicted_question_paper_difficulty)
+    print(predicted_question_paper_difficulty)
+    print(predicted_question_paper_difficulty)
+    
+#ekhane problem ase ........................................................................................
     return predicted_question_paper_difficulty
 
     # mcq_df = pd.DataFrame(list(mcq))
