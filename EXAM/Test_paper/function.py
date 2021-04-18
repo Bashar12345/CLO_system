@@ -569,16 +569,21 @@ def machine_understable_dataset_setup(course_code):
 
 
 def machine_predict_result(data_input, data_output, question_point, question_type):
+    predicted_question_paper_difficulty=''
     ml_model = DecisionTreeClassifier()
     ml_model.fit(data_input, data_output)
     print(type(question_point))
-    predicted_question_paper_difficulty= ml_model.predict(
+    print(type(question_type))
+    if question_type=='mcq':
+        question_type=0
+    else:
+        question_type=1
+    print(type(question_type))
+    predicted_list= ml_model.predict(
         [[question_point, question_type]])
     print("vitore dhukse")
-    print(predicted_question_paper_difficulty)
-    print(predicted_question_paper_difficulty)
-    print(predicted_question_paper_difficulty)
-    print(predicted_question_paper_difficulty)
+    for i in predicted_list:
+        predicted_question_paper_difficulty=i
     print(predicted_question_paper_difficulty)
     
 #ekhane problem ase ........................................................................................
@@ -607,6 +612,7 @@ def machine_process_data(requirement_for_mcq_questions):
     finally_got_the_question=''
 
     data_input, data_output = machine_understable_dataset_setup(objects_of_requirement.course_code)
+    print(objects_of_requirement.question_difficulty)
 
     while objects_of_requirement.question_difficulty != difficulty1:
 
@@ -630,6 +636,7 @@ def machine_process_data(requirement_for_mcq_questions):
         if objects_of_requirement.question_difficulty == difficulty1:
             print(shuffled_list)
             finally_got_the_question=shuffled_list
+            break
 
     return finally_got_the_question
 
