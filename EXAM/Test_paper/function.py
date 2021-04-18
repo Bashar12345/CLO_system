@@ -403,52 +403,6 @@ def mcq_question_answer_submit(get_form):
     return "done"
 
 
-def machine_process_data(requirement_for_mcq_questions):
-    # # data cleaning for shuffle
-    objects_of_requirement = requirement_for_mcq_questions
-    # question_part = machine_process_data_wrangling(objects_of_requirement)
-    # # prepared shffled question list for machine prediction
-    # shuffled_list = catch_the_shuffled_question_list(question_part)
-    # # make a question for deleivery
-    # # test_mcq_ML()
-    # question_point, lessons, course_code = a_question(
-    #     shuffled_list, objects_of_requirement)
-    # # algorithm magic
-    # data_input, data_output = machine_predict_setup(lessons, course_code)
-
-    # predicted_question_paper_difficulty = machine_predict_result(
-    #   data_input, data_output, question_point, objects_of_requirement.question_type)
-
-    difficulty1 = ''
-    difficulty2 = ''
-    finally_got_the_question=''
-    while objects_of_requirement.question_difficulty != difficulty1:
-
-        question_part = machine_process_data_wrangling(objects_of_requirement)
-
-        # prepared shffled question list for machine prediction
-        shuffled_list = catch_the_shuffled_question_list(question_part)
-
-        # make a question for deleivery
-        # test_mcq_ML()
-
-        question_point, lessons, course_code = a_question(
-            shuffled_list, objects_of_requirement)
-        print(course_code)
-        
-        # algorithm magic
-        data_input, data_output = machine_predict_setup(lessons, course_code)
-
-        difficulty1 = machine_predict_result(
-            data_input, data_output, question_point,objects_of_requirement.question_type)
-        
-        if objects_of_requirement.question_difficulty == difficulty1:
-            print(shuffled_list)
-            finally_got_the_question=shuffled_list
-
-    return finally_got_the_question
-
-
 def machine_process_data_wrangling(objects_of_requirement):
     # courses= course_model.objects()
     # required_data=required_for_generate.objects()
@@ -517,7 +471,7 @@ def a_question(shuffled_list, objects_of_requirement):
         # print(complex)
         question_count.append(complex)
     print(lessons)
-    print(" eta total_counted", question_count)
+    #print(" eta total_counted", question_count)
     for i in question_count:
         if i == '1':
             easy_count += 1
@@ -585,14 +539,16 @@ def test_mcq_ML():
             print("Medium", " = ", question_value)
 
 
-def machine_predict_setup(lessons, course_code):
+def machine_understable_dataset_setup(course_code):
     # algorithom er kaz korte krter hobe------------------------------------------------------
     # question_data= pd.read_csv()
+    print(course_code)
     connection = MongoClient('localhost', 27017)
     mongosql = connection.exam
     # database e je name create hoise oi nam dite hobe
     ML_model = mongosql.machine_learning_mcq_model
     mcq = ML_model.find({"course_code": course_code})
+    #print(type(mcq))
     # ML_model=machine_learning_mcq_model.objects()
     mcq_df = pd.DataFrame(list(mcq))
     mcq_df.to_csv("temporay_ml_data.csv", index=False)
@@ -607,6 +563,7 @@ def machine_predict_setup(lessons, course_code):
     # ekane output falay diya input alada kora hoise
     data_input = mcq_cleaned_csv.drop(columns=['difficulty'])
     data_output = mcq_cleaned_csv['difficulty']
+    #print(data_input)
 
     return data_input, data_output
 
@@ -614,9 +571,10 @@ def machine_predict_setup(lessons, course_code):
 def machine_predict_result(data_input, data_output, question_point, question_type):
     ml_model = DecisionTreeClassifier()
     ml_model.fit(data_input, data_output)
-    #print("vitore dhukse")
-    predicted_question_paper_difficulty, dumb = ml_model.predict(
-        [[question_point, question_type], [question_point, question_type]])
+    print(type(question_point))
+    predicted_question_paper_difficulty= ml_model.predict(
+        [[question_point, question_type]])
+    print("vitore dhukse")
     print(predicted_question_paper_difficulty)
     print(predicted_question_paper_difficulty)
     print(predicted_question_paper_difficulty)
@@ -625,6 +583,56 @@ def machine_predict_result(data_input, data_output, question_point, question_typ
     
 #ekhane problem ase ........................................................................................
     return predicted_question_paper_difficulty
+
+
+
+def machine_process_data(requirement_for_mcq_questions):
+    # # data cleaning for shuffle
+    objects_of_requirement = requirement_for_mcq_questions
+    # question_part = machine_process_data_wrangling(objects_of_requirement)
+    # # prepared shffled question list for machine prediction
+    # shuffled_list = catch_the_shuffled_question_list(question_part)
+    # # make a question for deleivery
+    # # test_mcq_ML()
+    # question_point, lessons, course_code = a_question(
+    #     shuffled_list, objects_of_requirement)
+    # # algorithm magic
+    # data_input, data_output = machine_predict_setup(lessons, course_code)
+
+    # predicted_question_paper_difficulty = machine_predict_result(
+    #   data_input, data_output, question_point, objects_of_requirement.question_type)
+
+    difficulty1 = ''
+    difficulty2 = ''
+    finally_got_the_question=''
+
+    data_input, data_output = machine_understable_dataset_setup(objects_of_requirement.course_code)
+
+    while objects_of_requirement.question_difficulty != difficulty1:
+
+        question_part = machine_process_data_wrangling(objects_of_requirement)
+
+        # prepared shffled question list for machine prediction
+        shuffled_list = catch_the_shuffled_question_list(question_part)
+
+        # make a question for deleivery
+        # test_mcq_ML()
+
+        question_point, lessons, course_code = a_question(
+            shuffled_list, objects_of_requirement)
+        #print(course_code)
+        
+        # algorithm magic
+        
+        difficulty1 = machine_predict_result(
+            data_input, data_output, question_point,objects_of_requirement.question_type)
+        
+        if objects_of_requirement.question_difficulty == difficulty1:
+            print(shuffled_list)
+            finally_got_the_question=shuffled_list
+
+    return finally_got_the_question
+
 
     # mcq_df = pd.DataFrame(list(mcq))
     # df=pd.concat()
