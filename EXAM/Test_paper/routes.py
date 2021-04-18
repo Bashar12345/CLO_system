@@ -432,7 +432,7 @@ def mcq_answer_paper_auto_generated():
             check = mcq_question_answer_submit(form)
             if check == "done":
                 return redirect(url_for("users.student"))
-        return render_template("mcqan.html",exam_date=exam_date,exam_end_time=exam_end_time, 
+        return render_template("mcq_answer_session.html",exam_date=exam_date,exam_end_time=exam_end_time, 
         # custom object for answer from the machine learning method
         # # mcq_questions=mcq_questions,
         title="MCQ_answer_Page",form=form,user_type=User_type.user_type)
