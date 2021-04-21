@@ -73,8 +73,8 @@ class mcqQuestion(nosql.Document):
     complex_level=nosql.StringField(default="1")
     quesCLO=nosql.StringField()
     lesson=nosql.StringField()
-    question=nosql.StringField(check_keys=False)
-    q_answer= nosql.StringField(check_keys=False)
+    question=nosql.StringField()
+    q_answer= nosql.StringField()
     question_dictionary = nosql.DictField(check_keys=False)
     list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
 
