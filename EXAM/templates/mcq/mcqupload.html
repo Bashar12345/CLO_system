@@ -44,7 +44,9 @@
                     <legend class=" custom-control-label">Questions for Particular Course</legend>
                 <div class="input-group mb-3">
                     <input id="course_code" list="course_name" class="custom-select custom-select-md mb-3 btn-outline-info "
-                        aria-label=".custom-select-lg example" name="course_title" required>
+                        aria-label=".custom-select-lg example" 
+                        autocomplete="off"
+                        name="course_title" required>
                     <datalist id="course_name">
                         {%for course_codes in course_code %}
                         <option value="{{course_codes}}">{{course_codes}}</option>
@@ -70,10 +72,7 @@
                 {{ form.lesson(class="form-radio",id="lesson") }}
             </div>
 
-
-
-
-{% else %}
+            {% else %}
 
 <div class="d-flex justify-content-start">
     <div class="d-flex flex-wrap ">
@@ -121,7 +120,7 @@
             <br/>
             <div class="justify-content-lg-end">
                 {{ form.clo.label(class="custom-control-label ") }}<br/>
-                {{ form.clo(class="form-control-lg") }}
+                {{ form.clo(class="custom-select btn-outline-info") }}
 
             </div>
             <br/>

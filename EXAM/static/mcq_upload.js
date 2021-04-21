@@ -11,6 +11,28 @@ function load() {
     $("#btn_option").focus();
     $("#link_course_code").focus();
 
+
+
+    var check=$('#link_course_code').attr('value');
+    //console.log(check)
+    if (check!= 'teacher')
+    {
+        var clos =$('#clo');
+        var code = check;
+
+    fetch(`/mcqUpload_clo_selection_load?c=${code}`).then(function(response){
+        response.json().then(function(clo_array){
+            var optionHTML='';
+            for (var i = 0; i < clo_array.length; i++) {
+                optionHTML+=`<option value="${clo_array[i]}">${clo_array[i]}</option>`;
+                console.log(optionHTML);
+            }
+            clos.append(optionHTML);
+        });
+    });
+    }
+
+
     $("#btn_course_code").click(function(){
         $('#lesson').empty();
         var code =$("#course_code").val();

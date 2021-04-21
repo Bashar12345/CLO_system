@@ -132,6 +132,7 @@ def mcq_uploading_processing(get_form, corse_code):
     # print("method e dhukse")
     mcq_question_options_tuple = list()
     mcq_question_dictionary = dict()
+    answer=''
     # Which is in under construction
     course_title = request.form.get("course_title")
     course_code = form.course_code.data
@@ -143,7 +144,7 @@ def mcq_uploading_processing(get_form, corse_code):
         topic = request.form.get('lessons_current_c_code')
 
     Complexity_label = request.form.get("complex_level")
-    quesCLO = form.clo.data  # request.form.get("CO")  # CLO
+    quesCLO = form.clo.data  # request.form.get("clo")  # CLO
     number_of_question = request.form.get("total_questions")
     print(number_of_question)
     # op = request.form.get("options")  # number of option
@@ -163,7 +164,7 @@ def mcq_uploading_processing(get_form, corse_code):
             mcq_ans_op_name = request.form.get(template_name_of_answer)
             mcq_answer = request.form.get(mcq_ans_op_name)
             print(mcq_answer)
-            mcq_question_options_tuple.append(mcq_answer)
+            answer=mcq_answer
             print(mcq_question_options_tuple)
             for j in range(6):
                 # print('j = ', j)
@@ -186,6 +187,7 @@ def mcq_uploading_processing(get_form, corse_code):
             question_model.quesCLO = quesCLO
             question_model.complexity_label = Complexity_label
             question_model.question = mcq_Question
+            question_model.q_answer=answer
             question_model.list_of_mcq_option = mcq_question_options_tuple
             question_model.question_dictionary = mcq_question_dictionary
             question_model.save()
@@ -572,16 +574,16 @@ def machine_predict_result(data_input, data_output, question_point, question_typ
     predicted_question_paper_difficulty=''
     ml_model = DecisionTreeClassifier()
     ml_model.fit(data_input, data_output)
-    print(type(question_point))
-    print(type(question_type))
+    #print(type(question_point))
+    #print(type(question_type))
     if question_type=='mcq':
         question_type=0
     else:
         question_type=1
-    print(type(question_type))
+    #print(type(question_type))
     predicted_list= ml_model.predict(
         [[question_point, question_type]])
-    print("vitore dhukse")
+    #print("vitore dhukse")
     for i in predicted_list:
         predicted_question_paper_difficulty=i
     print(predicted_question_paper_difficulty)

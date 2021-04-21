@@ -74,6 +74,7 @@ class mcqQuestion(nosql.Document):
     quesCLO=nosql.StringField()
     lesson=nosql.StringField()
     question=nosql.StringField(check_keys=False)
+    q_answer= nosql.StringField(check_keys=False)
     question_dictionary = nosql.DictField(check_keys=False)
     list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
 

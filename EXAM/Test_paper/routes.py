@@ -214,9 +214,10 @@ def mcq_upload(course_code):
     else:
         lsns=teacher_created_courses_model.objects(course_code=corse_code).first()
         lessons_of_current_course_code=lsns.course_lessons
+        #clo=lsns.course_co
         print(lessons_of_current_course_code)
     if request.method == "POST":
-        mcq_uploading_processsing(form,corse_code)
+        mcq_uploading_processing(form,corse_code)
     return render_template(
         "mcq/mcqupload.html",
         title="mcqUpload",
@@ -225,6 +226,7 @@ def mcq_upload(course_code):
         course_code=course_code,
         corse_code=corse_code,
         lessons_of_current_course_code=lessons_of_current_course_code
+        #,clo=clo
         # course_title=course_title,
     )
 
@@ -435,7 +437,7 @@ def mcq_answer_paper_auto_generated():
                 return redirect(url_for("users.student"))
         return render_template("mcq/mcq_answer_session.html",exam_date=exam_date,exam_end_time=exam_end_time, 
         # custom object for answer from the machine learning method
-        # # mcq_questions=mcq_questions,
+        question_mcq_for_current_session=question_mcq_for_current_session,
         title="MCQ_answer_Page",form=form,user_type=User_type.user_type)
     return render_template(
         "count_Down.html",
