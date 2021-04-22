@@ -1,6 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+
+<script type="text/javascript" src="{{ url_for('static',filename='answer_session.js') }}">
+</script>
+
+
+
 {#{question_mcq_for_current_session}#}
 <div class="container">
        {% for i in question_mcq_for_current_session %}

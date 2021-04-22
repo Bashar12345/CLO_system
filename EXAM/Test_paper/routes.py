@@ -445,6 +445,17 @@ def mcq_answer_paper_auto_generated():
         title="countdown",
     )
 
+@Test_paper.route("/answer_session", methods=["GET", "POST"])
+# @login_required
+def answer_session():
+    if request.args:
+        selected_option=request.args.get('selected_op')
+        pass
+    return render_template(
+        "sample.html",
+    )
+
+
 
 @Test_paper.route("/sample", methods=["GET", "POST"])
 # @login_required
