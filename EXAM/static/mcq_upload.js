@@ -11,7 +11,7 @@ function load() {
     $("#btn_option").focus();
     $("#link_course_code").focus();
 
-
+ 
 
     var check=$('#link_course_code').attr('value');
     //console.log(check)
