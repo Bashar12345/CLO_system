@@ -6,7 +6,7 @@
 	],
 	"settings": {
 		"git.ignoreLimitWarning": true,
-		"python.pythonPath": "/home/b/anaconda3/envs/virtual_env_ClO/bin/python",
+		"python.pythonPath": "virtual_env_ClO/bin/python",
 		"explorer.sortOrder": "type"
 	},
 	"extensions": {
