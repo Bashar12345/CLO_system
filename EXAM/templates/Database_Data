@@ -429,6 +429,9 @@
 
 #course data teacher
 
+db.mcq_question.insertMany([
+
+
 {
     "course_title" : "Data Analysis",
     "course_code" : "swe421",
@@ -518,6 +521,7 @@
      "teacher_registered_id" : "bashar@example.com"
 }
 
+])
 
 #course data student
 

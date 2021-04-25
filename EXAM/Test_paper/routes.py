@@ -9,7 +9,7 @@ from flask import (
     send_file,
     Blueprint,
     jsonify,
-    make_response,
+    make_response,session
 )
 from flask.wrappers import Response
 from flask_login import current_user, login_required
@@ -200,11 +200,11 @@ def mcq_upload(course_code):
     #     if title.course_title not in course_title:
     #         course_title.append(title.course_title)
 
-    lessons_of_current_course_code=[]
+    lessons_of_current_course_code = []
     user_email = user_obj.e
     couse_code_list = teacher_created_courses_model.objects(
         teacher_registered_id=user_email)
-    corse_code=course_code
+    corse_code = course_code
     if corse_code == "teacher":
         course_code = []
         for crse_code in couse_code_list:
@@ -212,12 +212,13 @@ def mcq_upload(course_code):
             if crse_code.course_code not in course_code:
                 course_code.append(crse_code.course_code)
     else:
-        lsns=teacher_created_courses_model.objects(course_code=corse_code).first()
-        lessons_of_current_course_code=lsns.course_lessons
-        #clo=lsns.course_co
+        lsns = teacher_created_courses_model.objects(
+            course_code=corse_code).first()
+        lessons_of_current_course_code = lsns.course_lessons
+        # clo=lsns.course_co
         print(lessons_of_current_course_code)
     if request.method == "POST":
-        mcq_uploading_processing(form,corse_code)
+        mcq_uploading_processing(form, corse_code)
     return render_template(
         "mcq/mcqupload.html",
         title="mcqUpload",
@@ -226,7 +227,7 @@ def mcq_upload(course_code):
         course_code=course_code,
         corse_code=corse_code,
         lessons_of_current_course_code=lessons_of_current_course_code
-        #,clo=clo
+        # ,clo=clo
         # course_title=course_title,
     )
 
@@ -280,7 +281,7 @@ def mcqUpload_clo_selection_load():
         clo_list = []
         crse_clo = course_model.objects(course_code=code).first()
         print(type(crse_clo.course_co))
-        clo_list=crse_clo.course_co
+        clo_list = crse_clo.course_co
         response_to_browser = make_response(jsonify(clo_list))
         print(response_to_browser)
     return response_to_browser
@@ -322,6 +323,7 @@ def generateMCQ_lesson_load():
         print(response_to_browser)
     return response_to_browser
 
+
 @Test_paper.route("/generateMCQ_clo_load")
 # @login_required
 def generateMCQ_clo_load():
@@ -332,13 +334,14 @@ def generateMCQ_clo_load():
         clo_list = []
         crse_clo = course_model.objects(course_code=code).first()
         print(type(crse_clo.course_co))
-        clo_list=crse_clo.course_co
+        clo_list = crse_clo.course_co
         response_to_browser = make_response(jsonify(clo_list))
         print(response_to_browser)
     return response_to_browser
 
+
 @Test_paper.route("/secret_code", methods=["GET", "POST"])
-#@login_required
+# @login_required
 def secret_code():
     content_type = ""
     form = secret_Form()
@@ -394,9 +397,8 @@ def secret_code():
 
 
 @Test_paper.route("/mcq_answer_paper", methods=["GET", "POST"])
-#@login_required
+# @login_required
 def mcq_answer_paper_auto_generated():
-    form = Mcq_answer_form()
     # mcq_question_answer_submit(form)
     exam_code = secret_exam_key.exam_code
     requirement_for_mcq_questions = required_for_generate.objects(
@@ -410,7 +412,7 @@ def mcq_answer_paper_auto_generated():
     end_hour, end_minute = exam_end_time.split(":")
     # print(time)      # print(hour, " minute ase ", minute)
     current_time = datetime.datetime.now()
-    # for demo  testing 
+    # for demo  testing
     current_time2 = current_time
     starting_time_of_exam = datetime.datetime(
         int(year), int(month), int(day), int(hour), int(minute)
@@ -423,37 +425,63 @@ def mcq_answer_paper_auto_generated():
     # print(mcq_question['mcq_question'])
 
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    #if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    if current_time==current_time2:
+    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    if current_time == current_time2:
         print(current_time)
         # ekahne mcq question object produce krte hobe -------------------------------------------
-        question_mcq_for_current_session=machine_process_data(requirement_for_mcq_questions)
+        question_mcq_for_current_session = machine_process_data(
+            requirement_for_mcq_questions)
         print(question_mcq_for_current_session)
-        
+        session['session_question'] = question_mcq_for_current_session
+        return redirect(url_for('Test_paper.answer_session'))
+
         if request.method == "POST":
             # ekane kaz baki ase ------------------------------------------------------------------
             check = mcq_question_answer_submit(form)
             if check == "done":
                 return redirect(url_for("users.student"))
-        return render_template("mcq/mcq_answer_session.html",exam_date=exam_date,exam_end_time=exam_end_time, 
-        # custom object for answer from the machine learning method
-        question_mcq_for_current_session=question_mcq_for_current_session,
-        title="MCQ_answer_Page",form=form,user_type=User_type.user_type)
+        # return render_template("mcq/mcq_answer_session.html", exam_date=exam_date, exam_end_time=exam_end_time,
+        #                        # custom object for answer from the machine learning method
+        #                        question_mcq_for_current_session=question_mcq_for_current_session,
+        #                        title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
     return render_template(
         "count_Down.html",
         starting_time_of_exam=starting_time_of_exam,
         title="countdown",
     )
 
+
 @Test_paper.route("/answer_session", methods=["GET", "POST"])
 # @login_required
 def answer_session():
-    if request.args:
-        selected_option=request.args.get('selected_op')
+    form = Mcq_answer_form()
+    session_question = session['session_question']
+    # for i in session_question :
+    #     for j in i :
+    #         j
+    #         for k in i[j]:
+    #             k
+
+    if request.method == "POST":
+        selected_option = request.form.get('selected_option')
+        print(selected_option)
         pass
-    return render_template(
-        "sample.html",
-    )
+    return render_template("mcq/mcq_answer_session.html",question_mcq_for_current_session=session_question,title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
+
+
+@Test_paper.route("/answer_session_load", methods=["GET", "POST"])
+# @login_required
+def answer_session_load():
+    if request.args:
+        count = request.args.get('c')
+    print(count)
+    print(type(count))
+    next_count=3
+    response_to_browser = make_response(jsonify(next_count))
+    print(response_to_browser)
+    return response_to_browser
+
+
 
 
 

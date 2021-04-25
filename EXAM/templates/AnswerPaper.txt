@@ -865,3 +865,30 @@ function load() {
 
 
 }
+
+
+
+<!-- <div class="container">
+        {% for i in question_mcq_for_current_session %}
+        {#{i}#}
+       
+        {% for j in i %}
+        <div class="row">
+               <div class="col">
+               {{j}}
+               </div>
+
+        </div>
+        {% for k in i[j] %}
+
+        <div class="col">
+               option : {{k}}
+        </div>
+        {% endfor %}
+
+
+        {% endfor %}
+
+        {% endfor %}
+
+ </div> -->
