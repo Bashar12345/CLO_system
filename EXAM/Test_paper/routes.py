@@ -469,17 +469,17 @@ def answer_session():
     return render_template("mcq/mcq_answer_session.html",question_mcq_for_current_session=session_question,title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
 
 
-@Test_paper.route("/answer_session_load", methods=["GET", "POST"])
-# @login_required
-def answer_session_load():
-    if request.args:
-        count = request.args.get('c')
-    print(count)
-    print(type(count))
-    next_count=3
-    response_to_browser = make_response(jsonify(next_count))
-    print(response_to_browser)
-    return response_to_browser
+# @Test_paper.route("/answer_session_load", methods=["GET", "POST"])
+# # @login_required
+# def answer_session_load():
+#     if request.args:
+#         count = request.args.get('c')
+#     print(count)
+#     print(type(count))
+#     next_count=3
+#     response_to_browser = make_response(jsonify(next_count))
+#     print(response_to_browser)
+#     return response_to_browser
 
 
 

@@ -16,7 +16,7 @@ from EXAM.users.utils import delete_temporary_collection, remove_junk
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 
-
+ 
 @main.route('/upload', methods=['GET', 'POST'])
 def upload():
     form = PhotoForm(CombinedMultiDict((request.files, request.form)))

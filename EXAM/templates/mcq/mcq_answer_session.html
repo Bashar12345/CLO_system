@@ -1,95 +1,61 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<script src="ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- <script>
        var parsed = JSON.parse('{#{question_mcq_for_current_session | tojson}#}');
        console.log(parsed);
 </script> -->
 
-{{question_mcq_for_current_session}}
+{#{question_mcq_for_current_session}#}
 
 <!-- <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data"> -->
 
 <p id="count"> </p>
 <div id="add_data" class="card bg-light">
+       <br>
+       <div id='question_card' class="card-block">
+              {% for i in question_mcq_for_current_session %}
+              {#{i}#}
+
+              {% for j in i %}
+              <div class="card-header h5">
+                     <div class="card-title text-primary">
+                            <b>{{j}}</b>
+                     </div>
+              </div>
+              <div class="card-body">
+                     {% for k in i[j] %}
+
+                     <div class="card-text text-secondary">
+                            <input id="chk {{k}}" aria - label="Checkbox for following text input" type="radio" value=" {{k}}"
+                                   name="selected_option" />
+
+                            <label for="chk {{k}}">option {{k}} : {{k}}</label>
+                     </div>
+
+
+                     {% endfor %}
+
+              </div>
+              {% endfor %}
+       
+       {% endfor %}
+       </div>
+
+</div>
+
+
+</div>
 
 
 </div>
 <br>
-<button class='btn btn-secondary' id="btn_next_question" > Next</button>
+<button class='btn btn-secondary' id="btn_next_question"> Next</button>
 <button class='btn btn-secondary' id="btn_submit" name="answer_submit" type="submit"> Submit Answer Paper</button>
 
 
-<script>
-
-       $(document).ready(function () {
-              load();
-       });
-
-       function load() {
-              $('#add_data').focus();
-              $('#btn_next_question').focus();
-              $('#question_card').focus();
-              var next_count = 1;
-              var parse = 0;
-
-
-              var questions = JSON.parse('{{question_mcq_for_current_session | tojson}}');
-              console.log(questions);
-              var viewQuestion = '';
-              var question_block = $('#add_data');
-
-       $('#btn_next_question').click(function () {
-              $('#question_card').empty();
-              $('#add_data').empty();
-
-
-
-   fetch(`/answer_session_load?c=${next_count}`).then(function (response) { response.json().then(function (lesson_array) {
-              $('#count').html(next_count);
-              viewQuestion += `<br> <div id='question_card' class="card-body">`;
-                     for (var i = 0; i < 1; i++) {
-
-
-                                          for (var j in questions[next_count]) {
-                                                 viewQuestion += `  <div class="card-header h5">
-                                   <div class="card-title text-primary">
-                                           <b>${j}</b> 
-                                   </div> </div>`;
-
-
-                                                 viewQuestion += ` <div class="card-body">`;
-
-                                                 for (var k in questions[next_count][j]) {
-                                                        viewQuestion += ` <div class="card-text text-secondary">
-                  <input id = "chk ${questions[next_count][j][k]}" aria - label="Checkbox for following text input" type = "radio"
-                  value = " ${questions[next_count][j][k]}" name = "selected_option" />
-              
-                  <label for="chk ${questions[next_count][j][k]}">option ${k} : ${questions[next_count][j][k]}</label>
-                                   </div> `;
-
-                                                 }
-                                                 viewQuestion += ` </div>`;
-                                          }
-                                   }
-
-                                   viewQuestion += ` </div>`;
-                                   question_block.append(viewQuestion);
-                                   next_count += 1;
-                                   console.log(next_count)
-
-                                   if (next_count == questions.length) {
-                                          $('#btn_next_question').html('No more Questions')
-                                   }
-
-                            });
-                     });
-              });
-  }
-       
-</script>
 
 
 
@@ -123,6 +89,44 @@
 
 
 
+<!-- <script>
+
+       $(document).ready(function () {
+              load();
+       });
+
+       function load() {
+              $('#add_data').focus();
+              $('#btn_next_question').focus();
+              $('#question_card').focus();
+              var next_count = 1;
+              var parse = 0;
+
+
+              var questions = JSON.parse('{{question_mcq_for_current_session | tojson}}');
+              console.log(questions);
+              var viewQuestion = '';
+              var question_block = $('#add_data');
+              //var selected_option = $('#')
+
+       $('#btn_next_question').click(function () {
+              $('#question_card').empty();
+              $('#add_data').empty();
+
+
+
+   fetch(`/answer_session_load?c=${next_count}`).then(function (response) { response.json().then(function (recived_next_count) {
+              $('#count').html(recived_next_count);
+              console.log(typeof(recived_next_count));
+
+       
+
+              });
+  });
+});
+}  
+
+</script> -->
 
 
 
