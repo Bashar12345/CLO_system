@@ -9,7 +9,7 @@ from flask import (
     send_file,
     Blueprint,
     jsonify,
-    make_response,session
+    make_response, session
 )
 from flask.wrappers import Response
 from flask_login import current_user, login_required
@@ -26,11 +26,7 @@ from EXAM.Test_paper.forms import (
 )
 from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
-from EXAM.model import (
-    machine_learning_mcq_model, course_model,
-    exam_mcq_question_paper,
-    exam_written_question_paper, required_for_generate, teacher_created_courses_model,
-)
+from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, mcqQuestion, required_for_generate, teacher_created_courses_model
 
 """@Test_paper.route('/')
 def hello_world():
@@ -431,14 +427,16 @@ def mcq_answer_paper_auto_generated():
         # ekahne mcq question object produce krte hobe -------------------------------------------
         question_mcq_for_current_session = machine_process_data(
             requirement_for_mcq_questions)
-        print(question_mcq_for_current_session)
+        # print(question_mcq_for_current_session)
         session['session_question'] = question_mcq_for_current_session
+        session['count'] = 0
         return redirect(url_for('Test_paper.answer_session'))
 
         if request.method == "POST":
             # ekane kaz baki ase ------------------------------------------------------------------
             check = mcq_question_answer_submit(form)
             if check == "done":
+                session['count'] = 0
                 return redirect(url_for("users.student"))
         # return render_template("mcq/mcq_answer_session.html", exam_date=exam_date, exam_end_time=exam_end_time,
         #                        # custom object for answer from the machine learning method
@@ -456,17 +454,29 @@ def mcq_answer_paper_auto_generated():
 def answer_session():
     form = Mcq_answer_form()
     session_question = session['session_question']
-    # for i in session_question :
-    #     for j in i :
-    #         j
-    #         for k in i[j]:
-    #             k
-
+    count = session['count']
+    corrected=0
+    question_part = ''
+    option_list = list()
+    #print(type(session_question))
+    #print("Foooooooooooor testing", len(session_question[count]))
     if request.method == "POST":
+        for i in session_question[count]:
+            # print(i)
+            question_part = i
+        for j in session_question[count][i]:
+            #print(j)
+            option_list.append(j)
         selected_option = request.form.get('selected_option')
         print(selected_option)
-        pass
-    return render_template("mcq/mcq_answer_session.html",question_mcq_for_current_session=session_question,title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
+        db_question = mcqQuestion.objects(question=question_part).first()
+        if db_question.q_answer == selected_option:
+            corrected+=1;
+            #getting_total_for_in_this_question=0+db_question.q_mark
+        session['count'] = count+1
+        print(session['count'])
+    
+    return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=option_list, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
 
 
 # @Test_paper.route("/answer_session_load", methods=["GET", "POST"])
@@ -480,9 +490,6 @@ def answer_session():
 #     response_to_browser = make_response(jsonify(next_count))
 #     print(response_to_browser)
 #     return response_to_browser
-
-
-
 
 
 @Test_paper.route("/sample", methods=["GET", "POST"])
