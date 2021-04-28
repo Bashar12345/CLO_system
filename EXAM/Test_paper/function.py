@@ -417,12 +417,24 @@ def machine_process_data_wrangling(objects_of_requirement):
     # required=required_for_generate.objects()
     needed_course_code = []
     MCQ_questions = []
+    purify_question_part=list()
     question_part = []
+    temp=list()
     crse_code = objects_of_requirement.course_code
     for i in mcqQuestion.objects(course_code=crse_code):
         MCQ_questions.append(i.question)
     question_part = random.sample(
         MCQ_questions, objects_of_requirement.number_of_question)
+    for i in question_part:
+        if i not in purify_question_part:
+            purify_question_part.append(i)
+    if len(purify_question_part) != objects_of_requirement.number_of_question:
+        extra_needed=objects_of_requirement.number_of_question-len(purify_question_part)
+        temp = random.sample(MCQ_questions, extra_needed)
+    for i in temp:
+        if i not in purify_question_part:
+            purify_question_part.append(i)
+    question_part=purify_question_part
     # print(MCQ_questions)
     # print(random.sample(MCQ_questions, 2))
     # random.shuffle(MCQ_questions)
@@ -436,7 +448,8 @@ def catch_the_shuffled_question_list(question_part):
     full_set_shuffled_question = []
     for ques in question_part:
         for j in mcqQuestion.objects(question=ques):
-            shuffled_question_list.append(j.question_dictionary)
+            if j not in shuffled_question_list:
+                shuffled_question_list.append(j.question_dictionary)
     # print(shuffled_question_list)
     # for ques in shuffled_question_list:
     #     #print(ques)
@@ -636,7 +649,7 @@ def machine_process_data(requirement_for_mcq_questions):
             data_input, data_output, question_point,objects_of_requirement.question_type)
         
         if objects_of_requirement.question_difficulty == difficulty1:
-            print(shuffled_list)
+            #print(shuffled_list) ----------------------------------------
             finally_got_the_question=shuffled_list
             break
 

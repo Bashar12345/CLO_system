@@ -66,6 +66,13 @@ class user_student(nosql.Document):
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
 
+
+class marksheet(nosql.Document):
+    #student_id = nosql.StringField()
+    student_email = nosql.StringField()
+    exam_title = nosql.StringField()
+    get_score=nosql.IntField()
+
 class mcqQuestion(nosql.Document):
     exam_code = nosql.StringField(default="")
     course_title=nosql.StringField()
@@ -75,6 +82,7 @@ class mcqQuestion(nosql.Document):
     lesson=nosql.StringField()
     question=nosql.StringField()
     q_answer= nosql.StringField()
+    q_mark=nosql.IntField()
     question_dictionary = nosql.DictField(check_keys=False)
     list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
 

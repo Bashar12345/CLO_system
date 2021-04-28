@@ -14,7 +14,10 @@
 			"johnstoncode.svn-scm",
 			"aaron-bond.better-comments",
 			"tyriar.sort-lines",
-			"necinc.elmmet"
+			"necinc.elmmet",
+			"wholroyd.jinja",
+			"samuelcolvin.jinjahtml",
+			"wyattferguson.jinja2-snippet-kit"
 		]
 	}
 }

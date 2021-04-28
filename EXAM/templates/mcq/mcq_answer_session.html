@@ -10,58 +10,48 @@
 
 {#{question_mcq_for_current_session}#}
 
-<!-- <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data"> -->
+<form action="" method="POST" class="form-horizontal container" enctype="multipart/form-data">
 
-<p id="count"> </p>
-<div id="add_data" class="card bg-light">
+
        <br>
-       <div id='question_card' class="card-block">
-              {% for i in question_mcq_for_current_session %}
-              {#{i}#}
 
-              {% for j in i %}
-              <div class="card-header h5">
-                     <div class="card-title text-primary">
-                            <b>{{j}}</b>
-                     </div>
+       <div class="card-block bg-light">
+              <div class="card-header">
+                     {{question_part}}
               </div>
-              <div class="card-body">
-                     {% for k in i[j] %}
+              <div class="card-body h6">
+                     {%for op in option_list%}
 
                      <div class="card-text text-secondary">
-                            <input id="chk {{k}}" aria - label="Checkbox for following text input" type="radio" value=" {{k}}"
+                            <input id="chk {{op}}" aria - label="Checkbox for following text input" type="radio" value="{{op}}"
                                    name="selected_option" />
 
-                            <label for="chk {{k}}">option {{k}} : {{k}}</label>
+                            <label for="chk {{op}}"> {{op}}</label>
                      </div>
 
-
-                     {% endfor %}
-
+                     {%endfor%}
               </div>
-              {% endfor %}
-       
-       {% endfor %}
        </div>
 
-</div>
+{#{confrimation}#}
 
 
-</div>
+     
+       <div class="text-center"><br>
+       <button class='btn btn-secondary' id="btn_submit" name="submit" type="submit"> Confirm Answer & Next</button>
+       </div>
+
+      
 
 
-</div>
-<br>
-<button class='btn btn-secondary' id="btn_next_question"> Next</button>
-<button class='btn btn-secondary' id="btn_submit" name="answer_submit" type="submit"> Submit Answer Paper</button>
 
 
-
-
+</form>
 
 
 
 {% endblock body %}
+
 
 
 

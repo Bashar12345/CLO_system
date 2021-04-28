@@ -39,6 +39,7 @@ def index():
 @main.route('/main_page', methods=['GET', 'POST'])
 @login_required
 def main_page():
+    #----------------------------------ekane teacher question evluate krbee
     if request.method == "POST":
         eroll_key = request.form.get('enroll_key')
         delete_temporary_collection()

@@ -53,10 +53,6 @@
 
 
 
-
-
-
-
               $('#btn_next_question').click(function () {
                      $('#question_card').empty();
                      $('#add_data').empty();

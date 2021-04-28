@@ -26,7 +26,8 @@ from EXAM.Test_paper.forms import (
 )
 from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
-from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, mcqQuestion, required_for_generate, teacher_created_courses_model
+from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, required_for_generate, teacher_created_courses_model
+from flask.templating import render_template_string
 
 """@Test_paper.route('/')
 def hello_world():
@@ -399,6 +400,7 @@ def mcq_answer_paper_auto_generated():
     exam_code = secret_exam_key.exam_code
     requirement_for_mcq_questions = required_for_generate.objects(
         exam_secret_code=exam_code).first()
+    exam_title = requirement_for_mcq_questions.exam_course
     exam_start_time = requirement_for_mcq_questions.exam_start_time
     exam_end_time = requirement_for_mcq_questions.exam_end_time
     exam_date = requirement_for_mcq_questions.exam_date
@@ -421,23 +423,40 @@ def mcq_answer_paper_auto_generated():
     # print(mcq_question['mcq_question'])
 
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    #if starting_time_of_exam <= current_time <= ending_time_of_exam:
     if current_time == current_time2:
         print(current_time)
         # ekahne mcq question object produce krte hobe -------------------------------------------
         question_mcq_for_current_session = machine_process_data(
             requirement_for_mcq_questions)
         # print(question_mcq_for_current_session)
+        session['exam_title'] = exam_title
         session['session_question'] = question_mcq_for_current_session
         session['count'] = 0
-        return redirect(url_for('Test_paper.answer_session'))
+        session['total_question'] = requirement_for_mcq_questions.number_of_question
+        return render_template_string("""
+        {% extends 'layout.html' %}
 
-        if request.method == "POST":
-            # ekane kaz baki ase ------------------------------------------------------------------
-            check = mcq_question_answer_submit(form)
-            if check == "done":
-                session['count'] = 0
-                return redirect(url_for("users.student"))
+        {% block body %}
+        <div class="card text-center">
+              <div class="card-header">
+
+                     <div class="card-body">
+                            <h5 class="card-title">Are you mentally prepared for the exam ,and do you accept all the term and
+                                   conditions
+                                   then Click the Attempt button...</h5>
+
+                            <a href="{{url_for('Test_paper.answer_session')}}" class='btn btn-sm btn-success ' id="btn_next_question" > Attempt</a>
+                            <p class="card-text"><br>
+                                   If you want to leave..
+                            </p>
+                            <a href="{{url_for('main.main_page')}}" class="btn btn-warning btn-sm">Turn back</a>
+                     </div>
+              </div>
+       </div>
+       {% endblock body %}
+       """)
+
         # return render_template("mcq/mcq_answer_session.html", exam_date=exam_date, exam_end_time=exam_end_time,
         #                        # custom object for answer from the machine learning method
         #                        question_mcq_for_current_session=question_mcq_for_current_session,
@@ -455,28 +474,52 @@ def answer_session():
     form = Mcq_answer_form()
     session_question = session['session_question']
     count = session['count']
+    session['corrected'] = 0
     corrected=0
     question_part = ''
     option_list = list()
-    #print(type(session_question))
+    selected_option=''
+    # print(type(session_question))
     #print("Foooooooooooor testing", len(session_question[count]))
-    if request.method == "POST":
-        for i in session_question[count]:
+    if count == session['total_question']:
+        # ekane kaz baki ase ------------------------------------------------------------------
+        flash(f'Your fiinished the exam ', 'success')
+        return redirect(url_for("main.main_page"))
+    
+    for i in session_question[count]:
             # print(i)
             question_part = i
-        for j in session_question[count][i]:
-            #print(j)
+    for j in session_question[count][i]:
+        # print(j)
             option_list.append(j)
-        selected_option = request.form.get('selected_option')
+    selected_option = request.form.get('selected_option')
+    #if request.method == "POST":
+    if form.validate_on_submit:
+        
         print(selected_option)
-        db_question = mcqQuestion.objects(question=question_part).first()
-        if db_question.q_answer == selected_option:
-            corrected+=1;
-            #getting_total_for_in_this_question=0+db_question.q_mark
-        session['count'] = count+1
-        print(session['count'])
-    
-    return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=option_list, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
+        if selected_option:
+            print(question_part)
+            db_question = mcqQuestion.objects(question=question_part).first()
+            #print(db_question.q_answer)
+            print(db_question['q_answer'])
+            if db_question['q_answer'] == selected_option:
+                session['corrected'] =corrected + 1
+                print("dhukse")
+                
+                # getting_total_for_in_this_question=0+db_question.q_mark
+    session['count'] = count+1
+    #print(session['count'])
+    print(session['corrected'])
+    if session['count'] == len(session['session_question']):
+        total_score = marksheet()
+        total_score.student_email = user_obj.e
+        total_score.exam_title = session['exam_title']
+        total_score.get_score = session['corrected']
+        total_score.save()
+    total = session['total_question']
+        
+         
+    return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=option_list,confrimation=confrimation, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
 
 
 # @Test_paper.route("/answer_session_load", methods=["GET", "POST"])
