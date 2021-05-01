@@ -1,7 +1,7 @@
 from flask import request, flash
 from EXAM.model import course_model, enrol_students_model, student_courses_model, teacher_created_courses_model, temporary_model, user_student, user_teacher
 from EXAM.configaration import user_obj
-
+import random
 
 def delete_temporary_model():
     collection = temporary_model.objects().all()
@@ -98,3 +98,100 @@ def created_course_form_db_insertion(get_form, user_type):
     course_register_course_model_ins.save()
     if course_register.save():
         return course_title
+
+
+def process_data_for_machine_learning(objects_of_requirement):
+    # courses= course_model.objects()
+    # required_data=required_for_generate.objects()
+    # question_model=machine_learning_mcq_model.objects()
+    # connection = MongoClient('localhost', 27017)
+    # mongosql = connection.exam
+    # required = mongosql.required_for_generate
+    # mcq_data = mongosql.machine_learning_mcq_model
+    # required_for_generate = required.find()
+    # required=required_for_generate.objects()
+    needed_course_code = []
+    MCQ_questions = []
+    purify_question_part = list()
+    question_part = []
+    temp = list()
+    crse_code = objects_of_requirement.course_code
+    for i in mcqQuestion.objects(course_code=crse_code):
+        MCQ_questions.append(i.question)
+    question_part = random.sample(
+        MCQ_questions, objects_of_requirement.number_of_question)
+    for i in question_part:
+        if i not in purify_question_part:
+            purify_question_part.append(i)
+    if len(purify_question_part) != objects_of_requirement.number_of_question:
+        extra_needed = objects_of_requirement.number_of_question - \
+            len(purify_question_part)
+        temp = random.sample(MCQ_questions, extra_needed)
+    for i in temp:
+        if i not in purify_question_part:
+            purify_question_part.append(i)
+    question_part = purify_question_part
+    # print(MCQ_questions)
+    # print(random.sample(MCQ_questions, 2))
+    # random.shuffle(MCQ_questions)
+    # print(MCQ_questions)
+    # print(question_part)
+    shuffled_question_list = []
+    full_set_shuffled_question = []
+    for ques in question_part:
+        for j in mcqQuestion.objects(question=ques):
+            if j not in shuffled_question_list:
+                shuffled_question_list.append(j.question_dictionary)
+    return shuffled_question_list
+
+
+
+def evaluate_a_question(shuffled_list, objects_of_requirement):
+    course_code = ''
+    lessons = []
+    complex = ''
+    easy = 1
+    medium = 2
+    hard = 3
+    easy_count = 0
+    medium_count = 0
+    hard_count = 0
+    question_count = []
+    complexity_level_of_highest_question_count = 0
+    total_question = objects_of_requirement.number_of_question
+    for ques in shuffled_list:
+        # print(ques)
+        question_paper = mcqQuestion.objects(question_dictionary=ques).first()
+        complex = question_paper.complex_level
+        course_code = question_paper.course_code
+        lsn = question_paper.lesson
+        if lsn not in lessons:
+            lessons.append(lsn)
+        # print(complex)
+        # if complex == '1':
+        # print(complex)
+        question_count.append(complex)
+    print(lessons)
+    #print(" eta total_counted", question_count)
+    for i in question_count:
+        if i == '1':
+            easy_count += 1
+        if i == '2':
+            medium_count += 1
+        if i == '3':
+            hard_count += 1
+    print(easy_count, "eta", medium_count, "eta", hard_count)
+    easy = easy*easy_count
+    medium = medium*medium_count
+    hard = hard*hard_count
+    question_point = ((easy+medium+hard)+total_question)
+    if easy > medium and easy > hard:
+        question_point = question_point/1
+    if medium > easy and medium > hard:
+        question_point = question_point/2
+    if hard > easy and hard > medium:
+        question_point = question_point/3
+    # vhul ase thik krte hobe
+    print(question_point)
+    return question_point, lessons, course_code
+    # pass

@@ -16,7 +16,7 @@ from EXAM.users.utils import delete_temporary_collection, remove_junk
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 
- 
+
 @main.route('/upload', methods=['GET', 'POST'])
 def upload():
     form = PhotoForm(CombinedMultiDict((request.files, request.form)))
@@ -39,12 +39,17 @@ def index():
 @main.route('/main_page', methods=['GET', 'POST'])
 @login_required
 def main_page():
-    #----------------------------------ekane teacher question evluate krbee
-    if request.method == "POST":
-        eroll_key = request.form.get('enroll_key')
-        delete_temporary_collection()
-        print(eroll_key)
-        enroll_students(eroll_key, User_type.user_type)
+    # ----------------------------------ekane teacher question evluate krbee
+    if User_type.user_type == 'student':
+        if request.method == "POST":
+            eroll_key = request.form.get('enroll_key')
+            delete_temporary_collection()
+            print(eroll_key)
+            enroll_students(eroll_key, User_type.user_type)
+    question_part = machine_process_data_wrangling(objects_of_requirement)
+    shuffled_list = catch_the_shuffled_question_list(question_part)
+    question_point, lessons, course_code = a_question(
+        shuffled_list, objects_of_requirement)
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
@@ -226,11 +231,11 @@ def course_assigned_students():
     print(user_total)
     for user in user_total:
         for user_s in user_student.objects(email=user):
-            #print(user_s.user_name)
+            # print(user_s.user_name)
             if user_s.user_name not in students_name:
                 students_name.append(user_s.user_name)
     print(students_name)
-    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_total=user_total, students_name=students_name,iter=itertools)
+    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_total=user_total, students_name=students_name, iter=itertools)
 
 
 @main.route('/loading_students')

@@ -215,6 +215,12 @@ def mcq_uploading_processing(get_form, corse_code):
 def generate_question(get_form, corse_code):
     form = get_form
     exam_title = form.exam_title.data
+    if exam_title != 'mid-term' or exam_title != 'final':
+        number_of_question=15
+    else:
+        number_of_question=25
+
+
     # exam_course = form.exam_course.data
     exam_start_time = request.form.get("start_time")
     # exam_start_time = form.exam_start_time.data
@@ -226,7 +232,7 @@ def generate_question(get_form, corse_code):
     caption = request.form.get("Note:captions")
     exam_secret_code = form.exam_code.data
     # exam_marks = form.exam_marks.data
-    number_of_question = request.form.get("exam_total_questions")
+    #number_of_question = request.form.get("exam_total_questions")
     if corse_code == 'teacher':
         course_code = request.form.get('course_code')
     else:
@@ -485,7 +491,7 @@ def a_question(shuffled_list, objects_of_requirement):
         # if complex == '1':
         # print(complex)
         question_count.append(complex)
-    print(lessons)
+    #print(lessons)
     #print(" eta total_counted", question_count)
     for i in question_count:
         if i == '1':
@@ -522,19 +528,19 @@ def test_mcq_ML():
         question_value = random.uniform(10, 40)
         if question_value > 30:
             ML_model.difficulty = "Easy"
-            ML_model.type = 1
+            ML_model.q_type = 'mcq'
             ML_model.question_point = question_value
             ML_model.save()
             print("Easy", " = ", question_value)
         elif 17 <= question_value < 30:
             ML_model.difficulty = "Medium"
-            ML_model.type = 1
+            ML_model.q_type = 'mcq'
             ML_model.question_point = question_value
             ML_model.save()
             print("Medium =", question_value)
         else:
             ML_model.difficulty = "Hard"
-            ML_model.type = 1
+            ML_model.q_type = 'mcq'
             ML_model.question_point = question_value
             ML_model.save()
             print("Hard =", question_value)
@@ -548,7 +554,7 @@ def test_mcq_ML():
         question_value = random.uniform(10, 40)
         if question_value > 22:
             ML_model.difficulty = "Medium"
-            ML_model.type = 0
+            ML_model.q_type = 'wrq'
             ML_model.question_point = question_value
             ML_model.save()
             print("Medium", " = ", question_value)
@@ -572,8 +578,8 @@ def machine_understable_dataset_setup(course_code):
     mcq_csv.drop("question_dictionary", axis=1, inplace=True)
     mcq_csv.drop("course_title",  axis=1, inplace=True)
     mcq_csv.drop("course_code",  axis=1, inplace=True)
-    type = pd.get_dummies(mcq_csv['type'], drop_first=True)
-    mcq_csv.drop("type", axis=1, inplace=True)
+    type = pd.get_dummies(mcq_csv['q_type'], drop_first=True)
+    mcq_csv.drop("q_type", axis=1, inplace=True)
     mcq_cleaned_csv = pd.concat([mcq_csv, type], axis=1)
     # ekane output falay diya input alada kora hoise
     data_input = mcq_cleaned_csv.drop(columns=['difficulty'])
@@ -609,6 +615,7 @@ def machine_predict_result(data_input, data_output, question_point, question_typ
 def machine_process_data(requirement_for_mcq_questions):
     # # data cleaning for shuffle
     objects_of_requirement = requirement_for_mcq_questions
+    
     # question_part = machine_process_data_wrangling(objects_of_requirement)
     # # prepared shffled question list for machine prediction
     # shuffled_list = catch_the_shuffled_question_list(question_part)
@@ -637,7 +644,7 @@ def machine_process_data(requirement_for_mcq_questions):
         shuffled_list = catch_the_shuffled_question_list(question_part)
 
         # make a question for deleivery
-        # test_mcq_ML()
+        #test_mcq_ML()
 
         question_point, lessons, course_code = a_question(
             shuffled_list, objects_of_requirement)

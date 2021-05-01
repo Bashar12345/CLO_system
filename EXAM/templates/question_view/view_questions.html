@@ -37,7 +37,7 @@
 {% for i in mcqQuestion.objects(
     course_code=course_code) %}
 <div class="table-bordered table-responsive">
-    <p>Q{{ j }} :-{{ i.question }} ?<br /></p>
+    <p>Q{{ j }} :--   {{ i.question }} ?<br /></p>
 </div>
 {% if j.append(j.pop() + 1) %}{% endif %}
 {% endfor %}

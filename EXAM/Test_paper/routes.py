@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from flask import (
     render_template,
@@ -382,7 +383,7 @@ def secret_code():
             return redirect(url_for("Test_paper.mcq_answer_paper_auto_generated"))
         else:
             flash(f"Re-Enter Exam code!!", "danger")
-            return redirect(url_for("users.student"))
+            return redirect(url_for("main.main_page"))
     else:
         return render_template(
             "secret_code.html",
@@ -423,7 +424,7 @@ def mcq_answer_paper_auto_generated():
     # print(mcq_question['mcq_question'])
 
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    #if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     if current_time == current_time2:
         print(current_time)
         # ekahne mcq question object produce krte hobe -------------------------------------------
@@ -468,58 +469,82 @@ def mcq_answer_paper_auto_generated():
     )
 
 
+selectd_answers = list()
+correct_answers = list()
+corrected = 0
+
+
 @Test_paper.route("/answer_session", methods=["GET", "POST"])
 # @login_required
 def answer_session():
     form = Mcq_answer_form()
     session_question = session['session_question']
     count = session['count']
-    session['corrected'] = 0
-    corrected=0
+    global correct_answers
+    global corrected
+    global selectd_answers
     question_part = ''
     option_list = list()
-    selected_option=''
+    shuffled_option_list=list()
+    selected_option = ''
     # print(type(session_question))
     #print("Foooooooooooor testing", len(session_question[count]))
     if count == session['total_question']:
         # ekane kaz baki ase ------------------------------------------------------------------
         flash(f'Your fiinished the exam ', 'success')
         return redirect(url_for("main.main_page"))
-    
+
     for i in session_question[count]:
-            # print(i)
-            question_part = i
+        # print(i)
+        question_part = i
     for j in session_question[count][i]:
         # print(j)
-            option_list.append(j)
-    selected_option = request.form.get('selected_option')
-    #if request.method == "POST":
-    if form.validate_on_submit:
-        
+        option_list.append(j)
+    #print(option_list)
+    shuffled_option_list=random.sample(option_list,len(option_list))
+    #print(shuffled_option_list)
+    
+
+    db_question = mcqQuestion.objects(question=question_part).first()
+    
+    if db_question:
+        correct_answers.append(db_question['q_answer'])
+        # print(db_question.q_answer)
+        print(db_question['q_answer'])
+    
+    if request.method == "POST":
+        # if form.validate_on_submit:
+        selected_option = request.form.get('selected_option')
         print(selected_option)
-        if selected_option:
-            print(question_part)
-            db_question = mcqQuestion.objects(question=question_part).first()
-            #print(db_question.q_answer)
-            print(db_question['q_answer'])
-            if db_question['q_answer'] == selected_option:
-                session['corrected'] =corrected + 1
-                print("dhukse")
-                
-                # getting_total_for_in_this_question=0+db_question.q_mark
+        
+        selectd_answers.append(selected_option)
+
+        # if selected_option:
+        #     #print(question_part)
+        #     if previous_answer == selected_option:
+        #         session['corrected'] =corrected + 1
+        #         print("dhukse")
+
+        #         # getting_total_for_in_this_question=0+db_question.q_mark
     session['count'] = count+1
-    #print(session['count'])
-    print(session['corrected'])
+    # print(session['count'])
     if session['count'] == len(session['session_question']):
+        #print("correct --------", correct_answers)
+        #print("selected ----------", selectd_answers)
+        i=0
+        for selected in selectd_answers:
+            if selected == correct_answers[i]:
+                print("Wright answer")
+                corrected += 1
+            i+=1
         total_score = marksheet()
         total_score.student_email = user_obj.e
         total_score.exam_title = session['exam_title']
-        total_score.get_score = session['corrected']
+        total_score.get_score = corrected
         total_score.save()
     total = session['total_question']
-        
-         
-    return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=option_list,confrimation=confrimation, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
+
+    return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=shuffled_option_list, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
 
 
 # @Test_paper.route("/answer_session_load", methods=["GET", "POST"])

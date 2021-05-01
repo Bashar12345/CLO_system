@@ -147,7 +147,7 @@ class course_model(nosql.Document):
 
 class teacher_created_courses_model(nosql.Document):
     user_type = nosql.StringField()
-    teacher_registered_id = nosql.StringField()
+    teacher_registered_id = nosql.StringField()#eamil of teacher 
     course_title = course_model.course_title
     course_code = course_model.course_code
     course_co = course_model.course_co
@@ -190,7 +190,7 @@ class machine_learning_mcq_model(nosql.Document):
     #quesCLO = nosql.StringField()
     question_dictionary = mcqQuestion.question_dictionary# ekhane kazz baki aseee
     difficulty=nosql.StringField()
-    type = nosql.StringField() # 0 for written, # 1 for mcq 
+    q_type = nosql.StringField() # 0 for written, # 1 for mcq 
     question_point=nosql.FloatField()
 # kaz baki ase
 class required_for_generate(nosql.Document):

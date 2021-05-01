@@ -662,77 +662,126 @@ db.mcq_question.insertMany([
 "ঘ. Mobile No"
         ],
 
-"১৩. ডেটাবেজের কুয়েরিকৃত ডেটাকে সামারি আকারে উপস্থাপন করা হয় কোন কুয়েরির মাধ্যমে?":[
+{
+    "exam_code" : "",
+    "course_title" : "Ict",
+    "course_code" : "swe111",
+    "complex_level" : "1",
+    "quesCLO" : "clo- 1 Know the fundamental of Ict",
+    "lesson" : "l-3 application",
+    "q_answer" :   "বিট",
+    "question" : "বাইনারি ডিজিটকে সংক্ষেপে বলে-",
+    "question_dictionary" : {
+        "বাইনারি ডিজিটকে সংক্ষেপে বলে-" : [ 
+            "বিট", 
+            " কিলোবাইট", 
+            "বাডিজিট", 
+            "বাইট"
+        ]
+    },
+    "list_of_mcq_option" :  [ 
+            " বিট", 
+            " কিলোবাইট", 
+            "বাডিজিট", 
+            "বাইট"   ]
+}
+
+{
+    "exam_code" : "",
+    "course_title" : "Ict",
+    "course_code" : "swe111",
+    "complex_level" : "1",
+    "quesCLO" : "clo- 1 Know the fundamental of Ict",
+    "lesson" : "l-3 application",
+    "q_answer" :   "Select",
+    "question" : "১৩. ডেটাবেজের কুয়েরিকৃত ডেটাকে সামারি আকারে উপস্থাপন করা হয় কোন কুয়েরির মাধ্যমে?",
+    "question_dictionary" : {
+    "১৩. ডেটাবেজের কুয়েরিকৃত ডেটাকে সামারি আকারে উপস্থাপন করা হয় কোন কুয়েরির মাধ্যমে?":[
 "Select",
-"ক. Select",
-"খ. Parameter",
-"গ. Crosstab",
-"ঘ. Action"
-],
-"১৪. ডেটাবেজ থেকে কোনো তথ্য খোঁজার জন্য কোনটি ব্যবহার করা হয়?":[
-"SQL",
-"ক. DBMS",
-"খ. CAESAR",
-"গ. SQL",
-"ঘ. RDBM"
-],
-"১৬. ‘Name’ কোন ধরনের ডেটা?":[
+"Parameter",
+"Crosstab",
+"Action"]
+    },
+    "list_of_mcq_option" : [
+"Select",
+"Parameter",
+"Crosstab",
+"Action"]
+}
+{
+    "exam_code" : "",
+    "course_title" : "Ict",
+    "course_code" : "swe111",
+    "complex_level" : "1",
+    "quesCLO" : "clo- 1 Know the fundamental of Ict",
+    "lesson" : "l-3 application",
+    "q_answer" :  "SQL",
+    "question" :  "১৪. ডেটাবেজ থেকে কোনো তথ্য খোঁজার জন্য কোনটি ব্যবহার করা হয়?",
+    "question_dictionary" : {
+        "১৪. ডেটাবেজ থেকে কোনো তথ্য খোঁজার জন্য কোনটি ব্যবহার করা হয়?":[
+" DBMS",
+" CAESAR",
+" SQL",
+" RDBM"]
+    },
+    "list_of_mcq_option" :  [
+" DBMS",
+" CAESAR",
+" SQL",
+" RDBM"]
+}
+
+
+{
+    "exam_code" : "",
+    "course_title" : "Ict",
+    "course_code" : "swe111",
+    "complex_level" : "1",
+    "quesCLO" : "clo- 1 Know the fundamental of Ict",
+    "lesson" : "l-3 application",
+    "q_answer" :   "Text",
+    "question" :  "১৬. ‘Name’ কোন ধরনের ডেটা?",
+    "question_dictionary" : {
+        "১৬. ‘Name’ কোন ধরনের ডেটা?":[
+
+" Logical",
+" Number",
+"Text",
+"Currency"]
+    },
+    "list_of_mcq_option" : [
 "Text",
 "ক. Logical",
 "খ. Number",
 "গ. Text",
-"ঘ. Currency"
-]
-    }
+"ঘ. Currency"]
 }
-
 {
-    "course_code"="SWE111",
-    "course_title" : "ict",
-    "topic" : "html",
-    "course_outcome" : "15",
-    "complexity_label" : "2"
-    "mcq" : {
+    "exam_code" : "",
+    "course_title" : "Ict",
+    "course_code" : "swe111",
+    "complex_level" : "1",
+    "quesCLO" : "clo- 1 Know the fundamental of Ict",
+    "lesson" : "l-3 application",
+    "q_answer" :   "qwe ", 
+    "question" : "what is data ",
+    "question_dictionary" : {
         "what is data " : [ 
+        "qwe ", 
+            "da", 
+            "ads", 
+            "ad"
+        ]
+    },
+    "list_of_mcq_option" :   [ 
         "weq",
             "qwe ", 
             "da", 
             "ads", 
             "ad"
-        ],
-        " In the …………, one transaction inserts a row in the table while the other transaction is half way through its browsing of table." : [ 
-            "wqdfsa", 
-            "eqwrasdf", 
-            "asfsa", 
-            "wqdfsa", 
-            "wrcsas"
         ]
 }
 
-{
-    "question_dictionary" : {
-        "test question" : [ 
-            "a", 
-            "a", 
-            "b", 
-            "c", 
-            "d"
-        ]
-    },
-    "course_title" : "Data Algorithm",
-    "course_code" : "swe251",
-    "lesson" : "l-2 requirement", 
-    "q_answer" :  "null graph",  
-    "quesCLO" : "clo- 1 Know the knowledge of data Algorithm",
-    "complexity_label" : "2"
-}
-
- "course_title" : "Data Algorithm",
-    "course_code" : "swe151",
-    "lesson" : "l-2 requirement", 
-    "q_answer" :  "null graph",  
-    "quesCLO" : "clo- 1 Know the knowledge of data Algorithm",
-    "complexity_label" : "1"
 
 #mcqQuestion
 
