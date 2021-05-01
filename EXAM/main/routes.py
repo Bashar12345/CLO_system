@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
-from EXAM.main.function import created_course_form_db_insertion, enroll_students, student_view_courses, teacher_view_courses
+from EXAM.main.function import created_course_form_db_insertion, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_view_courses, teacher_view_courses
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, temporary_model, user_student
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
@@ -46,10 +46,10 @@ def main_page():
             delete_temporary_collection()
             print(eroll_key)
             enroll_students(eroll_key, User_type.user_type)
-    question_part = machine_process_data_wrangling(objects_of_requirement)
-    shuffled_list = catch_the_shuffled_question_list(question_part)
-    question_point, lessons, course_code = a_question(
-        shuffled_list, objects_of_requirement)
+    question_part, number_of_question = process_data_for_machine_learning()
+    #ekhane kazzz baki ase-----------------------------------------------------
+    question_point, lessons, course_code = evaluate_a_question(
+        question_part, number_of_question)
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
