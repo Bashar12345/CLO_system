@@ -1,7 +1,8 @@
 from flask import request, flash
-from EXAM.model import course_model, enrol_students_model, mcqQuestion, student_courses_model, teacher_created_courses_model, temporary_model, user_student, user_teacher
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, student_courses_model, teacher_created_courses_model, temporary_model, user_student, user_teacher, wrqQuestion
 from EXAM.configaration import user_obj
 import random
+
 
 def delete_temporary_model():
     collection = temporary_model.objects().all()
@@ -14,11 +15,12 @@ def enroll_students(eroll_ki, user_type):
     enrolled = enrol_students_model.objects(enrol_key=eroll_ki).first()
     print(enrolled.course_code)
     if enrolled:
-        course_model_include = course_model.objects(course_code=enrolled.course_code).first()
+        course_model_include = course_model.objects(
+            course_code=enrolled.course_code).first()
         if course_model_include:
             assigning_students = student_courses_model()
             assigning_students.user_type = user_type
-            #print(assigning_students.user_type)
+            # print(assigning_students.user_type)
             assigning_students.student_registered_id = usered
             assigning_students.course_title = course_model_include.course_title
             assigning_students.course_code = course_model_include.course_code
@@ -110,46 +112,76 @@ def process_data_for_machine_learning():
     # mcq_data = mongosql.machine_learning_mcq_model
     # required_for_generate = required.find()
     # required=required_for_generate.objects()
-    number_of_question=15
+    teacher_id = user_obj.e
+    shuffled_question_list = list()
+    full_set_shuffled_question = []
+    ques_type = ["mcq", "wrq"]
+    number_of_question = 15
     needed_course_code = []
     MCQ_questions = []
+    WRQ_questions = []
     purify_question_part = list()
     question_part = []
     temp = list()
-    course_list = teacher_created_courses_model.objects.only('course_code')
-    crse_code=random.choice(course_list)
-    print(crse_code)
-    for i in mcqQuestion.objects(course_code=crse_code):
-        MCQ_questions.append(i.question)
-    question_part = random.sample(
-        MCQ_questions,number_of_question)
-    for i in question_part:
-        if i not in purify_question_part:
-            purify_question_part.append(i)
-    if len(purify_question_part) != number_of_question:
-        extra_needed = number_of_question - \
-            len(purify_question_part)
-        temp = random.sample(MCQ_questions, extra_needed)
-    for i in temp:
-        if i not in purify_question_part:
-            purify_question_part.append(i)
-    question_part = purify_question_part
-    # print(MCQ_questions)
-    # print(random.sample(MCQ_questions, 2))
-    # random.shuffle(MCQ_questions)
-    # print(MCQ_questions)
-    # print(question_part)
-    shuffled_question_list = []
-    full_set_shuffled_question = []
-    for ques in question_part:
-        for j in mcqQuestion.objects(question=ques):
-            if j not in shuffled_question_list:
-                shuffled_question_list.append(j.question_dictionary)
-    return shuffled_question_list, number_of_question
-    #pass
+    course_list = list()
+    for i in teacher_created_courses_model.objects(teacher_registered_id=teacher_id):
+        # print(i.course_code)
+        course_list.append(i.course_code)
+        #print(course_list)
+    crse_code = random.choice(course_list)  # print(crse_code)
+    q_type = random.choice(ques_type)
+    #  for testing pupose i fixed the q_type
+    q_type = 'mcq'
+    if q_type == 'mcq':
+        for i in mcqQuestion.objects(course_code=crse_code):
+            MCQ_questions.append(i.question)
+        question_part = random.sample(
+            MCQ_questions, number_of_question)
+        for i in question_part:
+            if i not in purify_question_part:
+                purify_question_part.append(i)
+        if len(purify_question_part) != number_of_question:
+            extra_needed = number_of_question - \
+                len(purify_question_part)
+            temp = random.sample(MCQ_questions, extra_needed)
+        for i in temp:
+            if i not in purify_question_part:
+                purify_question_part.append(i)
+        question_part = purify_question_part
+        for ques in question_part:
+            for j in mcqQuestion.objects(question=ques):
+                if j not in shuffled_question_list:
+                    shuffled_question_list.append(j.question_dictionary)
 
 
-def evaluate_a_question(shuffled_list, number_of_question):
+# # # # # for testing pupose these payloads have been commented , these payloads needed to feed the written question dataset at this moment i am working with only mcq part
+# # #     if q_type == 'wrq':
+# # #         for i in wrqQuestion.objects(course_code=crse_code):
+# # #             WRQ_questions.append(i.question)
+# # #         question_part = random.sample(
+# # #             WRQ_questions, number_of_question)
+# # #         for i in question_part:
+# # #             if i not in purify_question_part:
+# # #                 purify_question_part.append(i)
+# # #         if len(purify_question_part) != number_of_question:
+# # #             extra_needed = number_of_question - \
+# # #                 len(purify_question_part)
+# # #             temp = random.sample(WRQ_questions, extra_needed)
+# # #         for i in temp:
+# # #             if i not in purify_question_part:
+# # #                 purify_question_part.append(i)
+# # #         question_part = purify_question_part
+# # #         for ques in question_part:
+# # #             for j in wrqQuestion.objects(question=ques):
+# # #                 if j not in shuffled_question_list:
+# # #                     shuffled_question_list.append(j.question_dictionary)
+
+    return shuffled_question_list, number_of_question, q_type
+    # pass
+
+
+def evaluate_a_question(shuffled_list_of_diictionary, number_of_question, difficulty, q_type):
+    print("dhukse")
     course_code = ''
     lessons = []
     complex = ''
@@ -161,40 +193,70 @@ def evaluate_a_question(shuffled_list, number_of_question):
     hard_count = 0
     question_count = []
     complexity_level_of_highest_question_count = 0
-    total_quantity_of__question = number_of_question
-    for ques in shuffled_list:
-        # print(ques)
-        question_paper = mcqQuestion.objects(question_dictionary=ques).first()
-        complex = question_paper.complex_level
-        course_code = question_paper.course_code
-        lsn = question_paper.lesson
-        if lsn not in lessons:
-            lessons.append(lsn)
-        # print(complex)
-        # if complex == '1':
-        # print(complex)
-        question_count.append(complex)
-    print(lessons)
-    #print(" eta total_counted", question_count)
+    total_quantity_of_question = number_of_question
+
+
+# # for testing purpose  i fixed the q_type='mcq' ----------------------------
+    q_type = 'mcq'
+    
+    
+    if q_type == 'wrq':
+        for ques in shuffled_list_of_diictionary:
+            # print(ques)
+            question_paper = wrqQuestion.objects(
+                question_dictionary=ques).first()
+            complex = question_paper.complex_level
+            course_code = question_paper.course_code
+            lsn = question_paper.lesson
+            if lsn not in lessons:
+                lessons.append(lsn)
+            # print(complex)
+            # if complex == '1':
+            # print(complex)
+            question_count.append(complex)
+        print(lessons)
+    else:
+        for ques in shuffled_list_of_diictionary:
+            # print(ques)
+            question_paper = mcqQuestion.objects(
+                question_dictionary=ques).first()
+            complex = question_paper.complex_level
+            course_code = question_paper.course_code
+            lsn = question_paper.lesson
+            if lsn not in lessons:
+                lessons.append(lsn)
+            # print(complex)
+            # if complex == '1':
+            # print(complex)
+            question_count.append(complex)
+        print(lessons)
+        #print(" eta total_counted", question_count)
     for i in question_count:
-        if i == '1':
-            easy_count += 1
-        if i == '2':
-            medium_count += 1
-        if i == '3':
-            hard_count += 1
+            if i == '1':
+                easy_count += 1
+            if i == '2':
+                medium_count += 1
+            if i == '3':
+                hard_count += 1
     print(easy_count, "eta", medium_count, "eta", hard_count)
     easy = easy*easy_count
     medium = medium*medium_count
     hard = hard*hard_count
-    question_point = ((easy+medium+hard)+total_quantity_question)
+    question_point = ((easy+medium+hard)+total_quantity_of_question)
     if easy > medium and easy > hard:
-        question_point = question_point/1
+            question_point = question_point/1
     if medium > easy and medium > hard:
-        question_point = question_point/2
+            question_point = question_point/2
     if hard > easy and hard > medium:
-        question_point = question_point/3
+            question_point = question_point/3
     # vhul ase thik krte hobe
+
     print(question_point)
-    return question_point, lessons, course_code
-    # pass
+    ML_model = machine_learning_mcq_model()
+    ML_model.course_code = course_code
+    #ML_model.question_dictionary_list = shuffled_list_of_diictionary
+    ML_model.difficulty = difficulty
+    ML_model.q_type = q_type
+    ML_model.question_point = question_point
+    ML_model.save()
+    print("done")

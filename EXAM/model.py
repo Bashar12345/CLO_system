@@ -90,6 +90,20 @@ class mcqQuestion(nosql.Document):
     #     return f"{self.question_dictionary}"
 
 
+class wrqQuestion(nosql.Document):
+    exam_code = nosql.StringField(default="")
+    course_title = nosql.StringField()
+    course_code = nosql.StringField()
+    complex_level = nosql.StringField(default="1")
+    quesCLO = nosql.StringField()
+    lesson = nosql.StringField()
+    question = nosql.StringField()
+    q_answer = nosql.StringField()
+    q_mark = nosql.IntField()
+    question_dictionary = nosql.DictField(check_keys=False)
+    list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
+
+
 class set_exam_question_slot(nosql.Document):
     exam_title = nosql.StringField()
     exam_course = nosql.StringField()
@@ -188,7 +202,7 @@ class machine_learning_mcq_model(nosql.Document):
     course_code = course_model.course_code
     #lesson = nosql.StringField()
     #quesCLO = nosql.StringField()
-    question_dictionary = mcqQuestion.question_dictionary# ekhane kazz baki aseee
+    #question_dictionary_list = nosql.ListField(check_keys=False)
     difficulty=nosql.StringField()
     q_type = nosql.StringField() # 0 for written, # 1 for mcq 
     question_point=nosql.FloatField()

@@ -36,6 +36,9 @@ def index():
     return render_template('index.html')
 
 
+main_page_count = 0
+
+
 @main.route('/main_page', methods=['GET', 'POST'])
 @login_required
 def main_page():
@@ -46,11 +49,25 @@ def main_page():
             delete_temporary_collection()
             print(eroll_key)
             enroll_students(eroll_key, User_type.user_type)
-    question_part, number_of_question = process_data_for_machine_learning()
-    #ekhane kazzz baki ase-----------------------------------------------------
-    question_point, lessons, course_code = evaluate_a_question(
-        question_part, number_of_question)
-    return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
+    if User_type.user_type == 'teacher':
+        shuffled_question_list, number_of_question, q_type = process_data_for_machine_learning()
+        # print(shuffled_question_list)
+        global main_page_count
+
+        # for demo show purpose , question paper bar bar show kora hocche...... and not commented the ######process_data_for_machine_learning method
+
+        #if main_page_count < 2:
+        if request.method == "POST":
+                difficulty = request.form.get('difficulty')
+                print(difficulty)
+                # ekhane kazzz baki ase-----------------------------------------------------
+                evaluate_a_question(shuffled_question_list,
+                                    number_of_question, difficulty, q_type)
+
+        main_page_count += 1
+
+    return render_template('main_page.html', shuffled_question_list=shuffled_question_list,
+                           title='main_page', user_type=User_type.user_type)
 
 
 @main.route('/take_a_tour')

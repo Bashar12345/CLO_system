@@ -186,7 +186,7 @@ number_of_question = ""
 
 
 @Test_paper.route("/mcqUpload/<course_code>", methods=["GET", "POST"])
-# @login_required
+@login_required
 def mcq_upload(course_code):
     form = mcq_upload_form_part_1()
     # seach course code and fetch the lessons
@@ -231,7 +231,7 @@ def mcq_upload(course_code):
 
 
 @Test_paper.route("/mcqUpload_course_code_selection_load")
-# @login_required
+@login_required
 def mcqUpload_course_code_selection_load():
     response_to_browser = ""
     # print("Total :", len(course_model.objects()), " Courses registered")
@@ -252,7 +252,7 @@ def mcqUpload_course_code_selection_load():
 
 
 @Test_paper.route("/mcqUpload_lesson_selection_load")
-# @login_required
+@login_required
 def mcqUpload_lesson_selection_load():
     response_to_browser = ""
     if request.args:
@@ -270,7 +270,7 @@ def mcqUpload_lesson_selection_load():
 
 
 @Test_paper.route("/mcqUpload_clo_selection_load")
-# @login_required
+@login_required
 def mcqUpload_clo_selection_load():
     response_to_browser = ""
     if request.args:
@@ -286,7 +286,7 @@ def mcqUpload_clo_selection_load():
 
 
 @Test_paper.route("/generateMCQ/<course_code>", methods=["GET", "POST"])
-# @login_required
+@login_required
 def generateMCQ(course_code):
     form = Mcq_Question_generate_form()
     # if course_code:
@@ -305,7 +305,7 @@ def generateMCQ(course_code):
 
 
 @Test_paper.route("/generateMCQ_lesson_load")
-# @login_required
+@login_required
 def generateMCQ_lesson_load():
     response_to_browser = ""
     if request.args:
@@ -323,7 +323,7 @@ def generateMCQ_lesson_load():
 
 
 @Test_paper.route("/generateMCQ_clo_load")
-# @login_required
+@login_required
 def generateMCQ_clo_load():
     response_to_browser = ""
     if request.args:
@@ -339,7 +339,7 @@ def generateMCQ_clo_load():
 
 
 @Test_paper.route("/secret_code", methods=["GET", "POST"])
-# @login_required
+@login_required
 def secret_code():
     content_type = ""
     form = secret_Form()
@@ -395,7 +395,7 @@ def secret_code():
 
 
 @Test_paper.route("/mcq_answer_paper", methods=["GET", "POST"])
-# @login_required
+@login_required
 def mcq_answer_paper_auto_generated():
     # mcq_question_answer_submit(form)
     exam_code = secret_exam_key.exam_code
@@ -475,7 +475,7 @@ corrected = 0
 
 
 @Test_paper.route("/answer_session", methods=["GET", "POST"])
-# @login_required
+@login_required
 def answer_session():
     form = Mcq_answer_form()
     session_question = session['session_question']

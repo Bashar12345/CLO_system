@@ -19,33 +19,100 @@
 
 {% block body %}
 
-    <div id="contenTbody">
-        <h1>Under Construction </h1>
+{%if user_type=='teacher'%}
+<form action="" class="container form-group" method="POST" enctype="multipart/form-data">
+    <div class="body">
+        <p class="content">
+            <b>
+                <h3>What do you think about this question paper ?
+                    <span style='font-size:100px;'>&#129300;</span>
+                </h3>
 
-        <div class="row justify-content-start">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
+            </b>
+
+        <h6>What would be (Hard,Medium,Easy) its Difficulty? Evaluate this paper...</h6><br>
+        </p>
+        <div class="p container">
+
+            {% for i in shuffled_question_list %}
+            {#{i}#}
+
+            {% for j in i %}
+            <div class="row justify-content-center bg-light">
+                <div class="col">
+                    <h5>{{j}}</h5>
+                </div>
+            </div>
+            <div class="row justify-content-around ">
+                {% for k in i[j] %}
+                <div class="col">
+                    <h6> {{k}} </h6>
+                </div>
+
+                {% endfor %}
+            </div>
+            <br>
+
+            {% endfor %}
+
+            {% endfor %}
+
         </div>
-        <div class="row justify-content-center">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
+        <div class="container form-check form-check-inline ">
+            <div class="form-check">
+                <input for="eval1" class="form-check-label" type="radio" class="radio" name="difficulty" value="Easy">
+                <label for="eval1" class="form-check-label">Easy</label>
+            </div>
+            <div class="form-check">
+                <input for="eval2" class="form-check-label" type="radio" class="radio" name="difficulty" value="Medium">
+
+                <label for="eval2" class="form-check-label">Medium</label>
+            </div>
+            <div class="form-check">
+                <input for="eval3" class="form-check-label" type="radio" class="radio" name="difficulty" value="Hard">
+                <label for="eval3" class="form-check-label">Hard</label>
+            </div>
         </div>
-        <div class="row justify-content-end">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
-        </div>
-        <div class="row justify-content-around">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
-        </div>
-        <div class="row justify-content-between">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
-        </div>
+
     </div>
-    <div class="row no-gutters">
-        <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
-        <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+
+<div style="top: 3vh;">
+    <button class="btn btn-block btn-info" type="submit"> Done!!!!</button>
+</div>
+</form>
+
+{%endif%}
+
+
+
+
+<!-- <div id="contenTbody">
+    <h1>Under Construction </h1>
+
+    <div class="row justify-content-start">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
     </div>
+    <div class="row justify-content-end">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+</div>
+<div class="row no-gutters">
+    <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
+    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+</div> -->
+</div>
 {% endblock body %}
