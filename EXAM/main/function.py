@@ -254,7 +254,7 @@ def evaluate_a_question(shuffled_list_of_diictionary, number_of_question, diffic
     print(question_point)
     ML_model = machine_learning_mcq_model()
     ML_model.course_code = course_code
-    #ML_model.question_dictionary_list = shuffled_list_of_diictionary
+    ML_model.question_dictionary.update(shuffled_list_of_diictionary)
     ML_model.difficulty = difficulty
     ML_model.q_type = q_type
     ML_model.question_point = question_point

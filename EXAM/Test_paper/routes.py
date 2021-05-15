@@ -401,7 +401,8 @@ def mcq_answer_paper_auto_generated():
     exam_code = secret_exam_key.exam_code
     requirement_for_mcq_questions = required_for_generate.objects(
         exam_secret_code=exam_code).first()
-    exam_title = requirement_for_mcq_questions.exam_course
+    exam_title = requirement_for_mcq_questions.exam_title
+    exam_course = requirement_for_mcq_questions.exam_course
     exam_start_time = requirement_for_mcq_questions.exam_start_time
     exam_end_time = requirement_for_mcq_questions.exam_end_time
     exam_date = requirement_for_mcq_questions.exam_date
@@ -432,6 +433,7 @@ def mcq_answer_paper_auto_generated():
             requirement_for_mcq_questions)
         # print(question_mcq_for_current_session)
         session['exam_title'] = exam_title
+        session['exam_course'] = exam_course
         session['session_question'] = question_mcq_for_current_session
         session['count'] = 0
         session['total_question'] = requirement_for_mcq_questions.number_of_question
@@ -539,6 +541,7 @@ def answer_session():
             i+=1
         total_score = marksheet()
         total_score.student_email = user_obj.e
+        total_score.exam_course = session['exam_course']
         total_score.exam_title = session['exam_title']
         total_score.get_score = corrected
         total_score.save()

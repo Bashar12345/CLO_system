@@ -22,6 +22,11 @@ class Only_file(nosql.Document):
         return f"Only_file('{self.rename}','{self.binary_file}')"
 
 
+class posts (nosql.EmbeddedDocument):
+    title = nosql.StringField()
+    announcement = nosql.StringField()
+    Date = nosql.DateTimeField()
+
 class user(nosql.Document, UserMixin):
     user_name = nosql.StringField()
     email = nosql.StringField()
@@ -53,9 +58,12 @@ class user_teacher(nosql.Document):
     user_name = user.user_name
     email = user.email
     organization_id = user.organization_id
+    post = nosql.ListField(nosql.EmbeddedDocumentField(posts))
 
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
+
+
 
 
 class user_student(nosql.Document):
@@ -70,6 +78,7 @@ class user_student(nosql.Document):
 class marksheet(nosql.Document):
     #student_id = nosql.StringField()
     student_email = nosql.StringField()
+    exam_course = nosql.StringField()
     exam_title = nosql.StringField()
     get_score=nosql.IntField()
 
@@ -203,6 +212,8 @@ class machine_learning_mcq_model(nosql.Document):
     #lesson = nosql.StringField()
     #quesCLO = nosql.StringField()
     #question_dictionary_list = nosql.ListField(check_keys=False)
+    #question_dictionary_list = nosql.DictField() 
+    question_dictionary = mcqQuestion.question_dictionary
     difficulty=nosql.StringField()
     q_type = nosql.StringField() # 0 for written, # 1 for mcq 
     question_point=nosql.FloatField()
@@ -223,6 +234,8 @@ class required_for_generate(nosql.Document):
     exam_CLO = nosql.ListField()
     complex_level = nosql.ListField()
     number_of_question=nosql.IntField()
+
+
 
 class temp_student_collection(nosql.Document):
     user_name = user.user_name

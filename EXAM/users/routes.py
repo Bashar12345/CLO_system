@@ -1,6 +1,6 @@
 from flask.wrappers import Response
 from EXAM import bcrypt
-from flask import render_template, request, redirect, url_for, flash, Blueprint
+from flask import render_template, request, redirect, url_for, flash, Blueprint,session
 from flask_login import current_user, logout_user, login_required, login_user
 
 from EXAM import bcrypt
@@ -64,6 +64,7 @@ def login():
                 if usersd.user_category == "student":
                     User_type.user_type = "student"
                     user_obj.e = usersd["email"]
+                    session['email'] = usersd["email"]
                 else:
                     User_type.user_type = "teacher"
                     user_obj.e = usersd["email"]

@@ -2,7 +2,7 @@ import os
 import time
 import itertools
 
-from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app
+from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app, session
 from flask_login import login_required
 from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.utils import secure_filename
@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_view_courses, teacher_view_courses
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, temporary_model, user_student
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, temporary_model, user_student
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
 main = Blueprint('main', __name__)
@@ -63,11 +63,17 @@ def main_page():
                 # ekhane kazzz baki ase-----------------------------------------------------
                 evaluate_a_question(shuffled_question_list,
                                     number_of_question, difficulty, q_type)
-
         main_page_count += 1
+        return render_template('main_page.html', shuffled_question_list=shuffled_question_list,
+                               title='main_page', user_type=User_type.user_type)
 
-    return render_template('main_page.html', shuffled_question_list=shuffled_question_list,
-                           title='main_page', user_type=User_type.user_type)
+    if User_type.user_type == 'student':
+        student_id = session['email'] 
+        exam_results = marksheet.objects(student_email=student_id)
+        return render_template('main_page.html',exam_results=exam_results, title='main_page', user_type=User_type.user_type)
+
+    
+    return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
 @main.route('/take_a_tour')
