@@ -129,8 +129,10 @@ def process_data_for_machine_learning():
         course_list.append(i.course_code)
         #print(course_list)
     crse_code = random.choice(course_list)  # print(crse_code)
+    ############  for testing pupose i fixed the crse_code
+    crse_code = "swe151"
     q_type = random.choice(ques_type)
-    #  for testing pupose i fixed the q_type
+    #################  for testing pupose i fixed the q_type
     q_type = 'mcq'
     if q_type == 'mcq':
         for i in mcqQuestion.objects(course_code=crse_code):

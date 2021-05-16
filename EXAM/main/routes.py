@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 import itertools
 
 from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app, session
@@ -10,8 +11,9 @@ from werkzeug.utils import secure_filename
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_view_courses, teacher_view_courses
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, temporary_model, user_student
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
 from EXAM.users.utils import delete_temporary_collection, remove_junk
+
 
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
@@ -43,12 +45,54 @@ main_page_count = 0
 @login_required
 def main_page():
     # ----------------------------------ekane teacher question evluate krbee
+    teacher_email_id = user_obj.e
+    student_registered_course_code = list()
+    teachers_ids = list()
     if User_type.user_type == 'student':
+        student_id = session['email']
+        print(student_id)
+        for joined_courses_of_user_student in enrol_students_model.objects(
+                enrolled_students_id=student_id):
+            # print(joined_courses_of_user_student.course_code)
+            student_registered_course_code.append(
+                joined_courses_of_user_student.course_code)
+        for corse_code in student_registered_course_code:
+            teacher_id = teacher_created_courses_model.objects(
+                course_code=corse_code).first()
+        print(teacher_id["teacher_registered_id"])
+        if teacher_id.teacher_registered_id not in teachers_ids:
+            teachers_ids.append(teacher_id.teacher_registered_id)
+        print(teachers_ids)
+        todays_post = list()
+
+        for teah_id in teachers_ids:
+            posts_from_teacher = teacher_posts_model.objects(
+                email=teah_id).all()
+            # ekhane data ashtese nahhh
+            for posts in posts_from_teacher.order_by("-Date"):
+                print("dhukse")
+                print(posts.title)
+                todays_post.append(posts)
+        print(todays_post)
+        latest_posts_from_teacher = todays_post
+        #print(latest_posts_from_teacher)
+        #latest_posts_from_teacher = teacher_posts.objects.order_by('Date')
+        # filter(
+        #     email=teacher_email_id,
+        #     #teacher_posts__title='deposit',).
+        if latest_posts_from_teacher:
+            print(latest_posts_from_teacher)
+
+        exam_results = marksheet.objects(student_email=student_id)
+
         if request.method == "POST":
             eroll_key = request.form.get('enroll_key')
             delete_temporary_collection()
             print(eroll_key)
             enroll_students(eroll_key, User_type.user_type)
+
+        return render_template('main_page.html', latest_posts_from_teacher=latest_posts_from_teacher, exam_results=exam_results, title='main_page', user_type=User_type.user_type)
+
     if User_type.user_type == 'teacher':
         shuffled_question_list, number_of_question, q_type = process_data_for_machine_learning()
         # print(shuffled_question_list)
@@ -56,23 +100,38 @@ def main_page():
 
         # for demo show purpose , question paper bar bar show kora hocche...... and not commented the ######process_data_for_machine_learning method
 
-        #if main_page_count < 2:
+        # if main_page_count < 2:
         if request.method == "POST":
-                difficulty = request.form.get('difficulty')
+            difficulty = request.form.get('difficulty')
+            if difficulty:
                 print(difficulty)
-                # ekhane kazzz baki ase-----------------------------------------------------
+            # ekhane kazzz baki ase-----------------------------------------------------
                 evaluate_a_question(shuffled_question_list,
                                     number_of_question, difficulty, q_type)
+            post_title = request.form.get('title')
+            post_announcement = request.form.get('announcement')
+            post_time = datetime.datetime.now()
+            upload_post = teacher_posts_model()
+            upload_post.email = teacher_email_id
+            upload_post.title = post_title
+            upload_post.announcement = post_announcement
+            upload_post.Date = post_time
+            upload_post.save()
+
+            # todays_post.append(teacher_posts_model(
+            #     title=post_title, announcement=post_announcement, Date=post_time))
+
+            # upload_post = user_teacher(
+            #     email=teacher_email_id, post=todays_post)
+            # # upload_post.objects(address__country="US").update_one(
+            # #     set__posts__S=todays_post(title=post_title,announcement=post_announcement, Date=post_time)
+            # # )
+            # upload_post.save()
+
         main_page_count += 1
         return render_template('main_page.html', shuffled_question_list=shuffled_question_list,
                                title='main_page', user_type=User_type.user_type)
 
-    if User_type.user_type == 'student':
-        student_id = session['email'] 
-        exam_results = marksheet.objects(student_email=student_id)
-        return render_template('main_page.html',exam_results=exam_results, title='main_page', user_type=User_type.user_type)
-
-    
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
@@ -180,10 +239,10 @@ def view_course_load_data():
 @login_required
 def question_view(course_code):
     # print(course_code)
-    #questions = []
+    # questions = []
     # if request.args:
     # course_code = request.args.get("course_code")
-    #questions_objects = machine_learning_mcq_model.objects(course_code=course_code)
+    # questions_objects = machine_learning_mcq_model.objects(course_code=course_code)
     # print(questions_objects)
     # for i in mcqQuestion.objects(
     #         course_code=course_code):

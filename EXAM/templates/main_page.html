@@ -18,183 +18,129 @@
 
 
 {% block body %}
+<div class="container-fluid">
 
-
-
-
-<div class="row no-gutters">
-    <div class="col-12 col-sm-6 col-md-8">
-
-
-        {%if user_type=='teacher'%}
-        <form action="" class="container form-group" method="POST" enctype="multipart/form-data">
-            <div class="body container">
-                <p class="content">
-                    <b>
-                        <h3>What do you think about this question paper?
-                            <span style='font-size:100px;'>&#129300;</span>
-                        </h3>
-
-                    </b>
-
-                <h6>What would be (Hard,Medium,Easy) its Difficulty? Evaluate this paper...</h6><br>
-                </p>
-                <div class="p container">
-
-                    {% for i in shuffled_question_list %}
-                    {#{i}#}
-
-                    {% for j in i %}
-                    <div class="row justify-content-center bg-light">
-                        <div class="col">
-                            <h5>{{j}}</h5>
-                        </div>
-                    </div>
-                    <div class="row justify-content-around ">
-                        {% for k in i[j] %}
-                        <div class="col">
-                            <h6> {{k}} </h6>
-                        </div>
-
-                        {% endfor %}
-                    </div>
-                    <br>
-
-                    {% endfor %}
-
-                    {% endfor %}
-
-                </div>
-                <div class="container form-check form-check-inline ">
-                    <div class="form-check">
-                        <input for="eval1" class="form-check-label" type="radio" class="radio" name="difficulty" value="Easy">
-                        <label for="eval1" class="form-check-label">Easy</label>
-                    </div>
-                    <div class="form-check">
-                        <input for="eval2" class="form-check-label" type="radio" class="radio" name="difficulty" value="Medium">
-
-                        <label for="eval2" class="form-check-label">Medium</label>
-                    </div>
-                    <div class="form-check">
-                        <input for="eval3" class="form-check-label" type="radio" class="radio" name="difficulty" value="Hard">
-                        <label for="eval3" class="form-check-label">Hard</label>
-                    </div>
-                </div>
-
-            </div>
-
-            <div style="top: 3vh;">
-                <button class="btn btn-block btn-info" type="submit"> Done!!!!</button>
-            </div>
-        </form>
-
-        {%endif%}
-
-
-    </div>
-
-
-
-
-
-
-
-    <div class="col-6 col-md-4">.col-6 .col-md-4  <br>
-
-Teachers posts  
-
-
-
-<form class="card active container" action="" method="POST" enctype="multipart/form-data">
-
-<label for="title" class="custom-control">Title</label>
-<input type="text" id="title" name="title">
-<br>
-<br>
-
-<label for="announcement" class="custom-control">Announcements or Instruction or Advice</label>
-<textarea type="textarea" class="form-control" id="announcement" name="announcement">
-
-</textarea>
-<div style="top: 3vh;">
-    <button class="btn btn-info" type="submit"> Update!!!!</button>
-</div>
-</form>
-
-
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-{%if user_type=='student'%}
-
-<div class="container">
-
-    <section class="container">
-        <legend> Latest Actions (anouncements)</legend>
-        Demo,
-
-        Ajker Exam , Coronner Lockdown er karone kal hobe...
-
-
-    </section>
-
-
+    {%if user_type=='teacher'%}
 
     <div class="row no-gutters">
-        <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
-        <div class="col-6 col-md-4">
+        <div class="col-12 col-sm-6 col-md-8">
 
 
-            <div class="row bg-info">
-                <div class="col">
-                    Courses
-                </div>
-                <div class="col">
-                    Exam_title
-                </div>
-                <div class="col">
-                    Scored
-                </div>
-            </div>
-            {%for results in exam_results %}
-            <div class="row">
-                <div class="col">
 
-                    {{results.exam_course}}
-                </div>
-                <div class="col">
+            <form action="" class="container form-group" method="POST" enctype="multipart/form-data">
+                <div class="body container">
+                    <p class="content">
+                        <b>
+                            <h3>What do you think about this question paper?
+                                <span style='font-size:100px;'>&#129300;</span>
+                            </h3>
 
-                    {{results.exam_title}}
+                        </b>
+
+                    <h6>What would be (Hard,Medium,Easy) its Difficulty? Evaluate this paper...</h6><br>
+                    </p>
+                    <div class="p container">
+
+                        {% for i in shuffled_question_list %}
+                        {#{i}#}
+
+                        {% for j in i %}
+                        <div class="row justify-content-center bg-light">
+                            <div class="col">
+                                <h5>{{j}}</h5>
+                            </div>
+                        </div>
+                        <div class="row justify-content-around ">
+                            {% for k in i[j] %}
+                            <div class="col">
+                                <h6> {{k}} </h6>
+                            </div>
+
+                            {% endfor %}
+                        </div>
+                        <br>
+
+                        {% endfor %}
+
+                        {% endfor %}
+
+                    </div>
+                    <div class="container form-check form-check-inline ">
+                        <div class="form-check">
+                            <input for="eval1" class="form-check-label" type="radio" class="radio" name="difficulty" value="Easy">
+                            <label for="eval1" class="form-check-label">Easy</label>
+                        </div>
+                        <div class="form-check">
+                            <input for="eval2" class="form-check-label" type="radio" class="radio" name="difficulty"
+                                value="Medium">
+
+                            <label for="eval2" class="form-check-label">Medium</label>
+                        </div>
+                        <div class="form-check">
+                            <input for="eval3" class="form-check-label" type="radio" class="radio" name="difficulty" value="Hard">
+                            <label for="eval3" class="form-check-label">Hard</label>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="col bg-light">
-                    <b> {{results.get_score}} </b>
+                <div style="top: 3vh;">
+                    <button class="btn btn-block btn-info" type="submit"> Done!!!!</button>
                 </div>
-            </div>
-            {%endfor%}
+            </form>
+
+
 
 
         </div>
 
+
+
+
+
+
+
+        <div class="col-6 col-md-4"> <br>
+
+
+
+
+
+
+            <form class="card container" action="" method="POST" enctype="multipart/form-data">
+
+                <legend class="card-header">
+                    Today's activity
+                </legend>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title" class="custom-control">Title</label>
+                        <input type="text" id="title" name="title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="announcement" class="custom-control">Announcements or Instruction or Advice</label>
+                        <textarea type="textarea" class="form-control" id="announcement" name="announcement">
+                                    </textarea>
+                    </div>
+                </div>
+
+
+                <div class="card-footer" style="top: 3vh;">
+                    <button class="btn btn-info" type="submit"> Update!!!!</button>
+                </div>
+            </form>
+
+
+        </div>
+
+
+
     </div>
 
 
 
-</div>
-
-{%endif%}
+    {%endif%}
 
 
 
@@ -202,7 +148,90 @@ Teachers posts
 
 
 
-<!-- <div id="contenTbody">
+
+    {%if user_type=='student'%}
+
+    <div class="container">
+
+        <section class="container">
+            <legend> Latest Actions (anouncements)</legend>
+
+            <br>
+            {% for i in range(0,2) %}
+
+            <div class="card active">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col bg-info">
+                            <p>{{latest_posts_from_teacher[i].title}}</p>
+                        </div>
+                        <div class="col">
+                            <p>{{latest_posts_from_teacher[i].Date}}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <br>
+                <div class="body container">
+                    <p>{{latest_posts_from_teacher[i].announcement}}</p>
+                </div>
+            </div>
+            {%endfor%}
+        </section>
+
+
+
+        <div class="row no-gutters">
+            <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
+            <div class="col-6 col-md-4">
+
+
+                <div class="row bg-info">
+                    <div class="col">
+                        Courses
+                    </div>
+                    <div class="col">
+                        Exam_title
+                    </div>
+                    <div class="col">
+                        Scored
+                    </div>
+                </div>
+                {%for results in exam_results %}
+                <div class="row">
+                    <div class="col">
+
+                        {{results.exam_course}}
+                    </div>
+                    <div class="col">
+
+                        {{results.exam_title}}
+                    </div>
+
+                    <div class="col bg-light">
+                        <b> {{results.get_score}} </b>
+                    </div>
+                </div>
+                {%endfor%}
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    {%endif%}
+
+
+
+
+
+
+
+    <!-- <div id="contenTbody">
     <h1>Under Construction </h1>
 
     <div class="row justify-content-start">

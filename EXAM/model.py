@@ -22,10 +22,6 @@ class Only_file(nosql.Document):
         return f"Only_file('{self.rename}','{self.binary_file}')"
 
 
-class posts (nosql.EmbeddedDocument):
-    title = nosql.StringField()
-    announcement = nosql.StringField()
-    Date = nosql.DateTimeField()
 
 class user(nosql.Document, UserMixin):
     user_name = nosql.StringField()
@@ -58,7 +54,7 @@ class user_teacher(nosql.Document):
     user_name = user.user_name
     email = user.email
     organization_id = user.organization_id
-    post = nosql.ListField(nosql.EmbeddedDocumentField(posts))
+    
 
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
@@ -74,6 +70,12 @@ class user_student(nosql.Document):
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
 
+
+class teacher_posts_model (nosql.Document):
+    email = nosql.StringField()
+    title = nosql.StringField()
+    announcement = nosql.StringField()
+    Date = nosql.DateTimeField()
 
 class marksheet(nosql.Document):
     #student_id = nosql.StringField()
