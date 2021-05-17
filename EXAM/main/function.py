@@ -2,6 +2,7 @@ from flask import request, flash
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, student_courses_model, teacher_created_courses_model, temporary_model, user_student, user_teacher, wrqQuestion
 from EXAM.configaration import user_obj
 import random
+from EXAM.Test_paper.function import test_mcq_ML
 
 
 def delete_temporary_model():
@@ -263,6 +264,7 @@ def evaluate_a_question(shuffled_list_of_diictionary,question_part_without_optio
         temp_question_dictionary.update(demo_dict)
         ques_count+=1
     print(temp_question_dictionary)
+    #test_mcq_ML()
     ML_model = machine_learning_mcq_model()
     ML_model.course_code = course_code
     ML_model.question_dictionary = temp_question_dictionary
