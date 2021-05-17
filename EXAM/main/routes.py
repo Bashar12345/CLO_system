@@ -7,6 +7,7 @@ from flask import render_template, request, redirect, url_for, flash, jsonify, m
 from flask_login import login_required
 from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.utils import secure_filename
+#from newsapi import NewsApiClient
 
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
@@ -17,6 +18,7 @@ from EXAM.users.utils import delete_temporary_collection, remove_junk
 
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
+#newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
 
 
 @main.route('/upload', methods=['GET', 'POST'])
@@ -75,7 +77,7 @@ def main_page():
                 todays_post.append(posts)
         print(todays_post)
         latest_posts_from_teacher = todays_post
-        #print(latest_posts_from_teacher)
+        # print(latest_posts_from_teacher)
         #latest_posts_from_teacher = teacher_posts.objects.order_by('Date')
         # filter(
         #     email=teacher_email_id,
@@ -93,8 +95,8 @@ def main_page():
 
         return render_template('main_page.html', latest_posts_from_teacher=latest_posts_from_teacher, exam_results=exam_results, title='main_page', user_type=User_type.user_type)
 
-    if User_type.user_type == 'teacher':
-        shuffled_question_list, number_of_question, q_type = process_data_for_machine_learning()
+    if User_type.user_type == 'teacher':  # ------------------------------------------------TEACHER
+        shuffled_question_list, question_part, number_of_question, q_type = process_data_for_machine_learning()
         # print(shuffled_question_list)
         global main_page_count
 
@@ -106,7 +108,7 @@ def main_page():
             if difficulty:
                 print(difficulty)
             # ekhane kazzz baki ase-----------------------------------------------------
-                evaluate_a_question(shuffled_question_list,
+                evaluate_a_question(shuffled_question_list, question_part,
                                     number_of_question, difficulty, q_type)
             post_title = request.form.get('title')
             post_announcement = request.form.get('announcement')

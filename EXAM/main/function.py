@@ -113,7 +113,7 @@ def process_data_for_machine_learning():
     # required_for_generate = required.find()
     # required=required_for_generate.objects()
     teacher_id = user_obj.e
-    shuffled_question_list = list()
+    shuffled_question_list = []
     full_set_shuffled_question = []
     ques_type = ["mcq", "wrq"]
     number_of_question = 15
@@ -153,7 +153,8 @@ def process_data_for_machine_learning():
         for ques in question_part:
             for j in mcqQuestion.objects(question=ques):
                 if j not in shuffled_question_list:
-                    shuffled_question_list.append(j.question_dictionary)
+                    shuffled_question_list.append(j["question_dictionary"])
+    #print(shuffled_question_list)
 
 
 # # # # # for testing pupose these payloads have been commented , these payloads needed to feed the written question dataset at this moment i am working with only mcq part
@@ -178,11 +179,11 @@ def process_data_for_machine_learning():
 # # #                 if j not in shuffled_question_list:
 # # #                     shuffled_question_list.append(j.question_dictionary)
 
-    return shuffled_question_list, number_of_question, q_type
+    return shuffled_question_list, question_part, number_of_question, q_type
     # pass
 
 
-def evaluate_a_question(shuffled_list_of_diictionary, number_of_question, difficulty, q_type):
+def evaluate_a_question(shuffled_list_of_diictionary,question_part_without_option, number_of_question, difficulty, q_type):
     print("dhukse")
     course_code = ''
     lessons = []
@@ -196,6 +197,7 @@ def evaluate_a_question(shuffled_list_of_diictionary, number_of_question, diffic
     question_count = []
     complexity_level_of_highest_question_count = 0
     total_quantity_of_question = number_of_question
+    temp_question_dictionary=dict()
 
 
 # # for testing purpose  i fixed the q_type='mcq' ----------------------------
@@ -252,11 +254,18 @@ def evaluate_a_question(shuffled_list_of_diictionary, number_of_question, diffic
     if hard > easy and hard > medium:
             question_point = question_point/3
     # vhul ase thik krte hobe
-
-    print(question_point)
+    #print(question_point)
+    #print(type(shuffled_list_of_diictionary))
+    ques_count=1
+    for ques in question_part_without_option:
+        q_counter="Question "+str(ques_count)+":"
+        demo_dict = {q_counter: ques}
+        temp_question_dictionary.update(demo_dict)
+        ques_count+=1
+    print(temp_question_dictionary)
     ML_model = machine_learning_mcq_model()
     ML_model.course_code = course_code
-    ML_model.question_dictionary.update(shuffled_list_of_diictionary)
+    ML_model.question_dictionary = temp_question_dictionary
     ML_model.difficulty = difficulty
     ML_model.q_type = q_type
     ML_model.question_point = question_point

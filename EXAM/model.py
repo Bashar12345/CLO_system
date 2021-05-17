@@ -216,6 +216,7 @@ class machine_learning_mcq_model(nosql.Document):
     #question_dictionary_list = nosql.ListField(check_keys=False)
     #question_dictionary_list = nosql.DictField() 
     question_dictionary = mcqQuestion.question_dictionary
+    #question_dictionary = nosql.ListField()
     difficulty=nosql.StringField()
     q_type = nosql.StringField() # 0 for written, # 1 for mcq 
     question_point=nosql.FloatField()
