@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{%if user_type=='admin'%}
+
+<div class="container">
+    <legend> Active Users </legend>
+
+    {%for tech in teachers%}
+    <div class="row">
+        <div class="col">
+            {{tech.user_name}}
+        </div>
+        <div class="col">
+            {{tech.eamil}}
+        </div>
+        <div class="col">
+            {{tech.organization_id}}
+        </div>
+        {%endfor%}
+
+        {%for student in students%}
+        <div class="col">
+            {{student.user_name}}
+        </div>
+        <div class="col">
+            {{student.email}}
+        </div>
+        <div class="col">
+            {{student.organization_id}}
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+
+
+{%endif%}
+
+{% endblock body %}

@@ -20,6 +20,8 @@
 {% block body %}
 <div class="container-fluid">
 
+
+
     {%if user_type=='teacher'%}
 
     <div class="row no-gutters">
@@ -189,8 +191,8 @@
                     {% for news, desc, image in context %}
                     <div class="card text-white bg-dark mb-3">
                         <div class="card-header">
-                            <div class="row justify-content-around" >
-                                <div class="col card-text" >
+                            <div class="row justify-content-around">
+                                <div class="col card-text">
                                     <p style="font-family: 'Times New Roman', Times, serif;">{{news}}</p>
                                 </div>
 
@@ -204,9 +206,9 @@
                         <div class="col card-text">
                             <p style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{desc}}</p>
                         </div>
-                    
+
                     </div>
-                    
+
                     {%endfor%}
                 </div>
 
@@ -255,7 +257,7 @@
 
 
 
-   
+
     </div>
 
     {%endif%}
@@ -266,7 +268,15 @@
 
 
 
-    <!-- <div id="contenTbody">
+    
+</div>
+{% endblock body %}
+
+
+
+
+
+<!-- <div id="contenTbody">
     <h1>Under Construction </h1>
 
     <div class="row justify-content-start">
@@ -294,5 +304,3 @@
     <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
     <div class="col-6 col-md-4">.col-6 .col-md-4</div>
 </div> -->
-</div>
-{% endblock body %}

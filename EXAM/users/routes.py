@@ -65,6 +65,11 @@ def login():
                     User_type.user_type = "student"
                     user_obj.e = usersd["email"]
                     session['email'] = usersd["email"]
+                elif usersd.user_category == "admin":
+                    User_type.user_type = "admin"
+                    user_obj.e = usersd["email"]
+                    #session['email'] = usersd["email"]
+                    
                 else:
                     User_type.user_type = "teacher"
                     user_obj.e = usersd["email"]
@@ -73,6 +78,12 @@ def login():
                 # return check
                 flash(
                     f"আপনার উপর শান্তি বর্ষিত হোক.... {usersd.user_name}", "success")
+                if usersd.user_category == "admin":
+                    return (
+                        redirect(next_page)
+                        if next_page
+                        else redirect(url_for("main.admin"))
+                    )
                 return (
                     redirect(next_page)
                     if next_page

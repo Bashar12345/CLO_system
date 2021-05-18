@@ -60,8 +60,6 @@ class user_teacher(nosql.Document):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
 
 
-
-
 class user_student(nosql.Document):
     user_name = user.user_name
     email = user.email

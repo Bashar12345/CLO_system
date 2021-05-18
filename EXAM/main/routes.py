@@ -42,8 +42,18 @@ def index():
     return render_template('index.html')
 
 
-main_page_count = 0
+@main.route('/admin', methods=['GET', 'POST'])
+@login_required
+def admin():
+    #if User_type.user_type == 'admin':
+    teachers = user_teacher.objects().all()
+    students = user_student.objects().all()
 
+    return render_template('admin.html', teachers=teachers, students=students, title='Admin', user_type=User_type.user_type)
+
+
+
+main_page_count = 0
 
 @main.route('/main_page', methods=['GET', 'POST'])
 @login_required
@@ -56,9 +66,11 @@ def main_page():
     desc = []
     image = []
 
-    student_id = session['email']
-    print(student_id)
+
+
     if User_type.user_type == 'student':
+        student_id = session['email']
+        print(student_id)
         news_api = requests.get(
             "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
 
