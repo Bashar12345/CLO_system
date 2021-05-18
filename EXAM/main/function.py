@@ -128,12 +128,12 @@ def process_data_for_machine_learning():
     for i in teacher_created_courses_model.objects(teacher_registered_id=teacher_id):
         # print(i.course_code)
         course_list.append(i.course_code)
-        #print(course_list)
+        # print(course_list)
     crse_code = random.choice(course_list)  # print(crse_code)
-    ############  for testing pupose i fixed the crse_code
+    # for testing pupose i fixed the crse_code
     crse_code = "swe151"
     q_type = random.choice(ques_type)
-    #################  for testing pupose i fixed the q_type
+    # for testing pupose i fixed the q_type
     q_type = 'mcq'
     if q_type == 'mcq':
         for i in mcqQuestion.objects(course_code=crse_code):
@@ -155,7 +155,7 @@ def process_data_for_machine_learning():
             for j in mcqQuestion.objects(question=ques):
                 if j not in shuffled_question_list:
                     shuffled_question_list.append(j["question_dictionary"])
-    #print(shuffled_question_list)
+    # print(shuffled_question_list)
 
 
 # # # # # for testing pupose these payloads have been commented , these payloads needed to feed the written question dataset at this moment i am working with only mcq part
@@ -184,7 +184,7 @@ def process_data_for_machine_learning():
     # pass
 
 
-def evaluate_a_question(shuffled_list_of_diictionary,question_part_without_option, number_of_question, difficulty, q_type):
+def evaluate_a_question(shuffled_list_of_diictionary, question_part_without_option, number_of_question, difficulty, q_type):
     print("dhukse")
     course_code = ''
     lessons = []
@@ -198,13 +198,12 @@ def evaluate_a_question(shuffled_list_of_diictionary,question_part_without_optio
     question_count = []
     complexity_level_of_highest_question_count = 0
     total_quantity_of_question = number_of_question
-    temp_question_dictionary=dict()
+    temp_question_dictionary = dict()
 
 
 # # for testing purpose  i fixed the q_type='mcq' ----------------------------
     q_type = 'mcq'
-    
-    
+
     if q_type == 'wrq':
         for ques in shuffled_list_of_diictionary:
             # print(ques)
@@ -237,34 +236,34 @@ def evaluate_a_question(shuffled_list_of_diictionary,question_part_without_optio
         print(lessons)
         #print(" eta total_counted", question_count)
     for i in question_count:
-            if i == '1':
-                easy_count += 1
-            if i == '2':
-                medium_count += 1
-            if i == '3':
-                hard_count += 1
+        if i == '1':
+            easy_count += 1
+        if i == '2':
+            medium_count += 1
+        if i == '3':
+            hard_count += 1
     print(easy_count, "eta", medium_count, "eta", hard_count)
     easy = easy*easy_count
     medium = medium*medium_count
     hard = hard*hard_count
     question_point = ((easy+medium+hard)+total_quantity_of_question)
     if easy > medium and easy > hard:
-            question_point = question_point/1
+        question_point = question_point/1
     if medium > easy and medium > hard:
-            question_point = question_point/2
+        question_point = question_point/2
     if hard > easy and hard > medium:
-            question_point = question_point/3
+        question_point = question_point/3
     # vhul ase thik krte hobe
-    #print(question_point)
-    #print(type(shuffled_list_of_diictionary))
-    ques_count=1
+    # print(question_point)
+    # print(type(shuffled_list_of_diictionary))
+    ques_count = 1
     for ques in question_part_without_option:
-        q_counter="Question "+str(ques_count)+":"
+        q_counter = "Question "+str(ques_count)+":"
         demo_dict = {q_counter: ques}
         temp_question_dictionary.update(demo_dict)
-        ques_count+=1
+        ques_count += 1
     print(temp_question_dictionary)
-    #test_mcq_ML()
+    # test_mcq_ML()
     ML_model = machine_learning_mcq_model()
     ML_model.course_code = course_code
     ML_model.question_dictionary = temp_question_dictionary
