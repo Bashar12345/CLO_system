@@ -2,7 +2,8 @@ import os
 import time
 import datetime
 import itertools
-
+import json
+import requests
 from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app, session
 from flask_login import login_required
 from werkzeug.datastructures import CombinedMultiDict
@@ -19,6 +20,7 @@ from EXAM.users.utils import delete_temporary_collection, remove_junk
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 #newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
+#newsapi = NewsApiClient("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
 
 
 @main.route('/upload', methods=['GET', 'POST'])
@@ -50,9 +52,44 @@ def main_page():
     teacher_email_id = user_obj.e
     student_registered_course_code = list()
     teachers_ids = list()
+    news = []
+    desc = []
+    image = []
+
+    student_id = session['email']
+    print(student_id)
     if User_type.user_type == 'student':
-        student_id = session['email']
-        print(student_id)
+        news_api = requests.get(
+            "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
+
+        content_data = json.loads(news_api.content)
+        articles = content_data['articles']
+        for i in range(len(articles)):
+            tech_articles = articles[i]
+            news.append(tech_articles['title'])
+            desc.append(tech_articles['description'])
+            image.append(tech_articles['urlToImage'])
+        print(news)
+        print(desc)
+        context = zip(news, desc, image)
+        print(context)
+        print(news)
+        # try:
+        #     headlines = newsapi.get_top_headlines(
+        #         # sources="al-jazeera-english")
+        #     art = headlines['articles']
+        #     for i in range(len(art)):
+        #         myart = art[i]
+        #         news.append(myart['title'])
+        #         desc.append(myart['description'])
+        #     # image.append(myart['urlToImage'])
+        #     print(news)
+        #     print(desc)
+        #     mylist = zip(news, desc)  # , image)
+        # # print(context=mylist)
+        # except Exception as e:
+        #     print(e)
+
         for joined_courses_of_user_student in enrol_students_model.objects(
                 enrolled_students_id=student_id):
             # print(joined_courses_of_user_student.course_code)
@@ -65,25 +102,23 @@ def main_page():
         if teacher_id.teacher_registered_id not in teachers_ids:
             teachers_ids.append(teacher_id.teacher_registered_id)
         print(teachers_ids)
+
         todays_post = list()
 
         for teah_id in teachers_ids:
             posts_from_teacher = teacher_posts_model.objects(
-                email=teah_id).all()
+                email=teah_id)
             # ekhane data ashtese nahhh
             for posts in posts_from_teacher.order_by("-Date"):
-                print("dhukse")
+                # print("dhukse")
                 print(posts.title)
                 todays_post.append(posts)
-        print(todays_post)
-        latest_posts_from_teacher = todays_post
+        # print(todays_post)
         # print(latest_posts_from_teacher)
-        #latest_posts_from_teacher = teacher_posts.objects.order_by('Date')
+        # latest_posts_from_teacher = teacher_posts.objects.order_by('Date')
         # filter(
         #     email=teacher_email_id,
         #     #teacher_posts__title='deposit',).
-        if latest_posts_from_teacher:
-            print(latest_posts_from_teacher)
 
         exam_results = marksheet.objects(student_email=student_id)
 
@@ -93,7 +128,7 @@ def main_page():
             print(eroll_key)
             enroll_students(eroll_key, User_type.user_type)
 
-        return render_template('main_page.html', latest_posts_from_teacher=latest_posts_from_teacher, exam_results=exam_results, title='main_page', user_type=User_type.user_type)
+        return render_template('main_page.html', latest_posts_from_teacher=todays_post, exam_results=exam_results, context=context, title='main_page', user_type=User_type.user_type)
 
     if User_type.user_type == 'teacher':  # ------------------------------------------------TEACHER
         shuffled_question_list, question_part, number_of_question, q_type = process_data_for_machine_learning()
@@ -113,12 +148,13 @@ def main_page():
             post_title = request.form.get('title')
             post_announcement = request.form.get('announcement')
             post_time = datetime.datetime.now()
-            upload_post = teacher_posts_model()
-            upload_post.email = teacher_email_id
-            upload_post.title = post_title
-            upload_post.announcement = post_announcement
-            upload_post.Date = post_time
-            upload_post.save()
+            if post_title:
+                upload_post = teacher_posts_model()
+                upload_post.email = teacher_email_id
+                upload_post.title = post_title
+                upload_post.announcement = post_announcement
+                upload_post.Date = post_time
+                upload_post.save()
 
             # todays_post.append(teacher_posts_model(
             #     title=post_title, announcement=post_announcement, Date=post_time))
@@ -137,24 +173,24 @@ def main_page():
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
-@main.route('/take_a_tour')
+@ main.route('/take_a_tour')
 def take_a_tour():
     return render_template('views/take_a_tour.html', title='main_page', user_type=User_type.user_type)
 
 
-@main.route('/guideline')
+@ main.route('/guideline')
 def guideline():
     return render_template('guideline.html', title='guideline_Page', user_type=User_type.user_type)
 
 
-@main.route('/guildLineForTeacher')
-@login_required
+@ main.route('/guildLineForTeacher')
+@ login_required
 def guildLineForTeacher():
     return render_template('teacher/guildLineForTeacher.html', title='Teacher_guildline', user_type=User_type.user_type)
 
 
-@main.route('/create_course', methods=['GET', 'POST'])
-@login_required
+@ main.route('/create_course', methods=['GET', 'POST'])
+@ login_required
 def create_course():
     lessons_len = ''
     form = create_course_form()
@@ -169,8 +205,8 @@ def create_course():
 
 
 # javascript kora
-@main.route('/view_courses', methods=['GET', 'POST'])
-@login_required
+@ main.route('/view_courses', methods=['GET', 'POST'])
+@ login_required
 def view_courses():
     user_type = User_type.user_type
     usered = user_obj.e  # _P__alias
@@ -183,8 +219,8 @@ def view_courses():
         return render_template('views/view_courses.html', title='View courses', user_type=user_type)
 
 
-@main.route('/view_course_load_data')
-@login_required
+@ main.route('/view_course_load_data')
+@ login_required
 def view_course_load_data():
     time.sleep(0.2)
 
@@ -237,8 +273,8 @@ def view_course_load_data():
     return response_to_browser
 
 
-@main.route('/question_view/<course_code>', methods=['GET', 'POST'])
-@login_required
+@ main.route('/question_view/<course_code>', methods=['GET', 'POST'])
+@ login_required
 def question_view(course_code):
     # print(course_code)
     # questions = []
@@ -253,15 +289,15 @@ def question_view(course_code):
     return render_template('question_view/view_questions.html', title='question_view', user_type=User_type.user_type, course_code=course_code, mcqQuestion=mcqQuestion)
 
 
-@main.route('/dashboard')
-@login_required
+@ main.route('/dashboard')
+@ login_required
 def student_dashboard():
     remove_junk()
     return render_template('student.html', title='Recent Exams', user_type=User_type.user_type)
 
 
-@main.route('/exam_slot_load')
-@login_required
+@ main.route('/exam_slot_load')
+@ login_required
 def exam_slot_load():
     time.sleep(0.2)
 
@@ -293,8 +329,8 @@ def exam_slot_load():
     return response_to_browser
 
 
-@main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
-@login_required
+@ main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
+@ login_required
 def course_assigned_students():
     user_total = list()
     students_name = list()
@@ -322,7 +358,7 @@ def course_assigned_students():
     return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_total=user_total, students_name=students_name, iter=itertools)
 
 
-@main.route('/loading_students')
+@ main.route('/loading_students')
 # @login_required
 def loading_students():
     pass

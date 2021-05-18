@@ -157,7 +157,7 @@
             <legend> Latest Actions (anouncements)</legend>
 
             <br>
-            {% for i in range(0,2) %}
+            {% for i in range(0,5) %}
 
             <div class="card active">
                 <div class="card-header">
@@ -168,7 +168,7 @@
                         <div class="col">
                             <p>{{latest_posts_from_teacher[i].Date}}</p>
                         </div>
-                        
+
                     </div>
                 </div>
                 <br>
@@ -182,7 +182,47 @@
 
 
         <div class="row no-gutters">
-            <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
+            <div class="col-12 col-sm-6 col-md-8">
+
+                {% for news, desc, image in context %}
+                <div class="card active">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col bg-info">
+                                <p>{{news}}</p>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col">
+                        <p>{{desc}}</p>
+                    </div>
+                    <div class="col body container">
+                        <p>{{image}}</p>
+                    </div>
+                </div>
+                {%endfor%}
+               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                .col-12 .col-sm-6 .col-md-8
+            </div>
             <div class="col-6 col-md-4">
 
 
