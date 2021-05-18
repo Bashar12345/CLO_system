@@ -414,9 +414,7 @@ def mcq_question_answer_submit(get_form):
         mcq_answer_paper_ins.save()
     return "done"
 
-
-def machine_process_data_wrangling(objects_of_requirement):
-    # courses= course_model.objects()
+  # courses= course_model.objects()
     # required_data=required_for_generate.objects()
     # question_model=machine_learning_mcq_model.objects()
     # connection = MongoClient('localhost', 27017)
@@ -425,6 +423,10 @@ def machine_process_data_wrangling(objects_of_requirement):
     # mcq_data = mongosql.machine_learning_mcq_model
     # required_for_generate = required.find()
     # required=required_for_generate.objects()
+
+
+def machine_process_data_wrangling(objects_of_requirement):
+
     needed_course_code = []
     MCQ_questions = []
     purify_question_part = list()
@@ -435,52 +437,47 @@ def machine_process_data_wrangling(objects_of_requirement):
     substitute_question_part = []
     temp_question_part = []
     crse_code = objects_of_requirement.course_code
-
-    for i in mcqQuestion.objects(course_code=crse_code):
-        for level in complexity_level:
+    question_dataset = []
+    complex_set=[]
+    m_count = 0
+    for level in complexity_level:
+        for i in mcqQuestion.objects(course_code=crse_code,complex_level="2"):
+        #print(i.question)
+        
             if i.complex_level == level:
+                question_dataset.append(i.question)
+                complex_set.append(i.complex_level)
                 MCQ_questions.append(i.question)  # question bank
-                # print(i.complex_level)
+
+                #print(i.complex_level)
+    print(len(MCQ_questions))
+    q_c_set = zip(question_dataset,complex_set)
+    print(len(complex_set))
     # print(MCQ_questions)
-    count = 0
-
-    for m in marks:
-        # 9, #6
-        substitute_question_part = random.sample(MCQ_questions, int(m))
-        # print(substitute_question_part)
-        for level in complexity_level:  # 2 #1
-            print(level)
-            for i in substitute_question_part:
-              q = mcqQuestion.objects(question=i).first()
-              if q.complex_level == level:
-                temp_question_part.append(i)
-                if level == 2:
-                    count += 1
-         print(count)
-    
-
-
-
-        # while(len(temp_question_part) < int(m)):  # 2
-        #     substitute_question_part = random.sample(
-        #         MCQ_questions, objects_of_requirement.number_of_question)
-        #     #print(substitute_question_part)
-        #     for i in substitute_question_part:
-        #         q = mcqQuestion.objects(question=i).first()
-        #         for level in complexity_level:
-        #             if q.complex_level == level:
-        #                 if i not in temp_question_part:
-        #                     ques_count+=1
-        #                     temp_question_part.append(i)
-                            
-            
-            # print(m_count)
-        # print(temp_question_part)
-        for i in temp_question_part:
-            # print(i)
+    for level in complexity_level:
+        for ques,c_level in q_c_set:
+            if level==c_level:
+                #print(ques)
+                temp_question_part.append(ques)
+        print(len(temp_question_part))
+        print(type(marks[m_count]))
+        substitute_question_part = random.sample(temp_question_part,k=9)
+        for ques in substitute_question_part:
             question_part.append(i)
-        temp_question_part = []
-   
+        #temp_question_part = []
+        m_count+=1
+
+    # # for m in marks:
+    # #     # 9, #6
+    # #     substitute_question_part = random.sample(MCQ_questions, int(m))
+    # #     # print(substitute_question_part)
+    # #     for level in complexity_level:  # 2 #1
+    # #         print(level)
+    # #         for i in substitute_question_part:
+    # #             q = mcqQuestion.objects(question=i).first()
+    # #             if q.complex_level == level:
+    # #                 temp_question_part.append(i)
+
     print(len(question_part))
 
 
@@ -646,6 +643,8 @@ def machine_understable_dataset_setup(course_code):
     return data_input, data_output
 
 # ekhane question_difficulty attribute change krte hoibe..............
+
+
 def machine_predict_result(data_input, data_output, question_point, question_type):
     predicted_question_paper_difficulty = ''
     ml_model = DecisionTreeClassifier()

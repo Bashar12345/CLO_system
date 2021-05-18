@@ -113,6 +113,11 @@ class wrqQuestion(nosql.Document):
     list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
 
 
+class temp_question_model(nosql.Document):
+    question = nosql.StringField()
+    complex_level = nosql.IntField()
+
+
 class set_exam_question_slot(nosql.Document):
     exam_title = nosql.StringField()
     exam_course = nosql.StringField()
@@ -236,6 +241,7 @@ class required_for_generate(nosql.Document):
     complex_level = nosql.ListField()
     marks = nosql.ListField()
     number_of_question=nosql.IntField()
+
 
 
 
