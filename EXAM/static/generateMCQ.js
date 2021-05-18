@@ -152,6 +152,10 @@ function load() {
                 <option value="5">Very High</option>
                 <option value="10">Insane</option>
                 </select></li>
+                <li class="list-group-item">
+                     <label class="custom-control-label"> Total_marks </label>
+                       <input type="text" class="input-group" id="marks" name="marks" /></div>
+                        </li>
         </ul>
     </div>`;
     addDiv.append(template);

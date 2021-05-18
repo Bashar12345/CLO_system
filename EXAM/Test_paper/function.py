@@ -212,6 +212,7 @@ def mcq_uploading_processing(get_form, corse_code):
 # under construction
 
 
+#requirement for genarating a question
 def generate_question(get_form, corse_code):
     form = get_form
     exam_title = form.exam_title.data
@@ -231,7 +232,7 @@ def generate_question(get_form, corse_code):
     # print(t," change kora time ",exam_date)
     caption = request.form.get("Note:captions")
     exam_secret_code = form.exam_code.data
-    # exam_marks = form.exam_marks.data
+    
     #number_of_question = request.form.get("exam_total_questions")
     if corse_code == 'teacher':
         course_code = request.form.get('course_code')
@@ -254,10 +255,13 @@ def generate_question(get_form, corse_code):
     exam_CLO = request.form.getlist("exam_CLO")
     # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
+    exam_marks = request.form.getlist("marks")
     print(exam_topic, " --", exam_CLO, " --",
           complex_level, " --", number_of_question, " --")
     courses = course_model.objects(course_code=course_code).first()
+    #------------------------------------------------------------requrement_collection
     stash_required_exam_property = required_for_generate()
+
     stash_required_exam_property.question_type = question_type
     stash_required_exam_property.exam_title = exam_title
     stash_required_exam_property.exam_course = courses.course_title
@@ -272,6 +276,7 @@ def generate_question(get_form, corse_code):
     stash_required_exam_property.lesson = exam_topic
     stash_required_exam_property.exam_CLO = exam_CLO
     stash_required_exam_property.complex_level = complex_level
+    stash_required_exam_property.marks = exam_marks
     stash_required_exam_property.number_of_question = number_of_question
     stash_required_exam_property.save()
     exam_slot = set_exam_question_slot()
@@ -426,11 +431,22 @@ def machine_process_data_wrangling(objects_of_requirement):
     purify_question_part=list()
     question_part = []
     temp=list()
+    complexity_level = objects_of_requirement.complexity_level
+    marks = objects_of_requirement.marks
+    temp_question_part=[]
     crse_code = objects_of_requirement.course_code
+
     for i in mcqQuestion.objects(course_code=crse_code):
-        MCQ_questions.append(i.question)
+        for level in complexity_level:
+            if i.complex_level == level:
+               MCQ_questions.append(i.question)
+    for m in marks:
+       
+        temp_question_part = random.sample(MCQ_questions,m)
+#ekane je question ashtese oita complexity_level medium er hote hobe 
     question_part = random.sample(
         MCQ_questions, objects_of_requirement.number_of_question)
+    
     for i in question_part:
         if i not in purify_question_part:
             purify_question_part.append(i)

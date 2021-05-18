@@ -234,7 +234,9 @@ class required_for_generate(nosql.Document):
     lesson = nosql.ListField()
     exam_CLO = nosql.ListField()
     complex_level = nosql.ListField()
+    marks = nosql.ListField()
     number_of_question=nosql.IntField()
+
 
 
 

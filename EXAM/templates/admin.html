@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 
-{%if user_type=='admin'%}
+
 
 <div class="container">
     <legend> Active Users </legend>
@@ -12,14 +12,16 @@
             {{tech.user_name}}
         </div>
         <div class="col">
-            {{tech.eamil}}
+            {{tech.email}}
         </div>
         <div class="col">
             {{tech.organization_id}}
         </div>
+    </div>
         {%endfor%}
 
         {%for student in students%}
+    <div class="row">
         <div class="col">
             {{student.user_name}}
         </div>
@@ -29,12 +31,13 @@
         <div class="col">
             {{student.organization_id}}
         </div>
+    </div>
         {%endfor%}
     </div>
 </div>
 
 
 
-{%endif%}
+
 
 {% endblock body %}

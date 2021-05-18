@@ -84,7 +84,8 @@ def login():
                         if next_page
                         else redirect(url_for("main.admin"))
                     )
-                return (
+                else:
+                 return (
                     redirect(next_page)
                     if next_page
                     else redirect(url_for("main.main_page"))

@@ -48,6 +48,7 @@ def admin():
     #if User_type.user_type == 'admin':
     teachers = user_teacher.objects().all()
     students = user_student.objects().all()
+    # context=zip(teachers,students)
 
     return render_template('admin.html', teachers=teachers, students=students, title='Admin', user_type=User_type.user_type)
 
