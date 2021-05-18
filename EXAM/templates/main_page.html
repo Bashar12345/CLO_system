@@ -157,15 +157,15 @@
             <legend> Latest Actions (anouncements)</legend>
 
             <br>
-            {% for i in range(0,5) %}
+            {% for i in range(0,2) %}
 
-            <div class="card active">
+            <div class="card card text-white bg-secondary mb-3 ">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col bg-info">
+                        <div class="col-8" style="background-color: rgb(101, 100, 100);">
                             <p>{{latest_posts_from_teacher[i].title}}</p>
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <p>{{latest_posts_from_teacher[i].Date}}</p>
                         </div>
 
@@ -184,75 +184,69 @@
         <div class="row no-gutters">
             <div class="col-12 col-sm-6 col-md-8">
 
-                {% for news, desc, image in context %}
-                <div class="card active">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col bg-info">
-                                <p>{{news}}</p>
+                <div class=" container ">
+                    <legend> Latest News arround the world</legend>
+                    {% for news, desc, image in context %}
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header">
+                            <div class="row justify-content-around" >
+                                <div class="col card-text" >
+                                    <p style="font-family: 'Times New Roman', Times, serif;">{{news}}</p>
+                                </div>
+
                             </div>
-                            
-
                         </div>
+                        <br>
+                        <div class="col container">
+                            <img class="img-fluid" src="{{image}}" />
+                        </div>
+                        <br>
+                        <div class="col card-text">
+                            <p style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{desc}}</p>
+                        </div>
+                    
                     </div>
-                    <br>
-                    <div class="col">
-                        <p>{{desc}}</p>
-                    </div>
-                    <div class="col body container">
-                        <p>{{image}}</p>
-                    </div>
+                    
+                    {%endfor%}
                 </div>
-                {%endfor%}
-               
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                .col-12 .col-sm-6 .col-md-8
             </div>
+
+
+
             <div class="col-6 col-md-4">
 
 
-                <div class="row bg-info">
-                    <div class="col">
-                        Courses
+                <div class="container table">
+                    <div class="row bg-warning">
+                        <div class="col">
+                            Courses
+                        </div>
+                        <div class="col">
+                            Exam_title
+                        </div>
+                        <div class="col">
+                            Scored
+                        </div>
                     </div>
-                    <div class="col">
-                        Exam_title
+                    {%for results in exam_results %}
+                    <div class="row">
+                        <div class="col">
+
+                            {{results.exam_course}}
+                        </div>
+                        <div class="col">
+
+                            {{results.exam_title}}
+                        </div>
+
+                        <div class="col bg-light">
+                            <b> {{results.get_score}} </b>
+                        </div>
                     </div>
-                    <div class="col">
-                        Scored
-                    </div>
+                    {%endfor%}
                 </div>
-                {%for results in exam_results %}
-                <div class="row">
-                    <div class="col">
-
-                        {{results.exam_course}}
-                    </div>
-                    <div class="col">
-
-                        {{results.exam_title}}
-                    </div>
-
-                    <div class="col bg-light">
-                        <b> {{results.get_score}} </b>
-                    </div>
-                </div>
-                {%endfor%}
 
 
             </div>
@@ -261,6 +255,7 @@
 
 
 
+   
     </div>
 
     {%endif%}
