@@ -119,7 +119,7 @@ function load() {
             
             <input id="exam_CLO" list="clo" name="exam_CLO" 
             class="custom-select custom-select-md mb-3 btn-outline-info "
-            placeholder="Enter the exact name of lesson"
+            placeholder="Select CLO"
             autocomplete="off"
             aria-label=".custom-select-lg example">
                 <datalist id="clo">
@@ -131,11 +131,11 @@ function load() {
 
             <li class="list-group-item">
                 <label class="custom-control-label">Syllabus/Topic/lesson :</label><br/>
-                <input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Enter the exact name of lesson"
+                <input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Select lesson"
                 autocomplete="off"
                 aria-label=".custom-select-lg example">
                 <datalist id="lesson_name">
-                    <option selected disabled>Enter the exact name of lesson</option>
+                    <option selected disabled>Select lesson</option>
                 </datalist></li>
             <li class="list-group-item">
                 <label class="custom-control-label">Question Complexity Level</label>
@@ -145,7 +145,7 @@ function load() {
                     name="complex_level"
                     aria-label="Example select with button addon"
                     required>
-                <option selected disabled="disabled">Select Complex level</option>
+                <option selected disabled="disabled">Select level</option>
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
                 <option value="3">High</option>
@@ -154,7 +154,8 @@ function load() {
                 </select></li>
                 <li class="list-group-item">
                      <label class="custom-control-label"> Total_marks </label>
-                       <input type="text" class="input-group" id="marks" name="marks" /></div>
+                       <input type="number" class="input-group" id="marks" name="marks" 
+                       placeholder="For this Lesson" /></div>
                         </li>
         </ul>
     </div>`;

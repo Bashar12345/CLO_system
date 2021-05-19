@@ -423,7 +423,7 @@ def mcq_answer_paper_auto_generated():
     print(f"ending time {ending_time_of_exam}")
     print(f"starting time {starting_time_of_exam}")
     # print(mcq_question['mcq_question'])
-
+#final showdown e if uncomment krte hobe................................................
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     if current_time == current_time2:

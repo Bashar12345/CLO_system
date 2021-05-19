@@ -22,6 +22,70 @@ exam_code = ""
 
 
 # end binary style block
+# Written question can be also modify in this function like ssc exam, hsc exam ,bcs exam
+# the concept is ""already included pattern"" of different types of question
+def written_question_Upload(get_form):
+    form = get_form
+    if request.method == "POST":
+        exam_code = form.exam_code.data
+        exam_title = form.exam_title.data
+        exam_course = form.exam_course.data
+        exam_topic = form.exam_topic.data
+        exam_start_time = request.form.get("start_time")
+        # exam_start_time = form.exam_start_time.data
+        # print(" time", exam_start_time)
+        exam_end_time = request.form.get("end_time")
+        t = form.exam_date.data
+        exam_date = t.strftime("%Y-%m-%d")
+        rename_file = form.rename_file.data
+        # print(rename)
+        uploadFile = form.file.data
+        print(uploadFile)
+        doc_file_name, file_path, f_ext, random_name_file = saveFormFile_in_Filesystem(
+            uploadFile
+        )  # Akane filer name ase ar location
+        print(f_ext)
+        # print(doc_fileSystem)
+        # binary_data, f_ext = binary_read(uploadFile)
+        # print(binary_data)
+        try:
+            mongodb_data_class_ins = exam_written_question_paper()
+            mongodb_data_class_ins.exam_code = exam_code
+            mongodb_data_class_ins.exam_title = exam_title
+            mongodb_data_class_ins.exam_course = exam_course
+            mongodb_data_class_ins.exam_topic = exam_topic
+            mongodb_data_class_ins.exam_start_time = exam_start_time
+            mongodb_data_class_ins.exam_end_time = exam_end_time
+            mongodb_data_class_ins.exam_date = exam_date
+            mongodb_data_class_ins.rename_file = rename_file + f_ext
+            # new_name = random_hex + f_ext
+            # mongodb_data_class_ins.file_extension = f_ext
+            # binary_data = open(file_path, "rb")    # file binary te khule database e disi
+            # mongodb_data_class_ins.binary_file.put(binary_data, filename=doc_file_name,
+            #    metadata={"a": "b"})  # new_name dewa jabee
+            # fd = open(file_path, "rb")
+            # mongodb_data_class_ins.binary_file.put(debug)
+            mongodb_data_class_slot_ins = set_exam_question_slot()
+            mongodb_data_class_slot_ins.exam_topic = exam_topic
+            mongodb_data_class_slot_ins.exam_course = exam_course
+            mongodb_data_class_slot_ins.exam_start_time = exam_start_time
+            mongodb_data_class_slot_ins.exam_end_time = exam_end_time
+            mongodb_data_class_slot_ins.exam_date = exam_date
+            mongodb_data_class_slot_ins.save()
+            print("Data_Entered in nosql successfully")
+            flash(f"Question Uploaded Successfully.", "success")
+            return redirect(url_for("Test_paper.examiner"))
+            # return redirect(url_for('main.main_page'))
+        except Exception as e:
+            flash(f"Try again!", "danger")
+            print(str(e))
+
+
+def written_question_answer_submit(get_form):
+    form = get_form
+    if request.method == "POST":
+        student_id = form.student_id.data
+        answer = form.answer.data
 
 
 def mcq_question_Upload_part1(get_form, option):
@@ -237,7 +301,10 @@ def generate_question(get_form, corse_code):
         course_code = request.form.get('course_code')
     else:
         course_code = corse_code
+
+    
     question_difficulty = request.form.get("question_difficulty")
+
     question_type = request.form.get("question_type")
     # form.exam_topic.data
     """print(
@@ -312,72 +379,6 @@ def confirmation_of_question(get_form):
         # return redirect(url_for('Test_paper.secret_code'))
 
 
-# Written question can be also modify in this function like ssc exam, hsc exam ,bcs exam
-# the concept is ""already included pattern"" of different types of question
-def written_question_Upload(get_form):
-    form = get_form
-    if request.method == "POST":
-        exam_code = form.exam_code.data
-        exam_title = form.exam_title.data
-        exam_course = form.exam_course.data
-        exam_topic = form.exam_topic.data
-        exam_start_time = request.form.get("start_time")
-        # exam_start_time = form.exam_start_time.data
-        # print(" time", exam_start_time)
-        exam_end_time = request.form.get("end_time")
-        t = form.exam_date.data
-        exam_date = t.strftime("%Y-%m-%d")
-        rename_file = form.rename_file.data
-        # print(rename)
-        uploadFile = form.file.data
-        print(uploadFile)
-        doc_file_name, file_path, f_ext, random_name_file = saveFormFile_in_Filesystem(
-            uploadFile
-        )  # Akane filer name ase ar location
-        print(f_ext)
-        # print(doc_fileSystem)
-        # binary_data, f_ext = binary_read(uploadFile)
-        # print(binary_data)
-        try:
-            mongodb_data_class_ins = exam_written_question_paper()
-            mongodb_data_class_ins.exam_code = exam_code
-            mongodb_data_class_ins.exam_title = exam_title
-            mongodb_data_class_ins.exam_course = exam_course
-            mongodb_data_class_ins.exam_topic = exam_topic
-            mongodb_data_class_ins.exam_start_time = exam_start_time
-            mongodb_data_class_ins.exam_end_time = exam_end_time
-            mongodb_data_class_ins.exam_date = exam_date
-            mongodb_data_class_ins.rename_file = rename_file + f_ext
-            # new_name = random_hex + f_ext
-            # mongodb_data_class_ins.file_extension = f_ext
-            # binary_data = open(file_path, "rb")    # file binary te khule database e disi
-            # mongodb_data_class_ins.binary_file.put(binary_data, filename=doc_file_name,
-            #    metadata={"a": "b"})  # new_name dewa jabee
-            # fd = open(file_path, "rb")
-            # mongodb_data_class_ins.binary_file.put(debug)
-            mongodb_data_class_slot_ins = set_exam_question_slot()
-            mongodb_data_class_slot_ins.exam_topic = exam_topic
-            mongodb_data_class_slot_ins.exam_course = exam_course
-            mongodb_data_class_slot_ins.exam_start_time = exam_start_time
-            mongodb_data_class_slot_ins.exam_end_time = exam_end_time
-            mongodb_data_class_slot_ins.exam_date = exam_date
-            mongodb_data_class_slot_ins.save()
-            print("Data_Entered in nosql successfully")
-            flash(f"Question Uploaded Successfully.", "success")
-            return redirect(url_for("Test_paper.examiner"))
-            # return redirect(url_for('main.main_page'))
-        except Exception as e:
-            flash(f"Try again!", "danger")
-            print(str(e))
-
-
-def written_question_answer_submit(get_form):
-    form = get_form
-    if request.method == "POST":
-        student_id = form.student_id.data
-        answer = form.answer.data
-
-
 # ekhane sob question ane rakte hobe
 
 
@@ -437,35 +438,41 @@ def machine_process_data_wrangling(objects_of_requirement):
     substitute_question_part = []
     temp_question_part = []
     crse_code = objects_of_requirement.course_code
-    question_dataset = []
-    complex_set=[]
     m_count = 0
+    level_question_counter = 0
     for level in complexity_level:
-        for i in mcqQuestion.objects(course_code=crse_code,complex_level="2"):
-        #print(i.question)
-        
-            if i.complex_level == level:
-                question_dataset.append(i.question)
-                complex_set.append(i.complex_level)
-                MCQ_questions.append(i.question)  # question bank
+        for i in mcqQuestion.objects(course_code=crse_code, complex_level=level):
+            # print(i.question)
 
-                #print(i.complex_level)
-    print(len(MCQ_questions))
-    q_c_set = zip(question_dataset,complex_set)
-    print(len(complex_set))
-    # print(MCQ_questions)
-    for level in complexity_level:
-        for ques,c_level in q_c_set:
-            if level==c_level:
-                #print(ques)
-                temp_question_part.append(ques)
-        print(len(temp_question_part))
-        print(type(marks[m_count]))
-        substitute_question_part = random.sample(temp_question_part,k=9)
+            temp_question_part.append(i.question)
+            MCQ_questions.append(i.question)  # question bank
+        substitute_question_part = random.sample(
+            temp_question_part, int(marks[m_count]))
         for ques in substitute_question_part:
-            question_part.append(i)
-        #temp_question_part = []
-        m_count+=1
+            if ques not in question_part:
+                question_part.append(ques)
+                level_question_counter += 1
+        print("level_total",level_question_counter)
+        
+        if level_question_counter != int(marks[m_count]):
+            extra_needed = int(marks[m_count])-level_question_counter
+            print("extra_needed", extra_needed)
+            substitute_question_part = random.sample(
+                temp_question_part, extra_needed+2)
+            for ques in substitute_question_part:
+                if ques not in question_part:
+                    question_part.append(ques)
+        #print(marks[m_count])
+        print("first level from complexity list, and found total question of that level",len(temp_question_part))
+        level_question_counter=0
+        temp_question_part = []
+        m_count += 1
+    print(len(question_part))
+    return question_part
+
+    # print(i.complex_level)
+    # print(len(MCQ_questions))
+    # print(MCQ_questions))
 
     # # for m in marks:
     # #     # 9, #6
@@ -478,8 +485,6 @@ def machine_process_data_wrangling(objects_of_requirement):
     # #             if q.complex_level == level:
     # #                 temp_question_part.append(i)
 
-    print(len(question_part))
-
 
 # ekane je question ashtese oita complexity_level medium er hote hobe
     # question_part = random.sample(
@@ -488,19 +493,23 @@ def machine_process_data_wrangling(objects_of_requirement):
     # for i in question_part:
     #     if i not in purify_question_part:
     #         purify_question_part.append(i)
-    # if len(purify_question_part) != objects_of_requirement.number_of_question:
-    #     extra_needed=objects_of_requirement.number_of_question-len(purify_question_part)
+
+    #     for level in complexity_level:
+    #         for i in mcqQuestion.objects(course_code=crse_code, complex_level=level):
+    #             temp_question_part.append(i.question)
+    #             purify_question_part
+
     #     temp = random.sample(MCQ_questions, extra_needed)
     # for i in temp:
     #     if i not in purify_question_part:
     #         purify_question_part.append(i)
-    # question_part=purify_question_part
+    # question_part = purify_question_part
     # print(MCQ_questions)
     # print(random.sample(MCQ_questions, 2))
     # random.shuffle(MCQ_questions)
     # print(MCQ_questions)
     # print(question_part)
-    return question_part
+    
 
 
 def catch_the_shuffled_question_list(question_part):
@@ -571,49 +580,6 @@ def a_question(shuffled_list, objects_of_requirement):
     # pass
 
 
-def test_mcq_ML():
-    for i in range(100):
-        ML_model = machine_learning_mcq_model()
-        # lesson =
-        # ML_model.quesCLO =
-        ML_model.course_title = "Data Algorithm"
-        ML_model.course_code = "swe151"
-        ML_model.question_dictionary = {"dummy question": "dummy"}
-        question_value = random.uniform(10, 40)
-        if question_value > 30:
-            ML_model.difficulty = "Easy"
-            ML_model.q_type = 'mcq'
-            ML_model.question_point = question_value
-            ML_model.save()
-            print("Easy", " = ", question_value)
-        elif 17 <= question_value < 30:
-            ML_model.difficulty = "Medium"
-            ML_model.q_type = 'mcq'
-            ML_model.question_point = question_value
-            ML_model.save()
-            print("Medium =", question_value)
-        else:
-            ML_model.difficulty = "Hard"
-            ML_model.q_type = 'mcq'
-            ML_model.question_point = question_value
-            ML_model.save()
-            print("Hard =", question_value)
-    for i in range(25):
-        ML_model = machine_learning_mcq_model()
-        # lesson =
-        # ML_model.quesCLO =
-        ML_model.course_title = "Data Algorithm"
-        ML_model.course_code = "swe151"
-        ML_model.question_dictionary = {"dummy question": "dummy"}
-        question_value = random.uniform(10, 40)
-        if question_value > 22:
-            ML_model.difficulty = "Medium"
-            ML_model.q_type = 'wrq'
-            ML_model.question_point = question_value
-            ML_model.save()
-            print("Medium", " = ", question_value)
-
-
 def machine_understable_dataset_setup(course_code):
     # algorithom er kaz korte krter hobe------------------------------------------------------
     # question_data= pd.read_csv()
@@ -662,9 +628,10 @@ def machine_predict_result(data_input, data_output, question_point, question_typ
     for i in predicted_list:
         predicted_question_paper_difficulty = i
     print(predicted_question_paper_difficulty)
-
-# ekhane problem ase ........................................................................................
     return predicted_question_paper_difficulty
+
+
+    
 
 
 def machine_process_data(requirement_for_mcq_questions):
@@ -717,6 +684,49 @@ def machine_process_data(requirement_for_mcq_questions):
             break
 
     return finally_got_the_question
+
+
+def test_mcq_ML():
+    for i in range(100):
+        ML_model = machine_learning_mcq_model()
+        # lesson =
+        # ML_model.quesCLO =
+        ML_model.course_title = "Data Algorithm"
+        ML_model.course_code = "swe151"
+        ML_model.question_dictionary = {"dummy question": "dummy"}
+        question_value = random.uniform(10, 40)
+        if question_value > 30:
+            ML_model.difficulty = "Easy"
+            ML_model.q_type = 'mcq'
+            ML_model.question_point = question_value
+            ML_model.save()
+            print("Easy", " = ", question_value)
+        elif 17 <= question_value < 30:
+            ML_model.difficulty = "Medium"
+            ML_model.q_type = 'mcq'
+            ML_model.question_point = question_value
+            ML_model.save()
+            print("Medium =", question_value)
+        else:
+            ML_model.difficulty = "Hard"
+            ML_model.q_type = 'mcq'
+            ML_model.question_point = question_value
+            ML_model.save()
+            print("Hard =", question_value)
+    for i in range(25):
+        ML_model = machine_learning_mcq_model()
+        # lesson =
+        # ML_model.quesCLO =
+        ML_model.course_title = "Data Algorithm"
+        ML_model.course_code = "swe151"
+        ML_model.question_dictionary = {"dummy question": "dummy"}
+        question_value = random.uniform(10, 40)
+        if question_value > 22:
+            ML_model.difficulty = "Medium"
+            ML_model.q_type = 'wrq'
+            ML_model.question_point = question_value
+            ML_model.save()
+            print("Medium", " = ", question_value)
 
     # mcq_df = pd.DataFrame(list(mcq))
     # df=pd.concat()
