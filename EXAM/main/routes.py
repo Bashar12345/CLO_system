@@ -71,7 +71,7 @@ def main_page():
 
     if User_type.user_type == 'student':
         student_id = session['email']
-        print(student_id)
+        #print(student_id)
         news_api = requests.get(
             "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
 
@@ -82,11 +82,11 @@ def main_page():
             news.append(tech_articles['title'])
             desc.append(tech_articles['description'])
             image.append(tech_articles['urlToImage'])
-        print(news)
-        print(desc)
+        #print(news)
+        #print(desc)
         context = zip(news, desc, image)
-        print(context)
-        print(news)
+        #print(context)
+        #print(news)
         # try:
         #     headlines = newsapi.get_top_headlines(
         #         # sources="al-jazeera-english")
@@ -111,10 +111,10 @@ def main_page():
         for corse_code in student_registered_course_code:
             teacher_id = teacher_created_courses_model.objects(
                 course_code=corse_code).first()
-        print(teacher_id["teacher_registered_id"])
+        #print(teacher_id["teacher_registered_id"])
         if teacher_id.teacher_registered_id not in teachers_ids:
             teachers_ids.append(teacher_id.teacher_registered_id)
-        print(teachers_ids)
+        #print(teachers_ids)
 
         todays_post = list()
 
@@ -124,7 +124,7 @@ def main_page():
             # ekhane data ashtese nahhh
             for posts in posts_from_teacher.order_by("-Date"):
                 # print("dhukse")
-                print(posts.title)
+                #print(posts.title)
                 todays_post.append(posts)
         # print(todays_post)
         # print(latest_posts_from_teacher)

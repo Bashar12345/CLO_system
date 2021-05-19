@@ -427,7 +427,6 @@ def mcq_question_answer_submit(get_form):
 
 
 def machine_process_data_wrangling(objects_of_requirement):
-
     needed_course_code = []
     MCQ_questions = []
     purify_question_part = list()
@@ -469,47 +468,6 @@ def machine_process_data_wrangling(objects_of_requirement):
         m_count += 1
     print(len(question_part))
     return question_part
-
-    # print(i.complex_level)
-    # print(len(MCQ_questions))
-    # print(MCQ_questions))
-
-    # # for m in marks:
-    # #     # 9, #6
-    # #     substitute_question_part = random.sample(MCQ_questions, int(m))
-    # #     # print(substitute_question_part)
-    # #     for level in complexity_level:  # 2 #1
-    # #         print(level)
-    # #         for i in substitute_question_part:
-    # #             q = mcqQuestion.objects(question=i).first()
-    # #             if q.complex_level == level:
-    # #                 temp_question_part.append(i)
-
-
-# ekane je question ashtese oita complexity_level medium er hote hobe
-    # question_part = random.sample(
-    #     MCQ_questions, objects_of_requirement.number_of_question)
-
-    # for i in question_part:
-    #     if i not in purify_question_part:
-    #         purify_question_part.append(i)
-
-    #     for level in complexity_level:
-    #         for i in mcqQuestion.objects(course_code=crse_code, complex_level=level):
-    #             temp_question_part.append(i.question)
-    #             purify_question_part
-
-    #     temp = random.sample(MCQ_questions, extra_needed)
-    # for i in temp:
-    #     if i not in purify_question_part:
-    #         purify_question_part.append(i)
-    # question_part = purify_question_part
-    # print(MCQ_questions)
-    # print(random.sample(MCQ_questions, 2))
-    # random.shuffle(MCQ_questions)
-    # print(MCQ_questions)
-    # print(question_part)
-    
 
 
 def catch_the_shuffled_question_list(question_part):
@@ -633,11 +591,8 @@ def machine_predict_result(data_input, data_output, question_point, question_typ
 
     
 
-
 def machine_process_data(requirement_for_mcq_questions):
     # # data cleaning for shuffle
-    objects_of_requirement = requirement_for_mcq_questions
-
     # question_part = machine_process_data_wrangling(objects_of_requirement)
     # # prepared shffled question list for machine prediction
     # shuffled_list = catch_the_shuffled_question_list(question_part)
@@ -650,6 +605,7 @@ def machine_process_data(requirement_for_mcq_questions):
 
     # predicted_question_paper_difficulty = machine_predict_result(
     #   data_input, data_output, question_point, objects_of_requirement.question_type)
+    objects_of_requirement = requirement_for_mcq_questions
 
     difficulty1 = ''
     difficulty2 = ''
@@ -684,6 +640,17 @@ def machine_process_data(requirement_for_mcq_questions):
             break
 
     return finally_got_the_question
+
+
+def question_paper_for_current_session(requirement_for_mcq_questions):
+    objects_of_requirement = requirement_for_mcq_questions
+
+    question_part = machine_process_data_wrangling(objects_of_requirement)
+
+    shuffled_list = catch_the_shuffled_question_list(question_part)
+    
+    return shuffled_list
+
 
 
 def test_mcq_ML():
@@ -797,3 +764,43 @@ def paginate_page():
     # paginated_slots = set_exam_question_slot.objects.paginate(
     #    page=page, per_page=per_page)
     # print(paginated_slots)
+
+
+# print(i.complex_level)
+    # print(len(MCQ_questions))
+    # print(MCQ_questions))
+
+    # # for m in marks:
+    # #     # 9, #6
+    # #     substitute_question_part = random.sample(MCQ_questions, int(m))
+    # #     # print(substitute_question_part)
+    # #     for level in complexity_level:  # 2 #1
+    # #         print(level)
+    # #         for i in substitute_question_part:
+    # #             q = mcqQuestion.objects(question=i).first()
+    # #             if q.complex_level == level:
+    # #                 temp_question_part.append(i)
+
+# ekane je question ashtese oita complexity_level medium er hote hobe
+    # question_part = random.sample(
+    #     MCQ_questions, objects_of_requirement.number_of_question)
+
+    # for i in question_part:
+    #     if i not in purify_question_part:
+    #         purify_question_part.append(i)
+
+    #     for level in complexity_level:
+    #         for i in mcqQuestion.objects(course_code=crse_code, complex_level=level):
+    #             temp_question_part.append(i.question)
+    #             purify_question_part
+
+    #     temp = random.sample(MCQ_questions, extra_needed)
+    # for i in temp:
+    #     if i not in purify_question_part:
+    #         purify_question_part.append(i)
+    # question_part = purify_question_part
+    # print(MCQ_questions)
+    # print(random.sample(MCQ_questions, 2))
+    # random.shuffle(MCQ_questions)
+    # print(MCQ_questions)
+    # print(question_part)

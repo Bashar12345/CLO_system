@@ -25,7 +25,7 @@ from EXAM.Test_paper.forms import (
     Written_question_answer_Form,
     Mcq_answer_form,
 )
-from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, written_question_Upload, written_question_answer_submit
+from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
 from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, required_for_generate, teacher_created_courses_model
 from flask.templating import render_template_string
@@ -399,8 +399,7 @@ def secret_code():
 def mcq_answer_paper_auto_generated():
     # mcq_question_answer_submit(form)
     exam_code = secret_exam_key.exam_code
-    requirement_for_mcq_questions = required_for_generate.objects(
-        exam_secret_code=exam_code).first()
+    requirement_for_mcq_questions = required_for_generate.objects(exam_secret_code=exam_code).first()
     exam_title = requirement_for_mcq_questions.exam_title
     exam_course = requirement_for_mcq_questions.exam_course
     exam_start_time = requirement_for_mcq_questions.exam_start_time
@@ -423,13 +422,13 @@ def mcq_answer_paper_auto_generated():
     print(f"ending time {ending_time_of_exam}")
     print(f"starting time {starting_time_of_exam}")
     # print(mcq_question['mcq_question'])
-#final showdown e if uncomment krte hobe................................................
+    #final showdown e if uncomment krte hobe................................................
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     if current_time == current_time2:
         print(current_time)
         # ekahne mcq question object produce krte hobe -------------------------------------------
-        question_mcq_for_current_session = machine_process_data(
+        question_mcq_for_current_session = question_paper_for_current_session(
             requirement_for_mcq_questions)
         # print(question_mcq_for_current_session)
         session['exam_title'] = exam_title
@@ -561,6 +560,18 @@ def answer_session():
 #     response_to_browser = make_response(jsonify(next_count))
 #     print(response_to_browser)
 #     return response_to_browser
+
+
+@Test_paper.route("/model_test", methods=["GET", "POST"])
+# @login_required
+def model_test():
+    return render_template(
+        "student/model_test.html",
+    )
+
+
+
+
 
 
 @Test_paper.route("/sample", methods=["GET", "POST"])
