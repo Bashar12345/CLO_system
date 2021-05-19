@@ -1,5 +1,7 @@
-from flask import request, flash
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, student_courses_model, teacher_created_courses_model, temporary_model, user_student, user_teacher, wrqQuestion
+import requests
+import json
+from flask import request, flash, session
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher, wrqQuestion
 from EXAM.configaration import user_obj
 import random
 from EXAM.Test_paper.function import test_mcq_ML
@@ -10,6 +12,81 @@ def delete_temporary_model():
     collection.delete()
     print("deleted")
 
+
+def student_main_page(student_id):
+    teachers_ids = list()
+    student_registered_course_code = list()
+    news = []
+    desc = []
+    image = []
+
+    # print(student_id)
+    news_api = requests.get(
+        "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
+
+    content_data = json.loads(news_api.content)
+    articles = content_data['articles']
+    for i in range(len(articles)):
+        tech_articles = articles[i]
+        news.append(tech_articles['title'])
+        desc.append(tech_articles['description'])
+        image.append(tech_articles['urlToImage'])
+    # print(news)
+    # print(desc)
+    context = zip(news, desc, image)
+    # print(context)
+    # print(news)
+    # try:
+    #     headlines = newsapi.get_top_headlines(
+    #         # sources="al-jazeera-english")
+    #     art = headlines['articles']
+    #     for i in range(len(art)):
+    #         myart = art[i]
+    #         news.append(myart['title'])
+    #         desc.append(myart['description'])
+    #     # image.append(myart['urlToImage'])
+    #     print(news)
+    #     print(desc)
+    #     mylist = zip(news, desc)  # , image)
+    # # print(context=mylist)
+    # except Exception as e:
+    #     print(e)
+
+    for joined_courses_of_user_student in enrol_students_model.objects(
+            enrolled_students_id=student_id):
+        # print(joined_courses_of_user_student.course_code)
+        student_registered_course_code.append(
+            joined_courses_of_user_student.course_code)
+    for corse_code in student_registered_course_code:
+        teacher_id = teacher_created_courses_model.objects(
+            course_code=corse_code).first()
+    # print(teacher_id["teacher_registered_id"])
+    if teacher_id.teacher_registered_id not in teachers_ids:
+        teachers_ids.append(teacher_id.teacher_registered_id)
+    # print(teachers_ids)
+
+    todays_post = list()
+
+    for teah_id in teachers_ids:
+        posts_from_teacher = teacher_posts_model.objects(
+            email=teah_id)
+        # ekhane data ashtese nahhh
+        for posts in posts_from_teacher.order_by("-Date"):
+            # print("dhukse")
+            # print(posts.title)
+            todays_post.append(posts)
+    # print(todays_post)
+    # print(latest_posts_from_teacher)
+    # latest_posts_from_teacher = teacher_posts.objects.order_by('Date')
+    # filter(
+    #     email=teacher_email_id,
+    #     #teacher_posts__title='deposit',).
+    return todays_post,context
+    pass
+
+
+def teacher_main_page(teacher_email_id):
+    pass
 
 def enroll_students(eroll_ki, user_type):
     usered = user_obj.e
@@ -200,8 +277,7 @@ def evaluate_a_question(shuffled_list_of_diictionary, question_part_without_opti
     total_quantity_of_question = number_of_question
     temp_question_dictionary = dict()
 
-
-# # for testing purpose  i fixed the q_type='mcq' ----------------------------
+    # # for testing purpose  i fixed the q_type='mcq' ----------------------------
     q_type = 'mcq'
 
     if q_type == 'wrq':
@@ -234,7 +310,7 @@ def evaluate_a_question(shuffled_list_of_diictionary, question_part_without_opti
             # print(complex)
             question_count.append(complex)
         print(lessons)
-        #print(" eta total_counted", question_count)
+        # print(" eta total_counted", question_count)
     for i in question_count:
         if i == '1':
             easy_count += 1

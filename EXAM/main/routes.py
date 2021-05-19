@@ -12,7 +12,7 @@ from werkzeug.utils import secure_filename
 
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
-from EXAM.main.function import created_course_form_db_insertion, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_view_courses, teacher_view_courses
+from EXAM.main.function import created_course_form_db_insertion, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
@@ -45,7 +45,7 @@ def index():
 @main.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
-    #if User_type.user_type == 'admin':
+    # if User_type.user_type == 'admin':
     teachers = user_teacher.objects().all()
     students = user_student.objects().all()
     # context=zip(teachers,students)
@@ -53,97 +53,30 @@ def admin():
     return render_template('admin.html', teachers=teachers, students=students, title='Admin', user_type=User_type.user_type)
 
 
-
 main_page_count = 0
+
 
 @main.route('/main_page', methods=['GET', 'POST'])
 @login_required
 def main_page():
     # ----------------------------------ekane teacher question evluate krbee
     teacher_email_id = user_obj.e
-    student_registered_course_code = list()
-    teachers_ids = list()
-    news = []
-    desc = []
-    image = []
-
-
+    student_id = session['email']
 
     if User_type.user_type == 'student':
-        student_id = session['email']
-        #print(student_id)
-        news_api = requests.get(
-            "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
-
-        content_data = json.loads(news_api.content)
-        articles = content_data['articles']
-        for i in range(len(articles)):
-            tech_articles = articles[i]
-            news.append(tech_articles['title'])
-            desc.append(tech_articles['description'])
-            image.append(tech_articles['urlToImage'])
-        #print(news)
-        #print(desc)
-        context = zip(news, desc, image)
-        #print(context)
-        #print(news)
-        # try:
-        #     headlines = newsapi.get_top_headlines(
-        #         # sources="al-jazeera-english")
-        #     art = headlines['articles']
-        #     for i in range(len(art)):
-        #         myart = art[i]
-        #         news.append(myart['title'])
-        #         desc.append(myart['description'])
-        #     # image.append(myart['urlToImage'])
-        #     print(news)
-        #     print(desc)
-        #     mylist = zip(news, desc)  # , image)
-        # # print(context=mylist)
-        # except Exception as e:
-        #     print(e)
-
-        for joined_courses_of_user_student in enrol_students_model.objects(
-                enrolled_students_id=student_id):
-            # print(joined_courses_of_user_student.course_code)
-            student_registered_course_code.append(
-                joined_courses_of_user_student.course_code)
-        for corse_code in student_registered_course_code:
-            teacher_id = teacher_created_courses_model.objects(
-                course_code=corse_code).first()
-        #print(teacher_id["teacher_registered_id"])
-        if teacher_id.teacher_registered_id not in teachers_ids:
-            teachers_ids.append(teacher_id.teacher_registered_id)
-        #print(teachers_ids)
-
-        todays_post = list()
-
-        for teah_id in teachers_ids:
-            posts_from_teacher = teacher_posts_model.objects(
-                email=teah_id)
-            # ekhane data ashtese nahhh
-            for posts in posts_from_teacher.order_by("-Date"):
-                # print("dhukse")
-                #print(posts.title)
-                todays_post.append(posts)
-        # print(todays_post)
-        # print(latest_posts_from_teacher)
-        # latest_posts_from_teacher = teacher_posts.objects.order_by('Date')
-        # filter(
-        #     email=teacher_email_id,
-        #     #teacher_posts__title='deposit',).
-
-        exam_results = marksheet.objects(student_email=student_id)
-
+        todays_post, context = student_main_page(student_id)
         if request.method == "POST":
             eroll_key = request.form.get('enroll_key')
             delete_temporary_collection()
             print(eroll_key)
             enroll_students(eroll_key, User_type.user_type)
+        exam_results = marksheet.objects(student_email=student_id)
+
 
         return render_template('main_page.html', latest_posts_from_teacher=todays_post, exam_results=exam_results, context=context, title='main_page', user_type=User_type.user_type)
 
     if User_type.user_type == 'teacher':  # ------------------------------------------------TEACHER
+
         shuffled_question_list, question_part, number_of_question, q_type = process_data_for_machine_learning()
         # print(shuffled_question_list)
         global main_page_count

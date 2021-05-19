@@ -7,9 +7,9 @@ from sklearn.tree import DecisionTreeClassifier
 # import fileinput
 # from PIL import Image
 from EXAM.configaration import user_obj
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 
-from EXAM.model import mcqQuestion, course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
+from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
 from EXAM.users.utils import saveFormFile_in_Filesystem
 
 # from mongoengine import *
@@ -302,7 +302,6 @@ def generate_question(get_form, corse_code):
     else:
         course_code = corse_code
 
-    
     question_difficulty = request.form.get("question_difficulty")
 
     question_type = request.form.get("question_type")
@@ -324,35 +323,40 @@ def generate_question(get_form, corse_code):
     exam_marks = request.form.getlist("marks")
     print(exam_topic, " --", exam_CLO, " --",
           complex_level, " --", number_of_question, " --")
-    courses = course_model.objects(course_code=course_code).first()
-    # ------------------------------------------------------------requrement_collection
-    stash_required_exam_property = required_for_generate()
 
-    stash_required_exam_property.question_type = question_type
-    stash_required_exam_property.exam_title = exam_title
-    stash_required_exam_property.exam_course = courses.course_title
-    stash_required_exam_property.exam_start_time = exam_start_time
-    stash_required_exam_property.exam_end_time = exam_end_time
-    stash_required_exam_property.exam_date = exam_date
-    stash_required_exam_property.exam_secret_code = exam_secret_code
-    # stash_required_exam_property.exam_marks=exam_marks
-    stash_required_exam_property.question_difficulty = question_difficulty
-    stash_required_exam_property.caption = caption
-    stash_required_exam_property.course_code = course_code
-    stash_required_exam_property.lesson = exam_topic
-    stash_required_exam_property.exam_CLO = exam_CLO
-    stash_required_exam_property.complex_level = complex_level
-    stash_required_exam_property.marks = exam_marks
-    stash_required_exam_property.number_of_question = number_of_question
-    stash_required_exam_property.save()
-    exam_slot = set_exam_question_slot()
-    exam_slot.exam_course = courses.course_title
-    exam_slot.exam_title = exam_title
-    exam_slot.exam_topic = exam_topic
-    exam_slot.exam_start_time = exam_start_time
-    exam_slot.exam_end_time = exam_end_time
-    exam_slot.exam_date = exam_date
-    exam_slot.save()
+    courses = course_model.objects(course_code=course_code).first()
+    check_existing_slot = set_exam_question_slot.objects(
+        exam_title=exam_title, exam_course=courses.course_title, exam_topic=exam_topic)
+    if check_existing_slot:
+        flash(f"Already generated a exam slot!!!!!", "warning") 
+    else:
+        # ------------------------------------------------------------requrement_collection
+        stash_required_exam_property = required_for_generate()
+        stash_required_exam_property.question_type = question_type
+        stash_required_exam_property.exam_title = exam_title
+        stash_required_exam_property.exam_course = courses.course_title
+        stash_required_exam_property.exam_start_time = exam_start_time
+        stash_required_exam_property.exam_end_time = exam_end_time
+        stash_required_exam_property.exam_date = exam_date
+        stash_required_exam_property.exam_secret_code = exam_secret_code
+        stash_required_exam_property.question_difficulty = question_difficulty
+        stash_required_exam_property.caption = caption
+        stash_required_exam_property.course_code = course_code
+        stash_required_exam_property.lesson = exam_topic
+        stash_required_exam_property.exam_CLO = exam_CLO
+        stash_required_exam_property.complex_level = complex_level
+        stash_required_exam_property.marks = exam_marks
+        # stash_required_exam_property.exam_marks=exam_marks
+        stash_required_exam_property.number_of_question = number_of_question
+        stash_required_exam_property.save()
+        exam_slot = set_exam_question_slot()
+        exam_slot.exam_course = courses.course_title
+        exam_slot.exam_title = exam_title
+        exam_slot.exam_topic = exam_topic
+        exam_slot.exam_start_time = exam_start_time
+        exam_slot.exam_end_time = exam_end_time
+        exam_slot.exam_date = exam_date
+        exam_slot.save()
 
 
 def confirmation_of_question(get_form):
@@ -426,12 +430,41 @@ def mcq_question_answer_submit(get_form):
     # required=required_for_generate.objects()
 
 
-def machine_process_data_wrangling(objects_of_requirement):
+def machine_process_data_wrangling(course_code):
     needed_course_code = []
     MCQ_questions = []
     purify_question_part = list()
     question_part = []
     temp = list()
+    extra_needed = 0
+    for i in mcqQuestion.objects(course_code=course_code):
+        MCQ_questions.append(i.question)  # question bank
+    question_part = random.sample(MCQ_questions, 15)
+
+    for i in question_part:
+        if i not in purify_question_part:
+            purify_question_part.append(i)
+    if len(purify_question_part) != 15:
+        extra_needed = 15-len(purify_question_part)
+        temp = random.sample(MCQ_questions, extra_needed)
+    for i in temp:
+        if i not in purify_question_part:
+            purify_question_part.append(i)
+    question_part = purify_question_part
+    # print(MCQ_questions)
+    # print(random.sample(MCQ_questions, 2))
+    # random.shuffle(MCQ_questions)
+    # print(MCQ_questions)
+    # print(question_part)
+    return question_part
+
+
+def question_data_wrangling(objects_of_requirement):
+    # needed_course_code = []
+    # MCQ_questions = []
+    # purify_question_part = list()
+    question_part = []
+    # temp = list()
     complexity_level = objects_of_requirement.complex_level
     marks = objects_of_requirement.marks
     substitute_question_part = []
@@ -444,15 +477,15 @@ def machine_process_data_wrangling(objects_of_requirement):
             # print(i.question)
 
             temp_question_part.append(i.question)
-            MCQ_questions.append(i.question)  # question bank
+            # MCQ_questions.append(i.question)  # question bank
         substitute_question_part = random.sample(
             temp_question_part, int(marks[m_count]))
         for ques in substitute_question_part:
             if ques not in question_part:
                 question_part.append(ques)
                 level_question_counter += 1
-        print("level_total",level_question_counter)
-        
+        print("level_total", level_question_counter)
+
         if level_question_counter != int(marks[m_count]):
             extra_needed = int(marks[m_count])-level_question_counter
             print("extra_needed", extra_needed)
@@ -461,9 +494,10 @@ def machine_process_data_wrangling(objects_of_requirement):
             for ques in substitute_question_part:
                 if ques not in question_part:
                     question_part.append(ques)
-        #print(marks[m_count])
-        print("first level from complexity list, and found total question of that level",len(temp_question_part))
-        level_question_counter=0
+        # print(marks[m_count])
+        print("first level from complexity list, and found total question of that level", len(
+            temp_question_part))
+        level_question_counter = 0
         temp_question_part = []
         m_count += 1
     print(len(question_part))
@@ -487,7 +521,7 @@ def catch_the_shuffled_question_list(question_part):
     return shuffled_question_list
 
 
-def a_question(shuffled_list, objects_of_requirement):
+def a_question(shuffled_list):  # ,objects_of_requirement):
     course_code = ''
     lessons = []
     complexity = ''
@@ -499,7 +533,7 @@ def a_question(shuffled_list, objects_of_requirement):
     hard_count = 0
     question_count = []
     complexity_level_of_highest_question_count = 0
-    total_question = objects_of_requirement.number_of_question
+    total_question = 15  # objects_of_requirement.number_of_question
     for ques in shuffled_list:
         # print(ques)
         question_paper = mcqQuestion.objects(question_dictionary=ques).first()
@@ -589,9 +623,7 @@ def machine_predict_result(data_input, data_output, question_point, question_typ
     return predicted_question_paper_difficulty
 
 
-    
-
-def machine_process_data(requirement_for_mcq_questions):
+def machine_process_data(course_code, question_difficulty):
     # # data cleaning for shuffle
     # question_part = machine_process_data_wrangling(objects_of_requirement)
     # # prepared shffled question list for machine prediction
@@ -605,19 +637,18 @@ def machine_process_data(requirement_for_mcq_questions):
 
     # predicted_question_paper_difficulty = machine_predict_result(
     #   data_input, data_output, question_point, objects_of_requirement.question_type)
-    objects_of_requirement = requirement_for_mcq_questions
+    #objects_of_requirement = requirement_for_mcq_questions
 
     difficulty1 = ''
     difficulty2 = ''
     finally_got_the_question = ''
 
-    data_input, data_output = machine_understable_dataset_setup(
-        objects_of_requirement.course_code)
+    data_input, data_output = machine_understable_dataset_setup(course_code)
     # print(objects_of_requirement.question_difficulty)
 
-    while objects_of_requirement.question_difficulty != difficulty1:
+    while question_difficulty != difficulty1:
 
-        question_part = machine_process_data_wrangling(objects_of_requirement)
+        question_part = machine_process_data_wrangling(course_code)
 
         # prepared shffled question list for machine prediction
         shuffled_list = catch_the_shuffled_question_list(question_part)
@@ -625,16 +656,15 @@ def machine_process_data(requirement_for_mcq_questions):
         # make a question for deleivery
         # test_mcq_ML()
 
-        question_point, lessons, course_code = a_question(
-            shuffled_list, objects_of_requirement)
+        question_point, lessons, course_code = a_question(shuffled_list)
         # print(course_code)
 
         # algorithm magic
 
         difficulty1 = machine_predict_result(
-            data_input, data_output, question_point, objects_of_requirement.question_type)
+            data_input, data_output, question_point, "mcq")  # objects_of_requirement.question_type)
 
-        if objects_of_requirement.question_difficulty == difficulty1:
+        if question_difficulty == difficulty1:
             # print(shuffled_list) ----------------------------------------
             finally_got_the_question = shuffled_list
             break
@@ -645,12 +675,81 @@ def machine_process_data(requirement_for_mcq_questions):
 def question_paper_for_current_session(requirement_for_mcq_questions):
     objects_of_requirement = requirement_for_mcq_questions
 
-    question_part = machine_process_data_wrangling(objects_of_requirement)
+    question_part = question_data_wrangling(objects_of_requirement)
 
     shuffled_list = catch_the_shuffled_question_list(question_part)
-    
+
     return shuffled_list
 
+
+def answer_submit(session_question, count, correct_answers,
+                  corrected, selectd_answers, total_question, exam_title, exam_course):
+    #count = session['count']
+    question_part = ''
+    option_list = list()
+    shuffled_option_list = list()
+    selected_option = ''
+    # print(type(session_question))
+    #print("Foooooooooooor testing", len(session_question[count]))
+    if count == total_question:  # session['total_question']
+        # ekane kaz baki ase ------------------------------------------------------------------
+        flash(f'Your fiinished the exam ', 'success')
+        return redirect(url_for("main.main_page"))
+
+    for i in session_question[count]:
+        # print(i)
+        question_part = i
+    for j in session_question[count][i]:
+        # print(j)
+        option_list.append(j)
+    # print(option_list)
+    shuffled_option_list = random.sample(option_list, len(option_list))
+    # print(shuffled_option_list)
+
+    db_question = mcqQuestion.objects(question=question_part).first()
+
+    if db_question:
+        correct_answers.append(db_question['q_answer'])
+        # print(db_question.q_answer)
+        print(db_question['q_answer'])
+
+    if request.method == "POST":
+        # if form.validate_on_submit:
+        selected_option = request.form.get('selected_option')
+        print(selected_option)
+
+        selectd_answers.append(selected_option)
+
+        # if selected_option:
+        #     #print(question_part)
+        #     if previous_answer == selected_option:
+        #         session['corrected'] =corrected + 1
+        #         print("dhukse")
+
+        #         # getting_total_for_in_this_question=0+db_question.q_mark
+    session['count'] = count+1
+    # print(session['count'])
+    # session['count'] # session['session_question']):
+    if count == len(session_question):
+        #print("correct --------", correct_answers)
+        #print("selected ----------", selectd_answers)
+        i = 0
+        for selected in selectd_answers:
+            if selected == correct_answers[i]:
+                print("Wright answer")
+                corrected += 1
+            i += 1
+        if marksheet.objects(exam_title=exam_title):  # session['exam_title']):
+            print("Already attenend")
+        else:
+            total_score = marksheet()
+            total_score.student_email = user_obj.e
+            total_score.exam_course = exam_course  # session['exam_course']
+            total_score.exam_title = exam_title      # session['exam_title']
+            total_score.get_score = corrected
+            total_score.save()
+    total = total_question  # session['total_question']
+    return question_part, shuffled_option_list
 
 
 def test_mcq_ML():

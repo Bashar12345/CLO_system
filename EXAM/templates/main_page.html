@@ -220,30 +220,30 @@
             <div class="col-6 col-md-4">
 
 
-                <div class="container table">
+                <div class="container table table-active">
                     <div class="row bg-warning">
-                        <div class="col">
+                        <div class="col-sm-4">
                             Courses
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             Exam_title
                         </div>
-                        <div class="col">
+                        <div class="col-3">
                             Scored
                         </div>
                     </div>
                     {%for results in exam_results %}
                     <div class="row">
-                        <div class="col">
+                        <div class="col-sm-4">
 
                             {{results.exam_course}}
                         </div>
-                        <div class="col">
+                        <div class="col-5  bg-light">
 
                             {{results.exam_title}}
                         </div>
 
-                        <div class="col bg-light">
+                        <div class="col-3">
                             <b> {{results.get_score}} </b>
                         </div>
                     </div>

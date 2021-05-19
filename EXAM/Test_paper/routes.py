@@ -25,7 +25,7 @@ from EXAM.Test_paper.forms import (
     Written_question_answer_Form,
     Mcq_answer_form,
 )
-from EXAM.Test_paper.function import generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
+from EXAM.Test_paper.function import answer_submit, generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
 from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, required_for_generate, teacher_created_courses_model
 from flask.templating import render_template_string
@@ -350,6 +350,11 @@ def secret_code():
         # mongodb_written_question = exam_written_question_paper()
         # mongodb_mcq_question = exam_MCQ_question_paper()
         # written_question = exam_written_question_paper.objects(exam_code=exam_code)
+        check_attence = marksheet.objects(exam_code=exam_code).first()
+        if check_attence:
+            flash(f"Re-Enter Exam code!!", "danger")
+            return redirect(url_for("main.main_page"))
+        session['exam_code']=exam_code
         mcq_question = exam_mcq_question_paper.objects.filter(
             exam_code=exam_code).first()
         written_question = exam_written_question_paper.objects.filter(
@@ -399,7 +404,8 @@ def secret_code():
 def mcq_answer_paper_auto_generated():
     # mcq_question_answer_submit(form)
     exam_code = secret_exam_key.exam_code
-    requirement_for_mcq_questions = required_for_generate.objects(exam_secret_code=exam_code).first()
+    requirement_for_mcq_questions = required_for_generate.objects(
+        exam_secret_code=exam_code).first()
     exam_title = requirement_for_mcq_questions.exam_title
     exam_course = requirement_for_mcq_questions.exam_course
     exam_start_time = requirement_for_mcq_questions.exam_start_time
@@ -422,7 +428,7 @@ def mcq_answer_paper_auto_generated():
     print(f"ending time {ending_time_of_exam}")
     print(f"starting time {starting_time_of_exam}")
     # print(mcq_question['mcq_question'])
-    #final showdown e if uncomment krte hobe................................................
+    # final showdown e if uncomment krte hobe................................................
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     # if starting_time_of_exam <= current_time <= ending_time_of_exam:
     if current_time == current_time2:
@@ -473,78 +479,78 @@ def mcq_answer_paper_auto_generated():
 selectd_answers = list()
 correct_answers = list()
 corrected = 0
+answer_count = 1
 
 
 @Test_paper.route("/answer_session", methods=["GET", "POST"])
 @login_required
 def answer_session():
     form = Mcq_answer_form()
-    session_question = session['session_question']
-    count = session['count']
     global correct_answers
     global corrected
     global selectd_answers
+    global answer_count
+    count = session['count']
+    total_question = session['total_question']
+    exam_title = session['exam_title']
+    exam_course = session['exam_course']
+    session_question = session['session_question']
     question_part = ''
     option_list = list()
-    shuffled_option_list=list()
+    shuffled_option_list = list()
     selected_option = ''
     # print(type(session_question))
     #print("Foooooooooooor testing", len(session_question[count]))
-    if count == session['total_question']:
-        # ekane kaz baki ase ------------------------------------------------------------------
+    if answer_count == total_question:  # session['total_question']
         flash(f'Your fiinished the exam ', 'success')
         return redirect(url_for("main.main_page"))
-
     for i in session_question[count]:
         # print(i)
         question_part = i
     for j in session_question[count][i]:
         # print(j)
         option_list.append(j)
-    #print(option_list)
-    shuffled_option_list=random.sample(option_list,len(option_list))
-    #print(shuffled_option_list)
-    
+    # print(option_list)
+    shuffled_option_list = random.sample(option_list, len(option_list))
+    # print(shuffled_option_list)
 
     db_question = mcqQuestion.objects(question=question_part).first()
-    
+
     if db_question:
         correct_answers.append(db_question['q_answer'])
         # print(db_question.q_answer)
         print(db_question['q_answer'])
+
+
     
     if request.method == "POST":
         # if form.validate_on_submit:
         selected_option = request.form.get('selected_option')
         print(selected_option)
-        
+        answer_count+=1
+        print(answer_count)
         selectd_answers.append(selected_option)
-
-        # if selected_option:
-        #     #print(question_part)
-        #     if previous_answer == selected_option:
-        #         session['corrected'] =corrected + 1
-        #         print("dhukse")
-
-        #         # getting_total_for_in_this_question=0+db_question.q_mark
     session['count'] = count+1
     # print(session['count'])
-    if session['count'] == len(session['session_question']):
+    # session['count'] # session['session_question']):
+    if answer_count == len(session['session_question']):
         #print("correct --------", correct_answers)
         #print("selected ----------", selectd_answers)
-        i=0
+        i = 0
         for selected in selectd_answers:
             if selected == correct_answers[i]:
                 print("Wright answer")
                 corrected += 1
-            i+=1
+            i += 1  
         total_score = marksheet()
+        total_score.exam_code = session['exam_code']
         total_score.student_email = user_obj.e
-        total_score.exam_course = session['exam_course']
-        total_score.exam_title = session['exam_title']
+        total_score.exam_course = exam_course  # session['exam_course']
+        total_score.exam_title = exam_title        # session['exam_title']
         total_score.get_score = corrected
         total_score.save()
-    total = session['total_question']
+    
+    total = total_question  # session['total_question']
 
     return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=shuffled_option_list, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
 
@@ -562,16 +568,108 @@ def answer_session():
 #     return response_to_browser
 
 
+selectd_answers = list()
+correct_answers = list()
+corrected = 0
+answer_count = 1
+
+
 @Test_paper.route("/model_test", methods=["GET", "POST"])
 # @login_required
 def model_test():
+    post_count = 0
+    if request.method == "POST":
+        count = 0
+        total_question = 15
+        global correct_answers
+        global corrected
+        global selectd_answers
+
+        course_code = request.form.get("course_code")
+        difficulty = request.form.get("question_difficulty")
+        model_test_question_paper = machine_process_data(
+            course_code, difficulty)
+        session['model_test_question'] = model_test_question_paper
+        session['count'] = 0
+        session['total_question'] = 15
+        session['exam_title'] = 'Model_test'
+        session['exam_course'] = course_code
+        return redirect(url_for('Test_paper.model_test_answer_session'))
+
     return render_template(
-        "student/model_test.html",
-    )
+        "student/model_test.html", post_count=post_count, title="MCQ_Model_Test", user_type=User_type.user_type)  # question_part=question_part,  option_list=shuffled_option_list,
 
 
+@Test_paper.route("/model_test_answer_session", methods=["GET", "POST"])
+@login_required
+def model_test_answer_session():
+    form = Mcq_answer_form()
+    global correct_answers
+    global corrected
+    global selectd_answers
+    title_count = 1
+    count = session['count']
+    total_question = session['total_question']
+    exam_title = session['exam_title']
+    exam_course = session['exam_course']
+    session_question = session['model_test_question']
+    question_part = ''
+    option_list = list()
+    shuffled_option_list = list()
+    selected_option = ''
+    # print(type(session_question))
+    #print("Foooooooooooor testing", len(session_question[count]))
+    if answer_count == total_question:  # session['total_question']
+        flash(f'Your fiinished the exam ', 'success')
+        return redirect(url_for("main.main_page"))
 
+    for i in session_question[count]:
+        # print(i)
+        question_part = i
+    for j in session_question[count][i]:
+        # print(j)
+        option_list.append(j)
+    # print(option_list)
+    shuffled_option_list = random.sample(option_list, len(option_list))
+    # print(shuffled_option_list)
 
+    db_question = mcqQuestion.objects(question=question_part).first()
+
+    if db_question:
+        correct_answers.append(db_question['q_answer'])
+        # print(db_question.q_answer)
+        print(db_question['q_answer'])
+
+    if request.method == "POST":
+        # if form.validate_on_submit:
+        selected_option = request.form.get('selected_option')
+        answer_count +=1
+        print(selected_option)
+
+        selectd_answers.append(selected_option)
+    session['count'] = count+1
+    # print(session['count'])
+    # session['count'] # session['session_question']):
+    if answer_count == len(session['model_test_question']):
+        #print("correct --------", correct_answers)
+        #print("selected ----------", selectd_answers)
+        i = 0
+        for selected in selectd_answers:
+            if selected == correct_answers[i]:
+                print("Wright answer")
+                corrected += 1
+            i += 1
+
+        total_score = marksheet()
+        total_score.student_email = user_obj.e
+        total_score.exam_course = exam_course  # session['exam_course']
+        total_score.exam_title = exam_title +"-"+ str(title_count)   # session['exam_title']
+        total_score.get_score = corrected
+        total_score.save()
+        title_count += 1
+    total = total_question  # session['total_question']
+
+    return render_template("mcq/model_test_answer_session.html", question_part=question_part,  option_list=shuffled_option_list, title="Model_test_answer", form=form, user_type=User_type.user_type)
 
 
 @Test_paper.route("/sample", methods=["GET", "POST"])

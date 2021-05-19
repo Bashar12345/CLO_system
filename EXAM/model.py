@@ -77,6 +77,7 @@ class teacher_posts_model (nosql.Document):
 
 class marksheet(nosql.Document):
     #student_id = nosql.StringField()
+    exam_code = nosql.StringField()
     student_email = nosql.StringField()
     exam_course = nosql.StringField()
     exam_title = nosql.StringField()
