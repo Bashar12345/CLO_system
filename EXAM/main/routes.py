@@ -63,6 +63,9 @@ def main_page():
     teacher_email_id = user_obj.e
     student_id = session['email']
 
+    if User_type.user_type == 'admin':
+        return redirect(url_for('main.admin'))
+
     if User_type.user_type == 'student':
         todays_post, context = student_main_page(student_id)
         if request.method == "POST":
@@ -238,7 +241,7 @@ def question_view(course_code):
 @ login_required
 def student_dashboard():
     remove_junk()
-    return render_template('student.html', title='Recent Exams', user_type=User_type.user_type)
+    return render_template('dashboard.html', title='Recent Exams', user_type=User_type.user_type)
 
 
 @ main.route('/exam_slot_load')

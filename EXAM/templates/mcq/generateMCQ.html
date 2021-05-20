@@ -3,8 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
-<div class="container-fluid "
-    style="font-family:'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'">
+<div class="container-fluid " style="font-family:'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'">
     <form class="form-horizontal" method="POST" action="{{url_for('Test_paper.generateMCQ',course_code=course_code)}}"
         enctype="multipart/form-data">
 
@@ -28,112 +27,100 @@
         <section>
 
             <div class="form-group">
-                <b>{{ form.exam_title.label(class = "custom-control-label ") }}</b><br />
+                {{ form.exam_title.label(class = "form-control-label h4") }}
                 <div class="form-group form-group-inline">
-                    {{ form.exam_title(class="form-check ", type="radio") }}</div><br />
+                    {{ form.exam_title(class="form-check ", type="radio") }}</div>
+            </div>
+
+            <div class="form-group">
                 <div class="row align-items-start">
-                    <legend class="custom-control-label"> Create a Exam Slot for the Students </legend>
+                    <legend class="form-control-label h4"> Create a Exam Slot for the Students </legend>
                     <br />
-                   
                     <div class="col-sm-1">
-                        {{ form.exam_start_time.label(for="start_time",class = "input-group-append")}}
+                        {{ form.exam_start_time.label(for="start_time",class ="input-group-append h6")}}
                     </div>
+
                     <div class="col-3-lg" style="width: 10rem;">
                         <!-- for= appt is a class -->
                         {# {{ form.exam_start_time(for="appt",type="time",class="form-control-lg",id="start_time") }} #}
                         <input type="time" class="input-group" id="start_time" name="start_time" />
                     </div>
                     <div class="col-sm-1">
-                        {{ form.exam_end_time.label(for="end_time",class = " input-group-append") }}</div>
+                        {{ form.exam_end_time.label(for="end_time",class = " input-group-append h6") }}</div>
                     <div class="col-3-lg" style="width: 10rem;">
                         <input type="time" class="input-group" id="end_time" name="end_time" />
                     </div>
                     <div class="col-sm-1">
-                        {{ form.exam_date.label(class ="input-group-append")}}</div>
+                        {{ form.exam_date.label(class ="input-group-append h6")}}</div>
                     <div class="col-3-lg" style="width: 10rem;">
                         {{ form.exam_date(type="date",class="input-group ",placeholder=" like: year/month/date") }}
                     </div>
                 </div>
             </div>
-            <div class=" d-flex row justify-content-start" style="width: 55vw;">
-                <b> <label for="Textarea" class="custom-control-label">Example Question paper Caption textarea</label>
-                <textarea name="Note:captions" class="form-control" id="Textarea" rows="2"></textarea><br />
+
+            <div class="form-group">
+                <div class=" d-flex row justify-content-start" style="width: 55vw;">
+                    <label for="Textarea" class="form-control-label h4">Example Question paper Caption</label>
+                    <textarea name="Note:captions" class="form-control" id="Textarea" rows="2"></textarea><br />
+                </div>
             </div>
-            <div class="row justify-content-around">
+
+            <div class="form-group">
+
                 <div class="form-group">
-                    {{ form.exam_code.label(class="custom-control-label") }}
+                    {{ form.exam_code.label(class="form-control-label h4") }}
                     <br />
                     {{ form.exam_code(class="custom-radio") }}
                 </div>
-                <div class="form-group">
 
-                    <!-- <label class="custom-control-label">Number of Questions :</label><br/>
-                <input id="exam_total_questions" name="exam_total_questions" type="number" class="custom-radio">
-                -->
-                </div>
-                <!--div class="form-group">
+
+            </div>
+            <!--div class="form-group">
             {#{ form.exam_marks.label(class="custom-control-label") }#}<br/>
             {#{ form.exam_marks(class="custom-radio") }#}</div>
         </div-->
+            <!-- <label class="custom-control-label">Number of Questions :</label><br/>
+                        <input id="exam_total_questions" name="exam_total_questions" type="number" class="custom-radio">
+                        -->
 
-                {% if corse_code=='teacher' %}
+            {% if corse_code=='teacher' %}
 
 
-
-                <div class="form-group" style="width: 33rem;">
-                    <legend class=" custom-control-label">Questions for Exam Course</legend>
-                    <div class="input-group mb-3 ">
-                        <input id="course_code" list="course_code_list"
-                            class="custom-select custom-select-md mb-3 btn-outline-info " aria-label=".custom-select-lg example"
-                            name="course_code" placeholder="Enter Course Code" required>
-                        <datalist id="course_code_list">
-                            {%for codes in course_code %}
-                            <option value="{{codes.course_code}}">{{codes.course_code}}</option>
-                            {% endfor %}
-                        </datalist>
-                        <div class="input-group-append mb-3">
-                            <button onclick="GetSelected()" id="btn_course_code" class="btn btn-outline-secondary"
-                                type="button">Find lessons</button>
-                        </div>
+            <div class="form-group" style="width: 33rem;">
+                <legend class=" form-control-label h4">Questions for Exam Course</legend>
+                <div class="input-group mb-3 ">
+                    <input id="course_code" list="course_code_list" class="custom-select custom-select-md mb-3 btn-outline-info "
+                        aria-label=".custom-select-lg example" name="course_code" placeholder="Enter Course Code" required>
+                    <datalist id="course_code_list">
+                        {%for codes in course_code %}
+                        <option value="{{codes.course_code}}">{{codes.course_code}}</option>
+                        {% endfor %}
+                    </datalist>
+                    <div class="input-group-append mb-3">
+                        <button onclick="GetSelected()" id="btn_course_code" class="btn btn-outline-secondary" type="button">Find
+                            lessons</button>
                     </div>
                 </div>
+            </div>
 
 
-                {% endif %}
-
-                <!-- ekhane difficulty autogenerate hobe background e -->
-                <!-- <div class="row">
-        <div class="form-group">
-            <label class="custom-control-label">Question Difficulty</label><br/>
-            <select
-                class="custom-select-sm btn-outline-info"
-                id="inputGroupSelect04"
-                name="question_difficulty"
-                aria-label="Example select with button addon"
-                required>
-            <option selected disabled="disabled">Select difficult level</option>
-            <option type="text" value="Easy">Easy</option>
-            <option type="text" value="Medium">Medium</option>
-            <option type="text" value="Hard">Hard</option>
-            </select>
-        </div>
-    </div> -->
+            {% endif %}
 
 
+            <div class="form-group">
 
-                <div class="row">
-                    <div class="form-group">
-                        <label class="custom-control-label">Question Type</label><br />
-                        <select class="custom-select-sm btn-outline-info" id="inputGroupSelect04" name="question_type"
-                            aria-label="Example select with button addon" required>
-                            <option selected disabled="disabled">Select difficult level</option>
-                            <option type="number" value="mcq">Objective</option>
-                            <option type="number" value="1">Written</option>
-                        </select>
-                    </div>
-                </div>
+                <label class="form-control-label h4">Question Type</label><br />
+                <select class="custom-select btn-outline-info" name="question_type"
+                    aria-label="Example select with button addon" required>
+                    <option type="number" value="mcq">Objective</option>
+                    <option type="number" value="1">Written</option>
+                </select>
 
-                <div id="lessons_table" class="row"></div>
+            </div>
+
+            <div class="form-group">
+                <div id="lessons_table" class="row table-active"></div>
+            </div>
 
         </section>
 
@@ -144,13 +131,12 @@
                     <li class="list-group-item">
                         {#{ form.exam_CLO.label(class="custom-control-label") }#}
                         {#{ form.exam_CLO(class="custom-select) }#}
-                        <label class="custom-control-label">
+                        <label class="form-control-label h5">
                             Course Outcome </label><br />
 
                         <input id="exam_CLO" list="clo" name="exam_CLO"
-                            class="custom-select custom-select-md mb-3 btn-outline-info "
-                            placeholder="Select CLO" autocomplete="off"
-                            aria-label=".custom-select-lg example">
+                            class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Select CLO"
+                            autocomplete="off" aria-label=".custom-select-lg example">
                         <datalist id="clo">
                             <option selected disabled>Enter the CLO</option>
                         </datalist>
@@ -161,20 +147,19 @@
                     <li class="list-group-item">
                         {#{ form.exam_topic.label(class="custom-control-label") }#}
                         {#{ form.exam_topic(class="form-radio",id="exam_topic") }#}
-                        <label class="custom-control-label">
+                        <label class="form-control-label h5">
                             Syllabus/Topic/lesson :</label><br />
                         <input id="exam_topic" list="lesson_name" name="exam_topic"
-                            class="custom-select custom-select-md mb-3 btn-outline-info "
-                            placeholder="Select lesson" autocomplete="off"
-                            aria-label=".custom-select-lg example">
+                            class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Select lesson"
+                            autocomplete="off" aria-label=".custom-select-lg example">
                         <datalist id="lesson_name">
                             <option selected disabled>
-                               Select lesson</option>
+                                Select lesson</option>
                         </datalist>
                     </li>
                     <li class="list-group-item">
-                        <label class="custom-control-label">Question Complexity Level</label>
-                        <select class="custom-select-sm btn-outline-info" id="inputGroupSelect04" name="complex_level"
+                        <label class="form-control-label h5">Question Complexity Level</label>
+                        <select class="custom-select btn-outline-info" id="inputGroupSelect04" name="complex_level"
                             autocomplete="off" aria-label="Example select with button addon" required>
                             <option selected disabled="disabled">Select level</option>
                             <option value="1">Low</option>
@@ -185,9 +170,8 @@
                         </select>
                     </li>
                     <li class="list-group-item">
-                        <label class="custom-control-label"> Total_marks </label>
-                        <input type="number" class="input-group" id="marks" name="marks" 
-                        placeholder="For this Lesson" />
+                        <label class="form-control-label h5"> Total_marks </label>
+                        <input type="number" class="input-group" id="marks" name="marks" placeholder="For this Lesson" />
             </div>
             </li>
             </ul>
@@ -217,3 +201,24 @@
 </script>
 </div>
 {% endblock body %}
+
+
+
+
+<!-- ekhane difficulty autogenerate hobe background e -->
+<!-- <div class="row">
+                    <div class="form-group">
+                        <label class="custom-control-label">Question Difficulty</label><br/>
+                        <select
+                            class="custom-select-sm btn-outline-info"
+                            id="inputGroupSelect04"
+                            name="question_difficulty"
+                            aria-label="Example select with button addon"
+                            required>
+                        <option selected disabled="disabled">Select difficult level</option>
+                        <option type="text" value="Easy">Easy</option>
+                        <option type="text" value="Medium">Medium</option>
+                        <option type="text" value="Hard">Hard</option>
+                        </select>
+                    </div>
+                </div> -->

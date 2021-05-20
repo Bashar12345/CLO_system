@@ -70,7 +70,6 @@ def login():
                     User_type.user_type = "admin"
                     user_obj.e = usersd["email"]
                     #session['email'] = usersd["email"]
-                    
                 else:
                     session['email'] = ''
                     User_type.user_type = "teacher"

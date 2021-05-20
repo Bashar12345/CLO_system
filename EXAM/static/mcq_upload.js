@@ -137,7 +137,7 @@ function load() {
     <label for="answer${count}">
         <h4>Answer ${count} :</h4>
     </label><br>
-    <select class="custom-select-md btn-outline-info"  
+    <select class="custom-select btn-outline-info"  
     name="answer${question_count}" 
     id="answer${question_count}"
     type="text" 

@@ -5,34 +5,44 @@
 
 <div class="container">
     <legend> Active Users </legend>
+    <br/>
+    <div class="">
+        <legend>Teachers</legend>
+        <div class="table">
+            {%for tech in teachers%}
+            <div class="row table-dark table-bordered table-responsive-lg ">
+                <div class="col">
+                    {{tech.user_name}}
+                </div>
+                <div class="col ">
+                    {{tech.email}}
+                </div>
+                <div class="col">
+                    {{tech.organization_id}}
+                </div>
+            </div>
+            <br/>
+            {%endfor%}
+        </div>
 
-    {%for tech in teachers%}
-    <div class="row">
-        <div class="col">
-            {{tech.user_name}}
+        <legend>Students</legend>
+        <div class="table">
+            {%for student in students%}
+            <div class="row table-dark table-bordered table-responsive-lg">
+                <div class="col">
+                    {{student.user_name}}
+                </div>
+                <div class="col ">
+                    {{student.email}}
+                </div>
+                <div class="col">
+                    {{student.organization_id}}
+                </div>
+            </div>
+            <br/>
+            {%endfor%}
         </div>
-        <div class="col">
-            {{tech.email}}
-        </div>
-        <div class="col">
-            {{tech.organization_id}}
-        </div>
-    </div>
-        {%endfor%}
 
-        {%for student in students%}
-    <div class="row">
-        <div class="col">
-            {{student.user_name}}
-        </div>
-        <div class="col">
-            {{student.email}}
-        </div>
-        <div class="col">
-            {{student.organization_id}}
-        </div>
-    </div>
-        {%endfor%}
     </div>
 </div>
 

@@ -2,16 +2,17 @@
 {% block body %}
 
 {% if user_type=='teacher' %}
-    
 
 
-    
+
+
 <section class="shadow-lg btn-group-horizontal">
     {#{ form.hidden_tag() }#}
     <header>
         <div class="row justify-content-end flex-wrap">
             <div class="col-3">
-                <a href="{{ url_for('Test_paper.mcq_upload',course_code=course_code) }}" class="btn btn-primary btn-block" role="button" aria-pressed="true">Upload new Question</a>
+                <a href="{{ url_for('Test_paper.mcq_upload',course_code=course_code) }}" class="btn btn-primary btn-block"
+                    role="button" aria-pressed="true">Upload new Question</a>
             </div>
             <div class="col-2">
                 <a href="{{ url_for('Test_paper.generateMCQ',course_code=course_code) }}" class="btn btn-primary" role="button"
@@ -26,21 +27,27 @@
 
 
     </header>
-    <legend>MCQ Questions Bank</legend>
-    <small>{{ course_code }}</small>
+    <legend style="margin-left: 5vh;">MCQ Questions Bank 
+        <small class="h6"  style="margin-left: 8vh;">{{ course_code }}</small>
+    </legend>
+    
 </section>
 
 
-
-
-{% set j=[1] %}
-{% for i in mcqQuestion.objects(
+<div class="section">
+    <br>
+    {% set j=[1] %}
+    {% for i in mcqQuestion.objects(
     course_code=course_code) %}
-<div class="table-bordered table-responsive">
-    <p>Q{{ j }} :--   {{ i.question }} ?<br /></p>
+    <div class="table-active table-responsive-lg">
+        <p><b>Question{{ j }} </b>:-- {{ i.question }} ?<br /></p>
+    </div>
+    {% if j.append(j.pop() + 1) %}{% endif %}
+    {% endfor %}
+
 </div>
-{% if j.append(j.pop() + 1) %}{% endif %}
-{% endfor %}
+
+
 
 {% endif %}
 

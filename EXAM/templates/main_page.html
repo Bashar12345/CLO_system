@@ -153,10 +153,10 @@
 
     {%if user_type=='student'%}
 
-    <div class="container">
+    <div class="">
 
         <section class="container">
-            <legend> Latest Actions (anouncements)</legend>
+            <h3> Latest Actions (anouncements)</h3>
 
             <br>
             {% for i in range(0,2) %}
@@ -182,12 +182,13 @@
         </section>
 
 
-
+<br/>
         <div class="row no-gutters">
-            <div class="col-12 col-sm-6 col-md-8">
+            <div class="col-12  col-sm-6 col-md-8 ">
 
                 <div class=" container ">
-                    <legend> Latest News arround the world</legend>
+                    <h3> Latest News arround the world</h3>
+                    <br/>
                     {% for news, desc, image in context %}
                     <div class="card text-white bg-dark mb-3">
                         <div class="card-header">
@@ -200,7 +201,7 @@
                         </div>
                         <br>
                         <div class="col container">
-                            <img class="img-fluid" src="{{image}}" />
+                            <img class="img-fluid video-fluid" src="{{image}}" />
                         </div>
                         <br>
                         <div class="col card-text">
