@@ -81,12 +81,13 @@ def student_main_page(student_id):
     # filter(
     #     email=teacher_email_id,
     #     #teacher_posts__title='deposit',).
-    return todays_post,context
+    return todays_post, context
     pass
 
 
 def teacher_main_page(teacher_email_id):
     pass
+
 
 def enroll_students(eroll_ki, user_type):
     usered = user_obj.e
@@ -158,26 +159,31 @@ def created_course_form_db_insertion(get_form, user_type):
     t = form.course_duration.data
     course_duration = t.strftime('%Y-%m-%d')
     course_caption = request.form.get('Note:captions')
-    course_register = teacher_created_courses_model()
-    course_register.user_type = user_type
-    course_register.teacher_registered_id = user_obj.e
-    course_register.course_code = course_code
-    course_register.course_title = course_title
-    course_register.course_lessons = course_lessons
-    course_register.course_co = course_co
-    course_register.course_duration = course_duration
-    course_register.course_caption = course_caption
-    course_register.save()
-    course_register_course_model_ins = course_model()
-    course_register_course_model_ins.course_code = course_code
-    course_register_course_model_ins.course_title = course_title
-    course_register_course_model_ins.course_lessons = course_lessons
-    course_register_course_model_ins.course_co = course_co
-    course_register_course_model_ins.course_duration = course_duration
-    course_register_course_model_ins.course_caption = course_caption
-    course_register_course_model_ins.save()
-    if course_register.save():
-        return course_title
+    check_existed_course = course_model.objects(
+        course_code=course_code, course_title=course_title).first()
+    if check_existed_course:
+        flash(f"Already exist this Course, please Change the 'Course title' or 'Course code' ", "danger")
+    else:
+        course_register = teacher_created_courses_model()
+        course_register.user_type = user_type
+        course_register.teacher_registered_id = user_obj.e
+        course_register.course_code = course_code
+        course_register.course_title = course_title
+        course_register.course_lessons = course_lessons
+        course_register.course_co = course_co
+        course_register.course_duration = course_duration
+        course_register.course_caption = course_caption
+        course_register.save()
+        course_register_course_model_ins = course_model()
+        course_register_course_model_ins.course_code = course_code
+        course_register_course_model_ins.course_title = course_title
+        course_register_course_model_ins.course_lessons = course_lessons
+        course_register_course_model_ins.course_co = course_co
+        course_register_course_model_ins.course_duration = course_duration
+        course_register_course_model_ins.course_caption = course_caption
+        course_register_course_model_ins.save()
+        if course_register.save():
+            return course_title
 
 
 def process_data_for_machine_learning():

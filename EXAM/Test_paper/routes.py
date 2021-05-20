@@ -230,6 +230,30 @@ def mcq_upload(course_code):
     )
 
 
+# @Test_paper.route("/mcq_upload_option_check")
+# @login_required
+# def mcq_upload_option_check():
+#     response_to_browser = ""
+#     option_empty=''
+#     if request.args:
+#         option = request.args.get("op")
+#         print(option)
+#         print(request.form.get(option))
+#         if request.args.get(option):
+            
+#             option_empty="data_ase"
+#         response_to_browser = make_response(jsonify(option_empty))
+#         print(response_to_browser)
+#     return response_to_browser
+
+
+
+
+
+
+
+
+
 @Test_paper.route("/mcqUpload_course_code_selection_load")
 @login_required
 def mcqUpload_course_code_selection_load():

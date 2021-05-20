@@ -1,52 +1,57 @@
 {% extends "layout.html" %}
 {% block body %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <style>
-        .input-wrapper div {
-            margin-bottom: 10px;
-        }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>
+    .input-wrapper div {
+        margin-bottom: 10px;
+    }
 
-        .remove-input {
-            margin-top: 10px;
-            margin-left: 15px;
-            horiz-align: center;
-        }
+    .remove-input {
+        margin-top: 10px;
+        margin-left: 15px;
+        /*horiz-align: center;*/
+    }
 
-        .add-input {
-            margin-top: 10px;
-            margin-left: 10px;
-            vertical-align: text-bottom;
-        }
+    .add-input {
+        margin-top: 10px;
+        margin-left: 10px;
+        vertical-align: text-bottom;
+    }
 
-        img {
-            box-shadow: #7f7f7f;
-            max-height: 30px;
-            max-width: 30px;
-   
-        }
-    </style>
-    <section class=" container btn-light">
-        <form method="POST" action="" class="form-container" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <header><legend> Create New Course</legend></header>
-                <br/>
-                <div class="form-group">
-                    {{ form.course_duration.label(class = "custom-control-label") }}
-                    {{ form.course_duration(type="date",class="form-control-lg datepicker",placeholder=" like: year/month/date (Please submit When Course will be finished)") }}
-                    <br/>
-                </div>
+    .img-lesson {
+        box-shadow: #7f7f7f;
+        max-height: 30px;
+        max-width: 30px;
 
-                {{ form.course_title.label(class = "custom-control-label") }}
-                {{ form.course_title(class="form-control form-control-lg",placeholder='Enter Course Title (Dont give "#,$,@,&" these caracters)') }}
-                <br/>
+    }
+</style>
+<section class="container">
 
-                <div class="form-group">
-                    <label class="custom-control-label" for="Textarea">Course Caption :</label>
-                    <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
-                </div>
 
-                {{ form.course_code.label(class = "custom-control-label") }}
+
+    <form method="POST" action="" class="form-container" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <header>
+                <legend class="h3"> <b> Create New Course </b> </legend>
+            </header>
+            <br />
+            <div class="form-group">
+                {{ form.course_duration.label(class = "form-control-label h5") }}
+                {{ form.course_duration(type="date",class="form-control-lg datepicker") }}
+
+            </div>
+            <div class="form-group">
+                {{ form.course_title.label(class = "form-control-label h5 ") }}
+                {{ form.course_title(class="form-control form-control",placeholder='(Dont give "#,$,@,&" these caracters)') }}
+
+            </div>
+            <div class="form-group">
+                <label class="form-control-label h5" for="Textarea">Course Caption :</label>
+                <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                {{ form.course_code.label(class = "form-control-label h5") }}
 
 
 
@@ -59,69 +64,66 @@
 
                 </div>
                 {% else %}
-
                 <div class="input-group mb-3">
-                    {{ form.course_code(class ="form-control-lg",placeholder="like : SWE431 ") }}
-
+                    {{ form.course_code(class ="form-control",placeholder="like : SWE431 ") }}
                 </div>
                 {% endif %}
-
-
-
-
-
-
-
-
-                
-                <br/>
-
-                <div class="row">
-                    <div class="col">
-                <label class="custom-control-label">CLO -1 </label>
-                {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number   #description of the clo") }}
-                <br/>
-                    </div>
-                
-                <div class="col">
-                <label class=custom-control-label>CLO -2 </label>
-                {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number   #description of the clo") }}
-                <br/></div>
-                
-                <div class="w-100"></div>
-                <div class="col">
-                <label class=custom-control-label>CLO -3 </label>
-                {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number   #description of the clo") }}
-                <br/></div>
-                <br/>
-                <div class="col">
-                <label class=custom-control-label>CLO -4 </label>
-                {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number   #description of the clo") }}
-                <br/></div>
-                <br/>
             </div>
-                {#{  form.course_lessons.label(class = "custom-control-label") }#}
-                {#{ form.course_lessons(oninput='getValueTotalLesson()', class ="form-control form-control-md"
-                    ,placeholder="Like: 1,2,5 or 6 (How many lessons do you have for this Course)") }#}
 
-                <div class="input-wrapper">
-                    <label for="total_lessons" class="custom-control-label"> Total Lessons :</label><br/>
-                    <input class="form-control-lg" name="total_lesson[]" id="total_lessons" type="text" value="" title="Name of the Lesson, please."/>
-                    <a href="javascript:void(0);" class="add-input" title="Add a another lesson">
-                        <img type="button" class="btn-outline-light"
-                            src="{{ url_for('static',filename='img/plus.png') }}"/></a>
 
+            <div class="form-row">
+                <div class="col">
+                    <label class="form-control-label h5">CLO -1 </label>
+                    {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number #description of
+                    the clo") }}
+                    <br />
                 </div>
 
+                <div class="col">
+                    <label class="form-control-label h5">CLO -2 </label>
+                    {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number #description of
+                    the clo") }}
+                    <br />
+                </div>
 
-            </fieldset>
-            {{ form.submit(class=" form-group btn btn-outline-primary") }}
+                <div class="w-100"></div>
+                <div class="col">
+                    <label class="form-control-label h5">CLO -3 </label>
+                    {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number #description of
+                    the clo") }}
+                    <br />
+                </div>
+                <br />
+                <div class="col">
+                    <label class="form-control-label h5">CLO -4 </label>
+                    {{ form.course_co(class ="form-control form-control-md",placeholder="like : clo-#serial-number #description of
+                    the clo") }}
+                    <br />
+                </div>
+                <br />
+            </div>
+            {#{ form.course_lessons.label(class = "custom-control-label") }#}
+            {#{ form.course_lessons(oninput='getValueTotalLesson()', class ="form-control form-control-md"
+            ,placeholder="Like: 1,2,5 or 6 (How many lessons do you have for this Course)") }#}
 
-        </form>
-    </section>
-    <!-- partial -->
-    <script type="text/javascript" src="{{ url_for('static',filename='add_remove.js') }}">
+            <div class="input-wrapper">
+                <label for="total_lessons" class="from-control-label h5"> Total Lessons :</label><br />
+                <input class="from-control form-control-lg" name="total_lesson[]" id="total_lessons" type="text" value="" placeholder="Name of the Lesson, please." />
+                <a href="javascript:void(0);" class="add-input" title="Add a another lesson">
+                    <img type="button" class="img-lesson btn-outline-light"
+                        src="{{ url_for('static',filename='img/plus.png') }}" /></a>
 
-    </script>
+            </div>
+
+
+        </fieldset>
+        {{ form.submit(class="form-group btn btn-outline-primary ") }}
+
+    </form>
+</section>
+<!-- partial -->
+<script type="text/javascript" src="{{ url_for('static',filename='add_remove.js') }}">
+
+</script>
 
 {% endblock body %}

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
 
     <!--Amar CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='starterTemplate.css') }}">
@@ -39,7 +41,8 @@
         margin: 3vh;
         position: relative;
         z-index: 50;
-        background-color: #e6ffff;
+        font-family: 'Poppins', sans-serif;
+        /*background-color: #e6ffff;*/
     }
 
     p {
@@ -58,7 +61,7 @@
     <div class="header" id="header">
     <img class="img-fluid" style="max-width: 10vh;" src="{{url_for('static',filename="img/Exam_logo.png")}}"/>
         <!--<img  class="img-fluid" src="{{url_for('static', filename= "Logo_of_Viqarunnisa_Noon_School_and_College.jpeg")}}"/>-->
-        <h1 style="background-color: #0d0d0d ,left :10rem";>Exams!! </h1><br />
+        <h1 style="background-color: #0d0d0d ,left:15rem";>Exams!! </h1><br />
         <div class="row justify-content-end">
             {% if current_user.is_authenticated %}
             {% if user_type == 'teacher' %}

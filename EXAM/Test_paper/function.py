@@ -217,7 +217,7 @@ def mcq_uploading_processing(get_form, corse_code):
     # print(op)
     if number_of_question:
         count = [1]
-        for i in range(int(number_of_question)):
+        for i in range(int(number_of_question)+1):
             # print(i)
             template_name_of_question = "question" + str(i)
             # print(question)
@@ -267,10 +267,11 @@ def mcq_uploading_processing(get_form, corse_code):
         # question_model.question_dictionary = mcq_question_dictionary
         # question_model.save()
         print("checking mcqUpload html Finished ")
-        """questions = request.form.getlist("question1")
-        print(questions)"""
-        """cookies = request.cookies
-            print(cookies)"""
+        flash(f"Uploaded Successfully", "success")
+        # """questions = request.form.getlist("question1")
+        # print(questions)"""
+        # """cookies = request.cookies
+        #     print(cookies)"""
 
 # ekhane machine learnibg er kaz baki ase
 # under construction

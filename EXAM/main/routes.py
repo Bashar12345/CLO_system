@@ -144,8 +144,7 @@ def create_course():
     if request.method == "POST":
         confirm = created_course_form_db_insertion(form, user_type)
         if confirm:
-            flash(
-                f'{confirm}! Course successfully created, and sended to Admin, for authorization', 'success')
+            flash(f'{confirm}! Course successfully created, and sended to Admin, for authorization', 'success')
             return redirect(url_for('main.view_courses'))
     return render_template('teacher/create_course.html', title='Create_course', form=form, user_type=user_type)
 

@@ -66,11 +66,13 @@ def login():
                     user_obj.e = usersd["email"]
                     session['email'] = usersd["email"]
                 elif usersd.user_category == "admin":
+                    session['email'] = ''
                     User_type.user_type = "admin"
                     user_obj.e = usersd["email"]
                     #session['email'] = usersd["email"]
                     
                 else:
+                    session['email'] = ''
                     User_type.user_type = "teacher"
                     user_obj.e = usersd["email"]
                 login_user(usersd, remember=form.remember.data)

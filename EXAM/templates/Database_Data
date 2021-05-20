@@ -342,10 +342,15 @@
 
 
 {
-   
+  
     "course_title" : "Data Algorithm",
     "course_code" : "ete251",
-    "course_co" : "32",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
     "course_lessons" : [ 
         "l-1 intro", 
         "l-2 requirement"
@@ -354,11 +359,17 @@
     "course_caption" : "testing"
 }
 
+
 {
    
     "course_title" : "Thesis and project",
     "course_code" : "eee951",
-    "course_co" : "32",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
     "course_lessons" : [ 
         "l-1 intro", 
         "l-2 requirement"
@@ -372,9 +383,14 @@
    
     "course_title" : "Thesis and project",
     "course_code" : "se451",
-    "course_co" : "32",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
     "course_lessons" : [ 
-         "l-1 intro", 
+        "l-1 intro", 
         "l-2 love", 
         "l-3 emotion", 
         "l-4 why", 
@@ -389,7 +405,12 @@
    
     "course_title" : "Data comunication",
     "course_code" : "swe351",
-    "course_co" : "32",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
     "course_lessons" : [ 
         "l-1 intro"
     ],
@@ -402,7 +423,12 @@
    
     "course_title" : "Introduction to Software",
     "course_code" : "swe231",
-    "course_co" : "32",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
     "course_lessons" : [ 
         "l-1 intro", 
         "l-1 intro"
@@ -413,16 +439,40 @@
 
 
 {
-   
+  
     "course_title" : "Thesis and project",
     "course_code" : "cse451",
-    "course_co" : "32",
+    "course_co" : [ 
+        "clo- 1 Know the knowledge of data Algorithm", 
+        "clo- 2 know the model of Database model", 
+        "clo- 3 know the concept of User-case diagram", 
+        ""
+    ],
     "course_lessons" : [ 
         "l-1 intro", 
         "er tezxf"
     ],
     "course_duration" : "2021-03-18",
     "course_caption" : "sfssd "
+}
+
+
+{
+    "course_title" : "some_test",
+    "course_code" : "swe234",
+    "course_co" : [ 
+        "ssdfb", 
+        "fgdfdfd", 
+        "gfhgfdgfd", 
+        "gfdhgfhgfh"
+    ],
+    "course_lessons" : [ 
+        "wrtefdhbsd", 
+        "njfhmjdfhjgdr", 
+        "hgfjhgtdn"
+    ],
+    "course_duration" : "2021-04-07",
+    "course_caption" : "sdf"
 }
 
 
