@@ -11,7 +11,9 @@ function load() {
     $("#btn_option").focus();
     $("#link_course_code").focus();
     $("#q_counter").focus();
-    $("#answer0").focus();
+
+    //$("#answer0").focus();
+
     $('#addQuestion').focus()
     //$("#options").focus();
     // for (q_count in $('#q_counter').attr('value')) {
@@ -89,23 +91,6 @@ function load() {
 
 
 
-    $("#answer0").change(function () {
-        var op = $("#answer0").val();
-        console.log(op);
-        var op_id = "#" + op
-        //console.log(op_id)
-        var field_value = document.getElementById(op).value;
-        console.log(field_value)
-        if (!field_value) {
-            alert("Option Should not Empty ");
-
-        }
-
-    });
-
-
-
-
 
     $("#total_questions_btn").click(function () {
         var inputTable = '';
@@ -155,6 +140,148 @@ function load() {
 
     });
 
+    $("#answer0").focus();
+    $("#answer1").focus();
+    $("#answer2").focus();
+    $("#answer3").focus();
+    $("#answer4").focus();
+    $("#answer5").focus();
+    $("#answer6").focus();
+    $("#answer7").focus();
+    $("#answer8").focus();
+    $("#answer9").focus();
+
+
+    $("#answer0").change(function () {
+        var op = $("#answer0").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer1").change(function () {
+        var op = $("#answer01").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer2").change(function () {
+        var op = $("#answer2").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer3").change(function () {
+        var op = $("#answer3").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer4").change(function () {
+        var op = $("#answer4").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer5").change(function () {
+        var op = $("#answer5").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer6").change(function () {
+        var op = $("#answer6").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer7").change(function () {
+        var op = $("#answer7").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer8").change(function () {
+        var op = $("#answer8").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
+    $("#answer9").change(function () {
+        var op = $("#answer9").val();
+        console.log(op);
+        var op_id = "#" + op
+        //console.log(op_id)
+        var field_value = document.getElementById(op).value;
+        console.log(field_value)
+        if (!field_value) {
+            alert("Option Should not Empty ");
+
+        }
+
+    });
 
 
 

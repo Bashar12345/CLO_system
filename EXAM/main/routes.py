@@ -12,7 +12,7 @@ from werkzeug.utils import secure_filename
 
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
-from EXAM.main.function import created_course_form_db_insertion, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses
+from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
@@ -60,6 +60,7 @@ main_page_count = 0
 @login_required
 def main_page():
     # ----------------------------------ekane teacher question evluate krbee
+    delete_exam_attened_exams()
     teacher_email_id = user_obj.e
     student_id = session['email']
 

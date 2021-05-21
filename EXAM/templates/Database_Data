@@ -641,6 +641,24 @@ db.mcq_question.insertMany([
     "enrolled_students_id" : "ayshakhatun@example.com"
 }
 
+
+#set_exam_question_slot
+
+{
+    "exam_title" : "quiz1",
+    "exam_course" : "Data Algorithm",
+    "exam_topic" : [ 
+        "Lesson-1 intro", 
+        "lesson-2 requirement", 
+        "Lesson-1 intro"
+    ],
+    "exam_start_time" : "15:56",
+    "exam_end_time" : "18:57",
+    "exam_date" : "2021-06-30"
+}
+
+
+
 #mcq Question bank
 
 {

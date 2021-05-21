@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-
+<div class="container">
     <div id="scroller" class="mb-3">
         <template id="post_template">
             <div class="card mb-3 animated fadeInRight shadow-sm">
@@ -13,7 +13,7 @@
     <!-- problem ase -->
                             <legend id="exam_title" class="h1"> Exam title:</legend>
                             <article>
-                                <p id="exam_course" class="h5"> Subject / course : </p>
+                                <p id="exam_course" class="h4"> Subject / course : </p>
                                 <p id="exam_date" class="h5"> Date : </p>
                                 <p id="exam_start_time" class="h5"> Start time: </p>
                                 <p id="exam_end_time" class="h5"> End time:</p>
@@ -33,7 +33,7 @@
         <div class="spinner-border" role="status"></div>
     </div>
 
-
+</div>
     <script type="text/javascript" src="{{ url_for('static', filename="pageScrolling.js") }}"
             crossorigin="anonymous"></script>
 

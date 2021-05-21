@@ -1,7 +1,7 @@
 import requests
 import json
 from flask import request, flash, session
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, mcqQuestion, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher, wrqQuestion
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher, wrqQuestion
 from EXAM.configaration import user_obj
 import random
 from EXAM.Test_paper.function import test_mcq_ML
@@ -12,6 +12,14 @@ def delete_temporary_model():
     collection.delete()
     print("deleted")
 
+def delete_exam_attened_exams():
+    exam_codes = marksheet.objects.only("exam_course", "exam_title")
+    for exam in exam_codes:
+        check_existends = set_exam_question_slot.objects(exam_course = exam.exam_course, exam_title = exam.exam_title).first()
+        if check_existends:
+            check_existends.delete()
+            print("Deleted")
+        print("course ", exam.exam_course," title ", exam.exam_title)
 
 def student_main_page(student_id):
     teachers_ids = list()

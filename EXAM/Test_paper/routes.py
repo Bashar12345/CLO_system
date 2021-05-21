@@ -376,8 +376,8 @@ def secret_code():
         # written_question = exam_written_question_paper.objects(exam_code=exam_code)
         check_attence = marksheet.objects(exam_code=exam_code).first()
         if check_attence:
-            flash(f"Re-Enter Exam code!!", "danger")
-            return redirect(url_for("main.main_page"))
+            flash(f"You already attend the Exam!!!!", "danger")
+            #return redirect(url_for("main.main_page"))
         session['exam_code']=exam_code
         mcq_question = exam_mcq_question_paper.objects.filter(
             exam_code=exam_code).first()
