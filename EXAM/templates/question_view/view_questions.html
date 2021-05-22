@@ -25,13 +25,13 @@
             </div>
         </div>
 
-{% set course_code,course_date=course_code.split("=") %}
+        {% set course_code,course_date=course_code.split("=") %}
 
     </header>
-    <legend style="margin-left: 5vh;">MCQ Questions Bank 
-        <small class="h6"  style="margin-left: 8vh;">{{ course_code }}</small> {#{course_date}#}
+    <legend style="margin-left: 5vh;">MCQ Questions Bank
+        <small class="h6" style="margin-left: 8vh;">{{ course_code }}</small> {#{course_date}#}
     </legend>
-    
+
 </div>
 
 
@@ -51,5 +51,65 @@
 
 
 {% endif %}
+
+{% if user_type == 'student' %}
+
+
+<section class="body container">
+    <div class=" text-center container ">
+        <div class="header text-warning">
+            <h2>{{course_data.course_title}}</h2>
+        </div>
+        <p class="title text-info">
+            <br />
+            <legend>Code: "{{course_data.course_code}}" </legend>
+
+        </p>
+        <div class="body container">
+
+            <div class="text">
+                <legend>Course Outcome</legend>
+                
+                {%for course_co in course_data.course_co %}
+
+                <div class=" tr text-center">
+                    {{course_co}}
+                </div>
+                {%endfor%}
+                <br />
+                <legend> Lessons </legend>
+                
+                {%for course_lesson in course_data.course_lessons %}
+                
+                <div class="tr text-center">
+                    {{course_lesson}}
+
+                </div>
+                {%endfor%}
+
+                <div class="text">
+                    <article>
+                        <br />
+                        <legend>Description</legend>
+                        
+                        {{course_data.course_caption}}
+                    </article>
+                    <br>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer text-warning">
+            <legend>Expire Date</legend>
+            {{course_data.course_duration}}
+        </div>
+    </div>
+</section>
+
+
+{% endif %}
+
+
 
 {% endblock body %}

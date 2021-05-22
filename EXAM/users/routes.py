@@ -172,8 +172,9 @@ def create_notice():
 @login_required
 def examiner():
     # kaz ase -=---------------------------------------------------
+    notices = admin_notice_model.objects().order_by("-notice_time")
     return render_template(
-        "examiner.html", title="Examiner_Page", user_type=User_type.user_type)
+        "examiner.html", title="Examiner_Page", notices=notices, user_type=User_type.user_type)
 
 
 @users.route("/student_list/<course_code>", methods=["GET", "POST"])

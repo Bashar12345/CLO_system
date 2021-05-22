@@ -76,7 +76,6 @@ def main_page():
             enroll_students(eroll_key, User_type.user_type)
         exam_results = marksheet.objects(student_email=student_id)
 
-
         return render_template('main_page.html', latest_posts_from_teacher=todays_post, exam_results=exam_results, context=context, title='main_page', user_type=User_type.user_type)
 
     if User_type.user_type == 'teacher':  # ------------------------------------------------TEACHER
@@ -148,7 +147,8 @@ def create_course():
     if request.method == "POST":
         confirm = created_course_form_db_insertion(form, user_type)
         if confirm:
-            flash(f'{confirm}! Course successfully created, and sended to Admin, for authorization', 'success')
+            flash(
+                f'{confirm}! Course successfully created, and sended to Admin, for authorization', 'success')
             return redirect(url_for('main.view_courses'))
     return render_template('teacher/create_course.html', title='Create_course', form=form, user_type=user_type)
 
@@ -225,10 +225,15 @@ def view_course_load_data():
 @ main.route('/question_view/<course_code>', methods=['GET', 'POST'])
 @ login_required
 def question_view(course_code):
+    course_data=''
     print(course_code)
-    # course_code,course_date=course_code.split("=")
-    # print(course_code,"  DAte",course_date)
-    #course_data = teacher_created_courses_model.objects().
+    if User_type.user_type == 'student':
+
+        course_code, course_date = course_code.split("=")
+        print(course_code, "  DAte", course_date)
+
+        course_data = course_model.objects(
+            course_code=course_code, course_duration=course_date).first()
     # questions = []
     # if request.args:
     # course_code = request.args.get("course_code")
@@ -238,7 +243,7 @@ def question_view(course_code):
     #         course_code=course_code):
     #     questions = i.question
     # print(questions)
-    return render_template('question_view/view_questions.html', title='question_view', user_type=User_type.user_type, course_code=course_code, mcqQuestion=mcqQuestion)
+    return render_template('question_view/view_questions.html', title='question_view', user_type=User_type.user_type, course_code=course_code, course_data=course_data, mcqQuestion=mcqQuestion)
 
 
 @ main.route('/dashboard')
@@ -299,9 +304,9 @@ def course_assigned_students():
                     # print(student.student_registered_id)
                     if student.student_registered_id not in user_emails_total:
                         user_emails_total.append(student.student_registered_id)
-                    
+
                     # print("matched")
-    #print(user_emails_total)
+    # print(user_emails_total)
     for user in user_emails_total:
         for user_s in user_student.objects(email=user):
             # print(user_s.user_name)

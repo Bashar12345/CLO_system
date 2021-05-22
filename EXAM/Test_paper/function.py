@@ -324,10 +324,12 @@ def generate_question(get_form, corse_code):
     exam_marks = request.form.getlist("marks")
     print(exam_topic, " --", exam_CLO, " --",
           complex_level, " --", number_of_question, " --")
+    print(course_code)
+    course_code, course_date = course_code.split("=")
 
     courses = course_model.objects(course_code=course_code).first()
     check_existing_slot = set_exam_question_slot.objects(
-        exam_title=exam_title, exam_course=courses.course_title, exam_topic=exam_topic)
+        exam_title=exam_title, exam_topic=exam_topic, exam_course=courses.course_title)
     if check_existing_slot:
         flash(f"Already generated a exam slot!!!!!", "warning") 
     else:

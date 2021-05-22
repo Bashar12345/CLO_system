@@ -5,26 +5,29 @@
         <template id="post_template">
             <div class="card mb-3 animated fadeInRight shadow-sm">
 
-                <body class="content">
-                <div class="align-content-lg-center" style="background-color:#E8E8E8;">
-                    <content class=" btn btn-group-horizental-lg btn-block">
+                <!-- <body class="content"> -->
+                <div class="card-body align-content-lg-center" style="background-color:#E8E8E8;">
+                    <!-- <content class=" btn text-white btn-group-horizental-lg btn-block"> -->
 <button class="btn btn-group-horizental-lg btn-lg btn-block" onclick="window.location.href='{{ url_for('Test_paper.secret_code') }}';" style="background-color:#b1dfbb;">
 
     <!-- problem ase -->
-                            <legend id="exam_title" class="h1"> Exam title:</legend>
-                            <article>
-                                <p id="exam_course" class="h4"> Subject / course : </p>
-                                <p id="exam_date" class="h5"> Date : </p>
-                                <p id="exam_start_time" class="h5"> Start time: </p>
-                                <p id="exam_end_time" class="h5"> End time:</p>
+                            <div id="exam_title" class="h1 card-title"> Exam title:</div>
+                            <div class="card-body">
+<p id="exam_course" class="h4"> Subject / course : </p>
+<p id="exam_date" class="h5"> Date : </p>
+<p id="exam_start_time" class="h5"> Start time: </p>
+<p id="exam_end_time" class="h5"> End time:</p>
+
+                            </div>
+                            
                                 Attend The exam
-                            </article>
+                            
 
                         </button>
 
-                    </content>
+                    <!-- </content> -->
                 </div>
-                </body>
+                <!-- </body> -->
             </div>
         </template>
     </div>
