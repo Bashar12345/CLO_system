@@ -1,11 +1,11 @@
 from flask.wrappers import Response
 from EXAM import bcrypt
-from flask import render_template, request, redirect, url_for, flash, Blueprint,session
+from flask import render_template, request, redirect, url_for, flash, Blueprint, session
 from flask_login import current_user, logout_user, login_required, login_user
 
 from EXAM import bcrypt
 from EXAM.configaration import User_type, user_obj
-from EXAM.model import course_model, enrol_students_model, student_courses_model, temp_student_collection, temporary_model, user, user_student
+from EXAM.model import admin_notice_model, course_model, enrol_students_model, student_courses_model, temp_student_collection, temporary_model, user, user_student
 from EXAM.users.forms import (
     enrolForm,
     registration_form,
@@ -20,6 +20,7 @@ from EXAM.users.utils import (
     sending_mail_to_user_for_course_enroll_key, delete_temporary_collection
 )
 import time
+import datetime
 
 users = Blueprint("users", __name__)
 
@@ -74,7 +75,7 @@ def login():
                     session['email'] = ''
                     User_type.user_type = "teacher"
                     user_obj.e = usersd["email"]
-                    session['course_date'] =''
+                    session['course_date'] = ''
                 login_user(usersd, remember=form.remember.data)
                 next_page = request.args.get("next")
                 # return check
@@ -87,11 +88,11 @@ def login():
                         else redirect(url_for("main.admin"))
                     )
                 else:
-                 return (
-                    redirect(next_page)
-                    if next_page
-                    else redirect(url_for("main.main_page"))
-                )
+                    return (
+                        redirect(next_page)
+                        if next_page
+                        else redirect(url_for("main.main_page"))
+                    )
                 # return check
             else:
                 flash(f"Login Unsuccessful !!!", "danger")
@@ -149,9 +150,28 @@ def reset_token(token):
     )
 
 
+@users.route("/create_notice", methods=(["GET", "POST"]))
+@login_required
+def create_notice():
+    notice_title = request.form.get('title')
+    notice_announcement = request.form.get('announcement')
+    notice_time = datetime.datetime.now()
+    if request.method == "POST":
+        if notice_title:
+            upload_notice = admin_notice_model()
+            upload_notice.notice_title = notice_title
+            upload_notice.notice_announcement = notice_announcement
+            upload_notice.notice_time = notice_time
+            upload_notice.save()
+
+    return render_template(
+        "admin_notice.html", title="Examiner_Page", user_type=User_type.user_type)
+
+
 @users.route("/examiner")
 @login_required
 def examiner():
+    # kaz ase -=---------------------------------------------------
     return render_template(
         "examiner.html", title="Examiner_Page", user_type=User_type.user_type)
 
@@ -160,7 +180,7 @@ def examiner():
 # @login_required
 def student_list(course_code):
     form = searchForm()
-    students=''
+    students = ''
     selected_data = ""
     result_students = ""
     print(course_code)
@@ -208,6 +228,7 @@ def student_list(course_code):
         students=students,
         course_code=course_code,
     )
+
 
 # '''if request.args:
 #    c = request.args.get('c')

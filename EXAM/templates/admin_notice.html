@@ -1,0 +1,33 @@
+{%extends "layout.html"%}
+{%block body%}
+
+
+<section class="container">
+    <form class=" container" action="" method="POST" enctype="multipart/form-data">
+
+        <legend class="card-header">
+            Notice For Fellow Teacher....
+        </legend>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="title" class="custom-control-label"> Notice Title</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+
+            <div class="form-group">
+                <label for="announcement" class="custom-control-label">Notice </label>
+                <textarea type="textarea" class="form-control" rows="10" cols="50" id="announcement" name="announcement">
+             </textarea>
+            </div>
+        </div>
+
+
+        <div class="card-footer" style="top: 3vh;">
+            <button class="btn btn-info" type="submit"> Post The Notice!</button>
+        </div>
+    </form>
+
+</section>
+
+
+{%endblock body%}

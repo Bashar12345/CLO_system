@@ -93,6 +93,13 @@
                 <a class="nav-link" href="{{ url_for('main.main_page') }}">Home <span class="sr-only">(current)</span></a>
             </li>
 
+            {% if user_type == 'admin' %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('users.create_notice') }}">
+                    <b>Notices</b></a>
+            </li>
+            {% endif %}
+
             {% if user_type == 'teacher' %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('main.create_course') }}"><b>Create-Course</b></a>
@@ -101,7 +108,7 @@
                 <a class="nav-link" href="{{ url_for('main.view_courses') }}"><b>View-courses</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}"><b>My-course-Students</b></a>
+                <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}"><b>My-Students</b></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('users.examiner') }}"><b>Examiner</b></a>

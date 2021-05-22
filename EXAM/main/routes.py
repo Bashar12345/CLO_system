@@ -284,7 +284,7 @@ def exam_slot_load():
 @ main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
 @ login_required
 def course_assigned_students():
-    user_total = list()
+    user_emails_total = list()
     students_name = list()
     usered = user_obj.e
     students = student_courses_model.objects()
@@ -297,17 +297,18 @@ def course_assigned_students():
                 if teacher.course_code == enrolled.course_code and \
                         student.course_code == enrolled.course_code:
                     # print(student.student_registered_id)
-                    if student.student_registered_id not in user_total:
-                        user_total.append(student.student_registered_id)
+                    if student.student_registered_id not in user_emails_total:
+                        user_emails_total.append(student.student_registered_id)
+                    
                     # print("matched")
-    print(user_total)
-    for user in user_total:
+    #print(user_emails_total)
+    for user in user_emails_total:
         for user_s in user_student.objects(email=user):
             # print(user_s.user_name)
             if user_s.user_name not in students_name:
                 students_name.append(user_s.user_name)
     print(students_name)
-    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_total=user_total, students_name=students_name, iter=itertools)
+    return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_emails_total=user_emails_total, students_name=students_name, iter=itertools)
 
 
 @ main.route('/loading_students')

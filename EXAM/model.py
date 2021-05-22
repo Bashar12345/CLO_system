@@ -75,6 +75,14 @@ class teacher_posts_model (nosql.Document):
     announcement = nosql.StringField()
     Date = nosql.DateTimeField()
 
+
+class admin_notice_model(nosql.Document):
+    notice_title = nosql.StringField()
+    notice_announcement = nosql.StringField()
+    notice_time = nosql.DateTimeField()
+    
+
+
 class marksheet(nosql.Document):
     #student_id = nosql.StringField()
     exam_code = nosql.StringField()
