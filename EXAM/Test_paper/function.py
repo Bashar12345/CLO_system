@@ -210,14 +210,14 @@ def mcq_uploading_processing(get_form, corse_code):
     Complexity_label = request.form.get("complex_level")
     quesCLO = form.clo.data  # request.form.get("clo")  # CLO
     number_of_question = request.form.get("total_questions")
-    print(number_of_question)
+    print("Total question submited ",number_of_question)
     # op = request.form.get("options")  # number of option
     # print(type(op))  #options per question
     # length = 0
     # print(op)
     if number_of_question:
         count = [1]
-        for i in range(int(number_of_question)+1):
+        for i in range(int(number_of_question)):
             # print(i)
             template_name_of_question = "question" + str(i)
             # print(question)

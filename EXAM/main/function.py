@@ -120,8 +120,8 @@ def enroll_students(eroll_ki, user_type):
 
 def teacher_view_courses(user):
     delete_temporary_model()
-    teacher_registered_id = user_teacher.objects.get_or_404(email=user)
-    if teacher_registered_id:
+    teacher_registered = user_teacher.objects.get_or_404(email=user)
+    if teacher_registered:
         courses = teacher_created_courses_model.objects(
             teacher_registered_id=user)
         for i in courses:
@@ -139,8 +139,8 @@ def teacher_view_courses(user):
 
 def student_view_courses(user):
     delete_temporary_model()
-    student_registered_id = user_student.objects(email=user).first()
-    if student_registered_id:
+    student_registered = user_student.objects(email=user).first()
+    if student_registered:
         courses = student_courses_model.objects(
             student_registered_id=user)
         for i in courses:
@@ -158,6 +158,7 @@ def student_view_courses(user):
 
 def created_course_form_db_insertion(get_form, user_type):
     form = get_form
+    user=user_obj.e
     course_code = form.course_code.data
     course_title = form.course_title.data
     course_co = request.form.getlist('course_co')
@@ -167,10 +168,14 @@ def created_course_form_db_insertion(get_form, user_type):
     t = form.course_duration.data
     course_duration = t.strftime('%Y-%m-%d')
     course_caption = request.form.get('Note:captions')
+
     check_existed_course = course_model.objects(
         course_code=course_code, course_title=course_title).first()
-    if check_existed_course:
-        flash(f"Already exist this Course, please Change the 'Course title' or 'Course code' ", "danger")
+
+    check_course_created_by_this_teacher_before = teacher_created_courses_model.objects(course_code=course_code, course_title=course_title,teacher_registered_id=user).first()
+
+    if check_existed_course and check_course_created_by_this_teacher_before:
+        flash(f" Have You created this course before?, Already exist this Course, please Change the 'Course title' or 'Course code' ", "danger")
     else:
         course_register = teacher_created_courses_model()
         course_register.user_type = user_type

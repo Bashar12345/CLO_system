@@ -93,7 +93,7 @@ class mcqQuestion(nosql.Document):
     question=nosql.StringField()
     q_answer= nosql.StringField()
     q_mark=nosql.IntField()
-    question_dictionary = nosql.DictField(check_keys=False)
+    question_dictionary = nosql.DictField(default=dict)
     list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
 
     # def __repr__(self):

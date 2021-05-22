@@ -81,7 +81,7 @@ function load() {
 
 
     // });
-    var q_counter = 0;
+    var q_counter = 1;
     console.log(q_counter)
     var count = 1
     var op_count = 5
@@ -140,16 +140,6 @@ function load() {
 
     });
 
-    $("#answer0").focus();
-    $("#answer1").focus();
-    $("#answer2").focus();
-    $("#answer3").focus();
-    $("#answer4").focus();
-    $("#answer5").focus();
-    $("#answer6").focus();
-    $("#answer7").focus();
-    $("#answer8").focus();
-    $("#answer9").focus();
 
 
     $("#answer0").change(function () {
@@ -166,11 +156,11 @@ function load() {
 
     });
     $("#answer1").change(function () {
-        var op = $("#answer01").val();
+        op = $("#answer1").val();
         console.log(op);
-        var op_id = "#" + op
+        op_id = "#" + op
         //console.log(op_id)
-        var field_value = document.getElementById(op).value;
+        field_value = document.getElementById(op).value;
         console.log(field_value)
         if (!field_value) {
             alert("Option Should not Empty ");

@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 {{ form.course_title.label(class = "form-control-label h5 ") }}
-                {{ form.course_title(class="form-control form-control",placeholder='(Dont give "#,$,@,&" these caracters)') }}
+                {{ form.course_title(class="form-control form-control",placeholder='(Dont give "#,$,@,&" these caracters) like: Summer 2021_SWE122') }}
 
             </div>
             <div class="form-group">
@@ -65,7 +65,7 @@
                 </div>
                 {% else %}
                 <div class="input-group mb-3">
-                    {{ form.course_code(class ="form-control",placeholder="like : SWE431 ") }}
+                    {{ form.course_code(class ="form-control",placeholder="like : SWE431") }}
                 </div>
                 {% endif %}
             </div>

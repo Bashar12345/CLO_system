@@ -25,10 +25,11 @@
             </div>
         </div>
 
+{% set course_code,course_date=course_code.split("=") %}
 
     </header>
     <legend style="margin-left: 5vh;">MCQ Questions Bank 
-        <small class="h6"  style="margin-left: 8vh;">{{ course_code }}</small>
+        <small class="h6"  style="margin-left: 8vh;">{{ course_code }}</small> {#{course_date}#}
     </legend>
     
 </section>

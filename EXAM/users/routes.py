@@ -74,6 +74,7 @@ def login():
                     session['email'] = ''
                     User_type.user_type = "teacher"
                     user_obj.e = usersd["email"]
+                    session['course_date'] =''
                 login_user(usersd, remember=form.remember.data)
                 next_page = request.args.get("next")
                 # return check

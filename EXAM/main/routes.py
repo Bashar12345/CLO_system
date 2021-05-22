@@ -190,7 +190,7 @@ def view_course_load_data():
             if counter == 0:
                 print(" first 5 ")
                 response_to_browser = make_response(
-                    jsonify(temporary_model.objects[:per_scrolling].order_by('course_title')))
+                    jsonify(temporary_model.objects[:per_scrolling]))
                 print(response_to_browser)
             elif counter == len(temporary_model.objects()):
                 response_to_browser = make_response(jsonify({}), 200)
@@ -207,7 +207,7 @@ def view_course_load_data():
                 if counter == 0:
                     print(" first 5 ")
                     response_to_browser = make_response(
-                        jsonify(temporary_model.objects[:per_scrolling].order_by('course_title')))
+                        jsonify(temporary_model.objects[:per_scrolling]))
                     print(response_to_browser)
                 elif counter == len(temporary_model.objects()):
                     response_to_browser = make_response(jsonify({}), 200)
@@ -225,7 +225,10 @@ def view_course_load_data():
 @ main.route('/question_view/<course_code>', methods=['GET', 'POST'])
 @ login_required
 def question_view(course_code):
-    # print(course_code)
+    print(course_code)
+    # course_code,course_date=course_code.split("=")
+    # print(course_code,"  DAte",course_date)
+    #course_data = teacher_created_courses_model.objects().
     # questions = []
     # if request.args:
     # course_code = request.args.get("course_code")
