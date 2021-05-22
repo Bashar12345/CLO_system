@@ -7,7 +7,7 @@
     <form class="form-horizontal" method="POST" action="{{url_for('Test_paper.generateMCQ',course_code=course_code)}}"
         enctype="multipart/form-data">
 
-
+{% set course_code,course_date=course_code.split("=") %}
         <header id="linked_course_code" value="{{course_code}}">
             <h2>
 
