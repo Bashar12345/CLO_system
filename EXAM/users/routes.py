@@ -184,7 +184,9 @@ def student_list(course_code):
     students = ''
     selected_data = ""
     result_students = ""
-    print(course_code)
+    course_code, course_date = course_code.split("=")
+    print(course_code, "  DAte", course_date)
+    #print(course_code)
     corse_code = course_code
     check = ""
     # students=''
