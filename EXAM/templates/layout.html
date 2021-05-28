@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -54,6 +56,19 @@
     footer {
         position: relative;
     }
+    .nav-link {
+            color: green;
+        }
+  
+        .nav-item>a:hover {
+            color: green;
+        }
+  
+        /*code to change background color*/
+        .navbar-nav>.active>a {
+            background-color: #C0C0C0;
+            color: green;
+        }
 </style>
 
 <!-- Here the header part start  -->
@@ -79,7 +94,7 @@
     </div>
 </header>
 <!-- Navigation  NAVVVVVVVVVVVVVVV part start  -->
-<nav class="navbar navbar-expand-lg navbar-light bg-transparent active">
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: hsla(0, 0%, 100%, 0.518);">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
         aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -87,6 +102,7 @@
     <a class="navbar-brand" href="{{ url_for('main.index') }}">
         <img class="img-fluid" style="max-width: 3vh;" src="{{url_for('static',filename="img/Exam_logo.png")}}"/>
     </a>
+    
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
@@ -96,42 +112,44 @@
             {% if user_type == 'admin' %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('users.create_notice') }}">
-                    <b>Notices</b></a>
+                    Notices</a>
             </li>
             {% endif %}
 
             {% if user_type == 'teacher' %}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.create_course') }}"><b>Create-Course</b></a>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('main.create_course') }}">Create-Course</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('main.view_courses') }}">View-courses</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}">My-Students</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.view_courses') }}"><b>View-courses</b></a>
+                <a class="nav-link" href="{{ url_for('users.examiner') }}">Examiner</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}"><b>My-Students</b></a>
+                <a class="nav-link" href="{{ url_for('main.guildLineForTeacher') }}">Teacher-guildLine</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('users.examiner') }}"><b>Examiner</b></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.guildLineForTeacher') }}"><b>Teacher-guildLine</b></a>
-            </li>
+            
             {% endif %}
             {% if user_type == 'student' %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.student_dashboard') }}"><b>Exam-Schedule</b></a>
+                <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">Exam-Schedule</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.view_courses') }}"><b>Enrolled-Courses</b></a>
+                <a class="nav-link" href="{{ url_for('main.view_courses') }}">Enrolled-Courses</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}"><b>Practice(under construction)</b></a>
+                <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}">Test your knowledge</a>
             </li> 
+            {% endif %}
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
             </li>
-            {% endif %}
+            
         </ul>
         <!--<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -187,6 +205,7 @@ function enrol(){
 </script>-->
 
 
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
         defer></script>
@@ -198,7 +217,19 @@ function enrol(){
         defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script-->
+<script>
+    $(document).ready(function () {
 
+        $('ul.navbar-nav > li')
+            .click(function () {
+                $('ul.navbar-nav > li')
+                    .removeClass('active text-light');
+                $(this).addClass('active  text-light');
+            });
+
+        
+    });
+</script>
 
 </body>
 

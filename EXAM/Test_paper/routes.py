@@ -601,10 +601,7 @@ def answer_session():
 #     return response_to_browser
 
 
-selectd_answers = list()
-correct_answers = list()
-corrected = 0
-answer_count = 1
+
 
 
 @Test_paper.route("/model_test", methods=["GET", "POST"])
@@ -614,9 +611,6 @@ def model_test():
     if request.method == "POST":
         count = 0
         total_question = 15
-        global correct_answers
-        global corrected
-        global selectd_answers
 
         course_code = request.form.get("course_code")
         difficulty = request.form.get("question_difficulty")
@@ -633,6 +627,13 @@ def model_test():
         "student/model_test.html", post_count=post_count, title="MCQ_Model_Test", user_type=User_type.user_type)  # question_part=question_part,  option_list=shuffled_option_list,
 
 
+selectd_answers = list()
+correct_answers = list()
+corrected = 0
+answer_count = 1
+
+
+
 @Test_paper.route("/model_test_answer_session", methods=["GET", "POST"])
 @login_required
 def model_test_answer_session():
@@ -640,6 +641,7 @@ def model_test_answer_session():
     global correct_answers
     global corrected
     global selectd_answers
+    global answer_count
     title_count = 1
     count = session['count']
     total_question = session['total_question']
@@ -700,6 +702,7 @@ def model_test_answer_session():
         total_score.get_score = corrected
         total_score.save()
         title_count += 1
+        print("answer saved")
     total = total_question  # session['total_question']
 
     return render_template("mcq/model_test_answer_session.html", question_part=question_part,  option_list=shuffled_option_list, title="Model_test_answer", form=form, user_type=User_type.user_type)
