@@ -122,24 +122,24 @@ def main_page():
     return render_template('main_page.html', title='main_page', user_type=User_type.user_type)
 
 
-@ main.route('/take_a_tour')
+@main.route('/take_a_tour')
 def take_a_tour():
     return render_template('views/take_a_tour.html', title='main_page', user_type=User_type.user_type)
 
 
-@ main.route('/guideline')
+@main.route('/guideline')
 def guideline():
     return render_template('guideline.html', title='guideline_Page', user_type=User_type.user_type)
 
 
-@ main.route('/guildLineForTeacher')
-@ login_required
+@main.route('/guildLineForTeacher')
+@login_required
 def guildLineForTeacher():
     return render_template('teacher/guildLineForTeacher.html', title='Teacher_guildline', user_type=User_type.user_type)
 
 
-@ main.route('/create_course', methods=['GET', 'POST'])
-@ login_required
+@main.route('/create_course', methods=['GET', 'POST'])
+@login_required
 def create_course():
     lessons_len = ''
     form = create_course_form()
@@ -154,8 +154,8 @@ def create_course():
 
 
 # javascript kora
-@ main.route('/view_courses', methods=['GET', 'POST'])
-@ login_required
+@main.route('/view_courses', methods=['GET', 'POST'])
+@login_required
 def view_courses():
     user_type = User_type.user_type
     usered = user_obj.e  # _P__alias
@@ -168,8 +168,8 @@ def view_courses():
         return render_template('views/view_courses.html', title='View courses', user_type=user_type)
 
 
-@ main.route('/view_course_load_data')
-@ login_required
+@main.route('/view_course_load_data')
+@login_required
 def view_course_load_data():
     time.sleep(0.2)
 
@@ -222,8 +222,8 @@ def view_course_load_data():
     return response_to_browser
 
 
-@ main.route('/question_view/<course_code>', methods=['GET', 'POST'])
-@ login_required
+@main.route('/question_view/<course_code>', methods=['GET', 'POST'])
+@login_required
 def question_view(course_code):
     course_data=''
     print(course_code)
@@ -253,8 +253,8 @@ def student_dashboard():
     return render_template('dashboard.html', title='Recent Exams', user_type=User_type.user_type)
 
 
-@ main.route('/exam_slot_load')
-@ login_required
+@main.route('/exam_slot_load')
+@login_required
 def exam_slot_load():
     time.sleep(0.2)
 
@@ -286,8 +286,8 @@ def exam_slot_load():
     return response_to_browser
 
 
-@ main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
-@ login_required
+@main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
+@login_required
 def course_assigned_students():
     user_emails_total = list()
     students_name = list()
