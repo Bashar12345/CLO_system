@@ -316,6 +316,24 @@ def course_assigned_students():
     return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_emails_total=user_emails_total, students_name=students_name, iter=itertools)
 
 
+
+
+@main.route('/course_exams/<course_code>',methods=['GET','POST'])
+#@login_required
+def course_exams(course_code):
+    course_code, course_date = course_code.split("=")
+    print(course_code, "  DAte", course_date)
+
+
+    return render_template('question_view/exams_view.html', title='Course Exams',course_code=course_code, user_type=User_type.user_type)
+
+
+
+
+
+
+
+
 @ main.route('/loading_students')
 # @login_required
 def loading_students():

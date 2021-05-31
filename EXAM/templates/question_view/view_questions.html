@@ -9,20 +9,25 @@
 <div class="shadow-lg btn-group-horizontal">
     {#{ form.hidden_tag() }#}
     <header>
-        <div class="row justify-content-end flex-wrap">
+        <div class="row justify-content-end flex-wrap text-center"> 
             <div class="col-3">
                 <a href="{{ url_for('Test_paper.mcq_upload',course_code=course_code) }}" class="btn btn-primary btn-block"
                     role="button" aria-pressed="true">Upload new Question</a>
             </div>
             <div class="col-2">
-                <a href="{{ url_for('Test_paper.generateMCQ',course_code=course_code) }}" class="btn btn-primary" role="button"
+                <a href="{{ url_for('Test_paper.generateMCQ',course_code=course_code) }}" class="btn btn-primary " role="button"
                     aria-pressed="true">Generate Question </a>
             </div>
             <!--  <a href="{#{ url_for('main.Lessons')}#}" class="btn btn-secondary " role="button"aria-pressed="true">Add lessons</a>-->
-            <div class="col-2">
-                <a href="{{ url_for('users.student_list',course_code=course_code ) }}" class="btn btn-primary" role="button"
-                    aria-pressed="true">Students</a>
+            <div class="col-2 ">
+                <a href="{{ url_for('main.course_exams',course_code=course_code ) }}" class="btn btn-primary " role="button"
+                    aria-pressed="true">View regular performence</a>
             </div>
+            <div class="col-2 ">
+                <a href="{{ url_for('users.student_list',course_code=course_code ) }}" class="btn btn-primary " role="button"
+                    aria-pressed="true">All Students</a>
+            </div>
+           
         </div>
 
         {% set course_code,course_date=course_code.split("=") %}
