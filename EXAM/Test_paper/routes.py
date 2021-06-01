@@ -27,7 +27,7 @@ from EXAM.Test_paper.forms import (
 )
 from EXAM.Test_paper.function import answer_submit, generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
-from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, required_for_generate, teacher_created_courses_model
+from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, teacher_created_courses_model
 from flask.templating import render_template_string
 
 """@Test_paper.route('/')
@@ -386,7 +386,7 @@ def secret_code():
         check_attence = marksheet.objects(exam_code=exam_code).first()
         if check_attence:
             flash(f"You already attend the Exam!!!!", "danger")
-            #return redirect(url_for("main.main_page"))
+            return redirect(url_for("main.main_page"))
         session['exam_code']=exam_code
         mcq_question = exam_mcq_question_paper.objects.filter(
             exam_code=exam_code).first()
@@ -567,6 +567,7 @@ def answer_session():
     session['count'] = count+1
     # print(session['count'])
     # session['count'] # session['session_question']):
+    print(len(session['session_question']))
     if answer_count == len(session['session_question']):
         #print("correct --------", correct_answers)
         #print("selected ----------", selectd_answers)
@@ -583,6 +584,11 @@ def answer_session():
         total_score.exam_title = exam_title        # session['exam_title']
         total_score.get_score = corrected
         total_score.save()
+        answer_paper = mcq_answer_paper()
+        answer_paper.email=user_obj.e
+        answer_paper.question_dictionart_type_list = session_question #session['session_question']
+        answer_paper.selected_answer_options = selectd_answers
+        answer_paper.save()
     
     total = total_question  # session['total_question']
 

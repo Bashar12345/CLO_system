@@ -266,8 +266,9 @@ class mcq_answer_paper(nosql.Document):
     organization_id = user.organization_id
     email = user.email
     # photo = user.profile_pic
-    question_dictionary = nosql.ListField()
+    question_dictionary_type_list = nosql.ListField()
     answer = nosql.DictField(default={"none": "none"})
+    selected_answer_options =nosql.ListField()
 
 
 class student_attendence(nosql.Document):

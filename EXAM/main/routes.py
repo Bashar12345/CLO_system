@@ -12,9 +12,10 @@ from werkzeug.utils import secure_filename
 
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
-from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses
+from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses, delete_old_question_requirements
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, records_of_course_exams, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
 from EXAM.users.utils import delete_temporary_collection, remove_junk
+
 
 
 main = Blueprint('main', __name__)
@@ -61,6 +62,7 @@ main_page_count = 0
 def main_page():
     # ----------------------------------ekane teacher question evluate krbee
     delete_exam_attened_exams()
+    delete_old_question_requirements()
     teacher_email_id = user_obj.e
     student_id = session['email']
 
@@ -250,40 +252,16 @@ def question_view(course_code):
 @ login_required
 def student_dashboard():
     remove_junk()
-    return render_template('dashboard.html', title='Recent Exams', user_type=User_type.user_type)
-
-
-@main.route('/exam_slot_load')
-@login_required
-def exam_slot_load():
-    time.sleep(0.2)
-
-    response_to_browser = ""
-    per_scrolling = int(5)
-    counter = 0
     datalist = []
-    # print(len(set_exam_question_slot.objects()))
+    course_code_list =[]
+    student_email = user_obj.e
+    for i in enrol_students_model.objects(enrolled_students_id=student_email):
+        if i.course_code not in course_code_list:
+            course_code_list.append(i.course_code)
+        
+    return render_template('dashboard.html', course_code_list=course_code_list, set_exam_question_slot=set_exam_question_slot,title='Recent Exams', user_type=User_type.user_type)
 
-    if request.args:
-        counter = int(request.args.get('c'))
 
-        if counter == 0:
-            print(" first 5 ")
-            response_to_browser = make_response(
-                jsonify(set_exam_question_slot.objects[:per_scrolling].order_by('exam_date')))
-            print(response_to_browser)
-
-        elif counter == len(set_exam_question_slot.objects()):
-            response_to_browser = make_response(jsonify({}), 200)
-            print(response_to_browser)
-            print("no more Schedule")
-        else:
-            response_to_browser = make_response(
-                jsonify(set_exam_question_slot.objects[counter:counter + per_scrolling]))
-            print(f"{counter} to {counter + per_scrolling}")
-            print(response_to_browser)
-
-    return response_to_browser
 
 
 @main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
@@ -323,14 +301,17 @@ def course_assigned_students():
 def course_exams(course_code):
     course_code, course_date = course_code.split("=")
     print(course_code, "  DAte", course_date)
-    passed_course_exams=records_of_course_exams(course_code=course_code)
+    passed_course_exams = records_of_course_exams(
+        course_code=course_code).order_by("entry_date")
 
     return render_template('question_view/exams_view.html', title='Course Exams', course_code=course_code, passed_course_exams=passed_course_exams, user_type=User_type.user_type)
 
 
+@main.route('/course_exams_students/<link_info>', methods=['GET', 'POST'])
+#@login_required
+def course_exams_students(link_info):
 
-
-
+    return render_template('question_view/students_of_exam_slots.html.html', title='Exams Attened_Students', user_type=User_type.user_type)
 
 
 
@@ -338,3 +319,40 @@ def course_exams(course_code):
 # @login_required
 def loading_students():
     pass
+
+
+
+
+# @main.route('/exam_slot_load')
+# @login_required
+# def exam_slot_load():
+#     time.sleep(0.2)
+
+#     response_to_browser = ""
+#     per_scrolling = int(5)
+#     counter = 0
+#     datalist = []
+#     student_email = user_obj.e
+#     enrol_students_model.objects(enrolled_students_id=student_email)
+#     # print(len(set_exam_question_slot.objects()))
+
+#     if request.args:
+#         counter = int(request.args.get('c'))
+
+#         if counter == 0:
+#             print(" first 5 ")
+#             response_to_browser = make_response(
+#                 jsonify(set_exam_question_slot.objects[:per_scrolling].filter_by())) #.order_by('exam_date')))
+#             print(response_to_browser)
+
+#         elif counter == len(set_exam_question_slot.objects()):
+#             response_to_browser = make_response(jsonify({}), 200)
+#             print(response_to_browser)
+#             print("no more Schedule")
+#         else:
+#             response_to_browser = make_response(
+#                 jsonify(set_exam_question_slot.objects[counter:counter + per_scrolling]))
+#             print(f"{counter} to {counter + per_scrolling}")
+#             print(response_to_browser)
+
+#     return response_to_browser

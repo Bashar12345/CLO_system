@@ -1,10 +1,12 @@
 import requests
 import json
+import datetime
 from flask import request, flash, session
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher, wrqQuestion
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, required_for_generate, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher, wrqQuestion
 from EXAM.configaration import user_obj
 import random
 from EXAM.Test_paper.function import test_mcq_ML
+
 
 
 def delete_temporary_model():
@@ -20,6 +22,23 @@ def delete_exam_attened_exams():
             check_existends.delete()
             print("Deleted")
         print("course ", exam.exam_course," title ", exam.exam_title)
+
+#clean old requirement for genarating a question
+
+
+def delete_old_question_requirements():
+    t = datetime.datetime.now()
+    date = t.strftime("%Y-%m-%d")
+    print(date)
+    for i in required_for_generate.objects():
+        print(i["exam_date"])
+        if i["exam_date"] < date:
+            expire_date = i["exam_date"]
+            required_for_generate.objects(exam_date=expire_date).delete()
+            print("old")
+    for i in required_for_generate.objects():
+        print(i["exam_date"])
+    
 
 def student_main_page(student_id):
     teachers_ids = list()

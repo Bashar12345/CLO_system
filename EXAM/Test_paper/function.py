@@ -277,14 +277,19 @@ def mcq_uploading_processing(get_form, corse_code):
 # under construction
 
 
+
+
+
+
+
 # requirement for genarating a question
 def generate_question(get_form, corse_code):
     form = get_form
     exam_title = form.exam_title.data
-    if exam_title != 'mid-term' or exam_title != 'final':
-        number_of_question = 15
-    else:
+    if exam_title == 'mid-term' or exam_title == 'final':
         number_of_question = 25
+    else:
+        number_of_question = 15
 
     # exam_course = form.exam_course.data
     exam_start_time = request.form.get("start_time")
@@ -329,7 +334,7 @@ def generate_question(get_form, corse_code):
 
     courses = course_model.objects(course_code=course_code).first()
     check_existing_slot = set_exam_question_slot.objects(
-        exam_title=exam_title, exam_topic=exam_topic, exam_course=courses.course_title)
+        exam_title=exam_title, exam_course_code=courses.course_code, exam_course=courses.course_title)
     if check_existing_slot:
         flash(f"Already generated a exam slot!!!!!", "warning") 
     else:
@@ -361,6 +366,8 @@ def generate_question(get_form, corse_code):
         exam_slot.exam_end_time = exam_end_time
         exam_slot.exam_date = exam_date
         exam_slot.save()
+        flash(
+            f"For {courses.course_title} Generated {exam_title} exam slot!!!!!! ", "success")
 
 
 def confirmation_of_question(get_form):

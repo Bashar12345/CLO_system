@@ -7,12 +7,14 @@ Course Exams ekhane Exam title gula abong student answer_paper marks marksheet a
 <div class="card">
     {%for i in passed_course_exams%}
     <div class="card-header">
-        Course
-
+        Course:
         {{i.course_code}}
-
     </div>
     <div class="card-body">
+        {% set link_info = i.course_code +"="+ i.exam_title %}
+        <a id="link" class="card-block stretched-link text-decoration-none" 
+         href="{{url_for('main.course_exams_students',filename='link_info')}}">
+        <!-- href='http://the'> -->
         {{i.exam_title}}
     </div>
     <div class="card-footer">
