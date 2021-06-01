@@ -10,7 +10,7 @@ from flask import render_template, url_for, flash
 from flask_mail import Message
 
 from EXAM import bcrypt, mail
-from EXAM.model import enrol_students_model, set_exam_question_slot, temp_student_collection, user, user_student, user_teacher
+from EXAM.model import enrol_students_model, records_of_course_exams, set_exam_question_slot, temp_student_collection, user, user_student, user_teacher
 import time
 
 exam_code = ""
@@ -37,6 +37,11 @@ def remove_junk():
         print(i["exam_date"])
         if i["exam_date"] < date:
             expire_date = i["exam_date"]
+            exams_records=records_of_course_exams()
+            exams_records.exam_title = i["exam_title"]
+            exams_records.course_code = i["exam_course_code"]
+            exams_records.entry_date = t 
+            exams_records.save()
             set_exam_question_slot.objects(exam_date=expire_date).delete()
             print("old")
     for i in set_exam_question_slot.objects():

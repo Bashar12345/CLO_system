@@ -1,5 +1,28 @@
 {%extends "layout.html"%}
 {%block body%}
-Course Exams  ekhane Exam title gula abong student answer_paper marks marksheet ante hobe.. <br>
+Course Exams ekhane Exam title gula abong student answer_paper marks marksheet ante hobe.. <br>
 {{course_code}}
+
+
+<div class="card">
+    {%for i in passed_course_exams%}
+    <div class="card-header">
+        Course
+
+        {{i.course_code}}
+
+    </div>
+    <div class="card-body">
+        {{i.exam_title}}
+    </div>
+    <div class="card-footer">
+        {{i.entry_date}}
+    </div>
+    {%endfor%}
+
+</div>
+
+
+
+
 {%endblock body%}

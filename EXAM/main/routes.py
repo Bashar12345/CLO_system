@@ -13,7 +13,7 @@ from werkzeug.utils import secure_filename
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, records_of_course_exams, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
 
@@ -323,9 +323,9 @@ def course_assigned_students():
 def course_exams(course_code):
     course_code, course_date = course_code.split("=")
     print(course_code, "  DAte", course_date)
+    passed_course_exams=records_of_course_exams(course_code=course_code)
 
-
-    return render_template('question_view/exams_view.html', title='Course Exams',course_code=course_code, user_type=User_type.user_type)
+    return render_template('question_view/exams_view.html', title='Course Exams', course_code=course_code, passed_course_exams=passed_course_exams, user_type=User_type.user_type)
 
 
 

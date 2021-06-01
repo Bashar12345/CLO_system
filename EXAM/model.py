@@ -22,7 +22,6 @@ class Only_file(nosql.Document):
         return f"Only_file('{self.rename}','{self.binary_file}')"
 
 
-
 class user(nosql.Document, UserMixin):
     user_name = nosql.StringField()
     email = nosql.StringField()
@@ -54,7 +53,6 @@ class user_teacher(nosql.Document):
     user_name = user.user_name
     email = user.email
     organization_id = user.organization_id
-    
 
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
@@ -80,7 +78,6 @@ class admin_notice_model(nosql.Document):
     notice_title = nosql.StringField()
     notice_announcement = nosql.StringField()
     notice_time = nosql.DateTimeField()
-    
 
 
 class marksheet(nosql.Document):
@@ -89,18 +86,19 @@ class marksheet(nosql.Document):
     student_email = nosql.StringField()
     exam_course = nosql.StringField()
     exam_title = nosql.StringField()
-    get_score=nosql.IntField()
+    get_score = nosql.IntField()
+
 
 class mcqQuestion(nosql.Document):
     exam_code = nosql.StringField(default="")
-    course_title=nosql.StringField()
-    course_code=nosql.StringField()
-    complex_level=nosql.StringField(default="1")
-    quesCLO=nosql.StringField()
-    lesson=nosql.StringField()
-    question=nosql.StringField()
-    q_answer= nosql.StringField()
-    q_mark=nosql.IntField()
+    course_title = nosql.StringField()
+    course_code = nosql.StringField()
+    complex_level = nosql.StringField(default="1")
+    quesCLO = nosql.StringField()
+    lesson = nosql.StringField()
+    question = nosql.StringField()
+    q_answer = nosql.StringField()
+    q_mark = nosql.IntField()
     question_dictionary = nosql.DictField(default=dict)
     list_of_mcq_option = nosql.ListField(default=list)  # For Update purpose
 
@@ -130,6 +128,7 @@ class temp_question_model(nosql.Document):
 class set_exam_question_slot(nosql.Document):
     exam_title = nosql.StringField()
     exam_course = nosql.StringField()
+    exam_course_code = nosql.StringField()
     exam_topic = nosql.ListField()
     exam_start_time = nosql.StringField()
     exam_end_time = nosql.StringField()
@@ -154,7 +153,6 @@ class exam_written_question_paper(nosql.Document):
     rename_file = Only_file.rename
     binary_file = Only_file.binary_file
     # file_extension = Only_file.file_extension
-
 
 
 class exam_mcq_question_paper(nosql.Document):
@@ -184,7 +182,7 @@ class course_model(nosql.Document):
 
 class teacher_created_courses_model(nosql.Document):
     user_type = nosql.StringField()
-    teacher_registered_id = nosql.StringField()#eamil of teacher 
+    teacher_registered_id = nosql.StringField()  # eamil of teacher
     course_title = course_model.course_title
     course_code = course_model.course_code
     course_co = course_model.course_co
@@ -226,35 +224,32 @@ class machine_learning_mcq_model(nosql.Document):
     #lesson = nosql.StringField()
     #quesCLO = nosql.StringField()
     #question_dictionary_list = nosql.ListField(check_keys=False)
-    #question_dictionary_list = nosql.DictField() 
+    #question_dictionary_list = nosql.DictField()
     question_dictionary = mcqQuestion.question_dictionary
     #question_dictionary = nosql.ListField()
-    difficulty=nosql.StringField()
-    q_type = nosql.StringField() # 0 for written, # 1 for mcq 
-    question_point=nosql.FloatField()
+    difficulty = nosql.StringField()
+    q_type = nosql.StringField()  # 0 for written, # 1 for mcq
+    question_point = nosql.FloatField()
 # kaz baki ase
 
 
 class required_for_generate(nosql.Document):
-    question_type=nosql.StringField() # kaz baki
-    exam_title=set_exam_question_slot.exam_title
-    exam_course=set_exam_question_slot.exam_course
-    exam_start_time=set_exam_question_slot.exam_start_time
-    exam_end_time=set_exam_question_slot.exam_end_time
-    exam_date=set_exam_question_slot.exam_date
-    exam_secret_code=nosql.StringField()
-    exam_marks=nosql.IntField()
-    caption=nosql.StringField()
+    question_type = nosql.StringField()  # kaz baki
+    exam_title = set_exam_question_slot.exam_title
+    exam_course = set_exam_question_slot.exam_course
+    exam_start_time = set_exam_question_slot.exam_start_time
+    exam_end_time = set_exam_question_slot.exam_end_time
+    exam_date = set_exam_question_slot.exam_date
+    exam_secret_code = nosql.StringField()
+    exam_marks = nosql.IntField()
+    caption = nosql.StringField()
     course_code = course_model.course_code
-    question_difficulty=nosql.IntField()
+    question_difficulty = nosql.IntField()
     lesson = nosql.ListField()
     exam_CLO = nosql.ListField()
     complex_level = nosql.ListField()
     marks = nosql.ListField()
-    number_of_question=nosql.IntField()
-
-
-
+    number_of_question = nosql.IntField()
 
 
 class temp_student_collection(nosql.Document):
@@ -271,7 +266,22 @@ class mcq_answer_paper(nosql.Document):
     organization_id = user.organization_id
     email = user.email
     # photo = user.profile_pic
+    question_dictionary = nosql.ListField()
     answer = nosql.DictField(default={"none": "none"})
+
+
+class student_attendence(nosql.Document):
+    student_email = nosql.StringField()
+    exam_title = nosql.StringField()
+    course_code = nosql.StringField()
+    exam_topic = nosql.ListField()
+    exam_date = nosql.StringField()
+
+
+class records_of_course_exams(nosql.Document):
+    course_code = nosql.StringField()
+    exam_title = nosql.StringField()
+    entry_date = nosql.DateTimeField()
 
 
 """class McqQuestion(nosql.Document):
@@ -294,9 +304,9 @@ class mcq_answer_paper(nosql.Document):
 # Question_code = exam_MCQ_question_paper.exam_code
 
 
-#class get_questions(nosql.Document):
-    # print("under construction")
-    # exam_code =  #  questions = # embedded mcq and written
+# class get_questions(nosql.Document):
+# print("under construction")
+# exam_code =  #  questions = # embedded mcq and written
 
 
 # print("database_model")

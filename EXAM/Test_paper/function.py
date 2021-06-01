@@ -354,6 +354,7 @@ def generate_question(get_form, corse_code):
         stash_required_exam_property.save()
         exam_slot = set_exam_question_slot()
         exam_slot.exam_course = courses.course_title
+        exam_slot.exam_course_code = course_code
         exam_slot.exam_title = exam_title
         exam_slot.exam_topic = exam_topic
         exam_slot.exam_start_time = exam_start_time

@@ -532,6 +532,7 @@ def answer_session():
     option_list = list()
     shuffled_option_list = list()
     selected_option = ''
+    exam_code = secret_exam_key.exam_code
     # print(type(session_question))
     #print("Foooooooooooor testing", len(session_question[count]))
     if answer_count == total_question:  # session['total_question']
