@@ -367,7 +367,7 @@ def generate_question(get_form, corse_code):
         exam_slot.exam_date = exam_date
         exam_slot.save()
         flash(
-            f"For {courses.course_title} Generated {exam_title} exam slot!!!!!! ", "success")
+            f"For '{courses.course_title}' Generated '{exam_title}' exam slot!!!!!! ", "success")
 
 
 def confirmation_of_question(get_form):

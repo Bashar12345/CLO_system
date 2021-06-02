@@ -1,19 +1,21 @@
 {%extends "layout.html"%}
 {%block body%}
 Course Exams ekhane Exam title gula abong student answer_paper marks marksheet ante hobe.. <br>
-{{course_code}}
+
+{#% set course_code,course_date=course_code.split("=") %#}
+{#{course_code}#}
 
 
 <div class="card">
-    {%for i in passed_course_exams%}
+    {%for i in passed_course_exams %}
     <div class="card-header">
         Course:
         {{i.course_code}}
     </div>
     <div class="card-body">
-        {% set link_info = i.course_code +"="+ i.exam_title %}
+        {% set l_info = i.course_code +"="+ i['exam_title'] %}
         <a id="link" class="card-block stretched-link text-decoration-none" 
-         href="{{url_for('main.course_exams_students',filename='link_info')}}">
+         href="{{url_for('main.course_exams_students',link_info=l_info)}}">
         <!-- href='http://the'> -->
         {{i.exam_title}}
     </div>

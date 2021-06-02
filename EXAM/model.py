@@ -271,6 +271,13 @@ class mcq_answer_paper(nosql.Document):
     selected_answer_options =nosql.ListField()
 
 
+class temp_answer_paper(nosql.Document):
+    q_answer = nosql.StringField()
+    question_dictionary = nosql.DictField(default=dict)
+    list_of_mcq_option = nosql.ListField(default=list)
+
+
+
 class student_attendence(nosql.Document):
     student_email = nosql.StringField()
     exam_title = nosql.StringField()

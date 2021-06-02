@@ -3,6 +3,15 @@
 {% block body %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
+
+
+<p id ="ending_time_of_exam" value="{{ending_time_of_exam}}" hidden>{{ending_time_of_exam}}</p>
+<legend class="h2 btn-outline-info text-right" id="demo"></legend>
+<!-- timmer -->
+
+
+
 <!-- <script>
        var parsed = JSON.parse('{#{question_mcq_for_current_session | tojson}#}');
        console.log(parsed);
@@ -48,6 +57,44 @@
 
 </form>
 
+
+
+<script>
+       // Set the date we're counting down to
+       //var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+
+       const ending_time_of_exam = document.getElementById("ending_time_of_exam").getAttribute("value");
+
+
+       countDownDate_end = new Date(ending_time_of_exam + "").getTime();
+
+       // Update the count down every 1 second
+       var x = setInterval(function () {
+
+              // Get today's date and time
+              var now = new Date().getTime();
+
+              // Find the distance between now and the count down date
+              var distance = countDownDate_end - now;
+
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+              // Output the result in an element with id="demo"
+              document.getElementById("demo").innerHTML = hours + "h  "
+                     + minutes + "m  " + seconds + "s  " ;
+
+              // If the count down is over, write some text 
+              if (distance < 0) {
+                     clearInterval(x);
+                     document.getElementById("demo").innerHTML = "EXPIRED";
+                     document.getElementById("btn_submit").submit();
+              }
+       }, 1000);
+</script>
 
 
 {% endblock body %}
