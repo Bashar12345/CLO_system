@@ -1,20 +1,25 @@
 {%extends "layout.html"%}
 {%block body%}
-{{link_info}}
-<legend>The students, Those who attend the Exam.</legend>
+{#{link_info}#}
+
 <div class="container">
-<a class="row" >
-    <div class="col">Students Name</div>
-    <div class="col">Students Email ID</div>
-</a>
-{%for students in attended_students%}
+    <legend>The students, Those who attend the Exam.</legend><br>
+    <a class="row active btn-outline-info">
+        <div class="col">Students Name</div>
+        <div class="col">Students Email ID</div>
+    </a>
+    <br>
+    {%for students in attended_students%}
 
-<!-- Kaz baki Ase---------------------------------- -->
-<a class="row" href="http://the---{{students.exam_secret_code}}" style="text-decoration: none;">
-    <div class="col">{{students.student_name}}</div>
-    <div class="col">{{students.student_email}}</div>
-</a>
-
-{%endfor%}
+    <!-- Kaz baki Ase---------------------------------- -->
+    {% set l_info = students.exam_secret_code+"="+students.student_email %}
+    <a class="row shadow-sm" href="{{url_for('main.course_exams_students_answer_sheet',link_info=l_info)}}"
+        style="text-decoration: none;">
+        <div class="col">{{students.student_name}}</div>
+        <div class="col">{{students.student_email}}</div>
+    </a>
+    <br>
+    {% set l_info = "none" %}
+    {%endfor%}
 </div>
 {%endblock body%}

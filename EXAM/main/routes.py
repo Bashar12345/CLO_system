@@ -13,7 +13,7 @@ from werkzeug.utils import secure_filename
 from EXAM.main.forms import create_course_form, PhotoForm
 from EXAM.configaration import User_type, user_obj
 from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses, delete_old_question_requirements
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, records_of_course_exams, set_exam_question_slot, student_attendence, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
+from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, records_of_course_exams, set_exam_question_slot, student_attendence, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
 
@@ -318,6 +318,19 @@ def course_exams_students(link_info):
     #ekhane kaz baki ase---------------------------------------------------------------------
 
     return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info, attended_students=attended_students,user_type=User_type.user_type)
+
+
+@main.route('/course_exams_students_answer_sheet/<link_info>', methods=['GET', 'POST'])
+#@login_required
+def course_exams_students_answer_sheet(link_info):
+    print(link_info)
+    code, student_id = link_info.split("=")
+    answer_sheets = mcq_answer_paper.objects(
+        exam_secret_code=code, email=student_id).first()
+
+    return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools)
+
+
 
 
 

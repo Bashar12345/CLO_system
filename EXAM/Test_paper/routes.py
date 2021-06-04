@@ -608,6 +608,7 @@ def answer_session():
         # print(question_dic_type_list)
         # students answer paper ---------------------------------------------------
         answer_paper = mcq_answer_paper()
+        answer_paper.exam_secret_code=session['exam_code']
         answer_paper.email = user_obj.e
         # session['session_question']
         answer_paper.question_dictionary_type_list = question_dic_type_list

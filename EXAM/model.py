@@ -268,7 +268,7 @@ class mcq_answer_paper(nosql.Document):
     # photo = user.profile_pic
     exam_secret_code = nosql.StringField()
     question_dictionary_type_list = nosql.ListField()
-    answer = nosql.DictField(default={"none": "none"})
+    correct_answer = nosql.ListField() #DictField(default={"none": "none"})
     selected_answer_options =nosql.ListField()
 
 
