@@ -1,14 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <article>
-        <form class="form-horizontal" , method="POST" , action=" " ,
+    <article class="container">
+        <form class="form-horizontal container" , method="POST" , action=" " ,
               enctype="multipart/form-data">
             {{ form.hidden_tag() }}
 
             <legend> Mcq Question paper (without machine generated)</legend>
             <p>Set your Exam</p>
-            <div class="form-group">
+            <br>
+            <div class="form-group container">
             {{ form.exam_title.label(class = "form-control-label") }}
             {{ form.exam_title(class="form-control-radio") }}
                 
@@ -34,7 +35,7 @@
 
 
                 {{ form.exam_date.label(class = "form-control-label") }}
-                {{ form.exam_date(type="date",class ="form-control-sm ",placeholder=" like: year/month/date") }}
+                {{ form.exam_date(type="date",class ="form-control-sm ",placeholder=" like: year/month/date") }}<br>
 
                 <div class="form-group">
                     <label for="Textarea">Example Question paper Caption textarea</label>

@@ -1,6 +1,6 @@
 {%extends "layout.html"%}
 {%block body%}
-Course Exams ekhane Exam title gula abong student answer_paper marks marksheet ante hobe.. <br>
+
 {#{link_info}#}
 
 {#{answer_sheets}#}
@@ -16,7 +16,7 @@ Course Exams ekhane Exam title gula abong student answer_paper marks marksheet a
     <div class="card-header">
         <div class="row card-title container">
 
-            <h5> Question : </h5>
+            <h4> Question : </h4>
 
 
             {%set temp = i | string %}
@@ -24,8 +24,8 @@ Course Exams ekhane Exam title gula abong student answer_paper marks marksheet a
             {%set temp_ques, temp_op = temp.strip("}{").split(":")%}
             {#{i}#}
 
-            <div class="btn">
-                {{temp_ques}}
+            <div class="btn p">
+               <h5> {{temp_ques}} </h5>
             </div>
             {% set temp_op = temp_op.strip("][")%}
             <br>
@@ -36,8 +36,7 @@ Course Exams ekhane Exam title gula abong student answer_paper marks marksheet a
             <h5>Option :</h5>
             {%for item in temp_op.strip("[").split(",") %}
             <div class="col ">{{ item }}</div>
-            <br>
-            {%endfor%}]
+            {%endfor%}
         </div>
         <div class="text article"> Choosen by student : {{k}} </div>
         <div class="text-right"> Correct_answer : {{l}}</div>

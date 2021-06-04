@@ -189,8 +189,11 @@ number_of_question = ""
 @login_required
 def mcq_upload(course_code):
     form = mcq_upload_form_part_1()
-    course_code, course_date = course_code.split("=")
-    session['course_date'] = course_date
+    if course_code == "teacher":
+        corse_code = course_code
+    else:
+        course_code, course_date = course_code.split("=")
+        session['course_date'] = course_date
 
     # seach course code and fetch the lessons
     # under construction
@@ -234,23 +237,6 @@ def mcq_upload(course_code):
         # ,clo=clo
         # course_title=course_title,
     )
-
-
-# @Test_paper.route("/mcq_upload_option_check")
-# @login_required
-# def mcq_upload_option_check():
-#     response_to_browser = ""
-#     option_empty=''
-#     if request.args:
-#         option = request.args.get("op")
-#         print(option)
-#         print(request.form.get(option))
-#         if request.args.get(option):
-
-#             option_empty="data_ase"
-#         response_to_browser = make_response(jsonify(option_empty))
-#         print(response_to_browser)
-#     return response_to_browser
 
 
 @Test_paper.route("/mcqUpload_course_code_selection_load")
@@ -302,10 +288,17 @@ def mcqUpload_clo_selection_load():
         code = request.args.get("c")
         # print(code)
         course_date = session['course_date']
+        #print("Course Date",course_date)
         clo_list = []
-        crse_clo = course_model.objects(
-            course_code=code, course_duration=course_date).first()
-        print(type(crse_clo.course_co))
+        if course_date:
+            crse_clo = course_model.objects(
+                course_code=code, course_duration=course_date).first()
+            print(type(crse_clo.course_co))
+        else:
+            crse_clo = course_model.objects(
+                course_code=code).first()
+            # print(type(crse_clo.course_co))
+
         clo_list = crse_clo.course_co
         response_to_browser = make_response(jsonify(clo_list))
         print(response_to_browser)
@@ -317,6 +310,12 @@ def mcqUpload_clo_selection_load():
 def generateMCQ(course_code):
     form = Mcq_Question_generate_form()
     # if course_code:
+    if course_code == "teacher":
+        corse_code = course_code
+    else:
+        course_code, course_date = course_code.split("=")
+        session['course_date'] = course_date
+
     corse_code = course_code
     if course_code == "teacher":
         course_code = course_model.objects.only("course_code")
@@ -338,14 +337,15 @@ def generateMCQ_lesson_load():
     if request.args:
         code = request.args.get("c")
         # print(code)
-        lesn = course_model.objects(course_code=code).first()
+        if code:
+            lesn = course_model.objects(course_code=code).first()
         # print(type(lesn.course_lessons))
-        lessons_list = []
-        for lesson in lesn.course_lessons:
-            # print(lesson)
-            lessons_list.append(lesson)
-        response_to_browser = make_response(jsonify(lessons_list))
-        print(response_to_browser)
+            lessons_list = []
+            for lesson in lesn.course_lessons:
+                # print(lesson)
+                lessons_list.append(lesson)
+            response_to_browser = make_response(jsonify(lessons_list))
+            print(response_to_browser)
     return response_to_browser
 
 
@@ -357,8 +357,15 @@ def generateMCQ_clo_load():
         code = request.args.get("c")
         # print(code)
         clo_list = []
-        crse_clo = course_model.objects(course_code=code).first()
-        print(type(crse_clo.course_co))
+        course_date = session['course_date']
+        #print("Course Date", course_date)
+        if course_date:
+            crse_clo = course_model.objects(
+                course_code=code, course_duration=course_date).first()
+            print(type(crse_clo.course_co))
+        else:
+            crse_clo = course_model.objects(
+                course_code=code).first()
         clo_list = crse_clo.course_co
         response_to_browser = make_response(jsonify(clo_list))
         print(response_to_browser)
@@ -565,7 +572,7 @@ def answer_session():
 
         print("given answer count ", answer_count)
 
-        question_dic = {session['question_part']: session['shuffled_option_list']}
+        question_dic = {session['question_part']                        : session['shuffled_option_list']}
 
         temp_answer_paper_data.question_dictionary = question_dic
 
@@ -608,7 +615,7 @@ def answer_session():
         # print(question_dic_type_list)
         # students answer paper ---------------------------------------------------
         answer_paper = mcq_answer_paper()
-        answer_paper.exam_secret_code=session['exam_code']
+        answer_paper.exam_secret_code = session['exam_code']
         answer_paper.email = user_obj.e
         # session['session_question']
         answer_paper.question_dictionary_type_list = question_dic_type_list
@@ -890,3 +897,20 @@ def view_courses():
 #     if temp_data:
 #         temp_data.delete()
 #         print("temp cleared and now empty")
+
+
+# @Test_paper.route("/mcq_upload_option_check")
+# @login_required
+# def mcq_upload_option_check():
+#     response_to_browser = ""
+#     option_empty=''
+#     if request.args:
+#         option = request.args.get("op")
+#         print(option)
+#         print(request.form.get(option))
+#         if request.args.get(option):
+
+#             option_empty="data_ase"
+#         response_to_browser = make_response(jsonify(option_empty))
+#         print(response_to_browser)
+#     return response_to_browser

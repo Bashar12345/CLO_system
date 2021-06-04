@@ -1,29 +1,31 @@
 {%extends "layout.html"%}
 {%block body%}
-Course Exams ekhane Exam title gula abong student answer_paper marks marksheet ante hobe.. <br>
 
+<legend class="text-info text-center" 
+style="position:fixed; top:50vh; left:0; right:0; bottom:0;"> 
+These are the Exams, Which are hosted by you.</legend>
 {#% set course_code,course_date=course_code.split("=") %#}
 {#{course_code}#}
 <section class="container">
+    
     {%for i in passed_course_exams %}
-    <div class="card ">
-        <div class="card-header">
+    <div class="card text-dark bg-light mb-3 ">
+        <div class="card-header ">
             <div id="course_code" value="{{i.course_code}}">
-                Course:
+                Course :
                 {{i.course_code}}
             </div>
 
         </div>
-        <div class="card-body">
+        <div class="card-body card-text ">
             {% set l_info = i.exam_secret_code %}
             <p id="data" value="{{l_info}}"></p>
             <a id="link" class="card-block stretched-link text-decoration-none" 
             href="{{url_for('main.course_exams_students',link_info=l_info)}}"></a>
 
-            
-            {{i.exam_title}}
+            <p> The Exam Title </p>  {{i.exam_title}}
         </div>
-        <div class="card-footer">
+        <div class="card-footer text-right ">
             Hosted at : {{i.entry_date}}
             
         </div>
@@ -36,7 +38,15 @@ Course Exams ekhane Exam title gula abong student answer_paper marks marksheet a
 
 
 
-
+<script>
+      $(window).scroll(function () {
+            if ($(this).scrollTop() > 135) {
+                $('#task_flyout').addClass('fixed');
+            } else {
+                $('#task_flyout').removeClass('fixed');
+            }
+        });
+</script>
 
 
 {%endblock body%}
