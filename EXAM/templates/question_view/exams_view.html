@@ -4,29 +4,43 @@ Course Exams ekhane Exam title gula abong student answer_paper marks marksheet a
 
 {#% set course_code,course_date=course_code.split("=") %#}
 {#{course_code}#}
-
-
-<div class="card">
+<section class="container">
     {%for i in passed_course_exams %}
-    <div class="card-header">
-        Course:
-        {{i.course_code}}
+    <div class="card ">
+        <div class="card-header">
+            <div id="course_code" value="{{i.course_code}}">
+                Course:
+                {{i.course_code}}
+            </div>
+
+        </div>
+        <div class="card-body">
+            {% set l_info = i.exam_secret_code %}
+            <p id="data" value="{{l_info}}"></p>
+            <a id="link" class="card-block stretched-link text-decoration-none" 
+            href="{{url_for('main.course_exams_students',link_info=l_info)}}"></a>
+
+            
+            {{i.exam_title}}
+        </div>
+        <div class="card-footer">
+            Hosted at : {{i.entry_date}}
+            
+        </div>
     </div>
-    <div class="card-body">
-        {% set l_info = i.course_code +"="+ i['exam_title'] %}
-        <a id="link" class="card-block stretched-link text-decoration-none" 
-         href="{{url_for('main.course_exams_students',link_info=l_info)}}">
-        <!-- href='http://the'> -->
-        {{i.exam_title}}
-    </div>
-    <div class="card-footer">
-        {{i.entry_date}}
-    </div>
+    <br>
+    {% set l_info = "none" %}
     {%endfor%}
 
-</div>
+</section>
+
+
 
 
 
 
 {%endblock body%}
+
+<!-- href="{{url_for('main.course_exams_students',link_info=l_info)}}" -->
+<!-- href='http://course_exams_students/{{l_info}}'></a>  -->
+<!--  -->

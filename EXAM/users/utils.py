@@ -10,11 +10,13 @@ from flask import render_template, url_for, flash
 from flask_mail import Message
 
 from EXAM import bcrypt, mail
-from EXAM.model import enrol_students_model, records_of_course_exams, set_exam_question_slot, temp_student_collection, user, user_student, user_teacher
+from EXAM.model import enrol_students_model, records_of_course_exams, required_for_generate, set_exam_question_slot, temp_student_collection, user, user_student, user_teacher
 import time
 
 exam_code = ""
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
+
+
 def go(op):
     op = op
     return render_template("mcqqu.html", op=op)
@@ -23,10 +25,12 @@ def go(op):
 def mcq_bypass(get_form):
     form = get_form
 
+
 def delete_temporary_collection():
     collection = temp_student_collection.objects().all()
     collection.delete()
     print("temp cleaned")
+
 
 def remove_junk():
     # all = set_exam_question_slot._objects()
@@ -37,15 +41,49 @@ def remove_junk():
         print(i["exam_date"])
         if i["exam_date"] < date:
             expire_date = i["exam_date"]
-            exams_records=records_of_course_exams()
-            exams_records.exam_title = i["exam_title"]
-            exams_records.course_code = i["exam_course_code"]
-            exams_records.entry_date = t 
-            exams_records.save()
+            getting_exam_secret_key = required_for_generate.objects(
+                exam_title=i.exam_title, exam_course=i.exam_course, course_code=i.exam_course_code, lesson=i.exam_topic, exam_start_time=i.exam_start_time, exam_end_time=i.exam_end_time)
+
+            if getting_exam_secret_key:
+                exams_records = records_of_course_exams()
+                exams_records.exam_secret_code = getting_exam_secret_key.exam_secret_code
+                exams_records.exam_title = i["exam_title"]
+                exams_records.course_code = i["exam_course_code"]
+                exams_records.entry_date = t
+                exams_records.save()
             set_exam_question_slot.objects(exam_date=expire_date).delete()
             print("old")
     for i in set_exam_question_slot.objects():
         print(i["exam_date"])
+
+    #     set_exam_question_slot(nosql.Document):
+    # exam_title = nosql.StringField()
+    # exam_course = nosql.StringField()
+    # exam_course_code = nosql.StringField()
+    # exam_topic = nosql.ListField()
+    # exam_start_time = nosql.StringField()
+    # exam_end_time = nosql.StringField()
+    # # exam_start_time = nosql.DateTimeField()
+    # # exam_end_time = nosql.DateTimeField()
+    # exam_date = nosql.StringField()
+
+    # required_for_generate(nosql.Document):
+    # question_type = nosql.StringField()  # kaz baki
+    # exam_title = set_exam_question_slot.exam_title
+    # exam_course = set_exam_question_slot.exam_course
+    # exam_start_time = set_exam_question_slot.exam_start_time
+    # exam_end_time = set_exam_question_slot.exam_end_time
+    # exam_date = set_exam_question_slot.exam_date
+    # exam_secret_code = nosql.StringField()
+    # exam_marks = nosql.IntField()
+    # caption = nosql.StringField()
+    # course_code = course_model.course_code
+    # question_difficulty = nosql.IntField()
+    # lesson = nosql.ListField()
+    # exam_CLO = nosql.ListField()
+    # complex_level = nosql.ListField()
+    # marks = nosql.ListField()
+    # number_of_question = nosql.IntField()
 
 
 def saveFormFile_in_Filesystem(form_file):
@@ -86,15 +124,15 @@ def sending_email_to_user(model_er_user):
 
 
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
-    #print(email_list)
-    #print(type(email_list))
+    # print(email_list)
+    # print(type(email_list))
     delete_temporary_collection()
     if email_list:
         fw = open("file.txt", "w+")
         for index in email_list:
             students_enrol_ins = enrol_students_model()
             fw.write(index+"\n")
-            
+
             students_enrol_ins.enrolled_students_id = index
             if students_enrol_ins.enrolled_students_id:
                 students_enrol_ins.enrol_key = Enrol_key
@@ -103,7 +141,7 @@ def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_cod
             time.sleep(1.0)
             print(students_enrol_ins.enrolled_students_id)
         fw.close()
-    #''' for i in email_list:
+    # ''' for i in email_list:
 #  msg = Message('"Enroll key" for the course_entry',
 #                sender='bravebashar112@gmail.com', recipients=i)
 # msg.body = fFor Joining the course, Enter the key below :

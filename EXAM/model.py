@@ -266,6 +266,7 @@ class mcq_answer_paper(nosql.Document):
     organization_id = user.organization_id
     email = user.email
     # photo = user.profile_pic
+    exam_secret_code = nosql.StringField()
     question_dictionary_type_list = nosql.ListField()
     answer = nosql.DictField(default={"none": "none"})
     selected_answer_options =nosql.ListField()
@@ -279,14 +280,17 @@ class temp_answer_paper(nosql.Document):
 
 
 class student_attendence(nosql.Document):
+    student_name = nosql.StringField()
     student_email = nosql.StringField()
-    exam_title = nosql.StringField()
-    course_code = nosql.StringField()
-    exam_topic = nosql.ListField()
+    exam_secret_code = nosql.StringField()
+    #exam_title = nosql.StringField()
+    #course_code = nosql.StringField()
+    #exam_topic = nosql.ListField()
     exam_date = nosql.StringField()
 
 
 class records_of_course_exams(nosql.Document):
+    exam_secret_code = nosql.StringField()
     course_code = nosql.StringField()
     exam_title = nosql.StringField()
     entry_date = nosql.DateTimeField()

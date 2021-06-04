@@ -61,7 +61,7 @@ main_page_count = 0
 @login_required
 def main_page():
     # ----------------------------------ekane teacher question evluate krbee
-    delete_exam_attened_exams()
+    #delete_exam_attened_exams()
     delete_old_question_requirements()
     teacher_email_id = user_obj.e
     student_id = session['email']
@@ -311,13 +311,13 @@ def course_exams(course_code):
 #@login_required
 def course_exams_students(link_info):
     
-    course_code, exam_title = link_info.split("=")
+    # course_code, exam_title = link_info.split("=")
+    # print(" Exam tittle -------------------------- ",exam_title)
     print(link_info)
-    attended_students=student_attendence.objects(exam_title=exam_title)
+    attended_students = student_attendence.objects(exam_secret_code=link_info)
     #ekhane kaz baki ase---------------------------------------------------------------------
 
-
-    return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info,user_type=User_type.user_type)
+    return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info, attended_students=attended_students,user_type=User_type.user_type)
 
 
 

@@ -27,7 +27,7 @@ from EXAM.Test_paper.forms import (
 )
 from EXAM.Test_paper.function import answer_submit, generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
-from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, teacher_created_courses_model, temp_answer_paper
+from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, student_attendence, teacher_created_courses_model, temp_answer_paper, user_student
 from flask.templating import render_template_string
 
 """@Test_paper.route('/')
@@ -431,54 +431,60 @@ def secret_code():
 def mcq_answer_paper_auto_generated():
     # mcq_question_answer_submit(form)
     exam_code = secret_exam_key.exam_code
-    requirement_for_mcq_questions = required_for_generate.objects(
-        exam_secret_code=exam_code).first()
-    exam_title = requirement_for_mcq_questions.exam_title
-    exam_course = requirement_for_mcq_questions.exam_course
-    exam_start_time = requirement_for_mcq_questions.exam_start_time
-    exam_end_time = requirement_for_mcq_questions.exam_end_time
-    exam_date = requirement_for_mcq_questions.exam_date
-    print(exam_start_time, exam_end_time, exam_date)
-    year, month, day = exam_date.split("-")
-    hour, minute = exam_start_time.split(":")
-    end_hour, end_minute = exam_end_time.split(":")
-    # print(time)      # print(hour, " minute ase ", minute)
-    current_time = datetime.datetime.now()
-    # for demo  testing
-    current_time2 = current_time
-    starting_time_of_exam = datetime.datetime(
-        int(year), int(month), int(day), int(hour), int(minute)
-    )
-    ending_time_of_exam = datetime.datetime(
-        int(year), int(month), int(day), int(end_hour), int(end_minute)
-    )
-    print(f"ending time {ending_time_of_exam}")
-    print(f"starting time {starting_time_of_exam}")
-    session["starting_time_of_exam"] = starting_time_of_exam
-    session["ending_time_of_exam"] = ending_time_of_exam
-    # print(mcq_question['mcq_question'])
-    # final showdown e if uncomment krte hobe................................................
-    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-    if current_time == current_time2:
-        print("current time :",current_time)
-        # ekahne mcq question object produce krte hobe -------------------------------------------
-        question_mcq_for_current_session = question_paper_for_current_session(
-            requirement_for_mcq_questions)
-        # print(question_mcq_for_current_session)
-        session['exam_title'] = exam_title
-        session['exam_course'] = exam_course
-        session['session_question'] = question_mcq_for_current_session
-        session['count'] = 0
-        session['answer_count'] = 0
-        session['selectd_answers'] = list()
-        session['correct_answers'] = list()
-        session['corrected'] = 0
-        session['question_part'] = ''
-        session['shuffled_option_list'] = []
+    if student_attendence.objects(student_email=user_obj.e, exam_secret_code=exam_code).first():
+        flash(f"Already attened this exam, You can't attend again!!", "warning")
+        return redirect(url_for('main.student_dashboard'))
+    else:
+        requirement_for_mcq_questions = required_for_generate.objects(
+            exam_secret_code=exam_code).first()
+        exam_title = requirement_for_mcq_questions.exam_title
+        exam_course = requirement_for_mcq_questions.exam_course
+        exam_start_time = requirement_for_mcq_questions.exam_start_time
+        exam_end_time = requirement_for_mcq_questions.exam_end_time
+        exam_date = requirement_for_mcq_questions.exam_date
+        course_code = requirement_for_mcq_questions.course_code
+        print(exam_start_time, exam_end_time, exam_date)
+        year, month, day = exam_date.split("-")
+        hour, minute = exam_start_time.split(":")
+        end_hour, end_minute = exam_end_time.split(":")
+        # print(time)      # print(hour, " minute ase ", minute)
+        current_time = datetime.datetime.now()
+        # for demo  testing
+        current_time2 = current_time
+        starting_time_of_exam = datetime.datetime(
+            int(year), int(month), int(day), int(hour), int(minute)
+        )
+        ending_time_of_exam = datetime.datetime(
+            int(year), int(month), int(day), int(end_hour), int(end_minute)
+        )
+        print(f"ending time {ending_time_of_exam}")
+        print(f"starting time {starting_time_of_exam}")
+        session["starting_time_of_exam"] = starting_time_of_exam
+        session["ending_time_of_exam"] = ending_time_of_exam
+        # print(mcq_question['mcq_question'])
+        # final showdown e if uncomment krte hobe................................................
+        # if starting_time_of_exam <= current_time <= ending_time_of_exam:
+        # if starting_time_of_exam <= current_time <= ending_time_of_exam:
+        if current_time == current_time2:
+            print("current time :", current_time)
+            # ekahne mcq question object produce krte hobe -------------------------------------------
+            question_mcq_for_current_session = question_paper_for_current_session(
+                requirement_for_mcq_questions)
+            # print(question_mcq_for_current_session)
+            session['exam_title'] = exam_title
+            session['exam_course'] = exam_course
+            session['exam_date'] = exam_date
+            session['session_question'] = question_mcq_for_current_session
+            session['count'] = 0
+            session['answer_count'] = 0
+            session['selectd_answers'] = list()
+            session['correct_answers'] = list()
+            session['corrected'] = 0
+            session['question_part'] = ''
+            session['shuffled_option_list'] = []
 
-        session['total_question'] = requirement_for_mcq_questions.number_of_question
-        return render_template_string("""
+            session['total_question'] = requirement_for_mcq_questions.number_of_question
+            return render_template_string("""
         {% extends 'layout.html' %}
 
         {% block body %}
@@ -501,10 +507,10 @@ def mcq_answer_paper_auto_generated():
        {% endblock body %}
        """)
 
-        # return render_template("mcq/mcq_answer_session.html", exam_date=exam_date, exam_end_time=exam_end_time,
-        #                        # custom object for answer from the machine learning method
-        #                        question_mcq_for_current_session=question_mcq_for_current_session,
-        #                        title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
+            # return render_template("mcq/mcq_answer_session.html", exam_date=exam_date, exam_end_time=exam_end_time,
+            #                        # custom object for answer from the machine learning method
+            #                        question_mcq_for_current_session=question_mcq_for_current_session,
+            #                        title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
     return render_template(
         "count_Down.html",
         starting_time_of_exam=starting_time_of_exam,
@@ -522,7 +528,7 @@ def mcq_answer_paper_auto_generated():
 @Test_paper.route("/answer_session", methods=["GET", "POST"])
 @login_required
 def answer_session():
-    flash(f"If you left you can not attend this exam again.... So be carefull.","danger")
+    flash(f"If you left you can not attend this exam again.... So be carefull.", "danger")
     form = Mcq_answer_form()
     selectd_answers = session['selectd_answers']
     correct_answers = session['correct_answers']
@@ -548,15 +554,22 @@ def answer_session():
     if request.method == "POST":
         # if form.validate_on_submit:
         selected_option = request.form.get('selected_option')
-        print(selected_option)
+        print("students answer :", selected_option)
         answer_count += 1
-        print("given answer count ", answer_count)
-        session['selectd_answers'].append(selected_option)
+
+        if selected_option:
+            session['selectd_answers'].append(selected_option)
+            print("added in the list ", selected_option)
+        else:
+            selected_option = 'no_answer'
+            session['selectd_answers'].append(selected_option)
+            print("added in the list ", selected_option)
 
         temp_answer_paper_data = temp_answer_paper()
 
-        question_dic = {session['question_part']
-            : session['shuffled_option_list']}
+        print("given answer count ", answer_count)
+
+        question_dic = {session['question_part']                        : session['shuffled_option_list']}
 
         temp_answer_paper_data.question_dictionary = question_dic
 
@@ -575,14 +588,17 @@ def answer_session():
         #print("correct --------", correct_answers)
         #print("selected ----------", selectd_answers)
 
-        correct_answers = session['correct_answers']
+        selected = session['selectd_answers']
         i = 0
-        for selected in session['selectd_answers']:
-            if selected == correct_answers[i]:
-                print("Wright answer")
+        for correct_answer in session['correct_answers']:
+            if correct_answer == selected[i]:
+                print("Wright answer noted")
                 session['corrected'] += 1
-            i += 1
 
+            i += 1
+        print(len(selected))
+
+        # students marksheet dashboard-----------------------------------------------
         total_score = marksheet()
         total_score.exam_code = session['exam_code']
         total_score.student_email = user_obj.e
@@ -594,12 +610,22 @@ def answer_session():
             question_dic_type_list.append(i.question_dictionary)
 
         # print(question_dic_type_list)
+        # students answer paper ---------------------------------------------------
         answer_paper = mcq_answer_paper()
         answer_paper.email = user_obj.e
         # session['session_question']
         answer_paper.question_dictionary_type_list = question_dic_type_list
         answer_paper.selected_answer_options = session['selectd_answers']
         answer_paper.save()
+        user_info = user_student.objects(email=user_obj.e).first()
+        # attendence---------------------------------------------------------------
+        attendence = student_attendence()
+        attendence.student_name = user_info.user_name
+        attendence.student_email = user_info.email
+        attendence.exam_secret_code = session['exam_code']
+        attendence.exam_date = session['exam_date']
+        attendence.save()
+        # temp  cleaning-----------------------------------------------------------
         temp_data = temp_answer_paper.objects().all()
         if temp_data:
             temp_data.delete()
@@ -650,13 +676,12 @@ def answer_session():
 
     print(session['correct_answers'])
 
-    starting_time_of_exam=session["starting_time_of_exam"] 
-    ending_time_of_exam=session["ending_time_of_exam"]
- 
+    starting_time_of_exam = session["starting_time_of_exam"]
+    ending_time_of_exam = session["ending_time_of_exam"]
 
     total = total_question  # session['total_question']
 
-    return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=shuffled_option_list,ending_time_of_exam=ending_time_of_exam, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
+    return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=shuffled_option_list, ending_time_of_exam=ending_time_of_exam, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
 
 
 # @Test_paper.route("/answer_session_load", methods=["GET", "POST"])

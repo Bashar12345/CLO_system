@@ -1,13 +1,20 @@
 {%extends "layout.html"%}
 {%block body%}
 {{link_info}}
-<div class="table">
-<div class="row">
-    <div class="col"></div>
-    <div class="col"></div>
-    <div class="col"></div>
-</div>
-</div>
+<legend>The students, Those who attend the Exam.</legend>
+<div class="container">
+<a class="row" >
+    <div class="col">Students Name</div>
+    <div class="col">Students Email ID</div>
+</a>
+{%for students in attended_students%}
 
+<!-- Kaz baki Ase---------------------------------- -->
+<a class="row" href="http://the---{{students.exam_secret_code}}" style="text-decoration: none;">
+    <div class="col">{{students.student_name}}</div>
+    <div class="col">{{students.student_email}}</div>
+</a>
 
+{%endfor%}
+</div>
 {%endblock body%}
