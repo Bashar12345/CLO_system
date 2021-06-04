@@ -377,10 +377,9 @@ def secret_code():
         # mongodb_written_question = exam_written_question_paper()
         # mongodb_mcq_question = exam_MCQ_question_paper()
         # written_question = exam_written_question_paper.objects(exam_code=exam_code)
-        check_attence = marksheet.objects(exam_code=exam_code).first()
-        if check_attence:
-            flash(f"You already attend the Exam!!!!", "danger")
-            return redirect(url_for("main.main_page"))
+        if student_attendence.objects(student_email=user_obj.e, exam_secret_code=exam_code).first():
+            flash(f"Already attened this exam, You can't attend again!!", "warning")
+            return redirect(url_for('main.student_dashboard'))
         session['exam_code'] = exam_code
         mcq_question = exam_mcq_question_paper.objects.filter(
             exam_code=exam_code).first()
@@ -431,60 +430,57 @@ def secret_code():
 def mcq_answer_paper_auto_generated():
     # mcq_question_answer_submit(form)
     exam_code = secret_exam_key.exam_code
-    if student_attendence.objects(student_email=user_obj.e, exam_secret_code=exam_code).first():
-        flash(f"Already attened this exam, You can't attend again!!", "warning")
-        return redirect(url_for('main.student_dashboard'))
-    else:
-        requirement_for_mcq_questions = required_for_generate.objects(
-            exam_secret_code=exam_code).first()
-        exam_title = requirement_for_mcq_questions.exam_title
-        exam_course = requirement_for_mcq_questions.exam_course
-        exam_start_time = requirement_for_mcq_questions.exam_start_time
-        exam_end_time = requirement_for_mcq_questions.exam_end_time
-        exam_date = requirement_for_mcq_questions.exam_date
-        course_code = requirement_for_mcq_questions.course_code
-        print(exam_start_time, exam_end_time, exam_date)
-        year, month, day = exam_date.split("-")
-        hour, minute = exam_start_time.split(":")
-        end_hour, end_minute = exam_end_time.split(":")
-        # print(time)      # print(hour, " minute ase ", minute)
-        current_time = datetime.datetime.now()
-        # for demo  testing
-        current_time2 = current_time
-        starting_time_of_exam = datetime.datetime(
-            int(year), int(month), int(day), int(hour), int(minute)
-        )
-        ending_time_of_exam = datetime.datetime(
-            int(year), int(month), int(day), int(end_hour), int(end_minute)
-        )
-        print(f"ending time {ending_time_of_exam}")
-        print(f"starting time {starting_time_of_exam}")
-        session["starting_time_of_exam"] = starting_time_of_exam
-        session["ending_time_of_exam"] = ending_time_of_exam
-        # print(mcq_question['mcq_question'])
-        # final showdown e if uncomment krte hobe................................................
-        # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-        # if starting_time_of_exam <= current_time <= ending_time_of_exam:
-        if current_time == current_time2:
-            print("current time :", current_time)
-            # ekahne mcq question object produce krte hobe -------------------------------------------
-            question_mcq_for_current_session = question_paper_for_current_session(
-                requirement_for_mcq_questions)
-            # print(question_mcq_for_current_session)
-            session['exam_title'] = exam_title
-            session['exam_course'] = exam_course
-            session['exam_date'] = exam_date
-            session['session_question'] = question_mcq_for_current_session
-            session['count'] = 0
-            session['answer_count'] = 0
-            session['selectd_answers'] = list()
-            session['correct_answers'] = list()
-            session['corrected'] = 0
-            session['question_part'] = ''
-            session['shuffled_option_list'] = []
 
-            session['total_question'] = requirement_for_mcq_questions.number_of_question
-            return render_template_string("""
+    requirement_for_mcq_questions = required_for_generate.objects(
+        exam_secret_code=exam_code).first()
+    exam_title = requirement_for_mcq_questions.exam_title
+    exam_course = requirement_for_mcq_questions.exam_course
+    exam_start_time = requirement_for_mcq_questions.exam_start_time
+    exam_end_time = requirement_for_mcq_questions.exam_end_time
+    exam_date = requirement_for_mcq_questions.exam_date
+    course_code = requirement_for_mcq_questions.course_code
+    print(exam_start_time, exam_end_time, exam_date)
+    year, month, day = exam_date.split("-")
+    hour, minute = exam_start_time.split(":")
+    end_hour, end_minute = exam_end_time.split(":")
+    # print(time)      # print(hour, " minute ase ", minute)
+    current_time = datetime.datetime.now()
+    # for demo  testing
+    current_time2 = current_time
+    starting_time_of_exam = datetime.datetime(
+        int(year), int(month), int(day), int(hour), int(minute)
+    )
+    ending_time_of_exam = datetime.datetime(
+        int(year), int(month), int(day), int(end_hour), int(end_minute)
+    )
+    print(f"ending time {ending_time_of_exam}")
+    print(f"starting time {starting_time_of_exam}")
+    session["starting_time_of_exam"] = starting_time_of_exam
+    session["ending_time_of_exam"] = ending_time_of_exam
+    # print(mcq_question['mcq_question'])
+    # final showdown e if uncomment krte hobe................................................
+    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    # if starting_time_of_exam <= current_time <= ending_time_of_exam:
+    if current_time == current_time2:
+        print("current time :", current_time)
+        # ekahne mcq question object produce krte hobe -------------------------------------------
+        question_mcq_for_current_session = question_paper_for_current_session(
+            requirement_for_mcq_questions)
+        # print(question_mcq_for_current_session)
+        session['exam_title'] = exam_title
+        session['exam_course'] = exam_course
+        session['exam_date'] = exam_date
+        session['session_question'] = question_mcq_for_current_session
+        session['count'] = 0
+        session['answer_count'] = 0
+        session['selectd_answers'] = list()
+        session['correct_answers'] = list()
+        session['corrected'] = 0
+        session['question_part'] = ''
+        session['shuffled_option_list'] = []
+
+        session['total_question'] = requirement_for_mcq_questions.number_of_question
+        return render_template_string("""
         {% extends 'layout.html' %}
 
         {% block body %}
@@ -507,10 +503,10 @@ def mcq_answer_paper_auto_generated():
        {% endblock body %}
        """)
 
-            # return render_template("mcq/mcq_answer_session.html", exam_date=exam_date, exam_end_time=exam_end_time,
-            #                        # custom object for answer from the machine learning method
-            #                        question_mcq_for_current_session=question_mcq_for_current_session,
-            #                        title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
+        # return render_template("mcq/mcq_answer_session.html", exam_date=exam_date, exam_end_time=exam_end_time,
+        #                        # custom object for answer from the machine learning method
+        #                        question_mcq_for_current_session=question_mcq_for_current_session,
+        #                        title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
     return render_template(
         "count_Down.html",
         starting_time_of_exam=starting_time_of_exam,
@@ -547,7 +543,7 @@ def answer_session():
     question_dic_type_list = list()
     exam_code = secret_exam_key.exam_code
     # print(type(session_question))
-    #print("Foooooooooooor testing", len(session_question[count]))
+    # print("Foooooooooooor testing", len(session_question[count]))
     print("total_question : ", total_question)
     # session['total_question']
 
@@ -569,7 +565,7 @@ def answer_session():
 
         print("given answer count ", answer_count)
 
-        question_dic = {session['question_part']                        : session['shuffled_option_list']}
+        question_dic = {session['question_part']: session['shuffled_option_list']}
 
         temp_answer_paper_data.question_dictionary = question_dic
 
@@ -585,8 +581,8 @@ def answer_session():
 
     if answer_count == len(session['session_question']):
 
-        #print("correct --------", correct_answers)
-        #print("selected ----------", selectd_answers)
+        # print("correct --------", correct_answers)
+        # print("selected ----------", selectd_answers)
 
         selected = session['selectd_answers']
         i = 0
@@ -649,7 +645,7 @@ def answer_session():
          """)
 
     # session['count'] # session['session_question']):
-    #print("sesseion ", len(session['session_question']))
+    # print("sesseion ", len(session['session_question']))
 
     if session_question[count]:
         for i in session_question[count]:
@@ -745,7 +741,7 @@ def model_test_answer_session():
     shuffled_option_list = list()
     selected_option = ''
     # print(type(session_question))
-    #print("Foooooooooooor testing", len(session_question[count]))
+    # print("Foooooooooooor testing", len(session_question[count]))
     if answer_count == total_question:  # session['total_question']
         flash(f'Your fiinished the exam ', 'success')
         return redirect(url_for("main.main_page"))
@@ -778,8 +774,8 @@ def model_test_answer_session():
     # print(session['count'])
     # session['count'] # session['session_question']):
     if answer_count == total_question:  # len(session['model_test_question']):
-        #print("correct --------", correct_answers)
-        #print("selected ----------", selectd_answers)
+        # print("correct --------", correct_answers)
+        # print("selected ----------", selectd_answers)
         i = 0
         for selected in selectd_answers:
             if selected == correct_answers[i]:
