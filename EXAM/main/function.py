@@ -8,22 +8,23 @@ import random
 from EXAM.Test_paper.function import test_mcq_ML
 
 
-
 def delete_temporary_model():
     collection = temporary_model.objects().all()
     collection.delete()
     print("deleted")
 
+
 def delete_exam_attened_exams():
     exam_codes = marksheet.objects.only("exam_course", "exam_title")
     for exam in exam_codes:
-        check_existends = set_exam_question_slot.objects(exam_course = exam.exam_course, exam_title = exam.exam_title).first()
+        check_existends = set_exam_question_slot.objects(
+            exam_course=exam.exam_course, exam_title=exam.exam_title).first()
         if check_existends:
             check_existends.delete()
             print("Deleted")
-        print("course ", exam.exam_course," title ", exam.exam_title)
+        print("course ", exam.exam_course, " title ", exam.exam_title)
 
-#clean old requirement for genarating a question
+# clean old requirement for genarating a question
 
 
 def delete_old_question_requirements():
@@ -38,9 +39,10 @@ def delete_old_question_requirements():
             print("old")
     for i in required_for_generate.objects():
         print(i["exam_date"])
-    
+
 
 def student_main_page(student_id):
+    #teacher_id = ''
     teachers_ids = list()
     student_registered_course_code = list()
     news = []
@@ -84,24 +86,26 @@ def student_main_page(student_id):
         # print(joined_courses_of_user_student.course_code)
         student_registered_course_code.append(
             joined_courses_of_user_student.course_code)
+
     for corse_code in student_registered_course_code:
         teacher_id = teacher_created_courses_model.objects(
             course_code=corse_code).first()
     # print(teacher_id["teacher_registered_id"])
-    if teacher_id.teacher_registered_id not in teachers_ids:
-        teachers_ids.append(teacher_id.teacher_registered_id)
+        if teacher_id.teacher_registered_id not in teachers_ids:
+            teachers_ids.append(teacher_id.teacher_registered_id)
     # print(teachers_ids)
 
     todays_post = list()
 
-    for teah_id in teachers_ids:
-        posts_from_teacher = teacher_posts_model.objects(
-            email=teah_id)
-        # ekhane data ashtese nahhh
-        for posts in posts_from_teacher.order_by("-Date"):
-            # print("dhukse")
-            # print(posts.title)
-            todays_post.append(posts)
+    if teachers_ids:
+        for teah_id in teachers_ids:
+            posts_from_teacher = teacher_posts_model.objects(
+                email=teah_id)
+            # ekhane data ashtese nahhh
+            for posts in posts_from_teacher.order_by("-Date"):
+                # print("dhukse")
+                # print(posts.title)
+                todays_post.append(posts)
     # print(todays_post)
     # print(latest_posts_from_teacher)
     # latest_posts_from_teacher = teacher_posts.objects.order_by('Date')
@@ -109,7 +113,7 @@ def student_main_page(student_id):
     #     email=teacher_email_id,
     #     #teacher_posts__title='deposit',).
     return todays_post, context
-    pass
+    #pass
 
 
 def teacher_main_page(teacher_email_id):
@@ -177,7 +181,7 @@ def student_view_courses(user):
 
 def created_course_form_db_insertion(get_form, user_type):
     form = get_form
-    user=user_obj.e
+    user = user_obj.e
     course_code = form.course_code.data
     course_title = form.course_title.data
     course_co = request.form.getlist('course_co')
@@ -191,7 +195,8 @@ def created_course_form_db_insertion(get_form, user_type):
     check_existed_course = course_model.objects(
         course_code=course_code, course_title=course_title).first()
 
-    check_course_created_by_this_teacher_before = teacher_created_courses_model.objects(course_code=course_code, course_title=course_title,teacher_registered_id=user).first()
+    check_course_created_by_this_teacher_before = teacher_created_courses_model.objects(
+        course_code=course_code, course_title=course_title, teacher_registered_id=user).first()
 
     if check_existed_course and check_course_created_by_this_teacher_before:
         flash(f" Have You created this course before?, Already exist this Course, please Change the 'Course title' or 'Course code' ", "danger")

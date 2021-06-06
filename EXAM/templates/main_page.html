@@ -152,7 +152,7 @@
 
 
     {%if user_type=='student'%}
-
+    {%if latest_posts_from_teacher %}
     <div class="">
 
         <section class="container">
@@ -180,15 +180,16 @@
             </div>
             {%endfor%}
         </section>
+        
+        {%endif%}
 
-
-<br/>
+        <br />
         <div class="row no-gutters">
             <div class="col-12  col-sm-6 col-md-8 ">
 
                 <div class=" container ">
                     <h3> Latest News arround the world</h3>
-                    <br/>
+                    <br />
                     {% for news, desc, image in context %}
                     <div class="card text-white bg-dark mb-3">
                         <div class="card-header">
@@ -261,6 +262,7 @@
 
     </div>
 
+
     {%endif%}
 
 
@@ -269,7 +271,6 @@
 
 
 
-    
 </div>
 {% endblock body %}
 

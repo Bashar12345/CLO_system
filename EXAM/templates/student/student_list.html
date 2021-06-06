@@ -21,12 +21,13 @@
       background-color: #dddddd;
     }
     </style>
+{% set corse_code, course_date = course_code.split("=")%}
 
         <form class="container form-horizontal" action="{{ url_for('users.student_list',course_code=course_code ) }}" method="POST"
             enctype="multipart/form-data">
 
             {{ form.hidden_tag()}}
-            <legend id="course_coode" value="{{course_code}}">{{course_code}}</legend>
+            <legend id="course_coode" value="{{corse_code}}">{{corse_code}}</legend>
             <p id="enroll_key" value="{{enroll}}">{{enroll}}</p>
 
 

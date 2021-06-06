@@ -56,34 +56,7 @@ def remove_junk():
     for i in set_exam_question_slot.objects():
         print(i["exam_date"])
 
-    #     set_exam_question_slot(nosql.Document):
-    # exam_title = nosql.StringField()
-    # exam_course = nosql.StringField()
-    # exam_course_code = nosql.StringField()
-    # exam_topic = nosql.ListField()
-    # exam_start_time = nosql.StringField()
-    # exam_end_time = nosql.StringField()
-    # # exam_start_time = nosql.DateTimeField()
-    # # exam_end_time = nosql.DateTimeField()
-    # exam_date = nosql.StringField()
-
-    # required_for_generate(nosql.Document):
-    # question_type = nosql.StringField()  # kaz baki
-    # exam_title = set_exam_question_slot.exam_title
-    # exam_course = set_exam_question_slot.exam_course
-    # exam_start_time = set_exam_question_slot.exam_start_time
-    # exam_end_time = set_exam_question_slot.exam_end_time
-    # exam_date = set_exam_question_slot.exam_date
-    # exam_secret_code = nosql.StringField()
-    # exam_marks = nosql.IntField()
-    # caption = nosql.StringField()
-    # course_code = course_model.course_code
-    # question_difficulty = nosql.IntField()
-    # lesson = nosql.ListField()
-    # exam_CLO = nosql.ListField()
-    # complex_level = nosql.ListField()
-    # marks = nosql.ListField()
-    # number_of_question = nosql.IntField()
+   
 
 
 def saveFormFile_in_Filesystem(form_file):
@@ -152,10 +125,11 @@ def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_cod
 
 # mail.send(msg)'''
 
+# if current_user.is_authenticated:
+# return redirect(url_for("main.base"))
 
 def register_method(get_form):
-    # if current_user.is_authenticated:
-    # return redirect(url_for("main.base"))
+   
     form = get_form
     name = form.user_name.data
     print(f"form er data ayse {name}")
@@ -167,7 +141,9 @@ def register_method(get_form):
         "utf-8"
     )  # hashing
     # upload_profile_pic = form.profile_pic.data
-    # upload_profile_pic, ext = binary_read(form.profile_pic.data)
+    # if upload_profile_pic:
+    #     print("photo ayse")
+    upload_profile_pic, ext = binary_read(form.profile_pic.data)
     # doc_file_name, file_path, f_ext, random_file_name = saveFormFile_in_Filesystem(form.profile_pic.data)
     if user_category == "student":
         mongo_user = user_student()
@@ -176,9 +152,11 @@ def register_method(get_form):
         mongo_user.email = email
         # mongo_user.password = hashed_password
         mongo_user.user_category = user_category
-        """with open(file_path, 'rb')as fd:
-            print(fd.read())
-            mongo_user.profile_pic.put(fd, filename=doc_file_name)"""
+        with open(upload_profile_pic, 'rb')as fd:
+            #print(fd.read())
+            mongo_user.profile_pic.put(
+                fd, filename=name + ext, content_type="image/jpeg")
+        #mongo_user.profile_pic = upload_profile_pic
         mongo_user.save()
         mongo_user_info = user()  # this is for 'not override email complication'
         mongo_user_info.user_name = name
@@ -194,9 +172,11 @@ def register_method(get_form):
         mongo_user.email = email
         # mongo_user.password = hashed_password
         mongo_user.user_category = user_category
-        """with open(file_path, 'rb')as fd:
-            print(fd.read())
-            mongo_user.profile_pic.put(fd, filename=doc_file_name)"""
+        with open(upload_profile_pic, 'rb')as fd:
+            #print(fd.read())
+            mongo_user.profile_pic.put(
+                fd, filename=name + ext, content_type="image/jpeg")
+        #mongo_user.profile_pic = upload_profile_pic
         mongo_user.save()
         mongo_user_info = user()  # this is for 'not override email complication'
         mongo_user_info.user_name = name
@@ -216,19 +196,17 @@ def binary_read(form_pic_file):
 
     pic_fn = f_name + f_ext
 
-    #instance_path = "/home/b/Desktop/test/EXAM"
+    instance_path = "/home/b/Desktop/project/EXAM"
 
     pic_path = os.path.join(instance_path, "static/temp", pic_fn)
 
     # binary mode e file khuila data mongodb te disi
     form_pic_file.save(pic_path)
 
-    img_or_file_binary = open(pic_path, "rb")
+    #img_or_file_binary = open(pic_path, "rb")
 
-    img = img_or_file_binary.read()
+    img = pic_path
 
-    # print(img)
-
-    img_or_file_binary.close()
+    print(img)
 
     return img, f_ext

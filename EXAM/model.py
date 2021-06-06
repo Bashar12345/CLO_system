@@ -27,7 +27,8 @@ class user(nosql.Document, UserMixin):
     email = nosql.StringField()
     password = nosql.StringField()
     organization_id = nosql.StringField()
-    # profile_pic = nosql.ImageField(thumbnail_size=(150, 150, False))
+    #profile_pic = nosql.ImageField(thumbnail_size=(150, 150, False))
+    profile_pic = nosql.FileField()
     user_category = nosql.StringField()
 
     def get_reset_token(self, expire_sec=1500):
@@ -53,6 +54,7 @@ class user_teacher(nosql.Document):
     user_name = user.user_name
     email = user.email
     organization_id = user.organization_id
+    profile_pic = user.profile_pic
 
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
@@ -62,6 +64,7 @@ class user_student(nosql.Document):
     user_name = user.user_name
     email = user.email
     organization_id = user.organization_id
+    profile_pic=user.profile_pic
 
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"

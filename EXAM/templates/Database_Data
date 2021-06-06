@@ -642,6 +642,39 @@ db.mcq_question.insertMany([
 }
 
 
+#record_of_exams
+
+{
+    "exam_title" : "quiz-1",
+    "entry_date" : "2021-05-1",
+    "course_code" : "swe151",
+    "exam_secret_code" : "e34cwv22d"
+}
+
+
+{
+    "exam_title" : "quiz-2",
+    "entry_date" : "2021-05-15",
+    "course_code" : "swe151",
+    "exam_secret_code" : "cwv22d"
+}
+
+{
+    "exam_title" : "quiz-3",
+    "entry_date" : "2021-05-30",
+    "course_code" : "swe151",
+    "exam_secret_code" : "e3022d"
+}
+
+{
+    "exam_title" : "quiz-4",
+    "entry_date" : "2021-06-02",
+    "course_code" : "swe151",
+    "exam_secret_code" : "qwsx"
+}
+
+
+
 #set_exam_question_slot
 
 {
@@ -2263,4 +2296,200 @@ db.mcq_question.insertMany([
 ])
 
 
+
+#mcq_answer_paper
+
+{
+    "exam_title" : "quiz-1",
+    "entry_date" : "2021-05-1",
+    "course_code" : "swe151",
+    "exam_secret_code" : "e34cwv22d"
+}
+
+
+{
+    "exam_title" : "quiz-2",
+    "entry_date" : "2021-05-15",
+    "course_code" : "swe151",
+    "exam_secret_code" : "cwv22d"
+}
+
+{
+    "exam_title" : "quiz-3",
+    "entry_date" : "2021-05-30",
+    "course_code" : "swe151",
+    "exam_secret_code" : "e3022d"
+}
+
+{
+    "exam_title" : "quiz-4",
+    "entry_date" : "2021-06-02",
+    "course_code" : "swe151",
+    "exam_secret_code" : "qwsx"
+}
+
+#mcq_answer_paper
+
+
+{
+    "email" : "ayshakhatun@example.com",
+    "name" : "",
+    "exam_secret_code" : "qwsx",
+    "question_dictionary_type_list" : [ 
+        {
+            " ___ facilitates traversal in both the forward and backward direction of a linked list" : [ 
+                "Bi-directed linked list", 
+                "Circular linked list", 
+                "Doubly linked list", 
+                "Directed linked list"
+            ]
+        }, 
+        {
+            "testing question-2" : [ 
+                "", 
+                "", 
+                "", 
+                "", 
+                "", 
+                ""
+            ]
+        }, 
+        {
+            " Dijkstra’s algorithm can be applied for unweighted directed graph" : [ 
+                "not included", 
+                "truth", 
+                "False", 
+                "not adopted"
+            ]
+        }, 
+        {
+            " In a queue, deletions can take place only at one end called ___" : [ 
+                "Front", 
+                "Exit", 
+                "Enter", 
+                "Rear"
+            ]
+        }, 
+        {
+            "What is present at the level 1 of hierarchical structure?" : [ 
+                " Issues at sub-modules", 
+                "Detailed description of the problem", 
+                "Result", 
+                " Brief general description of the problem"
+            ]
+        }, 
+        {
+            "testing question-1" : [ 
+                "sadaxz", 
+                "sdfsddadf", 
+                "fghnasdf", 
+                "axas", 
+                "rgdsfg", 
+                ""
+            ]
+        }, 
+        {
+            "testing question-1" : [ 
+                "", 
+                "", 
+                "", 
+                "", 
+                "", 
+                null
+            ]
+        }, 
+        {
+            " A graph containing only isolated vertices is called ___" : [ 
+                "directed graph", 
+                "multigraph", 
+                "solated graph", 
+                "null graph"
+            ]
+        }, 
+        {
+            "Which strategy permits to divide a problem in subproblems, solves them individually, and combines them for a solution to the problem?" : [ 
+                "Greedy method", 
+                "Dynamic programming", 
+                "Divide and Conquer", 
+                " Mathematical strategy"
+            ]
+        }, 
+        {
+            "MaxMin is a ___ algorithm" : [ 
+                "Procedural", 
+                "Recursive", 
+                "Speedy", 
+                "Calculative"
+            ]
+        }, 
+        {
+            " In ___ problem, the profits and weights are positive numbers" : [ 
+                "MaxMin", 
+                "Knapsack", 
+                "Dynamic"
+            ]
+        }, 
+        {
+            "Algorithms that are designed to be executed on Von-Neumann architecture machines are called ___ algorithms" : [ 
+                "Computable", 
+                "Linear", 
+                "Solvable", 
+                "Sequential"
+            ]
+        }, 
+        {
+            "The ___ method of notation is one of the frequently used methods for expressing algorithms" : [ 
+                "Procedural", 
+                "Dynamic programming", 
+                "Pseudo-code", 
+                "Divide and Conquer"
+            ]
+        }, 
+        {
+            "___ suggests that one can devise an algorithm that works in stages, considering one input at a time" : [ 
+                "Greedy method", 
+                " Linked list", 
+                "Dynamic programming", 
+                "Divide and conquer"
+            ]
+        }, 
+        {
+            "A problem having at least one algorithmic solution is called ___ problem" : [ 
+                "Computable", 
+                "Answerable", 
+                "Designable", 
+                "Solvable"
+            ]
+        }, 
+        {
+            "Given b = 42 and n = 11, Find b mod n" : [ 
+                "42", 
+                "11", 
+                "0", 
+                "2"
+            ]
+        }
+    ],
+    "answer" : {
+        "none" : "none"
+    },
+    "selected_answer_options" : [ 
+        "Doubly linked list", 
+        "no_answer", 
+        "False", 
+        "Enter", 
+        " Brief general description of the problem", 
+        "no_answer", 
+        "no_answer", 
+        "solated graph", 
+        " Mathematical strategy", 
+        "Recursive", 
+        "Dynamic", 
+        "Computable", 
+        "Dynamic programming", 
+        "Divide and conquer", 
+        "Computable", 
+        "2"
+    ]
+}
 

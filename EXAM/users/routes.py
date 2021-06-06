@@ -27,11 +27,12 @@ users = Blueprint("users", __name__)
 
 @users.route("/registration", methods=["GET", "POST"])
 def register():
+    form = registration_form()
     if current_user.is_authenticated:
         return redirect(url_for("main.main_page"))
-    form = registration_form()
+    
 
-    # if request.method == "POST":
+    #if request.method == "POST":
     if form.validate_on_submit():
         check = register_method(form)
         if check == "done":
@@ -184,16 +185,15 @@ def student_list(course_code):
     students = ''
     selected_data = ""
     result_students = ""
-    course_code, course_date = course_code.split("=")
+    corse_code, course_date = course_code.split("=")
     print(course_code, "  DAte", course_date)
-    #print(course_code)
-    corse_code = course_code
+    #corse_code = course_code
     check = ""
     # students=''
-    enroll = form.enroll_key.data
+    enroll_key = form.enroll_key.data
     if request.method == "POST":
         delete_temporary_collection()
-        print(enroll)
+        print(enroll_key)
         organization_id = form.organization_id.data
         result_students = user_student.objects(
             organization_id=organization_id).first()
@@ -207,9 +207,9 @@ def student_list(course_code):
             )
         email_list = request.form.getlist('students_list_checkbox')
         sending_mail_to_user_for_course_enroll_key(
-            email_list, enroll, corse_code)
+            email_list, enroll_key, corse_code)
     delete_temporary_collection()
-    enrolled = enrol_students_model.objects(course_code=course_code)
+    enrolled = enrol_students_model.objects(course_code=corse_code)
     if enrolled:
         delete_temporary_collection()
         for userStudents in user_student.objects():

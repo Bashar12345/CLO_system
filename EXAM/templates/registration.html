@@ -118,26 +118,24 @@
                     </div>
                     {% endif %}
                     <br>
-                    <!-- {#{ form.profile_pic.label(class = "form-control-label") }#}
-                        {#% if form.profile_pic.errors %#}
-                        {#{form.profile_pic(class="form-control form-control-lg is-invalid")}#}
+                    {{ form.profile_pic.label(class = "form-control-label") }}
+                        {% if form.profile_pic.errors %}
+                        {{form.profile_pic(class="form-control form-control-lg is-invalid")}}
                         <div class="invalid-feedback">
                             
-                            {#% for error in form.profile_pic.errors %#}
+                            {% for error in form.profile_pic.errors %}
                             <span>{#{error}#}</span>
                                 
-                            {#% endfor %#}
+                            {% endfor %}
                                 
                         </div>
-                        {#% else %#}
+                        {% else %}
                         
                         <div class="input-group mb-3">
-                            {#{ form.profile_pic(class="btn-outline-info") }#}
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">@example.com</span>
-                            </div>
+                            {{ form.profile_pic(class="btn-outline-info") }}
+                           
                         </div>
-                        {#% endif %#} -->
+                        {% endif %}
                     <br/>
 
 
