@@ -310,24 +310,33 @@ def mcqUpload_clo_selection_load():
 def generateMCQ(course_code):
     form = Mcq_Question_generate_form()
     # if course_code:
-    if course_code == "teacher":
+    if course_code == "teacher":  
+
         corse_code = course_code
+        course_code = course_model.objects.only("course_code")
+        if request.method == "POST":
+            generate_question(form, corse_code)
+        return render_template(
+            "mcq/generateMCQ.html",
+            title="MCQgenerate",
+            form=form,
+            user_type=User_type.user_type,
+            corse_code=corse_code,            #teacher
+            course_code=course_code)          # swe151=2021-06-23  # swe151
     else:
-        course_code, course_date = course_code.split("=")
+
+        corse_code ,course_date = course_code.split("=")                 # swe151=2021-06-23
         session['course_date'] = course_date
 
-    corse_code = course_code
-    if course_code == "teacher":
-        course_code = course_model.objects.only("course_code")
-    if request.method == "POST":
-        generate_question(form, corse_code)
-    return render_template(
-        "mcq/generateMCQ.html",
-        title="MCQgenerate",
-        form=form,
-        user_type=User_type.user_type,
-        course_code=course_code,
-        corse_code=corse_code)
+        if request.method == "POST":
+            generate_question(form, course_code)
+        return render_template(
+            "mcq/generateMCQ.html",
+            title="MCQgenerate",
+            form=form,
+            user_type=User_type.user_type,
+            corse_code=corse_code,         # swe151
+            course_code=course_code)       # swe151=2021-06-23  # swe151
 
 
 @Test_paper.route("/generateMCQ_lesson_load")
@@ -362,7 +371,7 @@ def generateMCQ_clo_load():
         if course_date:
             crse_clo = course_model.objects(
                 course_code=code, course_duration=course_date).first()
-            print(type(crse_clo.course_co))
+            # print(type(crse_clo.course_co))
         else:
             crse_clo = course_model.objects(
                 course_code=code).first()
@@ -572,7 +581,7 @@ def answer_session():
 
         print("given answer count ", answer_count)
 
-        question_dic = {session['question_part']                        : session['shuffled_option_list']}
+        question_dic = {session['question_part']: session['shuffled_option_list']}
 
         temp_answer_paper_data.question_dictionary = question_dic
 
@@ -620,6 +629,7 @@ def answer_session():
         # session['session_question']
         answer_paper.question_dictionary_type_list = question_dic_type_list
         answer_paper.selected_answer_options = session['selectd_answers']
+        answer_paper.correct_answer = session['correct_answers']
         answer_paper.save()
         user_info = user_student.objects(email=user_obj.e).first()
         # attendence---------------------------------------------------------------

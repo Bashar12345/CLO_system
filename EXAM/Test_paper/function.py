@@ -283,7 +283,7 @@ def mcq_uploading_processing(get_form, corse_code):
 
 
 # requirement for genarating a question
-def generate_question(get_form, corse_code):
+def generate_question(get_form, code_ase_naki_nai):
     form = get_form
     exam_title = form.exam_title.data
     if exam_title == 'mid-term' or exam_title == 'final':
@@ -303,10 +303,10 @@ def generate_question(get_form, corse_code):
     exam_secret_code = form.exam_code.data
 
     # number_of_question = request.form.get("exam_total_questions")
-    if corse_code == 'teacher':
+    if code_ase_naki_nai == 'teacher':
         course_code = request.form.get('course_code')
-    else:
-        course_code = corse_code
+    # else:
+    course_code, course_date = code_ase_naki_nai.split("=")
 
     question_difficulty = request.form.get("question_difficulty")
 
@@ -329,8 +329,8 @@ def generate_question(get_form, corse_code):
     exam_marks = request.form.getlist("marks")
     print(exam_topic, " --", exam_CLO, " --",
           complex_level, " --", number_of_question, " --")
-    print(course_code)
-    course_code, course_date = course_code.split("=")
+    print("course_code :", course_code)
+    
 
     courses = course_model.objects(course_code=course_code).first()
     check_existing_slot = set_exam_question_slot.objects(
