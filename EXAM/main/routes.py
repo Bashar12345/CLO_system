@@ -17,7 +17,6 @@ from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
 
-
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 #newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
@@ -61,7 +60,7 @@ main_page_count = 0
 @login_required
 def main_page():
     # ----------------------------------ekane teacher question evluate krbee
-    #delete_exam_attened_exams()
+    # delete_exam_attened_exams()
     delete_old_question_requirements()
     teacher_email_id = user_obj.e
     student_id = session['email']
@@ -227,7 +226,7 @@ def view_course_load_data():
 @main.route('/question_view/<course_code>', methods=['GET', 'POST'])
 @login_required
 def question_view(course_code):
-    course_data=''
+    course_data = ''
     print(course_code)
     if User_type.user_type == 'student':
 
@@ -253,15 +252,13 @@ def question_view(course_code):
 def student_dashboard():
     remove_junk()
     datalist = []
-    course_code_list =[]
+    course_code_list = []
     student_email = user_obj.e
     for i in enrol_students_model.objects(enrolled_students_id=student_email):
         if i.course_code not in course_code_list:
             course_code_list.append(i.course_code)
-        
-    return render_template('dashboard.html', course_code_list=course_code_list, set_exam_question_slot=set_exam_question_slot,title='Recent Exams', user_type=User_type.user_type)
 
-
+    return render_template('dashboard.html', course_code_list=course_code_list, set_exam_question_slot=set_exam_question_slot, title='Recent Exams', user_type=User_type.user_type)
 
 
 @main.route('/courseRegisteredStudents', methods=['GET', 'POST'])
@@ -294,10 +291,8 @@ def course_assigned_students():
     return render_template('views/view_your_students.html', title="My Students", user_type=User_type.user_type, user_emails_total=user_emails_total, students_name=students_name, iter=itertools)
 
 
-
-
-@main.route('/course_exams/<course_code>',methods=['GET','POST'])
-#@login_required
+@main.route('/course_exams/<course_code>', methods=['GET', 'POST'])
+# @login_required
 def course_exams(course_code):
     course_code, course_date = course_code.split("=")
     print(course_code, "  DAte", course_date)
@@ -308,20 +303,33 @@ def course_exams(course_code):
 
 
 @main.route('/course_exams_students/<link_info>', methods=['GET', 'POST'])
-#@login_required
+# @login_required
 def course_exams_students(link_info):
-    
+
     # course_code, exam_title = link_info.split("=")
     # print(" Exam tittle -------------------------- ",exam_title)
     print(link_info)
     attended_students = student_attendence.objects(exam_secret_code=link_info)
-    #ekhane kaz baki ase---------------------------------------------------------------------
+    for i in attended_students:
+        objects_of_student = user_student.objects(email=i.student_email).first()
+        print(type(objects_of_student.profile_pic.read()))
+        pic = objects_of_student.profile_pic.read()
+        print(pic)
+        try:
+         with open(objects_of_student.profile_pic.filename, "wb+") as f:
+          f.write(pic)
+          #f.save()
+          f.close()
+        except Exception as e:
+             print(e)
 
-    return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info, attended_students=attended_students,user_type=User_type.user_type)
+    # ekhane kaz baki ase---------------------------------------------------------------------
+
+    return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info, attended_students=attended_students, user_student=user_student, user_type=User_type.user_type)
 
 
 @main.route('/course_exams_students_answer_sheet/<link_info>', methods=['GET', 'POST'])
-#@login_required
+# @login_required
 def course_exams_students_answer_sheet(link_info):
     print(link_info)
     code, student_id = link_info.split("=")
@@ -331,15 +339,10 @@ def course_exams_students_answer_sheet(link_info):
     return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools)
 
 
-
-
-
 @ main.route('/loading_students')
 # @login_required
 def loading_students():
     pass
-
-
 
 
 # @main.route('/exam_slot_load')

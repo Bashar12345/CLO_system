@@ -4,6 +4,9 @@ from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as serializer
 
 from EXAM import login_manager, nosql
+from mongoengine import fields
+
+
 
 
 # @login_manager.user_loader
@@ -64,8 +67,8 @@ class user_student(nosql.Document):
     user_name = user.user_name
     email = user.email
     organization_id = user.organization_id
-    profile_pic=user.profile_pic
-
+    profile_pic = nosql.FileField()
+    image = fields.ImageField(thumbnail_size=(150, 150, False))
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
 

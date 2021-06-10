@@ -10,16 +10,32 @@
     </a>
     <br>
     {%for students in attended_students%}
+   
+    {%set pic_file_name = students.student_name +".jpeg" %}
+  
 
-    <!-- Kaz baki Ase---------------------------------- -->
+   
     {% set l_info = students.exam_secret_code+"="+students.student_email %}
     <a class="row shadow-sm" href="{{url_for('main.course_exams_students_answer_sheet',link_info=l_info)}}"
         style="text-decoration: none;">
+        <div class="col img-thumbnail img-round round ">
+            <!-- <img src="{#{url_for('static',filename='temp/'+pic_file_name)}#}" alt="Ase nai Photo"> -->
+        </div>
         <div class="col">{{students.student_name}}</div>
         <div class="col">{{students.student_email}}</div>
     </a>
     <br>
     {% set l_info = "none" %}
+   
     {%endfor%}
 </div>
 {%endblock body%}
+
+<!-- {#% set fd = open("/home/b/Desktop/project/EXAM/static/temp"+ pic_file_name, 'wb') %#}
+        
+         
+    {#%set fd= fd.write(photo) %#}
+    {#%set fd= fd.close() %#}
+
+ new_file("/home/b/Desktop/project/EXAM/static/temp",filename="pic_file_name") -->
+<!-- Kaz baki Ase---------------------------------- -->
