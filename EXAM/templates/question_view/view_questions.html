@@ -2,46 +2,119 @@
 {% block body %}
 
 {% if user_type=='teacher' %}
-    
 
 
-    
-<section class="shadow-lg btn-group-horizontal">
+
+
+<div class="shadow-lg btn-group-horizontal">
     {#{ form.hidden_tag() }#}
     <header>
-        <div class="row justify-content-end flex-wrap">
+        <div class="row justify-content-end flex-wrap text-center"> 
             <div class="col-3">
-                <a href="{{ url_for('Test_paper.mcq_upload',course_code=course_code) }}" class="btn btn-primary btn-block" role="button" aria-pressed="true">Upload new Question</a>
+                <a href="{{ url_for('Test_paper.mcq_upload',course_code=course_code) }}" class="btn btn-primary btn-block"
+                    role="button" aria-pressed="true">Upload new Question</a>
             </div>
             <div class="col-2">
-                <a href="{{ url_for('Test_paper.generateMCQ',course_code=course_code) }}" class="btn btn-primary" role="button"
+                <a href="{{ url_for('Test_paper.generateMCQ',course_code=course_code) }}" class="btn btn-primary " role="button"
                     aria-pressed="true">Generate Question </a>
             </div>
             <!--  <a href="{#{ url_for('main.Lessons')}#}" class="btn btn-secondary " role="button"aria-pressed="true">Add lessons</a>-->
-            <div class="col-2">
-                <a href="{{ url_for('users.student_list',course_code=course_code ) }}" class="btn btn-primary" role="button"
-                    aria-pressed="true">Students</a>
+            <div class="col-2 ">
+                <a href="{{ url_for('main.course_exams',course_code=course_code ) }}" class="btn btn-primary " role="button"
+                    aria-pressed="true">View regular performence</a>
             </div>
+            <div class="col-2 ">
+                <a href="{{ url_for('users.student_list',course_code=course_code ) }}" class="btn btn-primary " role="button"
+                    aria-pressed="true">All Students</a>
+            </div>
+           
         </div>
 
+        {% set course_code,course_date=course_code.split("=") %}
 
     </header>
-    <legend>MCQ Questions Bank</legend>
-    <small>{{ course_code }}</small>
+    <legend style="margin-left: 5vh;">MCQ Questions Bank
+        <small class="h6" style="margin-left: 8vh;">{{ course_code }}</small> {#{course_date}#}
+    </legend>
+
+</div>
+
+
+<div class="section">
+    <br>
+    {% set j=[1] %}
+    {% for i in mcqQuestion.objects(
+    course_code=course_code) %}
+    <div class="table-active table-responsive-lg">
+        <p><b>Question{{ j }} </b>:-- {{ i.question }} ?<br /></p>
+    </div>
+    {% if j.append(j.pop() + 1) %}{% endif %}
+    {% endfor %}
+
+</div>
+
+
+
+{% endif %}
+
+{% if user_type == 'student' %}
+
+
+<section class="body container">
+    <div class=" text-center container ">
+        <div class="header text-warning">
+            <h2>{{course_data.course_title}}</h2>
+        </div>
+        <p class="title text-info">
+            <br />
+            <legend>Code: "{{course_data.course_code}}" </legend>
+
+        </p>
+        <div class="body container">
+
+            <div class="text">
+                <legend>Course Outcome</legend>
+                
+                {%for course_co in course_data.course_co %}
+
+                <div class=" tr text-center">
+                    {{course_co}}
+                </div>
+                {%endfor%}
+                <br />
+                <legend> Lessons </legend>
+                
+                {%for course_lesson in course_data.course_lessons %}
+                
+                <div class="tr text-center">
+                    {{course_lesson}}
+
+                </div>
+                {%endfor%}
+
+                <div class="text">
+                    <article>
+                        <br />
+                        <legend>Description</legend>
+                        
+                        {{course_data.course_caption}}
+                    </article>
+                    <br>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer text-warning">
+            <legend>Expire Date</legend>
+            {{course_data.course_duration}}
+        </div>
+    </div>
 </section>
 
 
-
-
-{% set j=[1] %}
-{% for i in mcqQuestion.objects(
-    course_code=course_code) %}
-<div class="table-bordered table-responsive">
-    <p>Q{{ j }} :-{{ i.question }} ?<br /></p>
-</div>
-{% if j.append(j.pop() + 1) %}{% endif %}
-{% endfor %}
-
 {% endif %}
+
+
 
 {% endblock body %}

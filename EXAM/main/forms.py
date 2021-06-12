@@ -19,11 +19,11 @@ class PhotoForm(FlaskForm):
 
 class create_course_form(FlaskForm):
     course_code = StringField('Course Code',validators=[DataRequired(),  Length(min=5, max=10), validation_course])
-    course_title = StringField('Enter Course Title (Dont give "#,$,@,&" these caracters)')
+    course_title = StringField('Enter Course Title \n (Dont give "#,$,@,&" these caracters) :')
     course_co = TextAreaField("Course outcome of the Course")
     course_lessons = StringField('Total Lessons of this course')
     course_duration = DateField(
         'Date: (Please, Enter When Course will be finished)', validators=[DataRequired()])
     course_caption = StringField('Course Caption/Details')
-    submit = SubmitField(' Create Course ')
+    submit = SubmitField(' Create a Course ')
 

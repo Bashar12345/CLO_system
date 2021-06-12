@@ -1,11 +1,11 @@
 from flask.wrappers import Response
 from EXAM import bcrypt
-from flask import render_template, request, redirect, url_for, flash, Blueprint
+from flask import render_template, request, redirect, url_for, flash, Blueprint, session
 from flask_login import current_user, logout_user, login_required, login_user
 
 from EXAM import bcrypt
 from EXAM.configaration import User_type, user_obj
-from EXAM.model import course_model, enrol_students_model, student_courses_model, temp_student_collection, temporary_model, user, user_student
+from EXAM.model import admin_notice_model, course_model, enrol_students_model, student_courses_model, temp_student_collection, temporary_model, user, user_student
 from EXAM.users.forms import (
     enrolForm,
     registration_form,
@@ -20,17 +20,19 @@ from EXAM.users.utils import (
     sending_mail_to_user_for_course_enroll_key, delete_temporary_collection
 )
 import time
+import datetime
 
 users = Blueprint("users", __name__)
 
 
 @users.route("/registration", methods=["GET", "POST"])
 def register():
+    form = registration_form()
     if current_user.is_authenticated:
         return redirect(url_for("main.main_page"))
-    form = registration_form()
+    
 
-    # if request.method == "POST":
+    #if request.method == "POST":
     if form.validate_on_submit():
         check = register_method(form)
         if check == "done":
@@ -64,19 +66,34 @@ def login():
                 if usersd.user_category == "student":
                     User_type.user_type = "student"
                     user_obj.e = usersd["email"]
+                    session['email'] = usersd["email"]
+                elif usersd.user_category == "admin":
+                    session['email'] = ''
+                    User_type.user_type = "admin"
+                    user_obj.e = usersd["email"]
+                    #session['email'] = usersd["email"]
                 else:
+                    session['email'] = ''
                     User_type.user_type = "teacher"
                     user_obj.e = usersd["email"]
+                    session['course_date'] = ''
                 login_user(usersd, remember=form.remember.data)
                 next_page = request.args.get("next")
                 # return check
                 flash(
                     f"আপনার উপর শান্তি বর্ষিত হোক.... {usersd.user_name}", "success")
-                return (
-                    redirect(next_page)
-                    if next_page
-                    else redirect(url_for("main.main_page"))
-                )
+                if usersd.user_category == "admin":
+                    return (
+                        redirect(next_page)
+                        if next_page
+                        else redirect(url_for("main.admin"))
+                    )
+                else:
+                    return (
+                        redirect(next_page)
+                        if next_page
+                        else redirect(url_for("main.main_page"))
+                    )
                 # return check
             else:
                 flash(f"Login Unsuccessful !!!", "danger")
@@ -134,28 +151,49 @@ def reset_token(token):
     )
 
 
+@users.route("/create_notice", methods=(["GET", "POST"]))
+@login_required
+def create_notice():
+    notice_title = request.form.get('title')
+    notice_announcement = request.form.get('announcement')
+    notice_time = datetime.datetime.now()
+    if request.method == "POST":
+        if notice_title:
+            upload_notice = admin_notice_model()
+            upload_notice.notice_title = notice_title
+            upload_notice.notice_announcement = notice_announcement
+            upload_notice.notice_time = notice_time
+            upload_notice.save()
+
+    return render_template(
+        "admin_notice.html", title="Examiner_Page", user_type=User_type.user_type)
+
+
 @users.route("/examiner")
 @login_required
 def examiner():
+    # kaz ase -=---------------------------------------------------
+    notices = admin_notice_model.objects().order_by("-notice_time")
     return render_template(
-        "examiner.html", title="Examiner_Page", user_type=User_type.user_type)
+        "examiner.html", title="Examiner_Page", notices=notices, user_type=User_type.user_type)
 
 
 @users.route("/student_list/<course_code>", methods=["GET", "POST"])
 # @login_required
 def student_list(course_code):
     form = searchForm()
-    students=''
+    students = ''
     selected_data = ""
     result_students = ""
-    print(course_code)
-    corse_code = course_code
+    corse_code, course_date = course_code.split("=")
+    print(course_code, "  DAte", course_date)
+    #corse_code = course_code
     check = ""
     # students=''
-    enroll = form.enroll_key.data
+    enroll_key = form.enroll_key.data
     if request.method == "POST":
         delete_temporary_collection()
-        print(enroll)
+        print(enroll_key)
         organization_id = form.organization_id.data
         result_students = user_student.objects(
             organization_id=organization_id).first()
@@ -169,9 +207,9 @@ def student_list(course_code):
             )
         email_list = request.form.getlist('students_list_checkbox')
         sending_mail_to_user_for_course_enroll_key(
-            email_list, enroll, corse_code)
+            email_list, enroll_key, corse_code)
     delete_temporary_collection()
-    enrolled = enrol_students_model.objects(course_code=course_code)
+    enrolled = enrol_students_model.objects(course_code=corse_code)
     if enrolled:
         delete_temporary_collection()
         for userStudents in user_student.objects():
@@ -193,6 +231,7 @@ def student_list(course_code):
         students=students,
         course_code=course_code,
     )
+
 
 # '''if request.args:
 #    c = request.args.get('c')

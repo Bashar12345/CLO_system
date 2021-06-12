@@ -1,8 +1,8 @@
 {%extends "layout.html"%}
-{%block body%} This is examiner page
+{%block body%}
 
 
-<section class="shadow-lg btn-group-horizental">
+<section class="shadow-sm btn-group-horizental">
   <div class="container">
     <article>
       <br />
@@ -23,9 +23,30 @@
 
 </section>
 
-<content>
-  <legend> Notice Board </legend>
-</content>
+<section class="container">
+  <legend> <b> Notice Board </b></legend>
+  <br/>
+  {% for notice in notices %}
+
+  <div class="card text-white bg-secondary mb-3 ">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-8" style="background-color: rgb(101, 100, 100);">
+          <p>{{notice.notice_title}}</p>
+        </div>
+        <div class="col-4">
+          <p>{{notice.notice_time}}</p>
+        </div>
+
+      </div>
+    </div>
+    <br>
+    <div class="body container">
+      <p>{{notice.notice_announcement}}</p>
+    </div>
+  </div>
+  {%endfor%}
+</section>
 
 
 

@@ -18,34 +18,287 @@
 
 
 {% block body %}
+<div class="container-fluid">
 
-    <div id="contenTbody">
-        <h1>Under Construction </h1>
 
-        <div class="row justify-content-start">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
+
+    {%if user_type=='teacher'%}
+
+    <div class="row no-gutters ">
+        <div class="col-12 col-sm-6 col-md-8">
+
+
+
+            <form action="" class="container form-group" method="POST" enctype="multipart/form-data">
+                <div class="body container">
+                    <p class="content">
+                        <b>
+                            <h3>What do you think about this question paper?
+                                <span style='font-size:100px;'>&#129300;</span>
+                            </h3>
+
+                        </b>
+
+                    <h6>What would be (Hard,Medium,Easy) its Difficulty? Evaluate this paper...</h6><br>
+                    </p>
+                    <div class="p container">
+
+                        {% for i in shuffled_question_list %}
+                        {#{i}#}
+
+                        {% for j in i %}
+                        <div class="row justify-content-center bg-light">
+                            <div class="col">
+                                <h5>{{j}}</h5>
+                            </div>
+                        </div>
+                        <div class="row justify-content-around ">
+                            {% for k in i[j] %}
+                            <div class="col">
+                                <h6> {{k}} </h6>
+                            </div>
+
+                            {% endfor %}
+                        </div>
+                        <br>
+
+                        {% endfor %}
+
+                        {% endfor %}
+
+                    </div>
+                    <div class="container form-check form-check-inline ">
+                        <div class="form-check">
+                            <input for="eval1" class="form-check-label" type="radio" class="radio" name="difficulty" value="Easy">
+                            <label for="eval1" class="form-check-label">Easy</label>
+                        </div>
+                        <div class="form-check">
+                            <input for="eval2" class="form-check-label" type="radio" class="radio" name="difficulty"
+                                value="Medium">
+
+                            <label for="eval2" class="form-check-label">Medium</label>
+                        </div>
+                        <div class="form-check">
+                            <input for="eval3" class="form-check-label" type="radio" class="radio" name="difficulty" value="Hard">
+                            <label for="eval3" class="form-check-label">Hard</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="top: 3vh;">
+                    <button class="btn btn-block btn-info" type="submit"> Done!!!!</button>
+                </div>
+            </form>
+
+
+
+
         </div>
-        <div class="row justify-content-center">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
+
+
+        <div class="col-6 col-md-4"> <br>
+
+
+            <form class="card-container" action="" method="POST" enctype="multipart/form-data">
+
+                <legend class="card-header">
+                    Today's activity
+                </legend>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title" class="custom-control-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="announcement" class="custom-control-label">Announcements or Instruction or Advice</label>
+                        <textarea type="textarea" class="form-control" id="announcement" name="announcement">
+                                    </textarea>
+                    </div>
+                </div>
+
+
+                <div class="card-footer" style="top: 3vh;">
+                    <button class="btn btn-info" type="submit"> Update!!!!</button>
+                </div>
+            </form>
+
+
+
+
+
+
+
         </div>
-        <div class="row justify-content-end">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
-        </div>
-        <div class="row justify-content-around">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
-        </div>
-        <div class="row justify-content-between">
-            <div class="col-4">Here will be a question for evaluation</div>
-            <div class="col-4">Here will be a question for evaluation</div>
-        </div>
+
+
+
     </div>
-    <div class="row no-gutters">
-        <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
-        <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+
+
+
+    {%endif%}
+
+
+
+
+
+
+
+
+    {%if user_type=='student'%}
+    {%if latest_posts_from_teacher %}
+    <div class="">
+
+        <section class="container">
+            <h3> Latest Actions (anouncements)</h3>
+
+            <br>
+            {% for i in range(0,2) %}
+
+            <div class="card card text-white bg-secondary mb-3 ">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-8" style="background-color: rgb(101, 100, 100);">
+                            <p>{{latest_posts_from_teacher[i].title}}</p>
+                        </div>
+                        <div class="col-4">
+                            <p>{{latest_posts_from_teacher[i].Date}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <div class="body container">
+                    <p>{{latest_posts_from_teacher[i].announcement}}</p>
+                </div>
+            </div>
+            {%endfor%}
+        </section>
+
+        {%endif%}
+
+        <br />
+        <div class="row no-gutters">
+            <div class="col-12  col-sm-6 col-md-8 ">
+
+                <div class=" container ">
+                    <h3> Latest News arround the world</h3>
+                    <br />
+                    {% for news, desc, image in context %}
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header">
+                            <div class="row justify-content-around">
+                                <div class="col card-text">
+                                    <p style="font-family: 'Times New Roman', Times, serif;">{{news}}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col container">
+                            <img class="img-fluid video-fluid" src="{{image}}" />
+                        </div>
+                        <br>
+                        <div class="col card-text">
+                            <p style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{desc}}</p>
+                        </div>
+
+                    </div>
+
+                    {%endfor%}
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-6 col-md-4">
+
+
+                <div class="container table table-active">
+                    <div class="row bg-warning">
+                        <div class="col-sm-4">
+                            Courses
+                        </div>
+                        <div class="col-5">
+                            Exam_title
+                        </div>
+                        <div class="col-3">
+                            Scored
+                        </div>
+                    </div>
+                    {%for results in exam_results %}
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            {{results.exam_course}}
+                        </div>
+                        <div class="col-5  bg-light">
+
+                            {{results.exam_title}}
+                        </div>
+
+                        <div class="col-3">
+                            <b> {{results.get_score}} </b>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
     </div>
-    </div>
+
+
+    {%endif%}
+
+
+
+
+
+
+
+</div>
 {% endblock body %}
+
+
+
+
+
+<!-- <div id="contenTbody">
+    <h1>Under Construction </h1>
+
+    <div class="row justify-content-start">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-4">Here will be a question for evaluation</div>
+        <div class="col-4">Here will be a question for evaluation</div>
+    </div>
+</div>
+<div class="row no-gutters">
+    <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
+    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+</div> -->

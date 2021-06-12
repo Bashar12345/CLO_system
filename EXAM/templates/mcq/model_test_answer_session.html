@@ -1,0 +1,47 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- <script>
+       var parsed = JSON.parse('{#{question_mcq_for_current_session | tojson}#}');
+       console.log(parsed);
+</script> -->
+
+{#{question_mcq_for_current_session}#}
+
+<form action="" method="POST" class="form-horizontal container" enctype="multipart/form-data">
+
+
+    <br>
+
+    <div class="card-block bg-light">
+        <div class="card-header">
+            {{question_part}}
+        </div>
+        <div class="card-body h6">
+            {%for op in option_list%}
+
+            <div class="card-text text-secondary">
+                <input id="chk {{op}}" aria - label="Checkbox for following text input" type="radio" value="{{op}}"
+                    name="selected_option" />
+
+                <label for="chk {{op}}"> {{op}}</label>
+            </div>
+
+            {%endfor%}
+        </div>
+    </div>
+
+    {#{confrimation}#}
+
+
+
+    <div class="text-center"><br>
+        <button class='btn btn-secondary' id="btn_submit" name="submit" type="submit"> Confirm Answer & Next</button>
+    </div>
+
+</form>
+
+{% endblock body %}

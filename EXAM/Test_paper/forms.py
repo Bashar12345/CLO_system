@@ -78,8 +78,8 @@ class Mcq_Question_generate_form(FlaskForm):
     # ekhane email_code validation error er kazz korte baki ase
     exam_title = RadioField('Exam title  ', choices=[(
         'mid-term', ' Mid-Term  '), ('final', '   Final  '),
-        ('quiz1', '  Quiz-1  '), ('quiz2', '  Qui-2  '),
-        ('quiz3', '  Quiz-3 '), ('  quiz4  ', '  Quiz-4  '), ('quiz5', '  Quiz-5  ')])
+        ('quiz-1', '  Quiz-1  '), ('quiz-2', '  Qui-2  '),
+        ('quiz-3', '  Quiz-3 '), ('quiz-4', '  Quiz-4  '), ('quiz-5', '  Quiz-5  ')])
     exam_course = StringField('Course', validators=[DataRequired()])
     exam_course_code=StringField('Course_code',validators=[DataRequired()])
     # exam_topic = ('Syllabus/Topic/lesson', coerce=str, validate_choice=True)

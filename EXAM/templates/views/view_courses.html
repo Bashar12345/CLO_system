@@ -5,17 +5,19 @@
             color: red;
         }
     </style>
-    <div class="container">
+
+    
+    <div class="card-fluid active container-fluid">
 
     {#{ form.hidden_tag() }#}
-    <legend id="legend" class="shadow-lg btn-group-horizontal ">Enable Courses</legend>
+    <legend id="legend" class="">Enable Courses</legend>
     <p id="user_type" value="{{ user_type }}" hidden></p>
 
     <div id="scroller" class="row">
 
         <template id="post_template">
 
-            <div class="card bg-light ">
+            <div class="card bg-light mb-3 ">
                 <img class="card-img-top" src="{{ url_for('static',filename='demo_course-images-3.jpg') }}"
                     alt="Card image cap"/>
                 <div class="card-body">

@@ -865,3 +865,207 @@ function load() {
 
 
 }
+
+
+
+<!-- <div class="container">
+        {% for i in question_mcq_for_current_session %}
+        {#{i}#}
+       
+        {% for j in i %}
+        <div class="row">
+               <div class="col">
+               {{j}}
+               </div>
+
+        </div>
+        {% for k in i[j] %}
+
+        <div class="col">
+               option : {{k}}
+        </div>
+        {% endfor %}
+
+
+        {% endfor %}
+
+        {% endfor %}
+
+ </div> -->
+
+
+
+ <!-- <div id="add_data" class="card bg-light">
+       <br>
+       <div id='question_card' class="card-block">
+              {% for i in question_mcq_for_current_session %}
+              {#{i}#}
+
+              {% for j in i %}
+              <div class="card-header h5">
+                     <div class="card-title text-primary">
+                            <b>{{j}}</b>
+                     </div>
+              </div>
+              <div class="card-body">
+                     {% for k in i[j] %}
+
+                     <div class="card-text text-secondary">
+                            <input id="chk {{k}}" aria - label="Checkbox for following text input" type="radio" value=" {{k}}"
+                                   name="selected_option" />
+
+                            <label for="chk {{k}}">option {{k}} : {{k}}</label>
+                     </div>
+
+
+                     {% endfor %}
+
+              </div>
+              {% endfor %}
+
+              {% endfor %}
+       </div>
+
+</div> -->
+
+
+{
+    "_id" : ObjectId("60b7afdf3d8024b32798b504"),
+    "exam_code" : "qwsx",
+    "student_email" : "ayshakhatun@example.com",
+    "exam_course" : "Data Algorithm",
+    "exam_title" : "  quiz4  ",
+    "get_score" : 4
+}
+
+<script>
+       // Set the date we're counting down to
+       //var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+       
+       const ending_time_of_exam = document.getElementById("ending_time_of_exam").getAttribute("value");
+
+
+       countDownDate_end = new Date(ending_time_of_exam + "").getTime();
+       
+       // Update the count down every 1 second
+       var x = setInterval(function () {
+
+              // Get today's date and time
+              var now = new Date().getTime();
+
+              // Find the distance between now and the count down date
+              var distance = countDownDate_end - now;
+
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+              // Output the result in an element with id="demo"
+              document.getElementById("demo").innerHTML = hours + "h "
+                     + minutes + "m " + seconds + "s ";
+
+              // If the count down is over, write some text 
+              if (distance < 0) {
+                     clearInterval(x);
+                     document.getElementById("demo").innerHTML = "EXPIRED";
+                     document.getElementById("btn_submit").submit();
+              }
+       }, 1000);
+</script>
+
+
+
+
+
+
+
+    <!-- Navigation  NAVVVVVVVVVVVVVVV part start  -->
+    <nav class="navbar navbar-expand-lg navbar-fixed-top "
+        style="background-color: hsla(0, 10%, 90%, 0.953);">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-header">
+            <a class="navbar-brand " href="{{ url_for('main.index') }}">
+               Exams!!
+                <img class="img-fluid" style="max-height: 3vh; max-width: 5vw;" src="{{url_for('static',filename="img/Exam_logo.png")}}" />
+            </a>
+        </div>
+
+
+
+
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main.main_page') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                {% if user_type == 'admin' %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('users.create_notice') }}">
+                        Notices</a>
+                </li>
+                {% endif %}
+
+                {% if user_type == 'teacher' %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('main.create_course') }}">Create-Course</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('main.view_courses') }}">View-courses</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}">My-Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.examiner') }}">Examiner</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.guildLineForTeacher') }}">Teacher-guildLine</a>
+                </li>
+
+                {% endif %}
+                {% if user_type == 'student' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">Exam-Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.view_courses') }}">Enrolled-Courses</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}">Test your knowledge</a>
+                </li>
+                {% endif %}
+
+                
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+
+            </ul>
+            <!--<form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>-->
+        </div>
+        <div class="navbar-nav">
+            {% if current_user.is_authenticated %}
+            {% if user_type == 'student' %}
+            {% block navenrol %}
+
+            {% endblock navenrol %}
+            {% endif %}
+
+            <a type="button" class="nav-item nav-link " href="{{ url_for('users.logout') }}">Log out</a>
+            {% else %}
+            <a type="button" class="nav-item nav-link " href="{{ url_for('users.login') }}">Login</a>
+            <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>

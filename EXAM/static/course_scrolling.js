@@ -14,7 +14,7 @@ function load_items() {
             }
             for (var i = 0; i < course_slot.length; i++) {
                 let template_clone = template.content.cloneNode(true);
-                template_clone.querySelector("#link").href = `/question_view/${course_slot[i].course_code}`;
+                template_clone.querySelector("#link").href = `/question_view/${course_slot[i].course_code}=${course_slot[i].course_duration}`;
                 template_clone.querySelector("#course_title").innerHTML = `${course_slot[i].course_title}`;
                 template_clone.querySelector("#course_code").innerHTML = `${course_slot[i].course_code}`;
                 template_clone.querySelector("#course_caption").innerHTML = `${course_slot[i].course_caption}`;
