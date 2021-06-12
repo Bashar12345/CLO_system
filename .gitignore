@@ -7019,3 +7019,13 @@ node_modules
 node_modules
 =======
 >>>>>>> master
+EXAM/__pycache__/model.cpython-38.pyc
+EXAM/main/__pycache__/forms.cpython-38.pyc
+EXAM/main/__pycache__/function.cpython-38.pyc
+EXAM/main/__pycache__/routes.cpython-38.pyc
+EXAM/Test_paper/__pycache__/forms.cpython-38.pyc
+EXAM/Test_paper/__pycache__/function.cpython-38.pyc
+EXAM/Test_paper/__pycache__/routes.cpython-38.pyc
+EXAM/users/__pycache__/routes.cpython-38.pyc
+EXAM/users/__pycache__/utils.cpython-38.pyc
+EXAM/users/__pycache__/forms.cpython-38.pyc
