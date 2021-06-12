@@ -913,6 +913,7 @@ virtual_env_ClO/lib/python3.8/site-packages/pip/_vendor/html5lib/__pycache__/_ih
 virtual_env_ClO/lib/python3.8/site-packages/pip/_vendor/html5lib/treebuilders/__pycache__/etree.cpython-38.pyc
 .vscode/settings.json
 workspace.code-workspace
+<<<<<<< HEAD
 .vscode/settings.json
 __pycache__/run.cpython-38.pyc
 EXAM/__pycache__/__init__.cpython-38.pyc
@@ -1117,11 +1118,51 @@ virtual_env_ClO/lib/python3.8/importlib/__pycache__/__init__.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/importlib/__pycache__/abc.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/importlib/__pycache__/machinery.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/importlib/__pycache__/resources.cpython-38.pyc
+=======
+virtual_env_ClO/lib/python3.8/__pycache__/_bootlocale.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/_collections_abc.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/_sitebuiltins.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/_weakrefset.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/abc.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/codecs.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/contextlib.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/copyreg.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/enum.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/functools.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/genericpath.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/heapq.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/io.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/keyword.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/operator.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/os.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/pkgutil.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/posixpath.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/re.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/reprlib.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/runpy.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/site.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/sre_compile.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/sre_constants.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/sre_parse.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/stat.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/types.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/warnings.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/__pycache__/weakref.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/collections/__pycache__/__init__.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/encodings/__pycache__/__init__.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/encodings/__pycache__/aliases.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/encodings/__pycache__/latin_1.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/encodings/__pycache__/utf_8.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/importlib/__pycache__/__init__.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/importlib/__pycache__/abc.cpython-38.pyc
+virtual_env_ClO/lib/python3.8/importlib/__pycache__/machinery.cpython-38.pyc
+>>>>>>> master
 virtual_env_ClO/lib/python3.8/importlib/__pycache__/util.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/json/__pycache__/__init__.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/json/__pycache__/decoder.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/json/__pycache__/encoder.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/json/__pycache__/scanner.cpython-38.pyc
+<<<<<<< HEAD
 virtual_env_ClO/lib/python3.8/logging/__pycache__/__init__.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/multiprocessing/__pycache__/__init__.cpython-38.pyc
 virtual_env_ClO/lib/python3.8/multiprocessing/__pycache__/connection.cpython-38.pyc
@@ -6976,3 +7017,5 @@ virtual_env_ClO/lib/python3.8/site-packages/WTForms-2.3.3.dist-info/top_level.tx
 virtual_env_ClO/lib/python3.8/site-packages/WTForms-2.3.3.dist-info/WHEEL
 node_modules
 node_modules
+=======
+>>>>>>> master
