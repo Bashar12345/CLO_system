@@ -974,3 +974,98 @@ function load() {
               }
        }, 1000);
 </script>
+
+
+
+
+
+
+
+    <!-- Navigation  NAVVVVVVVVVVVVVVV part start  -->
+    <nav class="navbar navbar-expand-lg navbar-fixed-top "
+        style="background-color: hsla(0, 10%, 90%, 0.953);">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-header">
+            <a class="navbar-brand " href="{{ url_for('main.index') }}">
+               Exams!!
+                <img class="img-fluid" style="max-height: 3vh; max-width: 5vw;" src="{{url_for('static',filename="img/Exam_logo.png")}}" />
+            </a>
+        </div>
+
+
+
+
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main.main_page') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                {% if user_type == 'admin' %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('users.create_notice') }}">
+                        Notices</a>
+                </li>
+                {% endif %}
+
+                {% if user_type == 'teacher' %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('main.create_course') }}">Create-Course</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('main.view_courses') }}">View-courses</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('main.course_assigned_students') }}">My-Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.examiner') }}">Examiner</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.guildLineForTeacher') }}">Teacher-guildLine</a>
+                </li>
+
+                {% endif %}
+                {% if user_type == 'student' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">Exam-Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.view_courses') }}">Enrolled-Courses</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}">Test your knowledge</a>
+                </li>
+                {% endif %}
+
+                
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+
+            </ul>
+            <!--<form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>-->
+        </div>
+        <div class="navbar-nav">
+            {% if current_user.is_authenticated %}
+            {% if user_type == 'student' %}
+            {% block navenrol %}
+
+            {% endblock navenrol %}
+            {% endif %}
+
+            <a type="button" class="nav-item nav-link " href="{{ url_for('users.logout') }}">Log out</a>
+            {% else %}
+            <a type="button" class="nav-item nav-link " href="{{ url_for('users.login') }}">Login</a>
+            <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>

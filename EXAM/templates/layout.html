@@ -6,12 +6,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Bootstrap core CSS -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    
+
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+
+
     <link rel="icon" href="data:,">
+
+   
+    
+
 
     <!--Amar CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='starterTemplate.css') }}">
@@ -57,10 +69,6 @@
         position: relative;
     }
 
-    .nav-link {
-        color: green;
-    }
-
     .nav-item>a:hover {
         color: green;
     }
@@ -70,51 +78,41 @@
         background-color: #C0C0C0;
         color: green;
     }
+    .main {
+        margin-top: 25px;
+        /* height: 1500px;  Used in this example to enable scrolling */
+    }
 </style>
 
-<!-- Here the header part start  -->
-<header>
-    <!--script src="jquery-3.5.1.min.js"></script-->
-    <div class="header" id="header">
-        <a class="navbar-brand" href="{{ url_for('main.index') }}">
-            <img class="img-fluid" style="max-width: 10vh;" src="{{url_for('static',filename="img/Exam_logo.png")}}" />
-            <!--<img  class="img-fluid" src="{{url_for('static', filename= "Logo_of_Viqarunnisa_Noon_School_and_College.jpeg")}}"/>-->
-            <h1 style="background-color: #0d0d0d ,left:15rem" ;>Exams!! </h1>
-        </a>
-        <br />
-        <div class="row justify-content-end">
-            {% if current_user.is_authenticated %}
-            {% if user_type == 'teacher' %}
-            <h4>Teacher Page</h4>
-            {% endif %}
-            {% if user_type == 'student' %}
-            <h4>Student Page</h4>
-            {% endif %}
-            {% else %}
-            <h4></h4>
-            {% endif %}
+<!-- Navigation  NAVVVVVVVVVVVVVVV section start  -->
+<section>
 
-        </div>
-    </div>
-</header>
+
 <!-- Navigation  NAVVVVVVVVVVVVVVV part start  -->
-<nav class="navbar navbar-expand-lg navbar-light " style="background-color: hsla(0, 0%, 100%, 0.518);">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: hsla(0, 10%, 90%, 0.953);">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
         aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{{ url_for('main.index') }}">
-        <img class="img-fluid" style="max-width: 3vh;" src="{{url_for('static',filename="img/Exam_logo.png")}}" />
-    </a>
+    <div class="navbar-header">
+        <a class="navbar-brand " href="{{ url_for('main.index') }}">
+            Exams!!
+            <img class="img-fluid" style="max-height: 3vh; max-width: 5vw;" src="{{url_for('static',filename="img/Exam_logo.png")}}" />
+        </a>
+    </div>
+
+
+
+
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav nav-tabs mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('main.main_page') }}">Home <span class="sr-only">(current)</span></a>
             </li>
 
             {% if user_type == 'admin' %}
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{ url_for('users.create_notice') }}">
                     Notices</a>
             </li>
@@ -150,15 +148,17 @@
                 <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}">Test your knowledge</a>
             </li>
             {% endif %}
-            <li class="nav-item">
+
+
+            <!-- <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+            </li> -->
 
         </ul>
         <!--<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>-->
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>-->
     </div>
     <div class="navbar-nav">
         {% if current_user.is_authenticated %}
@@ -177,65 +177,120 @@
 </nav>
 
 
-<title></title>
+            
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-<div class="alert alert-{{ category }}">
-    {{ message }}
+
+                <br />
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <!-- Here the header part start  -->
+                <header>
+                    <!--script src="jquery-3.5.1.min.js"></script-->
+                    <div class="row justify-content-end">
+                        {% if current_user.is_authenticated %}
+                        {% if user_type == 'teacher' %}
+                        <h4>Teacher Page</h4>
+                        {% endif %}
+                        {% if user_type == 'student' %}
+                        <h4>Student Page</h4>
+                        {% endif %}
+                        {% else %}
+                        <h4></h4>
+                        {% endif %}
+
+                    </div>
+
+                </header>
+
+</section>
+
+
+
+
+
+
+<title>
+
+</title>
+
+<div class="main">
+
+    <body class="container-fluid">
+        {% block body %}
+
+        {% endblock body %}
+
+        <!-- Custom Script -->
+        <!--script type="text/javascript" src="{{ url_for('static',filename='bootstrap_bundle.js') }}"></script>-->
+        <!-- jQuery -->
+        <!-- <script>
+    function enrol(){
+            const URL = '/enrol'
+            const xhr = new XMLHttpRequest();
+            sender = JSON.stringify(selected)
+            xhr.open('POST', URL);
+            xhr.send(sender)
+    }
+    </script>-->
+
+
+
+    </body>
+
+
 </div>
-{% endfor %}
-{% endif %}
-{% endwith %}
-
-
-<body class="container-fluid">
-    {% block body %}
-
-    {% endblock body %}
-
-    <!-- Custom Script -->
-    <!--script type="text/javascript" src="{{ url_for('static',filename='bootstrap_bundle.js') }}"></script>-->
-    <!-- jQuery -->
-    <!-- <script>
-function enrol(){
-        const URL = '/enrol'
-        const xhr = new XMLHttpRequest();
-        sender = JSON.stringify(selected)
-        xhr.open('POST', URL);
-        xhr.send(sender)
-}
-</script>-->
 
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
-        defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"
-        defer></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"
-        defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script-->
-    <script>
-        $(document).ready(function () {
-
-            $('ul.navbar-nav > li')
-                .click(function () {
-                    $('ul.navbar-nav > li')
-                        .removeClass('active text-light');
-                    $(this).addClass('active  text-light');
-                });
 
 
-        });
-    </script>
 
-</body>
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script-->
+
+<script>
+    $(document).ready(function () {
+
+        $('ul.navbar-nav > li')
+            .click(function () {
+                $('ul.navbar-nav > li')
+                    .removeClass('active text-light');
+                $(this).addClass('active  text-danger');
+            });
+
+
+    });
+</script>
+
+
+
 
 
 <!-- <footer>

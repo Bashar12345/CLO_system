@@ -140,7 +140,7 @@ def register_method(get_form):
     hashed_password = bcrypt.generate_password_hash(form.password.data).decode(
         "utf-8"
     )  # hashing
-    # upload_profile_pic = form.profile_pic.data
+    profile_pic = form.profile_pic.data
     # if upload_profile_pic:
     #     print("photo ayse")
     upload_profile_pic_bytes_pic_path, ext = binary_read(form.profile_pic.data)
@@ -154,9 +154,9 @@ def register_method(get_form):
         mongo_user.user_category = user_category
         with open(upload_profile_pic_bytes_pic_path, 'rb')as fd:
             #print(fd.read())
-            mongo_user.profile_pic.put(
-                fd, filename=name + ext, content_type="image/jpeg")
-            mongo_user.image.put(fd, filename=name + ext) 
+            mongo_user.profile_pic.put(fd, filename=name + ext, content_type="image/jpeg")
+        #mongo_user.profile_pic.put(profile_pic, filename=name + ext)
+        #mongo_user.image.put(fd, filename=name + ext) 
         mongo_user.save()
         mongo_user_info = user()  # this is for 'not override email complication'
         mongo_user_info.user_name = name
@@ -172,7 +172,7 @@ def register_method(get_form):
         mongo_user.email = email
         # mongo_user.password = hashed_password
         mongo_user.user_category = user_category
-        with open(upload_profile_pic, 'rb')as fd:
+        with open(upload_profile_pic_bytes_pic_path, 'rb')as fd:
             #print(fd.read())
             mongo_user.profile_pic.put(
                 fd, filename=name + ext, content_type="image/jpeg")

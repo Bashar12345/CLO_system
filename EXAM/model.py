@@ -68,7 +68,7 @@ class user_student(nosql.Document):
     email = user.email
     organization_id = user.organization_id
     profile_pic = nosql.FileField()
-    image = fields.ImageField(thumbnail_size=(150, 150, False))
+    #image = fields.ImageField(thumbnail_size=(150, 150, False))
     def __repr__(self):
         return f"user('{self.user_name}','{self.email}','{self.organization_id}')"
 

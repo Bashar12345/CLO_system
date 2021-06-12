@@ -1,32 +1,49 @@
 {%extends "layout.html"%}
 {%block body%}
 {#{link_info}#}
+<style>
+    .img_tag{
+        height: 45px; 
+        width: 45px ;
+        border-radius: 50%;
 
+    }
+</style>
 <div class="container">
     <legend>The students, Those who attend the Exam.</legend><br>
     <a class="row active btn-outline-info">
-        <div class="col">Students Name</div>
-        <div class="col">Students Email ID</div>
+        <div class="col-2"></div>
+        <div class="col-5">Students Name</div>
+        <div class="col-5">Students Email ID</div>
     </a>
     <br>
     {%for students in attended_students%}
    
     {%set pic_file_name = students.student_name +".jpeg" %}
+
+  {%set objects_of_student = user_student.objects(email=students.student_email).first() %}
+        {% set pic = BytesIO(objects_of_student.profile_pic.read())%}
+        {% set str_equivalent_image = base64.b64encode(pic.getvalue()).decode()%}
+
+
+   
   
 
    
     {% set l_info = students.exam_secret_code+"="+students.student_email %}
     <a class="row shadow-sm" href="{{url_for('main.course_exams_students_answer_sheet',link_info=l_info)}}"
         style="text-decoration: none;">
-        <div class="col img-thumbnail img-round round ">
+        <div class="col-2">
+            <img class="img_tag img-thumbnail " src="data:image/jpeg;base64,{{str_equivalent_image}}" alt="profile picture">
             <!-- <img src="{#{url_for('static',filename='temp/'+pic_file_name)}#}" alt="Ase nai Photo"> -->
         </div>
-        <div class="col">{{students.student_name}}</div>
-        <div class="col">{{students.student_email}}</div>
+        <div class="col-5 ">{{students.student_name}}</div>
+        <div class="col-5 ">{{students.student_email}}</div>
     </a>
     <br>
     {% set l_info = "none" %}
    
+        
     {%endfor%}
 </div>
 {%endblock body%}
