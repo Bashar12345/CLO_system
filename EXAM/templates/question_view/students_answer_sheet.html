@@ -1,0 +1,56 @@
+{%extends "layout.html"%}
+{%block body%}
+
+{#{link_info}#}
+
+{#{answer_sheets}#}
+{#% set course_code,course_date=course_code.split("=") %#}
+{#{course_code}#}
+{%set temp =''%}
+{%set question = answer_sheets.question_dictionary_type_list%}
+
+<section class="container">
+
+    {%for (i,k,l) in iter.zip_longest(question,answer_sheets.selected_answer_options,answer_sheets.correct_answer) %}
+
+    <div class="card-header">
+        <div class="row card-title container">
+
+            <h4> Question : </h4>
+
+
+            {%set temp = i | string %}
+            {#{temp}#}
+            {%set temp_ques, temp_op = temp.strip("}{").split(":")%}
+            {#{i}#}
+
+            <div class="btn p">
+               <h5> {{temp_ques}} </h5>
+            </div>
+            {% set temp_op = temp_op.strip("][")%}
+            <br>
+
+
+        </div>
+        <div class="row container ">
+            <h5>Option :</h5>
+            {%for item in temp_op.strip("[").split(",") %}
+            <div class="col ">{{ item }}</div>
+            {%endfor%}
+        </div>
+        <div class="text article"> Choosen by student : {{k}} </div>
+        <div class="text-right"> Correct_answer : {{l}}</div>
+
+
+    </div>
+    <br>
+    {%endfor%}
+
+</section>
+
+
+
+
+
+
+{%endblock body%}

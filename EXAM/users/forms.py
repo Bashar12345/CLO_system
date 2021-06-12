@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, RadioField,BooleanF
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 
 from EXAM.model import enrol_students_model, user
+from flask_wtf.file import FileAllowed, FileField, FileRequired
 
 def validate_email(self, email):
         searchTheEmail = user.objects(email=email.data).first()
@@ -21,7 +22,7 @@ class user_form(FlaskForm):
     confirm_password = PasswordField('Confirm_password', validators=[
         DataRequired(), EqualTo('password')])
     # phone_number = StringField('Phone Number', validators=[DataRequired(), Length(min=5, max=50)])
-    # profile_pic = FileField('Upload Profile Picture', validators=[FileRequired(), FileAllowed({'jpg', 'jpeg', 'png'})])
+    profile_pic = FileField('Upload Profile Picture', validators=[FileRequired(), FileAllowed({'jpg', 'jpeg', 'png'})])
     user_category = RadioField(' What type of user are you? ', choices=[('admin', 'Admin'), ('teacher', 'Teacher'),('student', 'Student')])
     
 
@@ -60,7 +61,8 @@ class registration_form(FlaskForm):
     password = user_form.password
     confirm_password = user_form.confirm_password
     # phone_number = StringField('Phone Number', validators=[DataRequired(), Length(min=5, max=50)])
-    # profile_pic = FileField('Upload Profile Picture', validators=[FileRequired(), FileAllowed({'jpg', 'jpeg', 'png'})])
+    #profile_pic = FileField('Upload Profile Picture', validators=[FileRequired(), FileAllowed({'jpg', 'jpeg', 'png'})])
+    profile_pic=user_form.profile_pic
     user_category = user_form.user_category
     submit = SubmitField('SignUp')
 

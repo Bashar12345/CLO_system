@@ -1,10 +1,14 @@
 {% extends "layout.html" %} 
 {% block body %}
-<h1>Under construction</h1>
+
 
 <section class= 'container'>
+    <legend>
+        Active students of Your all recent courses:
+    </legend>
+    <br/>
     <div class='justify-content-start'>
-{% for (name, email) in iter.zip_longest(students_name , user_total) %}
+{% for (name, email) in iter.zip_longest(students_name , user_emails_total) %}
 <div class="row">
     <div class="col">
         {{name}}

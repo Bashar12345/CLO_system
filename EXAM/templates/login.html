@@ -1,37 +1,84 @@
 {% extends "layout.html" %}
 {% block body %}
-    <section class="container shadow-lg btn-group-horizontal ">
-        <form class="form-group" method="POST" action="" class="form-container" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            <fieldset class="container">
-                <br/>
-                {{ form.email.label(class="form-control-label") }}
-                <br/>
-                {{ form.email(class="form-control form-control-md",type="email",placeholder="Your email address...") }}
-                <br/>
-                {% if form.email.errors %}
-                    {{ form.email(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        height: 100vh;
+    }
+
+    #login .container #login-row #login-column #login-box {
+        margin-top: 120px;
+        max-width: 600px;
+        height: 320px;
+        border: 1px solid #ffff;
+        background-color: #EAEAEA;
+    }
+
+    #login .container #login-row #login-column #login-box #login-form {
+        padding: 20px;
+    }
+
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+        margin-top: -85px;
+    }
+</style>
+
+<body>
+    <div id="login">
+        <!-- <h3 class="text-center text-white pt-5">Login form</h3> -->
+        <div class="container ">
+            <div id="login-row" class="row justify-content-center align-items-center ">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form " action="" method="post">
+                            <h3 class="text-center text-info">Login</h3>
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+                                <br />
+                                {{ form.email(class="form-control ",type="email",placeholder="Your email address...") }}
+
+                                {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.password.label(class="form-control-label") }}
+                                <br />
+                                {{ form.password(placeholder="Your password...",type="password",class="form-control
+                                custom-control-lg") }}
+
+
+                            </div>
+                            <div class="form-group form-check">
+                                
+                              {{form.remember(class="form-check form-check-input text-info") }}
+                              {{form.remember.label(class="form-check form-check-label") }}
+                              <br>
+
+                                {{ form.submit(class=" form-group btn btn-info") }}
+                                <small class="text-muted ml-2">
+                                    <a href="{{url_for('users.reset_password')}}"> Forgot Password? </a>
+                                </small>
+                                <small id="register-link" class="text-muted ml-2 text-right">
+                                    <a href="{{ url_for('users.register') }}" class="text-info">Register here</a>
+                                </small>
+                            </div>
+                            
+                        </form>
                     </div>
-                {% endif %}
-                {{ form.password.label(class="form-control-label") }}
-                <br/>
-                {{ form.password(placeholder="Your password...",type="password",class="form-control") }}
-                <br/>
-                <div class="container">
-                {{ form.remember(class="form-check form-check-input") }}
-                {{ form.remember.label(class="form-check form-check-label") }}
                 </div>
-                <br/>
-            </fieldset>
-            {{ form.submit(class=" form-group btn btn-info") }}
-            <small class="text-muted ml-2">
-                <a href='{{ url_for('users.reset_password') }}'> Forgot Password? </a>
-            </small>
-        </form>
-    </section>
-    <!-- partial -->
+            </div>
+        </div>
+    </div>
+</body>
+
+
 {% endblock body %}

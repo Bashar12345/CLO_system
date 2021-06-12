@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Quicksand:wght@300&display=swap');
+
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Consoles', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', 'Courier New', monospace ;
+    font-family: 'Poppins','Pattaya',arial,helvetica,courier, monospace,sans-serif ;
 }
 
 .custom-class {

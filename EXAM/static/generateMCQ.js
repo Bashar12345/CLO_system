@@ -115,11 +115,11 @@ function load() {
         template+=`<div class="card" style="width: 25rem;">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
-            <label class="custom-control-label">Course Outcome </label><br/>
+            <label class="form-control-label h5">Course Outcome </label><br/>
             
             <input id="exam_CLO" list="clo" name="exam_CLO" 
             class="custom-select custom-select-md mb-3 btn-outline-info "
-            placeholder="Enter the exact name of lesson"
+            placeholder="Select CLO"
             autocomplete="off"
             aria-label=".custom-select-lg example">
                 <datalist id="clo">
@@ -130,28 +130,33 @@ function load() {
     </li>
 
             <li class="list-group-item">
-                <label class="custom-control-label">Syllabus/Topic/lesson :</label><br/>
-                <input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Enter the exact name of lesson"
+                <label class="form-control-label h5">Syllabus/Topic/lesson :</label><br/>
+                <input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Select lesson"
                 autocomplete="off"
                 aria-label=".custom-select-lg example">
                 <datalist id="lesson_name">
-                    <option selected disabled>Enter the exact name of lesson</option>
+                    <option selected disabled>Select lesson</option>
                 </datalist></li>
             <li class="list-group-item">
-                <label class="custom-control-label">Question Complexity Level</label>
+                <label class="form-control-label h5">Question Complexity Level</label>
                 <select
-                    class="custom-select-sm btn-outline-info"
+                    class="custom-select btn-outline-info"
                     id="inputGroupSelect04"
                     name="complex_level"
                     aria-label="Example select with button addon"
                     required>
-                <option selected disabled="disabled">Select Complex level</option>
+                <option selected disabled="disabled">Select level</option>
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
                 <option value="3">High</option>
                 <option value="5">Very High</option>
                 <option value="10">Insane</option>
                 </select></li>
+                <li class="list-group-item">
+                     <label class="form-control-label h5"> Total_marks </label>
+                       <input type="number" class="input-group" id="marks" name="marks" 
+                       placeholder="For this Lesson" /></div>
+                        </li>
         </ul>
     </div>`;
     addDiv.append(template);
