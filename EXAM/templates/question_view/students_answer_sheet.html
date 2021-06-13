@@ -15,11 +15,11 @@
 
     {%for (i,k,l,v) in
     iter.zip_longest(question,answer_sheets.selected_answer_options,answer_sheets.correct_answer,answer_sheets.surveilence_video_list) %}
+{{BytesIO(answer_sheets.surveilence_video_list[0])}}
+        {#% set vid = BytesIO(v.read())%#}
+        {#% set str_equivalent_video = base64.b64encode(vid.getvalue()).decode()%#}
 
-        {% set pic = BytesIO(v)%}
-        {% set str_equivalent_video = base64.b64encode(pic.getvalue()).decode()%}
-
-        <video src="data:video/webm;base64,{{str_equivalent_video}}" class=""></video>
+        <video src="data:video/avi;base64,{{str_equivalent_video}}" class=""></video>
         <div class="card-header" style="align-items: right;">
             <div class="row card-title container">
 

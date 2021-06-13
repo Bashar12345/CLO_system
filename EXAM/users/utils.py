@@ -144,6 +144,8 @@ def register_method(get_form):
     # if upload_profile_pic:
     #     print("photo ayse")
     upload_profile_pic_bytes_pic_path, ext = binary_read(form.profile_pic.data)
+    format_type = ext.strip(".")
+    format_type = "image/"+format_type
     # doc_file_name, file_path, f_ext, random_file_name = saveFormFile_in_Filesystem(form.profile_pic.data)
     if user_category == "student":
         mongo_user = user_student()
@@ -154,7 +156,7 @@ def register_method(get_form):
         mongo_user.user_category = user_category
         with open(upload_profile_pic_bytes_pic_path, 'rb')as fd:
             #print(fd.read())
-            mongo_user.profile_pic.put(fd, filename=name + ext, content_type="image/jpeg")
+            mongo_user.profile_pic.put(fd, filename=name + ext, content_type=format_type)
         #mongo_user.profile_pic.put(profile_pic, filename=name + ext)
         #mongo_user.image.put(fd, filename=name + ext) 
         mongo_user.save()
@@ -175,7 +177,7 @@ def register_method(get_form):
         with open(upload_profile_pic_bytes_pic_path, 'rb')as fd:
             #print(fd.read())
             mongo_user.profile_pic.put(
-                fd, filename=name + ext, content_type="image/jpeg")
+                fd, filename=name + ext, content_type=format_type)
         #mongo_user.profile_pic = upload_profile_pic
         mongo_user.save()
         mongo_user_info = user()  # this is for 'not override email complication'
