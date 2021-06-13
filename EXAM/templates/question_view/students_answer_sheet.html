@@ -1,6 +1,8 @@
 {%extends "layout.html"%}
 {%block body%}
 
+
+
 {#{link_info}#}
 
 {#{answer_sheets}#}
@@ -11,41 +13,45 @@
 
 <section class="container">
 
-    {%for (i,k,l) in iter.zip_longest(question,answer_sheets.selected_answer_options,answer_sheets.correct_answer) %}
+    {%for (i,k,l,v) in
+    iter.zip_longest(question,answer_sheets.selected_answer_options,answer_sheets.correct_answer,answer_sheets.surveilence_video_list) %}
 
-    <div class="card-header">
-        <div class="row card-title container">
+        {% set pic = BytesIO(v)%}
+        {% set str_equivalent_video = base64.b64encode(pic.getvalue()).decode()%}
 
-            <h4> Question : </h4>
+        <video src="data:video/webm;base64,{{str_equivalent_video}}" class=""></video>
+        <div class="card-header" style="align-items: right;">
+            <div class="row card-title container">
+
+                <h4> Question : </h4>
 
 
-            {%set temp = i | string %}
-            {#{temp}#}
-            {%set temp_ques, temp_op = temp.strip("}{").split(":")%}
-            {#{i}#}
+                {%set temp = i | string %}
+                {#{temp}#}
+                {%set temp_ques, temp_op = temp.strip("}{").split(":")%}
+                {#{i}#}
 
-            <div class="btn p">
-               <h5> {{temp_ques}} </h5>
+                <div class="btn p">
+                    <h5> {{temp_ques}} </h5>
+                </div>
+                {% set temp_op = temp_op.strip("][")%}
+                <br>
+
+
             </div>
-            {% set temp_op = temp_op.strip("][")%}
-            <br>
+            <div class="row container">
+                <h5>Option :</h5>
+                {%for item in temp_op.strip("[").split(",") %}
+                <div class="col">{{ item }}</div>
+                {%endfor%}
+            </div>
+            <div class="text article"> Choosen by student : {{k}} </div>
+            <div class="text-right"> Correct_answer : {{l}}</div>
 
 
         </div>
-        <div class="row container ">
-            <h5>Option :</h5>
-            {%for item in temp_op.strip("[").split(",") %}
-            <div class="col ">{{ item }}</div>
-            {%endfor%}
-        </div>
-        <div class="text article"> Choosen by student : {{k}} </div>
-        <div class="text-right"> Correct_answer : {{l}}</div>
-
-
-    </div>
-    <br>
-    {%endfor%}
-
+        <br>
+        {%endfor%}
 </section>
 
 

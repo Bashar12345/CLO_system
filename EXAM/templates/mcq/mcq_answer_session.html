@@ -4,10 +4,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
+<style>
+       .unselectable {
+              -webkit-user-select: none;
+              -webkit-touch-callout: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+              
+            }
+</style>
 
 
-<p id ="ending_time_of_exam" value="{{ending_time_of_exam}}" hidden>{{ending_time_of_exam}}</p>
-<legend class="h2 btn-outline-info text-right" id="demo"></legend>
+
+<p id="ending_time_of_exam" value="{{ending_time_of_exam}}" hidden>{{ending_time_of_exam}}</p>
+<legend class="h2 btn-outline-info text-right" id="timmer"></legend>
+
+<h5 class="flash text-center"> Remote Supervision(auto surveillance) is on ... </h5>
+<div class="text-center">
+       <img class="img-thumnail" src="{{ url_for('main.live_stream') }}" alt="surveillance"
+              style="max-height: 10vh;">
+</div>
+
+
+
 <!-- timmer -->
 
 
@@ -18,48 +38,50 @@
 </script> -->
 
 {#{question_mcq_for_current_session}#}
-<section class="flash"> For Remote Supervision(auto surveillance),Need Funds </section>
-<form action="" method="POST" class="form-horizontal container" enctype="multipart/form-data">
+
+       <form action="" method="POST" class="form-horizontal container" enctype="multipart/form-data">
 
 
-       <br>
+              <br>
 
-       <div class="card-block bg-light">
-              <div class="card-header">
-                     {{question_part}}
-              </div>
-              <div class="card-body h6">
-                     {%for op in option_list%}
-
-                     <div class="card-text text-secondary">
-                            <input id="chk {{op}}" aria - label="Checkbox for following text input" type="radio" value="{{op}}"
-                                   name="selected_option" />
-
-                            <label for="chk {{op}}"> {{op}}</label>
+              <div class="card-block bg-light unselectable">
+                     <div class="card-header ">
+                            {{question_part}}
                      </div>
+                     <div class="card-body h6">
+                            {%for op in option_list%}
 
-                     {%endfor%}
+                            <div class="card-text text-secondary">
+                                   <input id="chk {{op}}" aria - label="Checkbox for following text input"
+                                          type="radio" value="{{op}}"
+                                          name="selected_option" />
+
+                                   <label for="chk {{op}}"> {{op}}</label>
+                            </div>
+
+                            {%endfor%}
+                     </div>
               </div>
-       </div>
 
-{#{confrimation}#}
+              {#{confrimation}#}
 
 
-     
-       <div class="text-center"><br>
-       <button class='btn btn-secondary' id="btn_submit" name="submit" type="submit"> Confirm Answer & Next</button>
-       </div>
 
-      
+              <div class="text-center"><br>
+                     <button class='btn btn-secondary' id="btn_submit" name="submit" type="submit"> Confirm
+                            Answer & Next</button>
+              </div>
 
 
 
 
-</form>
+
+
+       </form>
 
 
 
-<script>
+       <script>
        // Set the date we're counting down to
        //var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
 
@@ -84,20 +106,20 @@
               var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
               // Output the result in an element with id="demo"
-              document.getElementById("demo").innerHTML = hours + "h  "
+              document.getElementById("timmer").innerHTML = hours + "h  "
                      + minutes + "m  " + seconds + "s  " ;
 
               // If the count down is over, write some text 
               if (distance < 0) {
                      clearInterval(x);
-                     document.getElementById("demo").innerHTML = "EXPIRED";
+                     document.getElementById("timmer").innerHTML = "EXPIRED";
                      document.getElementById("btn_submit").submit();
               }
        }, 1000);
 </script>
 
 
-{% endblock body %}
+       {% endblock body %}
 
 
 
@@ -126,7 +148,7 @@
 
 
 
-<!-- <script>
+       <!-- <script>
 
        $(document).ready(function () {
               load();
@@ -170,5 +192,5 @@
 
 
 
-<!--<script language="JavaScript" type="text/javascript" src="{#{ url_for('static',filename='answer_session.js') }#}">
+       <!--<script language="JavaScript" type="text/javascript" src="{#{ url_for('static',filename='answer_session.js') }#}">
  </script>-->

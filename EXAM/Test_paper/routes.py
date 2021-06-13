@@ -1,6 +1,7 @@
 import datetime
 import random
 
+
 from flask import (
     render_template,
     request,
@@ -26,9 +27,11 @@ from EXAM.Test_paper.forms import (
     Mcq_answer_form,
 )
 from EXAM.Test_paper.function import answer_submit, generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
-from EXAM.configaration import secret_exam_key, object_of_something, User_type, sum_of_something, user_obj
-from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, student_attendence, teacher_created_courses_model, temp_answer_paper, user_student
+from EXAM.configaration import User_type, camera, object_of_something, secret_exam_key, sum_of_something, user_obj
+from EXAM.model import One_Video, course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, student_attendence, teacher_created_courses_model, temp_answer_paper, user_student
 from flask.templating import render_template_string
+from EXAM.main.function import webcamera_live_stream
+
 
 """@Test_paper.route('/')
 def hello_world():
@@ -36,6 +39,15 @@ def hello_world():
 """
 
 Test_paper = Blueprint("Test_paper", __name__)
+
+
+
+instance_path = "/home/b/Desktop/CLO_system/EXAM/static/temp/"
+
+# @Test_paper.route("/live_stream")
+# @login_required
+# def live_stream():
+#     return Response( webcamera_live_stream(camera()),mimetype='multipart/x-mixed-replace;boundary=frame')
 
 
 @Test_paper.route("/wrqu", methods=["GET", "POST"])
@@ -310,7 +322,7 @@ def mcqUpload_clo_selection_load():
 def generateMCQ(course_code):
     form = Mcq_Question_generate_form()
     # if course_code:
-    if course_code == "teacher":  
+    if course_code == "teacher":
 
         corse_code = course_code
         course_code = course_model.objects.only("course_code")
@@ -321,11 +333,12 @@ def generateMCQ(course_code):
             title="MCQgenerate",
             form=form,
             user_type=User_type.user_type,
-            corse_code=corse_code,            #teacher
+            corse_code=corse_code,  # teacher
             course_code=course_code)          # swe151=2021-06-23  # swe151
     else:
 
-        corse_code ,course_date = course_code.split("=")                 # swe151=2021-06-23
+        corse_code, course_date = course_code.split(
+            "=")                 # swe151=2021-06-23
         session['course_date'] = course_date
 
         if request.method == "POST":
@@ -630,6 +643,20 @@ def answer_session():
         answer_paper.question_dictionary_type_list = question_dic_type_list
         answer_paper.selected_answer_options = session['selectd_answers']
         answer_paper.correct_answer = session['correct_answers']
+        for c in range(0, total_question):
+
+            name = instance_path + user_obj.e + "_" + str(c) + ".avi"
+
+            db_vid_name= exam_title+"_"+exam_code+"_"+user_obj.e +"_"+ str(c) +".avi"
+
+            with open(name, "rb")as fr:
+
+                video = One_Video()
+
+                video.video_element.put(fr, filename=db_vid_name, content_type='video/avi')
+
+            answer_paper.surveilence_video_list.append(video)
+
         answer_paper.save()
         user_info = user_student.objects(email=user_obj.e).first()
         # attendence---------------------------------------------------------------
@@ -694,6 +721,8 @@ def answer_session():
     ending_time_of_exam = session["ending_time_of_exam"]
 
     total = total_question  # session['total_question']
+
+    webcamera_live_stream(camera)
 
     return render_template("mcq/mcq_answer_session.html", question_part=question_part,  option_list=shuffled_option_list, ending_time_of_exam=ending_time_of_exam, title="MCQ_answer_Page", form=form, user_type=User_type.user_type)
 

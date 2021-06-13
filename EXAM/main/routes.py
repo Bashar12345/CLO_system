@@ -4,25 +4,45 @@ import datetime
 import itertools
 import json
 import requests
+from io import BytesIO
+import base64
+
+
+from flask.wrappers import Response
+
 from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app, session
+
 from flask_login import login_required
 from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.utils import secure_filename
 #from newsapi import NewsApiClient
 
 from EXAM.main.forms import create_course_form, PhotoForm
-from EXAM.configaration import User_type, user_obj
-from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses, delete_old_question_requirements
+
+from EXAM.configaration import User_type, camera, user_obj
+
+from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, delete_old_question_requirements, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses, webcamera_live_stream
+
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, records_of_course_exams, set_exam_question_slot, student_attendence, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
+
 from EXAM.users.utils import delete_temporary_collection, remove_junk
-from io import BytesIO
-import base64
+
 
 
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 #newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
 #newsapi = NewsApiClient("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
+
+
+
+@main.route("/live_stream")
+#@login_required
+def live_stream():
+    return Response(webcamera_live_stream(camera()),mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+
 
 
 @main.route('/upload', methods=['GET', 'POST'])
@@ -37,6 +57,14 @@ def upload():
         return redirect(url_for('index'))
 
     return render_template('upload.html', form=form)
+
+
+
+
+
+
+
+
 
 
 @main.route('/')
@@ -339,7 +367,7 @@ def course_exams_students_answer_sheet(link_info):
     answer_sheets = mcq_answer_paper.objects(
         exam_secret_code=code, email=student_id).first()
 
-    return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools)
+    return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools,BytesIO=BytesIO, base64=base64)
 
 
 @ main.route('/loading_students')

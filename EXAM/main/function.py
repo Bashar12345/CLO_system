@@ -1,11 +1,70 @@
+from re import split
 import requests
 import json
 import datetime
+import cv2
 from flask import request, flash, session
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, required_for_generate, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher, wrqQuestion
-from EXAM.configaration import user_obj
+from EXAM.configaration import camera, user_obj
 import random
 from EXAM.Test_paper.function import test_mcq_ML
+
+
+instance_path = "/home/b/Desktop/CLO_system/EXAM/static/temp/"
+
+# def webcamera_live_stream(camera):
+#     while True:
+
+#         vid_data = camera.get_frame()
+
+#         frames = vid_data[0]
+
+
+#         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frames + b'\r\n\r\n')
+
+c=0
+
+def webcamera_live_stream(camera):
+    #cap=cv2.VideoCapture(0)
+    global c
+    name =user_obj.e
+    name = instance_path+ name + "_"+ str(c) +".avi"
+    fourcc=cv2.VideoWriter_fourcc(*'XVID')
+    recorder = cv2.VideoWriter(name,fourcc,20.0,(640,480))
+    c+=1
+    while True:
+
+        #ret,image=cap.read()
+
+        vid_data,image = camera.get_frame()
+
+        recorder.write(image)
+        
+        frames = vid_data[0]
+
+
+        yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frames + b'\r\n\r\n')
+    recorder.release()
+    
+    
+    
+
+#ekhane kaz baki aseeee ------------------------------------------------------------------------
+
+
+
+def video_file_list():
+    
+    pass
+
+
+
+
+
+
+
+
+
 
 
 def delete_temporary_model():
@@ -113,7 +172,7 @@ def student_main_page(student_id):
     #     email=teacher_email_id,
     #     #teacher_posts__title='deposit',).
     return todays_post, context
-    #pass
+    # pass
 
 
 def teacher_main_page(teacher_email_id):

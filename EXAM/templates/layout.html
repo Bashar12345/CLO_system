@@ -140,6 +140,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">Exam-Schedule</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('main.view_courses') }}">Enrolled-Courses</a>
             </li>
@@ -147,6 +148,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}">Test your knowledge</a>
             </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="{#{ url_for('main.live_stream') }#}">Webcam</a>
+            </li> -->
             {% endif %}
 
 
@@ -285,6 +290,9 @@
                 $(this).addClass('active  text-danger');
             });
 
+        $('body').bind('cut copy', function(e) {
+            e.preventDefault();
+            });
 
     });
 </script>

@@ -14,8 +14,8 @@ from EXAM.model import enrol_students_model, records_of_course_exams, required_f
 import time
 
 exam_code = ""
-instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
-
+#instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
+instance_path = "/home/b/Desktop/CLO_System/EXAM"
 
 def go(op):
     op = op
