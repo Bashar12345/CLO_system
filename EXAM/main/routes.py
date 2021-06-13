@@ -344,15 +344,15 @@ def course_exams_students(link_info):
         objects_of_student = user_student.objects(email=i.student_email).first()
         #print(objects_of_student.profile_pic.read())
         pic = BytesIO(objects_of_student.profile_pic.read())
-        print(type(pic))
-        print(pic)
-        try:
-         with open(objects_of_student.profile_pic.filename, "wb+") as f:
-          f.write(pic.getbuffer())
-          #f.save()
-          f.close()
-        except Exception as e:
-             print(e)
+        # print(type(pic))
+        # print(pic)
+        # try:
+        #  with open(objects_of_student.profile_pic.filename, "wb+") as f:
+        #   f.write(pic.getbuffer())
+        #   #f.save()
+        #   f.close()
+        # except Exception as e:
+        #      print(e)
 
     # ekhane kaz baki ase---------------------------------------------------------------------
 
