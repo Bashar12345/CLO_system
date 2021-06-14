@@ -1,4 +1,5 @@
 import datetime
+from os import rename
 import random
 
 
@@ -28,7 +29,7 @@ from EXAM.Test_paper.forms import (
 )
 from EXAM.Test_paper.function import answer_submit, generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import User_type, camera, object_of_something, secret_exam_key, sum_of_something, user_obj
-from EXAM.model import One_Video, course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, student_attendence, teacher_created_courses_model, temp_answer_paper, user_student
+from EXAM.model import One_Video, Only_file, course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, student_attendence, teacher_created_courses_model, temp_answer_paper, user_student
 from flask.templating import render_template_string
 from EXAM.main.function import webcamera_live_stream
 
@@ -39,7 +40,6 @@ def hello_world():
 """
 
 Test_paper = Blueprint("Test_paper", __name__)
-
 
 
 instance_path = "/home/b/Desktop/CLO_system/EXAM/static/temp/"
@@ -570,6 +570,7 @@ def answer_session():
     selected_option = ''
     question_dic = dict()
     question_dic_type_list = list()
+    video_binary_type_list = list()
     exam_code = secret_exam_key.exam_code
     # print(type(session_question))
     # print("Foooooooooooor testing", len(session_question[count]))
@@ -594,7 +595,7 @@ def answer_session():
 
         print("given answer count ", answer_count)
 
-        question_dic = {session['question_part']: session['shuffled_option_list']}
+        question_dic = {session['question_part']                        : session['shuffled_option_list']}
 
         temp_answer_paper_data.question_dictionary = question_dic
 
@@ -603,6 +604,22 @@ def answer_session():
         temp_answer_paper_data.q_answer = selected_option
 
         temp_answer_paper_data.save()
+
+        name = instance_path + user_obj.e + "_" + str(answer_count) + ".avi"
+
+        db_vid_name = exam_title+"_"+exam_code + "_" + \
+            user_obj.e + "_" + str(answer_count) + ".avi"
+
+        with open(name, "rb")as fr:
+
+            video = Only_file()
+
+            video.rename = user_obj.e
+
+            video.binary_file.put(
+                fr, filename=db_vid_name, content_type='video/avi')
+
+            video.save()
         # print(question_dic)
     session['count'] = count+1
     session['answer_count'] = answer_count
@@ -634,6 +651,9 @@ def answer_session():
         for i in temp_answer_paper.objects():
             question_dic_type_list.append(i.question_dictionary)
 
+        for i in Only_file.objects(rename=user_obj.e):
+            video_binary_type_list.append(i.binary_file)
+
         # print(question_dic_type_list)
         # students answer paper ---------------------------------------------------
         answer_paper = mcq_answer_paper()
@@ -643,19 +663,7 @@ def answer_session():
         answer_paper.question_dictionary_type_list = question_dic_type_list
         answer_paper.selected_answer_options = session['selectd_answers']
         answer_paper.correct_answer = session['correct_answers']
-        for c in range(0, total_question):
-
-            name = instance_path + user_obj.e + "_" + str(c) + ".avi"
-
-            db_vid_name= exam_title+"_"+exam_code+"_"+user_obj.e +"_"+ str(c) +".avi"
-
-            with open(name, "rb")as fr:
-
-                video = One_Video()
-
-                video.video_element.put(fr, filename=db_vid_name, content_type='video/avi')
-
-            answer_paper.surveilence_video_list.append(video)
+        answer_paper.surveilence_video_list = video_binary_type_list
 
         answer_paper.save()
         user_info = user_student.objects(email=user_obj.e).first()

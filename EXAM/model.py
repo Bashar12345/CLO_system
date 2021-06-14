@@ -25,8 +25,6 @@ class Only_file(nosql.Document):
         return f"Only_file('{self.rename}','{self.binary_file}')"
 
 
-class One_Video(nosql.EmbeddedDocument):
-    video_element = nosql.FileField()
 
 
 # class vid_in(nosql.Document):
@@ -287,7 +285,7 @@ class mcq_answer_paper(nosql.Document):
     exam_secret_code = nosql.StringField()
     question_dictionary_type_list = nosql.ListField()
     correct_answer = nosql.ListField() #DictField(default={"none": "none"})
-    surveilence_video_list= nosql.ListField(nosql.EmbeddedDocumentField(One_Video))
+    surveilence_video_list= nosql.ListField() #nosql.EmbeddedDocumentField(One_Video)
     selected_answer_options =nosql.ListField()
 
 
