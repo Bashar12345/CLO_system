@@ -16,6 +16,7 @@ def load_user(user_id):
 
 
 class Only_file(nosql.Document):
+    v_id=nosql.StringField()
     rename = nosql.StringField()
     binary_file = nosql.FileField()
 

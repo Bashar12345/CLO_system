@@ -29,7 +29,7 @@ from EXAM.Test_paper.forms import (
 )
 from EXAM.Test_paper.function import answer_submit, generate_question, machine_process_data, mcq_question_Upload_part1, mcq_question_Upload_part2, mcq_question_answer_submit, mcq_uploading_processing, question_paper_for_current_session, written_question_Upload, written_question_answer_submit
 from EXAM.configaration import User_type, camera, object_of_something, secret_exam_key, sum_of_something, user_obj
-from EXAM.model import One_Video, Only_file, course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, student_attendence, teacher_created_courses_model, temp_answer_paper, user_student
+from EXAM.model import  Only_file, course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, student_attendence, teacher_created_courses_model, temp_answer_paper, user_student
 from flask.templating import render_template_string
 from EXAM.main.function import webcamera_live_stream
 
@@ -507,6 +507,7 @@ def mcq_answer_paper_auto_generated():
         session['corrected'] = 0
         session['question_part'] = ''
         session['shuffled_option_list'] = []
+        session['db_vid_name_list']=[]
 
         session['total_question'] = requirement_for_mcq_questions.number_of_question
         return render_template_string("""
@@ -555,9 +556,9 @@ def mcq_answer_paper_auto_generated():
 def answer_session():
     flash(f"If you left you can not attend this exam again.... So be carefull.", "danger")
     form = Mcq_answer_form()
-    selectd_answers = session['selectd_answers']
-    correct_answers = session['correct_answers']
-    corrected = session['corrected']
+    # selectd_answers = session['selectd_answers']
+    # correct_answers = session['correct_answers']
+    # corrected = session['corrected']
     answer_count = session['answer_count']
     count = session['count']
     total_question = session['total_question']
@@ -595,7 +596,7 @@ def answer_session():
 
         print("given answer count ", answer_count)
 
-        question_dic = {session['question_part']                        : session['shuffled_option_list']}
+        question_dic = {session['question_part'] : session['shuffled_option_list']}
 
         temp_answer_paper_data.question_dictionary = question_dic
 
@@ -609,17 +610,21 @@ def answer_session():
 
         db_vid_name = exam_title+"_"+exam_code + "_" + \
             user_obj.e + "_" + str(answer_count) + ".avi"
+        
+        session['db_vid_name_list'].append(db_vid_name)
+
+        video = Only_file()
+
+        video.v_id = db_vid_name
 
         with open(name, "rb")as fr:
-
-            video = Only_file()
-
-            video.rename = user_obj.e
 
             video.binary_file.put(
                 fr, filename=db_vid_name, content_type='video/avi')
 
             video.save()
+
+            fr.close()
         # print(question_dic)
     session['count'] = count+1
     session['answer_count'] = answer_count
@@ -651,7 +656,7 @@ def answer_session():
         for i in temp_answer_paper.objects():
             question_dic_type_list.append(i.question_dictionary)
 
-        for i in Only_file.objects(rename=user_obj.e):
+        for i in Only_file.objects(v_id=user_obj.e):
             video_binary_type_list.append(i.binary_file)
 
         # print(question_dic_type_list)
@@ -663,7 +668,7 @@ def answer_session():
         answer_paper.question_dictionary_type_list = question_dic_type_list
         answer_paper.selected_answer_options = session['selectd_answers']
         answer_paper.correct_answer = session['correct_answers']
-        answer_paper.surveilence_video_list = video_binary_type_list
+        answer_paper.surveilence_video_list = session['db_vid_name_list']
 
         answer_paper.save()
         user_info = user_student.objects(email=user_obj.e).first()

@@ -15,8 +15,7 @@
 
     {%for (i,k,l,v) in
     iter.zip_longest(question,answer_sheets.selected_answer_options,answer_sheets.correct_answer,answer_sheets.surveilence_video_list) %}
-
-    {{BytesIO(v)}}
+{{v}}
         {#% set vid = BytesIO(v.read())%#}
         {#% set str_equivalent_video = base64.b64encode(vid.getvalue()).decode()%#}
 
