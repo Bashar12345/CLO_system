@@ -15,7 +15,7 @@ from flask import render_template, request, redirect, url_for, flash, jsonify, m
 from flask_login import login_required
 from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.utils import secure_filename
-#from newsapi import NewsApiClient
+# from newsapi import NewsApiClient
 
 from EXAM.main.forms import create_course_form, PhotoForm
 
@@ -28,21 +28,16 @@ from EXAM.model import Only_file, course_model, enrol_students_model, machine_le
 from EXAM.users.utils import delete_temporary_collection, remove_junk
 
 
-
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
-#newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
-#newsapi = NewsApiClient("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
-
+# newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
+# newsapi = NewsApiClient("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
 
 
 @main.route("/live_stream")
-#@login_required
+# @login_required
 def live_stream():
-    return Response(webcamera_live_stream(camera()),mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-
+    return Response(webcamera_live_stream(camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @main.route('/upload', methods=['GET', 'POST'])
@@ -57,14 +52,6 @@ def upload():
         return redirect(url_for('index'))
 
     return render_template('upload.html', form=form)
-
-
-
-
-
-
-
-
 
 
 @main.route('/')
@@ -340,22 +327,19 @@ def course_exams_students(link_info):
     # print(" Exam tittle -------------------------- ",exam_title)
     print(link_info)
     attended_students = student_attendence.objects(exam_secret_code=link_info)
-    for i in attended_students:
-        objects_of_student = user_student.objects(email=i.student_email).first()
-        #print(objects_of_student.profile_pic.read())
-        pic = BytesIO(objects_of_student.profile_pic.read())
-        # print(type(pic))
-        # print(pic)
-        # try:
-        #  with open(objects_of_student.profile_pic.filename, "wb+") as f:
-        #   f.write(pic.getbuffer())
-        #   #f.save()
-        #   f.close()
-        # except Exception as e:
-        #      print(e)
-
-    # ekhane kaz baki ase---------------------------------------------------------------------
-
+    # for i in attended_students:
+      # objects_of_student = user_student.objects(email=i.student_email).first()
+      # print(objects_of_student.profile_pic.read())
+      # pic = BytesIO(objects_of_student.profile_pic.read())
+      # print(type(pic))
+      # print(pic)
+      # try:
+      #  with open(objects_of_student.profile_pic.filename, "wb+") as f:
+      #   f.write(pic.getbuffer())
+      #   #f.save()
+      #   f.close()
+      # except Exception as e:
+      #      print(e)
     return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info, attended_students=attended_students, user_student=user_student, BytesIO=BytesIO, base64=base64, user_type=User_type.user_type)
 
 
@@ -366,10 +350,23 @@ def course_exams_students_answer_sheet(link_info):
     code, student_id = link_info.split("=")
     answer_sheets = mcq_answer_paper.objects(
         exam_secret_code=code, email=student_id).first()
-    
-    video_file_surveilence = Only_file.objects()
 
-    return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools,BytesIO=BytesIO, base64=base64,video_file_surveilence=video_file_surveilence)
+    for video_file_name in answer_sheets.surveilence_video_list:
+
+        video_file_surveilence = Only_file.objects(v_id=video_file_name).first()
+        vid = BytesIO(video_file_surveilence.binary_file.read())
+        print(vid)
+        v_file_name="/home/b/Desktop/CLO_system/EXAM/static/files/"+video_file_name
+        try:
+            with open(v_file_name, "wb+") as f:
+                f.write(vid.getbuffer())
+                # f.save()
+                f.close()
+        except Exception as e:
+            print(e)
+
+
+    return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools)
 
 
 @ main.route('/loading_students')

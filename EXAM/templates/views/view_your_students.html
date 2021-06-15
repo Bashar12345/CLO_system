@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 {% block body %}
 
 
@@ -7,21 +7,26 @@
         Active students of Your all recent courses:
     </legend>
     <br/>
-    <div class='justify-content-start'>
-{% for (name, email) in iter.zip_longest(students_name , user_emails_total) %}
-<div class="row">
-    <div class="col">
-        {{name}}
-    </div>
-    <div class="col">
-        {{email}}
-    </div>
-    
-{% endfor %}
-    
-    </div>
-</section>
 
-{% endblock %}
+        {% for (name, email) in iter.zip_longest(students_name , user_emails_total) %}
+        <div class="card-light">
+            <div class="row justify-content-start">
+                <div class="col-2">
 
+                </div>
+                <div class="col-5 h5">
+                    {{name}}
+                </div>
+                <div class="col-5 h5">
+                    {{email}}
+                </div>
 
+            </div>
+
+        </div>
+        <br>
+        {% endfor %}
+
+    </section>
+
+    {% endblock %}

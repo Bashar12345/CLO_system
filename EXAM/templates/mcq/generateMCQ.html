@@ -2,7 +2,7 @@
 {% block body %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<div class="container-fluid " style="font-family:'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'">
+<div class="container-fluid ">
     <form class="form-horizontal" method="POST" action="{{url_for('Test_paper.generateMCQ',course_code=course_code)}}"
         enctype="multipart/form-data">
 {% set course_code, course_date = course_code.split("=")%}

@@ -15,7 +15,7 @@ import time
 
 exam_code = ""
 #instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
-instance_path = "/home/b/Desktop/CLO_System/EXAM"
+instance_path = "/home/b/Desktop/CLO_system/EXAM"
 
 def go(op):
     op = op
@@ -198,7 +198,7 @@ def binary_read(form_pic_file):
 
     pic_fn = f_name + f_ext
 
-    instance_path = "/home/b/Desktop/project/EXAM"
+    #instance_path = "/home/b/Desktop/project/EXAM"
 
     pic_path = os.path.join(instance_path, "static/temp", pic_fn)
 
