@@ -309,7 +309,7 @@ def course_assigned_students():
 
 
 @main.route('/course_exams/<course_code>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def course_exams(course_code):
     course_code, course_date = course_code.split("=")
     print(course_code, "  DAte", course_date)
@@ -320,7 +320,7 @@ def course_exams(course_code):
 
 
 @main.route('/course_exams_students/<link_info>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def course_exams_students(link_info):
 
     # course_code, exam_title = link_info.split("=")
@@ -328,43 +328,43 @@ def course_exams_students(link_info):
     print(link_info)
     attended_students = student_attendence.objects(exam_secret_code=link_info)
     # for i in attended_students:
-      # objects_of_student = user_student.objects(email=i.student_email).first()
-      # print(objects_of_student.profile_pic.read())
-      # pic = BytesIO(objects_of_student.profile_pic.read())
-      # print(type(pic))
-      # print(pic)
-      # try:
-      #  with open(objects_of_student.profile_pic.filename, "wb+") as f:
-      #   f.write(pic.getbuffer())
-      #   #f.save()
-      #   f.close()
-      # except Exception as e:
-      #      print(e)
+    # objects_of_student = user_student.objects(email=i.student_email).first()
+    # print(objects_of_student.profile_pic.read())
+    # pic = BytesIO(objects_of_student.profile_pic.read())
+    # print(type(pic))
+    # print(pic)
+    # try:
+    #  with open(objects_of_student.profile_pic.filename, "wb+") as f:
+    #   f.write(pic.getbuffer())
+    #   #f.save()
+    #   f.close()
+    # except Exception as e:
+    #      print(e)
     return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info, attended_students=attended_students, user_student=user_student, BytesIO=BytesIO, base64=base64, user_type=User_type.user_type)
 
 
 @main.route('/course_exams_students_answer_sheet/<link_info>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def course_exams_students_answer_sheet(link_info):
     print(link_info)
     code, student_id = link_info.split("=")
     answer_sheets = mcq_answer_paper.objects(
         exam_secret_code=code, email=student_id).first()
 
-    for video_file_name in answer_sheets.surveilence_video_list:
+    # for video_file_name in answer_sheets.surveilence_video_list:
 
-        video_file_surveilence = Only_file.objects(v_id=video_file_name).first()
-        vid = BytesIO(video_file_surveilence.binary_file.read())
-        print(vid)
-        v_file_name="/home/b/Desktop/CLO_system/EXAM/static/files/"+video_file_name
-        try:
-            with open(v_file_name, "wb+") as f:
-                f.write(vid.getbuffer())
-                # f.save()
-                f.close()
-        except Exception as e:
-            print(e)
-
+    #     video_file_surveilence = Only_file.objects(
+    #         v_id=video_file_name).first()
+    #     vid = BytesIO(video_file_surveilence.binary_file.read())
+    #     print(vid)
+    #     v_file_name = "/home/b/Desktop/CLO_system/EXAM/static/files/"+video_file_name
+    #     try:
+    #         with open(v_file_name, "wb+") as f:
+    #             f.write(vid.getbuffer())
+    #             # f.save()
+    #             f.close()
+    #     except Exception as e:
+    #         print(e)
 
     return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools)
 

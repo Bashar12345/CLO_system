@@ -28,8 +28,8 @@ def webcamera_live_stream(camera):
     #cap=cv2.VideoCapture(0)
     global c
     name =user_obj.e
-    name = instance_path+ name + "_"+ str(c) +".mp4"
-    fourcc=cv2.VideoWriter_fourcc(*'MP4V')
+    name = instance_path+ name + "_"+ str(c) +".avi"
+    fourcc=cv2.VideoWriter_fourcc(*'XVID')
     recorder = cv2.VideoWriter(name,fourcc,20.0,(640,480))
     c+=1
     while True:

@@ -2,9 +2,6 @@
 {%block body%}
 
 
-
-
-
 {#{link_info}#}
 
 {#{answer_sheets}#}
@@ -16,33 +13,16 @@
 <section class="">
 
 
-    {%for (i,k,l,v) in
-    iter.zip_longest(question,answer_sheets.selected_answer_options,answer_sheets.correct_answer,answer_sheets.surveilence_video_list)
-    %}
+    {%for (i,k,l) in
+    iter.zip_longest(question,answer_sheets.selected_answer_options,answer_sheets.correct_answer)%}
+
+
+
+
+
     <div class="card">
-        {#% set vid_name = 'files/'+ v %}
-{{v}}
+        {#% set vid_name = 'files/'+ v %#}
 
-        <div class="row">
-            <div class="col-3">
-
-
-              <!-- <video width="400" height="180"
-                    controls>
-                    <source src="data:video/x-msvideo;base64,{#{str_equivalent_video}#}" type="video/mp4">
-                 <source src="/home/b/Desktop/CLO_system/EXAM/static/files/{{v}}" type="video/x-msvideo"> 
-                 <source src="{#{url_for('static',filename=vid_name)}#}" type="video/x-msvideo" > 
-                </video> -->
-
-                <video width="380" height="180" preload="none" loop controls autoplay muted id="vid">
-                    <!-- <source src="/home/b/Desktop/CLO_system/EXAM/static/files/{{v}}" type="video/webm; codecs='vp8.0, vorbis'"> -->
-                    <source src="/home/b/Desktop/CLO_system/EXAM/static/files/{{v}}" type="video/mp4">
-                    <!-- <source src="{{url_for('static',filename=vid_name)}}" type="video/webm; codecs='vp8.0,vorbis'"> -->
-                </video>
-
-
-            </div>
-            <div class="col-9">
                 <div class="card-header">
                     {%set temp = i | string %} {#{temp}#}
 
@@ -76,9 +56,6 @@
 
 
             </div>
-        </div>
-
-    </div>
 
     <br>
     {%endfor%}
@@ -98,3 +75,11 @@
 <!-- {#% set video_file_surveilence = Only_file.objects(v_id=v).first()%}
         {% set vid = BytesIO(video_file_surveilence.binary_file.read())%}
         {% set str_equivalent_video = base64.b64encode(vid.getvalue()).decode()%#} -->
+
+
+        <!-- <video width="400" height="180"
+                    controls>
+                    <source src="data:video/x-msvideo;base64,{#{str_equivalent_video}#}" type="video/mp4">
+                <source src="/home/b/Desktop/CLO_system/EXAM/static/files/{{v}}" type="video/x-msvideo"> 
+                <source src="{#{url_for('static',filename=vid_name)}#}" type="video/x-msvideo" > 
+                </video> -->
