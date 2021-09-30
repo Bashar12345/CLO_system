@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "/home/b/Desktop/env_ClO/bin/python",
+  "python.pythonPath": "/home/b/Desktop/test_env/bin/python",
   "editor.defaultFormatter": "ms-python.python",
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
