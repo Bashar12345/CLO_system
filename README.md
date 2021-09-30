@@ -9,11 +9,12 @@ Also this application comes with students actiivity protal.
 Answer and number distribution also done by System.
 
 
-Online Exam 
+# Online Exam 
 McQ question genate with machine learning Algorithm (Decision tree , Random forest(for bigdata) )
 
 Audio,video surveillance are available in answer paper form.  (UNDER CONSTRUCTION) 
 
+# Tecnology
 I work on this project arround 5 months.
 
 Used Platform OS: Linux(Ubuntu).
