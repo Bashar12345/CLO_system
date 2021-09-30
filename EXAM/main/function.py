@@ -1,8 +1,8 @@
-from re import split
+#from re import split
 import requests
 import json
 import datetime
-import cv2
+#import cv2
 from flask import request, flash, session
 from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, required_for_generate, set_exam_question_slot, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher, wrqQuestion
 from EXAM.configaration import camera, user_obj

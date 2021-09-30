@@ -3,7 +3,7 @@ import time
 import datetime
 import itertools
 import json
-import requests
+#import requests
 from io import BytesIO
 import base64
 

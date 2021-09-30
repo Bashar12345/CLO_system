@@ -1,8 +1,8 @@
 import os
-import cv2
+#import cv2
 from decouple import config
 
-from imutils.video import WebcamVideoStream
+#from imutils.video import WebcamVideoStream
 
 
 # ekhaner sob data r value environ e rakhte hobe
