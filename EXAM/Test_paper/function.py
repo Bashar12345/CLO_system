@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 # import fileinput
 # from PIL import Image
-from EXAM.configaration import user_obj
+from EXAM.configaration import user_obj,camera
 from flask import render_template, request, redirect, url_for, flash, session
 
 from EXAM.model import course_model, exam_mcq_question_paper, exam_written_question_paper, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, required_for_generate, set_exam_question_slot, teacher_created_courses_model, user
@@ -16,6 +16,16 @@ from EXAM.users.utils import saveFormFile_in_Filesystem
 
 # test purpose
 exam_code = ""
+
+
+# Webcam data getting from the source
+
+
+
+
+
+
+
 
 
 # binary style e data database e dhukanor jonno If needed in some scenario
@@ -278,10 +288,6 @@ def mcq_uploading_processing(get_form, corse_code):
 
 
 
-
-
-
-
 # requirement for genarating a question
 def generate_question(get_form, code_ase_naki_nai):
     form = get_form
@@ -327,8 +333,7 @@ def generate_question(get_form, code_ase_naki_nai):
     # form.exam_CLO.data
     complex_level = request.form.getlist("complex_level")
     exam_marks = request.form.getlist("marks")
-    print(exam_topic, " --", exam_CLO, " --",
-          complex_level, " --", number_of_question, " --")
+    print(exam_topic, " --", exam_CLO, " --",complex_level, " --", number_of_question, " --")
     print("course_code :", course_code)
     
 
@@ -693,8 +698,7 @@ def question_paper_for_current_session(requirement_for_mcq_questions):
     return shuffled_list
 
 
-def answer_submit(session_question, count, correct_answers,
-                  corrected, selectd_answers, total_question, exam_title, exam_course):
+def answer_submit(session_question, count, correct_answers,corrected, selectd_answers, total_question, exam_title, exam_course):
     #count = session['count']
     question_part = ''
     option_list = list()

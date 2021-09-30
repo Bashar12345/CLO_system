@@ -107,8 +107,8 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav nav-tabs mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('main.main_page') }}">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('main.main_page') }}">Home </a>
             </li>
 
             {% if user_type == 'admin' %}
@@ -140,13 +140,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('main.student_dashboard') }}">Exam-Schedule</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('main.view_courses') }}">Enrolled-Courses</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}">Test your knowledge</a>
+                <a class="nav-link" href="{{ url_for('Test_paper.model_test') }}">Test your Brain</a>
             </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="{#{ url_for('main.live_stream') }#}">Webcam</a>
+            </li> -->
             {% endif %}
 
 
@@ -285,6 +290,9 @@
                 $(this).addClass('active  text-danger');
             });
 
+        $('body').bind('cut copy', function(e) {
+            e.preventDefault();
+            });
 
     });
 </script>

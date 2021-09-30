@@ -19,10 +19,12 @@
     <br>
     {%for students in attended_students%}
    
-    {%set pic_file_name = students.student_name +".jpeg" %}
+    
 
   {%set objects_of_student = user_student.objects(email=students.student_email).first() %}
         {% set pic = BytesIO(objects_of_student.profile_pic.read())%}
+        {% set pic_content = objects_of_student.profile_pic.content_type %}
+        
         {% set str_equivalent_image = base64.b64encode(pic.getvalue()).decode()%}
 
 
@@ -34,7 +36,7 @@
     <a class="row shadow-sm" href="{{url_for('main.course_exams_students_answer_sheet',link_info=l_info)}}"
         style="text-decoration: none;">
         <div class="col-2">
-            <img class="img_tag img-thumbnail " src="data:image/jpeg;base64,{{str_equivalent_image}}" alt="profile picture">
+            <img class="img_tag img-thumbnail " src="data:{{pic_content}};base64,{{str_equivalent_image}}" alt="profile picture">
             <!-- <img src="{#{url_for('static',filename='temp/'+pic_file_name)}#}" alt="Ase nai Photo"> -->
         </div>
         <div class="col-5 ">{{students.student_name}}</div>

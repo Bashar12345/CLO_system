@@ -1,5 +1,8 @@
 import os
+import cv2
 from decouple import config
+
+from imutils.video import WebcamVideoStream
 
 
 # ekhaner sob data r value environ e rakhte hobe
@@ -46,3 +49,42 @@ class User_type:
 
 class user_obj:
     e = ""
+
+
+
+class camera(object):
+    
+    def __init__(self):
+        self.stream =WebcamVideoStream(src=0).start()
+    
+    def __del__(self):
+        self.stream.stop()
+
+    def get_frame(self):
+        image=self.stream.read()
+
+        ret,jpeg =cv2.imencode('.jpg',image)
+
+        v_data=[]
+
+        v_data.append(jpeg.tobytes())
+
+        return v_data,image
+
+
+# class camera(object):
+    
+#     def __init__(self):
+#         self.stream =WebcamVideoStream(src=0).start()
+    
+#     def __del__(self):
+#         self.stream.stop()
+
+#     def get_frame(self):
+
+#         image=self.stream.read()
+        
+#         #ret,jpeg =cv2.imencode('.jpg',image)
+
+#         return image
+        

@@ -16,6 +16,7 @@ def load_user(user_id):
 
 
 class Only_file(nosql.Document):
+    v_id=nosql.StringField()
     rename = nosql.StringField()
     binary_file = nosql.FileField()
 
@@ -23,6 +24,16 @@ class Only_file(nosql.Document):
 
     def __repr__(self):
         return f"Only_file('{self.rename}','{self.binary_file}')"
+
+
+
+
+# class vid_in(nosql.Document):
+#     v_id = nosql.StringField()
+#     vid_list= nosql.ListField(nosql.EmbeddedDocumentField(OneVideo))
+
+
+
 
 
 class user(nosql.Document, UserMixin):
@@ -275,6 +286,7 @@ class mcq_answer_paper(nosql.Document):
     exam_secret_code = nosql.StringField()
     question_dictionary_type_list = nosql.ListField()
     correct_answer = nosql.ListField() #DictField(default={"none": "none"})
+    surveilence_video_list= nosql.ListField() #nosql.EmbeddedDocumentField(One_Video)
     selected_answer_options =nosql.ListField()
 
 

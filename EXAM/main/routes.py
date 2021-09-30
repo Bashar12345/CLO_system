@@ -4,25 +4,40 @@ import datetime
 import itertools
 import json
 import requests
-from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app, session
-from flask_login import login_required
-from werkzeug.datastructures import CombinedMultiDict
-from werkzeug.utils import secure_filename
-#from newsapi import NewsApiClient
-
-from EXAM.main.forms import create_course_form, PhotoForm
-from EXAM.configaration import User_type, user_obj
-from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses, delete_old_question_requirements
-from EXAM.model import course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, records_of_course_exams, set_exam_question_slot, student_attendence, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
-from EXAM.users.utils import delete_temporary_collection, remove_junk
 from io import BytesIO
 import base64
 
 
+from flask.wrappers import Response
+
+from flask import render_template, request, redirect, url_for, flash, jsonify, make_response, Blueprint, app, session
+
+from flask_login import login_required
+from werkzeug.datastructures import CombinedMultiDict
+from werkzeug.utils import secure_filename
+# from newsapi import NewsApiClient
+
+from EXAM.main.forms import create_course_form, PhotoForm
+
+from EXAM.configaration import User_type, camera, user_obj
+
+from EXAM.main.function import created_course_form_db_insertion, delete_exam_attened_exams, delete_old_question_requirements, enroll_students, evaluate_a_question, process_data_for_machine_learning, student_main_page, student_view_courses, teacher_view_courses, webcamera_live_stream
+
+from EXAM.model import Only_file, course_model, enrol_students_model, machine_learning_mcq_model, marksheet, mcqQuestion, mcq_answer_paper, records_of_course_exams, set_exam_question_slot, student_attendence, student_courses_model, teacher_created_courses_model, teacher_posts_model, temporary_model, user_student, user_teacher
+
+from EXAM.users.utils import delete_temporary_collection, remove_junk
+
+
 main = Blueprint('main', __name__)
 instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
-#newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
-#newsapi = NewsApiClient("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
+# newsapi = NewsApiClient(api_key="0bf80e3a6a5d4fefb6b80ceeaccb9560")
+# newsapi = NewsApiClient("https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=0bf80e3a6a5d4fefb6b80ceeaccb9560")
+
+
+@main.route("/live_stream")
+# @login_required
+def live_stream():
+    return Response(webcamera_live_stream(camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @main.route('/upload', methods=['GET', 'POST'])
@@ -294,7 +309,7 @@ def course_assigned_students():
 
 
 @main.route('/course_exams/<course_code>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def course_exams(course_code):
     course_code, course_date = course_code.split("=")
     print(course_code, "  DAte", course_date)
@@ -305,39 +320,51 @@ def course_exams(course_code):
 
 
 @main.route('/course_exams_students/<link_info>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def course_exams_students(link_info):
 
     # course_code, exam_title = link_info.split("=")
     # print(" Exam tittle -------------------------- ",exam_title)
     print(link_info)
     attended_students = student_attendence.objects(exam_secret_code=link_info)
-    for i in attended_students:
-        objects_of_student = user_student.objects(email=i.student_email).first()
-        #print(objects_of_student.profile_pic.read())
-        pic = BytesIO(objects_of_student.profile_pic.read())
-        print(type(pic))
-        print(pic)
-        try:
-         with open(objects_of_student.profile_pic.filename, "wb+") as f:
-          f.write(pic.getbuffer())
-          #f.save()
-          f.close()
-        except Exception as e:
-             print(e)
-
-    # ekhane kaz baki ase---------------------------------------------------------------------
-
+    # for i in attended_students:
+    # objects_of_student = user_student.objects(email=i.student_email).first()
+    # print(objects_of_student.profile_pic.read())
+    # pic = BytesIO(objects_of_student.profile_pic.read())
+    # print(type(pic))
+    # print(pic)
+    # try:
+    #  with open(objects_of_student.profile_pic.filename, "wb+") as f:
+    #   f.write(pic.getbuffer())
+    #   #f.save()
+    #   f.close()
+    # except Exception as e:
+    #      print(e)
     return render_template('question_view/students_of_exam_slots.html', title='Exams Attened_Students', link_info=link_info, attended_students=attended_students, user_student=user_student, BytesIO=BytesIO, base64=base64, user_type=User_type.user_type)
 
 
 @main.route('/course_exams_students_answer_sheet/<link_info>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def course_exams_students_answer_sheet(link_info):
     print(link_info)
     code, student_id = link_info.split("=")
     answer_sheets = mcq_answer_paper.objects(
         exam_secret_code=code, email=student_id).first()
+
+    # for video_file_name in answer_sheets.surveilence_video_list:
+
+    #     video_file_surveilence = Only_file.objects(
+    #         v_id=video_file_name).first()
+    #     vid = BytesIO(video_file_surveilence.binary_file.read())
+    #     print(vid)
+    #     v_file_name = "/home/b/Desktop/CLO_system/EXAM/static/files/"+video_file_name
+    #     try:
+    #         with open(v_file_name, "wb+") as f:
+    #             f.write(vid.getbuffer())
+    #             # f.save()
+    #             f.close()
+    #     except Exception as e:
+    #         print(e)
 
     return render_template('question_view/students_answer_sheet.html', answer_sheets=answer_sheets, link_info=link_info, title='Exams-Answer sheet', user_type=User_type.user_type, iter=itertools)
 
