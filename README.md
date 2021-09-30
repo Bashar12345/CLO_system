@@ -16,7 +16,7 @@ Audio,video surveillance are available in answer paper form.  (UNDER CONSTRUCTIO
 
 I work on this project arround 5 months.
 
-OS: Linux(Ubuntu).
+Used Platform OS: Linux(Ubuntu).
 
 Language : python.
 
