@@ -30,9 +30,8 @@ def register():
     form = registration_form()
     if current_user.is_authenticated:
         return redirect(url_for("main.main_page"))
-    
 
-    #if request.method == "POST":
+    # if request.method == "POST":
     if form.validate_on_submit():
         check = register_method(form)
         if check == "done":
@@ -181,7 +180,9 @@ def examiner():
 @users.route("/student_list/<course_code>", methods=["GET", "POST"])
 # @login_required
 def student_list(course_code):
+    # delete_temporary_collection()
     form = searchForm()
+    enrolled_students = list()
     students = ''
     selected_data = ""
     result_students = ""
@@ -208,20 +209,28 @@ def student_list(course_code):
         email_list = request.form.getlist('students_list_checkbox')
         sending_mail_to_user_for_course_enroll_key(
             email_list, enroll_key, corse_code)
+        return redirect(url_for('main.view_courses'))
+        # enroll kora polapain er email ase
     delete_temporary_collection()
-    enrolled = enrol_students_model.objects(course_code=corse_code)
-    if enrolled:
-        delete_temporary_collection()
-        for userStudents in user_student.objects():
-            for students_enrolled in enrolled:
-                if userStudents.email == students_enrolled.enrolled_students_id:
-                    print(f"already ase {userStudents.email}")
-                else:
-                    student_temp_class = temp_student_collection()
-                    student_temp_class.user_name = userStudents.user_name
-                    student_temp_class.email = userStudents.email
-                    student_temp_class.organization_id = userStudents.organization_id
-                    student_temp_class.save()
+
+    for students_enrolled in enrol_students_model.objects(course_code=corse_code):
+        if students_enrolled not in enrolled_students:
+            enrolled_students.append(
+                students_enrolled.enrolled_students_id)
+
+    for userStudents in user_student.objects():
+        student_temp_class = temp_student_collection()
+        student_temp_class.user_name = userStudents.user_name
+        student_temp_class.email = userStudents.email
+        student_temp_class.organization_id = userStudents.organization_id
+        student_temp_class.save()
+
+    for aleady_enrolled in enrolled_students:
+        user_already = temp_student_collection.objects(
+            email=aleady_enrolled)
+        print(f"already ase {aleady_enrolled}")
+        user_already.delete()
+
     students = temp_student_collection.objects()
     return render_template(
         "student/student_list.html",

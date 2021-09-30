@@ -606,10 +606,10 @@ def answer_session():
 
         temp_answer_paper_data.save()
 
-        name = instance_path + user_obj.e + "_" + str(count-1) + ".mp4"
+        name = instance_path + user_obj.e + "_" + str(count-1) + ".avi"
 
         db_vid_name = exam_title+"_"+exam_code + "_" + \
-            user_obj.e + "_" + str(count-1) + ".mp4"
+            user_obj.e + "_" + str(count-1) + ".avi"
         
         session['db_vid_name_list'].append(db_vid_name)
 
@@ -620,7 +620,7 @@ def answer_session():
         with open(name, "rb")as fr:
 
             video.binary_file.put(
-                fr, filename=db_vid_name, content_type='video/mp4')
+                fr, filename=db_vid_name, content_type='video/x-msvideo')
 
             video.save()
 
