@@ -3,7 +3,7 @@ import pymongo
 from pymongo import MongoClient
 import random
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
+#from sklearn.tree import DecisionTreeClassifier
 # import fileinput
 # from PIL import Image
 from EXAM.configaration import user_obj,camera
