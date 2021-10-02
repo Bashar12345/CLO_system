@@ -339,8 +339,13 @@ class records_of_course_exams(nosql.Document):
 # exam_code =  #  questions = # embedded mcq and written
 
 
+
+DB_URI = "mongodb+srv://exam:databasexam@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"
+
+
+
 # print("database_model")
-if nosql.connect("exam"):
+if nosql.connect(host=DB_URI):
     print("database_connected")
 else:
     print("not connected")
