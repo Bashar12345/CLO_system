@@ -61,7 +61,7 @@ def create_app(config_class=Config):
     nosql.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)
-    #machine_process_data_wrangling()
+    # machine_process_data_wrangling()
     # machine=machine_process()
     # Scss(app, static_dir='static', asset_dir='assets')
     from EXAM.main.routes import main
