@@ -1,1 +1,10 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"exam.user"}],"uuid":"6aa6aa0afcac46ffa035ca82726e73f1"}
+[{
+  "_id": {
+    "$oid": "6157d97a957b907da7342e4d"
+  },
+  "user_name": "bashar ",
+  "email": "bashar@example.com",
+  "password": "$2b$12$XYvFAXMnSMhAsgRGcI.zCehVfYCR/Fis6CnJNqFvSwmNnN9sA4Cby",
+  "organization_id": "171-2020-34",
+  "user_category": "teacher"
+}]
