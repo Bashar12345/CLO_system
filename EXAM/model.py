@@ -342,6 +342,8 @@ class records_of_course_exams(nosql.Document):
 
 #DB_URI = "mongodb+srv://herokuappdeploy:database@bashar12345atlas@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"
 
+if nosql.connect():
+    print('Database connected')
 
 # # print("database_model")
 # if nosql.connect(host=DB_URI):
