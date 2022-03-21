@@ -8,6 +8,8 @@ Teacher can define question type,patern and Which CLO(Course learning outcome) i
 Also this application comes with students actiivity protal.
 Answer and number distribution also done by System.
 
+Note: For deployment i use heroku so, mongodb does not connect to the host without PAID addons, So unforfortunately you can't login and register yourself.
+
 
 # Online Exam 
 McQ question genate with machine learning Algorithm (Decision tree , Random forest(for bigdata) )
@@ -31,4 +33,3 @@ I use Api for Smooth performance (Flask_Api's, mongoengine and others)
 
 A project of Course:-Project/Thesis,Course Code: SWE431, Final semister of DIU.
 
-Note: For deployment i use heroku so, mongodb does not connect to the host without PAID addons, So unforfortunately you can't login and register yourself.
