@@ -31,8 +31,8 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for("main.main_page"))
 
-    # if request.method == "POST":
-    if form.validate_on_submit():
+    if request.method == "POST":
+    #if form.validate_on_submit():
         check = register_method(form)
         if check == "done":
             return redirect(url_for("users.login"))
