@@ -1,2 +1,2 @@
 web: gunicorn gettingstarted.wsgi
-web: gunicorn app:app --preload
+web: gunicorn app:app --timeout 70
