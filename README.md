@@ -8,7 +8,7 @@ Teacher can define question type,patern and Which CLO(Course learning outcome) i
 Also this application comes with students actiivity protal.
 Answer and number distribution also done by System.
 
-Note: For deployment i use heroku so, mongodb does not connect to the host without PAID addons, So unforfortunately you can't login and register yourself.
+Note: For deployment i use heroku so, mongodb does not connect to the host without PAID addons, So unfortunately you can't login and register yourself.
 
 
 # Online Exam 
