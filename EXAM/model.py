@@ -340,8 +340,7 @@ class records_of_course_exams(nosql.Document):
 
 
 
-# DB_URI = "mongodb+srv://exam:databasexam@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"
-
+DB_URI = "mongodb+srv://herokuappdeploy:database@bashar12345atlas@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"
 
 
 # # print("database_model")
@@ -349,3 +348,10 @@ class records_of_course_exams(nosql.Document):
 #     print("database_connected")
 # else:
 #     print("not connected")
+
+
+# # print("database_model")
+if nosql.connect(host=DB_URI):
+   print("database_connected")
+else:
+   print("not connected")
