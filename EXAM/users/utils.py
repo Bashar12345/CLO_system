@@ -9,7 +9,7 @@ from flask import render_template, url_for, flash
 # from PIL import Image
 from flask_mail import Message
 
-from EXAM import bcrypt, mail
+from EXAM import bcrypt, mail,MYDIR
 from EXAM.model import enrol_students_model, records_of_course_exams, required_for_generate, set_exam_question_slot, temp_student_collection, user, user_student, user_teacher
 import time
 
