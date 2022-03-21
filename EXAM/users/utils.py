@@ -13,8 +13,7 @@ from EXAM import bcrypt, mail
 from EXAM.model import enrol_students_model, records_of_course_exams, required_for_generate, set_exam_question_slot, temp_student_collection, user, user_student, user_teacher
 import time
 
-MYDIR = os.path.dirname(__file__)
-print(MYDIR)
+
 exam_code = ""
 #instance_path = "/home/b/Desktop/project/CLO_System/EXAM"
 #instance_path = "/home/b/Desktop/CLO_system/EXAM"
