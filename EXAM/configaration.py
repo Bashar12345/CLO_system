@@ -6,7 +6,7 @@ from decouple import config
 
 
 # ekhaner sob data r value environ e rakhte hobe
-
+MYDIR = os.path.dirname(__file__)
 
 class Config:
     SECRET = os.urandom(32)
