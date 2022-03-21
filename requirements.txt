@@ -15,4 +15,4 @@ python-decouple==3.4
 scikit_learn==1.0
 WTForms==2.3.3
 gunicorn==20.0.4
-wheel==0.30.0
+wheel==0.37.0
