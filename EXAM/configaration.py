@@ -12,9 +12,9 @@ class Config:
     SECRET = os.urandom(32)
     SECRET_KEY = SECRET
 
-    #MONGODB_SETTINGS = {"db": "exam", "host": "localhost", "port": 27017}
-    MONG_DBNAME="exam"
-    MONGO_URI = "mongodb+srv://herokuappdeploy:database@bashar12345atlas@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"
+    MONGODB_SETTINGS = {"db": "exam", "host": "localhost", "port": 27017}
+    #MONG_DBNAME="exam"
+    #MONGO_URI = "mongodb+srv://herokuappdeploy:database@bashar12345atlas@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"
     
     # MONGODB_SETTINGS = {"db": "exam", "host": "mongodb+srv://exam:databasexam@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"}
     MAIL_SERVEER = "smtp.googlemail.com"
