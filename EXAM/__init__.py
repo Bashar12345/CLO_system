@@ -17,7 +17,8 @@ from EXAM.configaration import Config
 #from pymongo import MongoClient
 from flask_mongoengine import MongoEngine
 
-
+MYDIR = os.path.dirname(__file__)
+print(MYDIR)
 # from mongoengine import *
 
 # connect(db='exam', host='localhost', port='27017', username='', password='', authentication_source='admin')
