@@ -30,3 +30,5 @@ Database: NOSQL(mongoDB)
 I use Api for Smooth performance (Flask_Api's, mongoengine and others)
 
 A project of Course:-Project/Thesis,Course Code: SWE431, Final semister of DIU.
+
+Note: For deployment i use heroku so, mongodb does not connect to the host without PAID addons, So unforfortunatelt you can login in and register yourself.
