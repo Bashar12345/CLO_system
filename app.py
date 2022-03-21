@@ -5,10 +5,12 @@ app = create_app()
 
 import os
 
-#port = int(os.environ.get('PORT', 5000))
+port = int(os.environ.get("PORT", 5000)) 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True) # port=port, debug=True)
+   
+   app.run(debug=False, port=port, host='0.0.0.0')
+
     # app.run(debug=True, host='0.0.0.0:5000')
 
 # if __name__ == '__main__':
