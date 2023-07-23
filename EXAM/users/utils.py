@@ -88,7 +88,7 @@ def sending_email_to_user(model_er_user):
     token = model_er_user.get_reset_token()
     msg = Message(
         "Password Reset Verification",
-        sender="bravebashar112@gmail.com",
+        sender="mail@devbashar.xyz",
         recipients=[model_er_user.email],
     )
     msg.body = f"""For password reset visit the following link: 
@@ -96,6 +96,7 @@ def sending_email_to_user(model_er_user):
     thank you
     """
     mail.send(msg)
+    return True
 
 
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
@@ -118,7 +119,7 @@ def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_cod
         fw.close()
     # ''' for i in email_list:
 #  msg = Message('"Enroll key" for the course_entry',
-#                sender='bravebashar112@gmail.com', recipients=i)
+#                sender="mail@devbashar.xyz", recipients=i)
 # msg.body = fFor Joining the course, Enter the key below :
 # {Enroll_key}
 # thank you

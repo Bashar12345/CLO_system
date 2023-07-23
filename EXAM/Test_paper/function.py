@@ -21,15 +21,7 @@ exam_code = ""
 # Webcam data getting from the source
 
 
-
-
-
-
-
-
-
 # binary style e data database e dhukanor jonno If needed in some scenario
-
 
 # end binary style block
 # Written question can be also modify in this function like ssc exam, hsc exam ,bcs exam

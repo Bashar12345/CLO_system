@@ -123,7 +123,8 @@ def reset_password():
     if form.validate_on_submit():
         User = user.objects(email=form.email.data).first()
         # print(jsonify(User))
-        sending_email_to_user(User)
+        mail_send = sending_email_to_user(User)
+
         flash("An Email has been sent with instruction to reset your password ", "info")
     return render_template("reset_password.html", title="change_password", form=form)
 
