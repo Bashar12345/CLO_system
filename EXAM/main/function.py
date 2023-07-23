@@ -292,6 +292,7 @@ def process_data_for_machine_learning():
     # mcq_data = mongosql.machine_learning_mcq_model
     # required_for_generate = required.find()
     # required=required_for_generate.objects()
+
     teacher_id = user_obj.e
     shuffled_question_list = []
     full_set_shuffled_question = []
@@ -304,13 +305,15 @@ def process_data_for_machine_learning():
     question_part = []
     temp = list()
     course_list = list()
+
     for i in teacher_created_courses_model.objects(teacher_registered_id=teacher_id):
         # print(i.course_code)
         course_list.append(i.course_code)
         # print(course_list)
-    crse_code = random.choice(course_list)  # print(crse_code)
-    # for testing pupose i fixed the crse_code
-    crse_code = "swe151"
+        crse_code = random.choice(course_list)  # print(crse_code)
+    else:
+        # for testing pupose i fixed the crse_code
+        crse_code = "swe151"
     q_type = random.choice(ques_type)
     # for testing pupose i fixed the q_type
     q_type = 'mcq'
