@@ -1,6 +1,6 @@
 import os
 #import cv2
-from decouple import config
+#from decouple import config
 
 #from imutils.video import WebcamVideoStream
 
