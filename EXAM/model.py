@@ -1,8 +1,8 @@
 # import mongoengine as nosql
 from flask import current_app
 from flask_login import UserMixin
-#from itsdangerous import TimedJSONWebSignatureSerializer as serializer
-from itsdangerous.url_safe import URLSafeTimedSerializer as serializer
+from itsdangerous import TimedJSONWebSignatureSerializer as serializer
+#from itsdangerous.url_safe import URLSafeTimedSerializer as serializer
 
 from EXAM import login_manager, nosql
 from mongoengine import fields

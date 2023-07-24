@@ -1,94 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Quicksand:wght@300&display=swap');
 
+
+:root{
+    --ques_text: 'Poppins','Pattaya' ;
+    --main-color:blanchedalmond;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Poppins','Pattaya',arial,helvetica,courier, monospace,sans-serif ;
+    /* background: blanchedalmond; */
+
 }
 
-.custom-class {
-    display: none;
+body{
+    /* text-align: center; */
+    background: blanchedalmond;
+    /* background-color: lightblue; */
+    /* background-image: url('static/img/back.png'); */
 }
 
-div#header,
-div#footer {
-    padding: 20px;
-    color: white;
-    background-color: black;
+p{
+    font-family: var(--ques_text);
+    font-size: 20px;
 }
 
-div.content {
-    margin: 5px;
-    padding: 10px;
-    background-color: lightgrey;
+.loginParent{
+    max-width: 100%;
+    height: 100vw; 
 }
 
-div.article {
-    margin: 5px;
-    padding: 10px;
-    background-color: white;
+.loginChid{
+    width: 35vw;
+    height: 25vh;
 }
 
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+.card{
+    background:  var(--main-color);
 }
 
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
 
-.center {
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-}
-
-.header img {
-    float: left;
-    width: 100px;
-    height: 100px;
-    background: #555;
-}
-
-.header h1 {
+/* 
+footer {
     position: relative;
-    top: 18px;
-    left: 10px;
 }
 
-div#contenTbody {
-    padding: 10px;
-    color: black;
-    background-color: yellow;
+.nav-item>a:hover {
+    color: green;
 }
 
-s {
-    page-break-after: auto;
-}
+/*code to change background color
 
-@media only screen and (max-width: 900px) {
-    .r {
-        background-color: red;
-    }
+.navbar-nav>.active>a {
+    background-color: #C0C0C0;
+    color: green;
 }
-
-div#sidebar {
-    margin: 0 8px 6px 8px;
-    float: right;
-    width: 190px;
-    height: 220px;
-    border: 5px solid #7f7f7f;
-    background: #c3c3c3;
-}
-
+.main {
+    margin-top: 25px;
+    height: 1500px; 
+} 
+*/
 /* 
 svg_body{
     /*background-image: url(/home/b/Desktop/svg/back.png);

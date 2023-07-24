@@ -27,9 +27,7 @@
 </style>
 <section class="container">
 
-
-
-    <form method="POST" action="" class="form-container" enctype="multipart/form-data">
+    <form method="POST" action="" class="pt-2 pb-5" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <header>
@@ -38,22 +36,21 @@
             <br />
             <div class="form-group">
                 {{ form.course_duration.label(class = "form-control-label h5") }}
+                <br />
                 {{ form.course_duration(type="date",class="form-control-lg datepicker") }}
 
             </div>
             <div class="form-group">
-                {{ form.course_title.label(class = "form-control-label h5 ") }}
+                {{ form.course_title.label(class = "form-control-label h5 mt-2") }}
                 {{ form.course_title(class="form-control form-control",placeholder='(Dont give "#,$,@,&" these caracters) like: Summer 2021_SWE122') }}
 
             </div>
             <div class="form-group">
-                <label class="form-control-label h5" for="Textarea">Course Caption :</label>
+                <label class="form-control-label h5  mt-2" for="Textarea">Course Caption :</label>
                 <textarea name="Note:captions" class="form-control" id="Textarea" rows="3"></textarea>
             </div>
             <div class="form-group">
-                {{ form.course_code.label(class = "form-control-label h5") }}
-
-
+                {{ form.course_code.label(class = "form-control-label h5  mt-2") }}
 
                 {% if form.course_code.errors %}
                 {{form.course_code(class="form-control form-control-lg is-invalid")}}
@@ -117,7 +114,7 @@
 
 
         </fieldset>
-        {{ form.submit(class="form-group btn btn-outline-primary ") }}
+        {{ form.submit(class="form-group btn btn-outline-primary mt-2") }}
 
     </form>
 </section>

@@ -85,18 +85,19 @@ def saveFormFile_in_Filesystem(form_file):
 
 
 def sending_email_to_user(model_er_user):
+    print(model_er_user.email)
     token = model_er_user.get_reset_token()
-    msg = Message(
-        "Password Reset Verification",
-        sender="mail@devbashar.xyz",
-        recipients=[model_er_user.email],
-    )
-    msg.body = f"""For password reset visit the following link: 
-{url_for('users.reset_token', token=token, _external=True)}
-    thank you
-    """
-    mail.send(msg)
-    return True
+    #print(token)
+    try:    
+        msg = Message( "Password Reset Verification", sender="mail@devbashar.xyz", recipients=[model_er_user.email] )
+
+        msg.body = f"""For password reset visit the following link: {url_for('users.reset_token', token=token, _external=True)}
+        thank you
+        """
+        mail.send(msg)
+    except Exception as e:
+        print(e)
+    
 
 
 def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):

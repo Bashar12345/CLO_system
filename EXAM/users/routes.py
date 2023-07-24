@@ -55,9 +55,7 @@ def login():
         if form.email.data:
             # if form.validate_on_submit():
             # print('email'+student_usersd.email, student_usersd['password'])
-            usersd = user.objects.filter(
-                email=form.email.data
-            ).first()  # eta NOSQL er part
+            usersd = user.objects.filter(email=form.email.data).first()  # eta NOSQL er part
             if usersd and bcrypt.check_password_hash(
                 usersd.password, form.password.data
             ):
@@ -115,17 +113,25 @@ def account():
 
 
 @users.route("/reset_password", methods=(["GET", "POST"]))
-def reset_password():
+def reset_request():
     if current_user.is_authenticated:
         return redirect(url_for("main.main_page"))
     form = forgetPasswordForm()
-    # if request.method == 'POST':
-    if form.validate_on_submit():
-        User = user.objects(email=form.email.data).first()
-        # print(jsonify(User))
-        mail_send = sending_email_to_user(User)
-
+    
+    if request.method == 'POST':
+        #print(request.form['email'])
+        User = user.objects(email=request.form['email']).first()
+        #print(User)
+        sending_email_to_user(User)
         flash("An Email has been sent with instruction to reset your password ", "info")
+
+    elif form.validate_on_submit():
+        #print(form.data)
+        User = user.objects(email=form.email.data).first()
+        #print(User)
+        sending_email_to_user(User)
+        flash("An Email has been sent with instruction to reset your password ", "info")
+
     return render_template("reset_password.html", title="change_password", form=form)
 
 
@@ -136,7 +142,7 @@ def reset_token(token):
     User = user.verify_reset_token(token)
     if User is None:
         flash("that is an invalid or expired token", "warning")
-        return redirect(url_for("users.reset_password"))
+        return redirect(url_for("users.reset_request"))
     form = resetPasswordForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode(

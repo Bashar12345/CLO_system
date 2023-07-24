@@ -337,8 +337,7 @@ def generateMCQ(course_code):
             course_code=course_code)          # swe151=2021-06-23  # swe151
     else:
 
-        corse_code, course_date = course_code.split(
-            "=")                 # swe151=2021-06-23
+        corse_code, course_date = course_code.split("=")                 # swe151=2021-06-23
         session['course_date'] = course_date
 
         if request.method == "POST":
@@ -349,6 +348,7 @@ def generateMCQ(course_code):
             form=form,
             user_type=User_type.user_type,
             corse_code=corse_code,         # swe151
+            course_date=course_date,         
             course_code=course_code)       # swe151=2021-06-23  # swe151
 
 

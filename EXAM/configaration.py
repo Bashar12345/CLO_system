@@ -41,12 +41,12 @@ class Config:
     MAIL_USERNAME = MAIL_USERNAME
     MAIL_PASSWORD = MAIL_PASSWORD
 
-    # MONGODB_SETTINGS = {
-    #     "db": "cloExam", 
-    #     'host': 'mongodb://localhost:27017/cloExam',
-    #     "alias": "default",
-    #     "port": 27017
-    #     }
+    MONGODB_SETTINGS = {
+        "db": "test", 
+        'host': 'mongodb://localhost:27017/test',
+        "alias": "default",
+        "port": 27017
+        }
     # MONGODB_DB = 'project1'
     # MONGODB_HOST = '192.168.1.35'
     # MONGODB_PORT = 12345

@@ -1,56 +1,59 @@
 {% extends "layout.html" %} {% block body %}
-    <!-- ekane form er kaz korte hobe -->
+<!-- ekane form er kaz korte hobe -->
 
 
-    <section class=" shadow-lg btn-group-horizontal ">
-        <div class="col-md-9">
-            <form class="form-horizontal"  method="POST"  action=" {{ url_for('Test_paper.wrqu') }} " enctype="multipart/form-data">
-                <fieldset>
-                    <legend> Upload your Pdf Question paper</legend>
-                    <p>Set your Exam Slot </p>
-                    <div class="form-group">
-                        {{ form.exam_code.label(class = "form-control-label") }}
-                        {{ form.exam_code(class ="form-control form-control-lg",placeholder="like : mid332432 or made up something") }}
+<section class=" shadow-lg btn-group-horizontal ">
+    <div class="col-md-9">
+        <form class="form-horizontal" method="POST" action=" {{ url_for('Test_paper.wrqu') }} "
+            enctype="multipart/form-data">
+            <fieldset>
+                <legend> Upload your Pdf Question paper</legend>
+                <p>Set your Exam Slot </p>
+                <div class="form-group">
+                    {{ form.exam_code.label(class = "form-control-label") }}
+                    {{ form.exam_code(class ="form-control form-control-lg",placeholder="like : mid332432 or made up
+                    something") }}
 
-                        {{ form.exam_title.label(class = "form-control-label") }}
-                        {{ form.exam_title(class="form-control-radio") }}
+                    {{ form.exam_title.label(class = "form-control-label") }}
+                    {{ form.exam_title(class="form-control-radio") }}
 
-                        {# {{ form.exam_title.label(class = "form-control-label") }} #}
-                        {#{{ form.exam_title(class ="form-control form-control-lg",placeholder="example: MID-Term") }}#}
+                    {# {{ form.exam_title.label(class = "form-control-label") }} #}
+                    {#{{ form.exam_title(class ="form-control form-control-lg",placeholder="example: MID-Term") }}#}
 
-                        {{ form.exam_course.label(class = "form-control-label") }}
-                        {{ form.exam_course(class ="form-control form-control-lg",placeholder="like : SWE431") }}
+                    {{ form.exam_course.label(class = "form-control-label") }}
+                    {{ form.exam_course(class ="form-control form-control-lg",placeholder="like : SWE431") }}
 
-                        {{ form.exam_topic.label(class = "form-control-label") }}
-                        {{ form.exam_topic(class ="form-control form-control-lg",placeholder="Like: physical layer") }}
+                    {{ form.exam_topic.label(class = "form-control-label") }}
+                    {{ form.exam_topic(class ="form-control form-control-lg",placeholder="Like: physical layer") }}
 
-                        <br/>
-                        <div class="form-container">
-                            {{ form.exam_start_time.label(for="appt",class = "form-control-label") }}
-                            <!-- for= appt is a class -->
-                            <input type="time" class="form-control-sm " id="start_time" name="start_time">
+                    <br />
+                    <div class="form-container">
+                        {{ form.exam_start_time.label(for="appt",class = "form-control-label") }}
+                        <!-- for= appt is a class -->
+                        <input type="time" class="form-control-sm " id="start_time" name="start_time">
 
-                            {{ form.exam_end_time.label(for="appt",class = "form-control-label") }}
-                            <input type="time" class="form-control-sm " id="end_time" name="end_time">
+                        {{ form.exam_end_time.label(for="appt",class = "form-control-label") }}
+                        <input type="time" class="form-control-sm " id="end_time" name="end_time">
 
-                            {{ form.exam_date.label(class = "form-control-label") }}
-                            {{ form.exam_date(type="date",class ="form-control-md ",placeholder=" like: year/month/date") }}
-                        </div>
-                        <br/>
-                        {{ form.rename_file.label(class = "form-control-label") }}
-                        {{ form.rename_file(class ="form-control form-control-lg",placeholder="Questionpapers Have a Proper name ") }}
-
-                        {{ form.file.label(class = "form-control-label") }}
-                        {{ form.file(class = "form-control-lg") }}
-                        <br/>
-                       <!-- <input type="file" name="pdf">-->
-                        {{ form.submit(class="btn btn-outline-info") }}
+                        {{ form.exam_date.label(class = "form-control-label") }}
+                        {{ form.exam_date(type="date",class ="form-control-md ",placeholder=" like: year/month/date") }}
                     </div>
-                </fieldset>
-                <br/>
-            </form>
-        </div>
-    </section>
+                    <br />
+                    {{ form.rename_file.label(class = "form-control-label") }}
+                    {{ form.rename_file(class ="form-control form-control-lg",placeholder="Questionpapers Have a Proper
+                    name ") }}
+
+                    {{ form.file.label(class = "form-control-label") }}
+                    {{ form.file(class = "form-control-lg") }}
+                    <br />
+                    <!-- <input type="file" name="pdf">-->
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </fieldset>
+            <br />
+        </form>
+    </div>
+</section>
 
 {% endblock body %}
 <!--if click in create file then a text document Or google doc file will open

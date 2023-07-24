@@ -4,7 +4,7 @@
         let max_fields = 10;
         let add_input = $('.add-input');
         let input_wrapper = $('.input-wrapper')
-        let new_input = '<div><input type="text"  class="form-control-lg" id="lesson_name" name="total_lesson[]"  value=""><a href="javascript:void(0);" class="remove-input" title="remove input"><img src="/static/img/minus.png" type="button" class="img-lesson btn-outline-light"></a></div> '
+        let new_input = '<div><input type="text"  class="form-control-lg mt-2" id="lesson_name" name="total_lesson[]"  value=""><a href="javascript:void(0);" class="remove-input" title="remove input"><img src="/static/img/minus.png" type="button" class="img-lesson btn-outline-light"></a></div> '
         let add_count = 1;
         $(add_input).click(function () {
             if (add_count < max_fields) {

@@ -20,17 +20,12 @@
 {% block body %}
 <div class="container-fluid">
 
-
-
     {%if user_type=='teacher'%}
 
     <div class="row no-gutters ">
-        <div class="col-12 col-sm-6 col-md-8">
+        <div class="col-12 col-sm-8 pb-5 pt-2">
 
-
-
-            <form action="" class="container form-group" method="POST" enctype="multipart/form-data">
-                <div class="body container">
+            <form action="" class="m-auto form-group" method="POST" enctype="multipart/form-data">
                     <p class="content">
                         <b>
                             <h3>What do you think about this question paper?
@@ -67,27 +62,27 @@
                         {% endfor %}
 
                     </div>
-                    <div class="container form-check form-check-inline ">
-                        <div class="form-check">
-                            <input for="eval1" class="form-check-label" type="radio" class="radio" name="difficulty" value="Easy">
-                            <label for="eval1" class="form-check-label">Easy</label>
+                    <div class="m-auto form-check">
+                        <div class="form-check form-check-inline">
+                            <input id="eval1" class="form-check-input  me-2 fs-3" type="radio" class="radio" name="difficulty" value="Easy">
+                            <label for="eval1" class="form-check-label me-2  fs-3">Easy</label>
                         </div>
-                        <div class="form-check">
-                            <input for="eval2" class="form-check-label" type="radio" class="radio" name="difficulty"
+                        <div class="form-check form-check-inline">
+                            <input id="eval2" class="form-check-input me-2  fs-3" type="radio" class="radio" name="difficulty"
                                 value="Medium">
 
-                            <label for="eval2" class="form-check-label">Medium</label>
+                            <label for="eval2" class="form-check-label me-2  fs-3">Medium</label>
                         </div>
-                        <div class="form-check">
-                            <input for="eval3" class="form-check-label" type="radio" class="radio" name="difficulty" value="Hard">
-                            <label for="eval3" class="form-check-label">Hard</label>
+                        <div class="form-check form-check-inline">
+                            <input id="eval3" class="form-check-input  me-2 fs-3" type="radio" class="radio" name="difficulty" value="Hard">
+                            <label for="eval3" class="form-check-label me-2  fs-3">Hard</label>
                         </div>
                     </div>
 
-                </div>
+         
 
-                <div style="top: 3vh;">
-                    <button class="btn btn-block btn-info" type="submit"> Done!!!!</button>
+                <div class="mt-3">
+                    <button class="btn btn-block btn-success" type="submit"> Done!!!!</button>
                 </div>
             </form>
 
@@ -97,27 +92,25 @@
         </div>
 
 
-        <div class="col-6 col-md-4"> <br>
+        <div class="col-10 offset-1 col-sm-4 offset-sm-0 py-3"> 
 
 
-            <form class="card-container" action="" method="POST" enctype="multipart/form-data">
+            <form class="card border-light mb-3"  method="POST" enctype="multipart/form-data">
 
                 <legend class="card-header">
                     Today's activity
                 </legend>
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group my-2">
                         <label for="title" class="custom-control-label">Title</label>
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group my-2">
                         <label for="announcement" class="custom-control-label">Announcements or Instruction or Advice</label>
-                        <textarea type="textarea" class="form-control" id="announcement" name="announcement">
-                                    </textarea>
+                        <textarea type="textarea" class="form-control" id="announcement" name="announcement"> </textarea>
                     </div>
                 </div>
-
 
                 <div class="card-footer" style="top: 3vh;">
                     <button class="btn btn-info" type="submit"> Update!!!!</button>
