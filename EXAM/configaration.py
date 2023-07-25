@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
+COSMOSDB_CONN = os.getenv('COSMOSDB_CONN')
 #Connection_str = os.getenv('MONGODB_SETTING')
 
 #print(Connection_str)
@@ -42,10 +43,8 @@ class Config:
     MAIL_PASSWORD = MAIL_PASSWORD
 
     MONGODB_SETTINGS = {
-        "db": "test", 
-        'host': 'mongodb://localhost:27017/test',
-        "alias": "default",
-        "port": 27017
+        "db": "exam", 
+        'host': COSMOSDB_CONN
         }
     # MONGODB_DB = 'project1'
     # MONGODB_HOST = '192.168.1.35'
