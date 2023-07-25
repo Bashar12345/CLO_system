@@ -112,13 +112,13 @@ function load() {
         var template='';
         // var check=('#linked_course_code').val();
         // console.log(check)
-        template+=`<div class="card" style="width: 25rem;">
+        template+=`<div class="card" style="width: 22rem;">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
             <label class="form-control-label h5">Course Outcome </label><br/>
             
             <input id="exam_CLO" list="clo" name="exam_CLO" 
-            class="custom-select custom-select-md mb-3 btn-outline-info "
+            class="custom-select form-select custom-select-md mb-3 btn-outline-info "
             placeholder="Select CLO"
             autocomplete="off"
             aria-label=".custom-select-lg example">
@@ -131,7 +131,7 @@ function load() {
 
             <li class="list-group-item">
                 <label class="form-control-label h5">Syllabus/Topic/lesson :</label><br/>
-                <input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select custom-select-md mb-3 btn-outline-info " placeholder="Select lesson"
+                <input id="exam_topic" list="lesson_name" name="exam_topic" class="custom-select form-select custom-select-md mb-3 btn-outline-info " placeholder="Select lesson"
                 autocomplete="off"
                 aria-label=".custom-select-lg example">
                 <datalist id="lesson_name">
@@ -140,7 +140,7 @@ function load() {
             <li class="list-group-item">
                 <label class="form-control-label h5">Question Complexity Level</label>
                 <select
-                    class="custom-select btn-outline-info"
+                    class="custom-select form-select btn-outline-info"
                     id="inputGroupSelect04"
                     name="complex_level"
                     aria-label="Example select with button addon"
@@ -154,7 +154,7 @@ function load() {
                 </select></li>
                 <li class="list-group-item">
                      <label class="form-control-label h5"> Total_marks </label>
-                       <input type="number" class="input-group" id="marks" name="marks" 
+                       <input type="number" class="input-group form-control" id="marks" name="marks" 
                        placeholder="For this Lesson" /></div>
                         </li>
         </ul>

@@ -100,10 +100,11 @@ def sending_email_to_user(model_er_user):
     
 
 
-def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_code):
+def sending_mail_to_user_for_course_enroll_key(email_list, Enroll_key, course_code):
+    print("responsed")
     # print(email_list)
     # print(type(email_list))
-    delete_temporary_collection()
+    #delete_temporary_collection()
     if email_list:
         fw = open("file.txt", "w+")
         for index in email_list:
@@ -112,22 +113,23 @@ def sending_mail_to_user_for_course_enroll_key(email_list, Enrol_key, course_cod
 
             students_enrol_ins.enrolled_students_id = index
             if students_enrol_ins.enrolled_students_id:
-                students_enrol_ins.enrol_key = Enrol_key
+                students_enrol_ins.enrol_key = Enroll_key
                 students_enrol_ins.course_code = course_code
                 students_enrol_ins.save()
             time.sleep(1.0)
             print(students_enrol_ins.enrolled_students_id)
-        fw.close()
-    # ''' for i in email_list:
-#  msg = Message('"Enroll key" for the course_entry',
-#                sender="mail@devbashar.xyz", recipients=i)
-# msg.body = fFor Joining the course, Enter the key below :
-# {Enroll_key}
-# thank you
-# This is an developing app for Testing purpose we send this email
-# So, please calm down and be patient
 
-# mail.send(msg)'''
+            # ''' for i in email_list:
+            msg = Message('Enroll key of course_entry', sender="mail@devbashar.xyz", recipients=[index])
+            msg.body = f"""For Joining the course,
+            Enter the key below :{Enroll_key} 
+            
+            thank you,
+            This is an developing app for Testing purpose we send this email So, please calm down and be patient"""
+
+            mail.send(msg)
+
+        fw.close()
 
 # if current_user.is_authenticated:
 # return redirect(url_for("main.base"))

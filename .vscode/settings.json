@@ -10,5 +10,7 @@
   "python.formatting.provider": "autopep8",
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
-  }
+  },
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/74a5f8a1-012c-4701-9a9e-dd9c90b89a80/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/sms-web-flask-app",
+  "appService.deploySubpath": "."
 }

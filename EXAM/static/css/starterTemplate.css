@@ -4,6 +4,7 @@
 :root{
     --ques_text: 'Poppins','Pattaya' ;
     --main-color:blanchedalmond;
+    --theme-color:  #cecbcb;
 }
 
 *{
@@ -41,8 +42,21 @@ p{
     background:  var(--main-color);
 }
 
+.nav-tabs {
+    --bs-nav-tabs-border-width: 3px;
+    --bs-nav-tabs-link-active-border-color: #dee2e6 #dee2e6 #fff;
+    /* border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color); */
+    border-bottom: 0px;
+}
+
+nav{
+    background: var(--theme-color);
+}
+
+
 
 /* 
+
 footer {
     position: relative;
 }

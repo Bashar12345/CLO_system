@@ -203,8 +203,7 @@ def student_list(course_code):
         delete_temporary_collection()
         print(enroll_key)
         organization_id = form.organization_id.data
-        result_students = user_student.objects(
-            organization_id=organization_id).first()
+        result_students = user_student.objects(organization_id=organization_id).first()
         if result_students:
             return render_template(
                 "student/student_list.html",
@@ -214,6 +213,7 @@ def student_list(course_code):
                 result_students=result_students,
             )
         email_list = request.form.getlist('students_list_checkbox')
+        #print(email_list)
         sending_mail_to_user_for_course_enroll_key(
             email_list, enroll_key, corse_code)
         return redirect(url_for('main.view_courses'))
@@ -245,6 +245,7 @@ def student_list(course_code):
         title="Students",
         user_type=User_type.user_type,
         students=students,
+        course_date=course_date,
         course_code=course_code,
     )
 

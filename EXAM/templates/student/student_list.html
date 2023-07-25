@@ -21,9 +21,8 @@
       background-color: #dddddd;
     }
     </style>
-{% set corse_code, course_date = course_code.split("=")%}
 
-        <form class="container form-horizontal" action="{{ url_for('users.student_list',course_code=course_code ) }}" method="POST"
+        <form class="container" action="{{ url_for('users.student_list',course_code=course_code ) }}" method="POST"
             enctype="multipart/form-data">
 
             {{ form.hidden_tag()}}
@@ -34,13 +33,15 @@
             <div class="form-inline form-inline-lg my-2 my-lg-0" method="POST"
                 action="{{ url_for('users.student_list',course_code=course_code ) }}">
 
-                <div class="input-group mb-3">
+                <!-- <div class="input-group mb-3">
                     {{ form.organization_id(class="form-control form-control-lg ",placeholder=" students ID....")}}
                     <div class="input-group-append">
                         {{ form.submit(class="btn btn-outline-success" )}}
 
                     </div>
-                </div>
+                </div> -->
+
+
             </div>
             {{form.enroll_key(class="form-control form-control-lg", placeholder="Enter the Enroll key")}}
             <br/>
