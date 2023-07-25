@@ -42,12 +42,12 @@ class Config:
     MAIL_USERNAME = MAIL_USERNAME
     MAIL_PASSWORD = MAIL_PASSWORD
 
-    MONGODB_SETTINGS = {
-        "db": "exam", 
-        'host': COSMOSDB_CONN
-        }
+    # MONGODB_SETTINGS = {
+    #     "db": "exam", 
+    #     'host': COSMOSDB_CONN
+    #     }
     # MONGODB_DB = 'project1'
-    # MONGODB_HOST = '192.168.1.35'
+    MONGODB_HOST = COSMOSDB_CONN
     # MONGODB_PORT = 12345
     # MONGODB_USERNAME = 'webapp'
     # MONGODB_PASSWORD = 'pwd123'

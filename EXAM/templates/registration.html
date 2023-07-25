@@ -2,12 +2,12 @@
 {% block body %}
 <section>
     <style>
-            .democlass {
-                color: red;
-            }
-        </style>
-    <section class="container shadow-lg btn-light btn-group-horizontal"></section>
-        <form class="container form-container-lg" method="POST" action="" enctype="multipart/form-data">
+        .democlass {
+            color: red;
+        }
+    </style>
+    <section class="container shadow-lg btn-light btn-group-horizontal p-5">
+        <form class="container form-container-lg mt-2" method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="custom-group">
                 <legend> REGISTRATION</legend>
@@ -16,11 +16,9 @@
                     {{ form.user_name.label(class="custom-control-label") }}
                     <br>
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                        </div>
                         {{ form.user_name(class = "form-control form-control-lg", placeholder = "Full Name")
                         }}
+                    
                     </div>
 
 
@@ -119,45 +117,46 @@
                     {% endif %}
                     <br>
                     {{ form.profile_pic.label(class = "form-control-label") }}
-                        {% if form.profile_pic.errors %}
-                        {{form.profile_pic(class="form-control form-control-lg is-invalid")}}
-                        <div class="invalid-feedback">
-                            
-                            {% for error in form.profile_pic.errors %}
-                            <span>{#{error}#}</span>
-                                
-                            {% endfor %}
-                                
-                        </div>
-                        {% else %}
-                        
-                        <div class="input-group mb-3">
-                            {{ form.profile_pic(class="btn-outline-info") }}
-                           
-                        </div>
-                        {% endif %}
-                    <br/>
+                    {% if form.profile_pic.errors %}
+                    {{form.profile_pic(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+
+                        {% for error in form.profile_pic.errors %}
+                        <span>{#{error}#}</span>
+
+                        {% endfor %}
+
+                    </div>
+                    {% else %}
+
+                    <div class="input-group mb-3">
+                        {{ form.profile_pic(class="btn-outline-info") }}
+
+                    </div>
+                    {% endif %}
+                    <br />
 
 
 
 
-                        <div class="">
-                            {{ form.user_category.label(class = "custom-control-label
-                            custom-control-label-lg") }}
-                            <br/>
-                                {{ form.user_category(class = "custom-radio-inline") }}
-                            </div>
-                        </div>
-                    </fieldset>
-                    {{ form.submit(class="btn btn-outline-primary") }}
-                </form>
-                <div class="small">
-                    Already registered , <a href="{{url_for('users.login')}}" class="href">sign in</a>
+                    <div class="">
+                        {{ form.user_category.label(class = "custom-control-label
+                        custom-control-label-lg form-control-label fs-5") }}
+                        <br />
+                        {{ form.user_category(class = "custom-radio-inline fs-5") }}
+                    </div>
                 </div>
-            
-        <script>
+            </fieldset>
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </form>
+        <div class="small mt-3">
+            Already registered , <a href="{{url_for('users.login')}}" class="href">sign in</a>
+        </div>
+    </section>
+
+    <script>
         function myFunction() {
             document.getElementsByTagName("LEGEND")[0].setAttribute("class", "democlass");
         }
     </script>
-        {% endblock body %}
+    {% endblock body %}

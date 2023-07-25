@@ -6,6 +6,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as serializer
 
 from EXAM import login_manager, nosql
 from mongoengine import fields
+from EXAM.configaration import Config, COSMOSDB_CONN
 
 
 
@@ -342,10 +343,10 @@ class records_of_course_exams(nosql.Document):
 
 
 #DB_URI = "mongodb+srv://herokuappdeploy:database@bashar12345atlas@examflaskwebappcluster0.jctu8.mongodb.net/exam?retryWrites=true&w=majority"
-nosql.disconnect()
-nosql.connect()
-if nosql.connect():
-    print('Database connected')
+# nosql.disconnect()
+# nosql.connect()
+# if nosql.connect():
+#     print('Database connected')
 
 # # print("database_model")
 # if nosql.connect(host=DB_URI):

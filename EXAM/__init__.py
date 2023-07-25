@@ -60,6 +60,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
     mail.init_app(app)
     nosql.init_app(app)
+    print('datbase connect hoise')
     login_manager.init_app(app)
     bcrypt.init_app(app)
     # machine_process_data_wrangling()
