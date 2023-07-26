@@ -3,22 +3,28 @@
 {% block body %}
 <section class="">
 
-       <nav class="">
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+<section class="container">
+       <section class="row py-3">
+              <nav class="">
+                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
+       
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                                   aria-controls="nav-home" aria-selected="true">Info</a>
+       
+       
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                                   aria-controls="nav-profile" aria-selected="false">Teacher</a>
+       
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                                   aria-controls="nav-contact" aria-selected="false">Student</a>
+       
+                     </div>
+              </nav>
+       </section>
+</section>
 
-                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                            aria-controls="nav-home" aria-selected="true">Info</a>
 
-
-                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                            aria-controls="nav-profile" aria-selected="false">Teacher</a>
-
-                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                            aria-controls="nav-contact" aria-selected="false">Student</a>
-
-              </div>
-       </nav>
-       <div class="  tab-content" id="nav-tabContent">
+       <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                      <article class="container">
@@ -28,7 +34,7 @@
 
                                    <body class="justify-content">
                                           <br />
-                                          <h5>Using an Online Examination System has many benefits.</h4>
+                                          <h4>Using an Online Examination System has many benefits.</h4>
 
                                                  <p class="custom-control-label text-info ">Security of Examination Paper</p>
                                                  <article>
@@ -134,106 +140,113 @@
               </div>
               <div class="tab-pane fade img-fluid" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
+<article class="container">
+
+       <section class="row py-1">
+              <img src="static/img/teacher_back.jpg" alt="" class=" " 
+              style=" width : 100%; max-height: 23rem;">
+              <h5> Tutorial how to use the teacher section </h5>
+       </section>
+
+       <section class="text-center pb-5 m-2">
+
+              
+
+              <h3 class="form-control-label text-info"><br>Step #1 </h3>
+              
+              You have to login first.... <br>
+
+              <img src="static/img/login.png" alt="" class="img-fluid" style="max-width:55rem;">
+
+
+              <h3 class="form-control-label text-info"><br>Step #2 </h3>
+              After login..... Evaluate a demo machine generate Question.
+              <img src="static/img/teacher_home.png" alt="" class="img-fluid pb-3" 
+              style="width:55rem;">
+              <br />
+              This is the Homepage.
+
+              <br>
+              As you can see, In teacher Homepage a Demo Question arrived....
+              So, Teacher will Evalute this question as The Difficulty of this question paper.
+
+              <br>
+              In right, There is a Announcement Box.(teacher will pass what He or She want to say)
+              <br>
+              <h3 class="custom-control-label text-info"><br>Step #3 </h3>
+              <p class="">
+                     Course_creation
+              </p>
+
+              <img src="static/img/Course_creation.png" alt="" class="img-fluid pb-2" style="width:55rem;">
+              <br>
+              "Course Learning Outcome"(CLO) based online learning system intrigrated"
+              <br />
+              Course Learning Outcomes are statements clearly describing the meaningful, observable and
+              measurable knowledge, skills and/or
+              dispositions students will learn in this course.
+              A learning outcome is a clear statement of what a learner is expected to be able to do, know
+              about and/or value at the completion
+              of a unit of study, and how well they should be expected to achieve those outcomes. It states
+              both the substance of learning and
+              how its attainment is to be demonstrated.
+              Learning outcomes are the cornerstones of course design and assessment, and help students focus
+              on what is important. Learning
+              outcomes can also be considered an inclusive teaching practice as they can help clarify
+              expectations for all students.<br>
+              <h3 class="custom-control-label text-info"><br>Step #4 </h3>
+              Show total Courses which a teacher created for this semister.....
+
+              <img src="static/img/views_created_courses.png" alt="" class="img-fluid pb-2"
+                     style="width:55rem;">
+
+              <br> Select Course for further activity
+              <br>
+              <h3 class="custom-control-label text-info"><br>Step #5 </h3>
+              Teacher can Upload Question ,Generate Question for Course Registered students. And Select
+              Student for enrollment
+
+              <img src="static/img/question_view.png" alt="" class="img-fluid pb-2" 
+              style="width:55rem;">
+              <br>
+              Click the upload, generate, Students Button for activity.
+              <br>
+              <h3 class="custom-control-label text-info"><br>Step #6 </h3>
+
+
+              <img src="static/img/upload _mcq.png" alt="" class="img-fluid pb-2" 
+              style="width:55rem;">
+
+              <br>
+              <h3 class="custom-control-label text-info"><br>Step #7 </h3>
+              
+              Generate Question
+              <br>
+
+
+              <img src="static/img/generate.png" alt="" class="img-fluid pb-2" 
+              style="width:55rem;">
+              <br>
+              <h3 class="custom-control-label text-info"><br>Step #8 </h3>
+              Enroll Students
+              <br>
+
+              <img src="static/img/students.png" alt="" class="img-fluid pb-2" style="max-width:55rem;">
+              <br>Give a Unique key For enroll and, it will take some time for sending email to the
+              students!!!!
+
+              <br>
+
+
+       </section>
+
+
+</article>
 
 
 
 
-                     <article class="container">
-                            <img src="static/img/teacher_back.jpg" alt="" class="img-fluid" style="max-width : 52rem;left:6vh">
-                            <section>
-
-                                   <h4> Tutorial how to use the teacher section </h4>
-
-                                   <p class="custom-control-label text-info"><br>Step #1 </p>
-                                   You have to login first.... <br>
-                                   <img src="static/img/login.png" alt="" class="img-fluid" style="max-width:55rem;">
-
-
-                                   <p class="custom-control-label text-info"><br>Step #2 </p>
-                                   After login..... Evaluate a demo machine generate Question.
-                                   <img src="static/img/teacher_home.png" alt="" class="img-fluid" style="max-width:55rem;">
-
-                                   <br>
-                                   This is the Homepage.
-
-                                   <br>
-                                   As you can see, In teacher Homepage a Demo Question arrived....
-                                   So, Teacher will Evalute this question as The Difficulty of this question paper.
-
-                                   <br>
-                                   In right, There is a Announcement Box.(teacher will pass what He or She want to say)
-                                   <br>
-                                   <p class="custom-control-label text-info"><br>Step #3 </p>
-                                   Course_creation.....
-
-                                   <img src="static/img/Course_creation.png" alt="" class="img-fluid" style="max-width:55rem;">
-
-                                   "Course Learning Outcome"(CLO) based online learning system intrigrated.
-                                   <br />
-                                   Course Learning Outcomes are statements clearly describing the meaningful, observable and
-                                   measurable knowledge, skills and/or
-                                   dispositions students will learn in this course.
-                                   A learning outcome is a clear statement of what a learner is expected to be able to do, know
-                                   about and/or value at the completion
-                                   of a unit of study, and how well they should be expected to achieve those outcomes. It states
-                                   both the substance of learning and
-                                   how its attainment is to be demonstrated.
-                                   Learning outcomes are the cornerstones of course design and assessment, and help students focus
-                                   on what is important. Learning
-                                   outcomes can also be considered an inclusive teaching practice as they can help clarify
-                                   expectations for all students.<br>
-                                   <p class="custom-control-label text-info"><br>Step #4 </p>
-                                   Show total Courses which a teacher created for this semister.....
-
-                                   <img src="static/img/views_created_courses.png" alt="" class="img-fluid"
-                                          style="max-width:55rem;">
-
-                                   <br> Select Course for further activity
-                                   <br>
-                                   <p class="custom-control-label text-info"><br>Step #5 </p>
-                                   Teacher can Upload Question ,Generate Question for Course Registered students. And Select
-                                   Student for enrollment
-
-                                   <img src="static/img/question_view.png" alt="" class="img-fluid" style="max-width:55rem;">
-                                   <br>
-                                   Click the upload, generate, Students Button for activity.
-                                   <br>
-                                   <p class="custom-control-label text-info"><br>Step #6 </p>
-
-
-                                   <img src="static/img/upload _mcq.png" alt="" class="img-fluid" style="max-width:55rem;">
-
-                                   <br>
-                                   <p class="custom-control-label text-info"><br>Step #7 </p>
-                                   Generate Question
-
-
-                                   <img src="static/img/generate.png" alt="" class="img-fluid" style="max-width:55rem;">
-                                   <br>
-                                   <p class="custom-control-label text-info"><br>Step #8 </p>
-                                   Enroll Students
-
-
-                                   <img src="static/img/students.png" alt="" class="img-fluid" style="max-width:55rem;">
-                                   <br>Give a Unique key For enroll and, it will take some time for sending email to the
-                                   students!!!!
-
-
-                                   <br>
-
-
-
-
-
-                            </section>
-
-
-                     </article>
-
-
-
-
-              </div>
+</div>
               <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 
 
@@ -247,26 +260,26 @@
 
 
                             <section>
-                                   <p class="custom-control-label text-info"><br>Step #1 </p>
+                                   <h3 class="custom-control-label text-info"><br>Step #1 </p>
                                    You have to login first.... <br>
                                    <img src="static/img/login.png" alt="" class="img-fluid" style="max-width:55rem;">
 
-                                   <p class="custom-control-label text-info"><br>Step #2 </p>
+                                   <h3 class="custom-control-label text-info"><br>Step #2 </p>
                                    After login..... Current activity of students and through the world.
                                    <img src="static/img/student _home.png" alt="" class="img-fluid" style="max-width:55rem;">
 
-                                   <p class="custom-control-label text-info"><br>Step #3 </p>
+                                   <h3 class="custom-control-label text-info"><br>Step #3 </p>
                                    Current Exam Schedules of this semister
                                    <img src="static/img/exams.png" alt="" class="img-fluid" style="max-width:55rem;">
 
-                                   dsfkhfdsaoujbdsfa<br>
-                                   <p class="custom-control-label text-info"><br>Step #4 </p>
+                                   <br>
+                                   <h3 class="custom-control-label text-info"><br>Step #4 </p>
                                    Current Active enrolled courses of this semister
                                    <img src="static/img/enroll.png" alt="" class="img-fluid" style="max-width:55rem;">
 
 
                                    <br>
-                                   <p class="custom-control-label text-info"><br>Step #5 </p>
+                                   <h3 class="custom-control-label text-info"><br>Step #5 </p>
                                    "ModelQuestion_AI" will generate a question for Student choosen nobes.........
                                    <img src="static/img/Model_test.png" alt="" class="img-fluid" style="max-width:55rem;">
                                    Model_test

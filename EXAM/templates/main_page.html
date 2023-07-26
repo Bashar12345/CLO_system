@@ -3,15 +3,22 @@
 
 {% block navenrol %}
 
-<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <form class="form-group d-flex me-1 me-lg-2 my-2 my-lg-0" method="POST" action="">
-            <input class="form-control" style="max-width: 20vw;" type="text" placeholder="Enroll Key" name="enroll_key"
-                aria-label="Search">
-            <button class="btn btn-outline-success  my-2 my-sm-0" type="submit">Enroll</button>
-            <!--<a type="button" class=" nav-item nav-link " href="{#{ url_for('users.enrol') }#}">Enroll</a>-->
-        </form>
-    </ul>
+<div class="collapse navbar-collapse text-center" id="navbarTogglerDemo03">
+   
+      
+            <form class="form-group d-flex me-1 me-lg-2 my-2 my-lg-0" method="POST" action="">
+                <input class="form-control" 
+                style="width: 8rem;"
+                type="text" 
+                placeholder="Enroll Key" 
+                name="enroll_key">
+                <button class="btn btn-outline-success my-2 my-sm-0" 
+                type="submit">Enroll</button>
+                <!--<a type="button" class=" nav-item nav-link " href="{#{ url_for('users.enrol') }#}">Enroll</a>-->
+            </form>
+
+
+    
 </div>
 
 {% endblock navenrol %}
@@ -22,6 +29,7 @@
 
 {% if user_type=='teacher' %}
 
+<div class="container">
 <div class="row ">
     <div class="col-12 col-sm-8 pb-5 pt-2">
 
@@ -129,7 +137,7 @@
 
 </div>
 
-
+</div>
 
 {%endif%}
 
@@ -146,15 +154,18 @@
 
 <section class="container">
     <div class="row mb-5">
-        <h3 class="mb-3"> Latest Actions (anouncements)</h3>
+        <div class="col-12 col-md-8 p-3">
+
+
+        <h2 class="mb-1 mb-md-3"> Latest Actions (anouncements)</h2>
 
         <br>
         {% for i in range(0,2) %}
 
         <div class="card card mb-3 text-white " style="background-color: var(--theme-color);">
             <div class="card-header">
-                <div class="row justify-content-evenly">
-                    <div class="col-8" style="background-color: rgba(101, 100, 100, 0.54);">
+                <div class="row justify-content-between">
+                    <div class="col-8 fw-semibold" style="background-color: rgba(101, 100, 100, 0.54);">
                         <p>{{ latest_posts_from_teacher[i].title }}</p>
                     </div>
                     <div class="col-3 text-end">
@@ -166,48 +177,15 @@
                 </div>
             </div>
             <br>
-            <div class="body container">
-                <p>{{latest_posts_from_teacher[i].announcement}}</p>
+            <div class="card-body">
+                <p class="fw-normal">{{latest_posts_from_teacher[i].announcement}}</p>
             </div>
         </div>
         {%endfor%}
-    </div>
-</section>
-
-{%endif%}
-
-<br />
-<section class="mx-4">
-    <div class="row ">
-        <div class="col-12 col-sm-8 pb-5 pt-2">
-
-            <h3 class="py-5"> Latest News arround the world</h3>
-
-
-            {% for news, desc, image in context %}
-            <div class=" border-light my-3 p-3">
-
-                <img class="img-fluid video-fluid" src="{{image}}" />
-
-                <div class="card-body">
-                    <h4 class="card-title mt-2" style="font-family: 'Times New Roman', Times, serif;">
-                        {{news}}
-                    </h4>
-                    <small class="card-text"
-                        style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{desc}}</small>
-
-                </div>
-
-
-            </div>
-
-            {%endfor%}
-
-
-
+            
         </div>
 
-        <div class="col-10 offset-1 col-sm-4 offset-sm-0 py-3">
+        <div class="col-12 col-md-4 p-4 p-md-3">
             <div class="row justify-content-evenly" style="background-color: orange;">
                 <div class="col-4">
                     Courses
@@ -241,9 +219,53 @@
 
         </div>
 
+
+
+    </div>
+</section>
+
+{%endif%}
+
+<br />
+<section class=" mx-md-5 px-md-5">
+    <div class="row ">
+        <div class="col-12 pb-5 pt-2">
+
+            <h2 class="mx-3"> Latest News arround the world</h2>
+
+
+            {% for news, desc, image in context %}
+            <div class=" border-light my-5 px-4">
+
+                <img class="img-fluid video-fluid" src="{{image}}" alt="This content has no image" />
+
+                <div class="card-body">
+                    <h4 class="card-title mt-2" style="font-family: 'Times New Roman', Times, serif;">
+                        {{news}}
+                    </h4>
+                    <small class="card-text"
+                        style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{desc}}</small>
+
+                </div>
+
+
+            </div>
+
+            {%endfor%}
+
+
+
+        </div>
     </div>
 
 </section>
+
+
+<!-- <section class=" mx-5 px-5">
+
+
+</section> -->
+
 
 
 

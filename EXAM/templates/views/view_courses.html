@@ -6,18 +6,23 @@
         }
     </style>
 
-    
-    <div class="card-fluid active container-fluid">
+    <section class="container">
+
+ 
 
     {#{ form.hidden_tag() }#}
-    <legend id="legend" class="">Enrolled Courses</legend>
+    <legend id="legend" class="p-5 fw-semibold fs-3">Enrolled Courses</legend>
     <p id="user_type" value="{{ user_type }}" hidden></p>
 
-    <div id="scroller" class="row">
 
-        <template id="post_template">
+<section class="">
 
-            <div class="card bg-light mb-3" style="width: 18rem;" >
+    <div id="scroller" class="row justify-content-evenly">
+
+        <template id="post_template" class="col-4">
+
+
+            <div class="card bg-light mb-3 " style="width: 22rem;" >
                 <img class="card-img-top" src="{{ url_for('static',filename='demo_course-images-3.jpg') }}"
                     alt="Card image cap"/>
                 <div class="card-body">
@@ -40,12 +45,16 @@
             </div>
 
         </template>
+        
     </div>
 
     <div class="d-flex justify-content-center mb-3" id="sentinel">
         <div class="spinner-border" role="status"></div>
     </div>
+</section>
 
+
+</section>
 
     <script>
         function myFunction() {

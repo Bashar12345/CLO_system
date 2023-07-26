@@ -42,16 +42,21 @@
 
     <header class="container-fluid">
         <!-- Navigation  NAVVVVVVVVVVVVVVV part start  -->
-        <section class="container ">
 
-            <nav class="navbar navbar-expand-lg fixed-top" >
-                <button class="navbar-toggler ms-2" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03">
+
+        <nav class="navbar navbar-expand-lg fixed-top">
+
+            <section class="container">
+
+                <button class="navbar-toggler ms-2" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo03">
                     <span class="navbar-toggler-icon "></span>
                 </button>
                 <div class="navbar-header">
-                    <a class="navbar-brand ms-2 fw-bold fs-4"  style="color: var(--main-color);" href="{{ url_for('main.index') }}">
+                    <a class="navbar-brand ms-sm-2 ms-md-0 fw-bold fs-3" style="color: var(--main-color);"
+                        href="{{ url_for('main.index') }}">
                         Exams!!
-                        <img class="img-fluid" style="max-height: 2.7vh; max-width: 5vw;"
+                        <img class="img-fluid" style="max-height: 2rem; max-width: 5vw;"
                             src="{{url_for('static',filename="img/Exam_logo.png")}}" />
                     </a>
                 </div>
@@ -103,12 +108,11 @@
                         <!-- <li class="nav-item">
                         <a class="nav-link" href="{#{ url_for('main.live_stream') }#}">Webcam</a>
                     </li> -->
+
                         {% endif %}
 
 
-                        <!-- <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                    </li> -->
+
 
                     </ul>
                     <!--<form class="form-inline my-2 my-lg-0">
@@ -116,47 +120,53 @@
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>-->
                 </div>
-                <div class="navbar-nav">
-                    {% if current_user.is_authenticated %}
-                    {% if user_type == 'student' %}
-                    {% block navenrol %}
+                    <div class="navbar-nav">
+                        {% if current_user.is_authenticated %}
+                        {% if user_type == 'student' %}
+                        {% block navenrol %}
 
-                    {% endblock navenrol %}
-                    {% endif %}
+                        {% endblock navenrol %}
+                        {% endif %}
 
-                    <a type="button" class="nav-item nav-link btn btn-danger p-2 me-2" href="{{ url_for('users.logout') }}">Log out</a>
-                    {% else %}
-                    <a type="button" class="nav-item nav-link me-2" href="{{ url_for('users.login') }}">Login</a>
-                    <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Sign Up</a>
-                    {% endif %}
-                </div>
-            </nav>
+                        <a type="button" class="nav-item nav-link btn btn-danger p-2 me-sm-2 me-md-0" href="{{ url_for('users.logout') }}">Log out</a>
 
-        </section>
+                        {% else %}
+
+                        <a type="button" class="nav-item nav-link me-sm-2 me-md-0"
+                            href="{{ url_for('users.login') }}">Login</a>
+
+                        <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Sign Up</a>
+                        {% endif %}
+                    </div>
+                
+
+            </section>
+        </nav>
+
 
     </header>
 
 
 
-<section class="container-fluid">
-    <section class="container mt-5 pt-2">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-        <section class="row ">
+    <section class="container-fluid">
+        <section class="container mt-5 pt-2">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <section class="row ">
 
                 {% if current_user.is_authenticated %}
                 {% if user_type == 'teacher' %}
                 <div class="col-12 mt-2 text-end">
                     <h4>Teacher Page</h4>
                 </div>
-                
+
                 {% endif %}
                 {% if user_type == 'student' %}
                 <div class="col-12 mt-2 text-end">
@@ -167,9 +177,9 @@
                 <span></span>
                 {% endif %}
 
+            </section>
         </section>
     </section>
-</section>
 
 
 
