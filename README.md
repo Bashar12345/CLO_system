@@ -31,5 +31,4 @@ Database: NOSQL(mongoDB)
 
 I use Api for Smooth performance (Flask_Api's, mongoengine and others)
 
-A project of Course:-Project/Thesis,Course Code: SWE431, Final semister of DIU.
 
