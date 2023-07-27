@@ -31,7 +31,7 @@
 
 <div class="container">
 <div class="row ">
-    <div class="col-12 col-sm-8 pb-5 pt-2">
+    <div class="col-sm-12 col-md-8 pb-5 pt-2">
 
         <form action="" class="m-auto form-group" method="POST" enctype="multipart/form-data">
             <p class="content">
@@ -44,18 +44,18 @@
 
             <h6>What would be (Hard,Medium,Easy) its Difficulty? Evaluate this paper...</h6><br>
             </p>
-            <div class="p container">
+            <div class="p m-2 ">
 
                 {% for i in shuffled_question_list %}
                 {#{i}#}
 
                 {% for j in i %}
-                <div class="row justify-content-center bg-light">
+                <div class="row justify-content-center bg-light py-2">
                     <div class="col">
                         <h5>{{j}}</h5>
                     </div>
                 </div>
-                <div class="row justify-content-around ">
+                <div class="row justify-content-around mt-1">
                     {% for k in i[j] %}
                     <div class="col">
                         <h6> {{k}} </h6>
@@ -100,7 +100,7 @@
     </div>
 
 
-    <div class="col-10 offset-1 col-sm-4 offset-sm-0 py-3">
+    <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-0 py-3">
 
 
         <form class="card border-light mb-3" method="POST" enctype="multipart/form-data">

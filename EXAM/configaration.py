@@ -47,7 +47,7 @@ class Config:
     #     'host': COSMOSDB_CONN
     #     }
     # MONGODB_DB = 'project1'
-    #MONGODB_HOST = COSMOSDB_CONN
+    MONGODB_HOST = COSMOSDB_CONN
     # MONGODB_PORT = 12345
     # MONGODB_USERNAME = 'webapp'
     # MONGODB_PASSWORD = 'pwd123'
