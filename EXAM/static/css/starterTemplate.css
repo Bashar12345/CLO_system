@@ -17,6 +17,7 @@
 }
 
 body{
+   
     /* text-align: center; */
     background: blanchedalmond;
     /* background-color: lightblue; */
@@ -26,6 +27,10 @@ body{
 p{
     font-family: var(--ques_text);
     font-size: 20px;
+}
+
+header{
+    margin-bottom: 15px;
 }
 
 .loginParent{
