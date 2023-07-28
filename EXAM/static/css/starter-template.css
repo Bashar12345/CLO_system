@@ -10,7 +10,7 @@ section {
 div#header, div#footer {
     padding: 10px;
     color: white;
-    background-color: black;
+    background-color: black; 
 }
 
 div#content {

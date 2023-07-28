@@ -2,12 +2,12 @@
 {% block body %}
 
 <!-- <h3 class="text-center text-white pt-5">Login form</h3> -->
-<div class="loginParent d-flex justify-content-center align-items-center">
+<div class="loginParent d-flex justify-content-center align-items-center ">
 
     <form class="loginChid form-group " action method="post">
-        <legend class="text-info h3 mb-3"> Login </legend>
+        <legend class="text-primary mb-3 h1 fw-semibold"> Login </legend>
 
-        {{ form.email.label(class="form-control-label") }}
+        {{ form.email.label(class="form-control-label") }} 
         
         {{ form.email(class="form-control mt-2",type="email",placeholder="Your email address...")
         }}
@@ -34,9 +34,9 @@
         </div>
 
 
-        {{ form.submit(class="form-group btn btn-info  mb-2") }}
+        {{ form.submit(class="form-group btn btn-primary mb-2") }}
         <div class="d-grid">
-            <small class=" text-muted ml-2">
+            <small class=" text-muted ml-2 mb-2">
                 <a href="{{url_for('users.reset_request')}}"> Forgot Password?
                 </a>
             </small>
